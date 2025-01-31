@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	
-<? php include 'includes/header.php'; ?>
+<?php include_once 'includes/header.php'; ?>
     <body>
 
 		<div id="global-loader" >

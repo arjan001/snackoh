@@ -49,7 +49,7 @@
 							</li>
 						</ul>
 						<div class="page-btn">
-							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-units"><i data-feather="plus-circle" class="me-2"></i> Add New Expense</a>
+							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-expense"><i data-feather="plus-circle" class="me-2"></i> Add New Expense</a>
 						</div>
 					</div>
 					
@@ -131,438 +131,181 @@
 								</div>
 							</div>
 							<!-- /Filter -->
-							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Category name</th>
-											<th>Reference</th>
-											<th>Date</th>
-											<th>Status</th>
-											<th>Amount</th>
-											<th>Description</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody class="Expense-list-blk">
-										<tr >
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Employee Benefits</td>
-											<td>PT001</td>
-											<td>19 Jan 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$550</td>
-											<td>Employee Vehicle</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Foods & Snacks</td>
-											<td>PT002</td>
-											<td>27 Jan 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$570</td>
-											<td>Employee Foods</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Entertainment</td>
-											<td>PT003</td>
-											<td>03 Feb 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$400</td>
-											<td>Office Vehicle</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Office Expenses & Postage	</td>
-											<td>PT004</td>
-											<td>17 Feb 2023</td>
-											<td><span class="badge badge-linedanger">Inactive</span></td>
-											<td>$750</td>
-											<td>Employee Foods</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Employee Benefits</td>
-											<td>PT005</td>
-											<td>14 Mar 2023</td>
-											<td><span class="badge badge-linedanger">Inactive</span></td>
-											<td>$470</td>
-											<td>Employee Vehicle</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Foods & Snacks</td>
-											<td>PT006</td>
-											<td>28 Mar 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$200</td>
-											<td>Employee Foods</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Entertainment</td>
-											<td>PT007</td>
-											<td>06 Apr 2023</td>
-											<td><span class="badge badge-linedanger">Inactive</span></td>
-											<td>$380</td>
-											<td>Office Vehicle</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Office Expenses & Postage	</td>
-											<td>PT008</td>
-											<td>19 Apr 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$620</td>
-											<td>Employee Foods</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Employee Benefits</td>
-											<td>PT009</td>
-											<td>08 May 2023</td>
-											<td><span class="badge badge-linedanger">Inactive</span></td>
-											<td>$430</td>
-											<td>Employee Vehicle</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Foods & Snacks</td>
-											<td>PT010</td>
-											<td>23 May 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$120</td>
-											<td>Employee Foods</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Entertainment</td>
-											<td>PT011</td>
-											<td>24 Nov 2023</td>
-											<td><span class="badge badge-linedanger">Inactive</span></td>
-											<td>$620</td>
-											<td>Office Vehicle</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Office Expenses & Postage	</td>
-											<td>PT012</td>
-											<td>19 Nov 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td>$430</td>
-											<td>Employee Foods</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-3 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							
+
+							<?php
+// Include database connection
+include_once './config/config.php'; // Change to your actual database config file
+
+// Fetch expenses from the database
+$query = "SELECT * FROM expenses"; // Modify according to your table name
+$result = mysqli_query($conn, $query);
+?>
+
+<div class="table-responsive">
+    <table class="table datanew">
+        <thead>
+            <tr>
+                <th class="no-sort">
+                    <label class="checkboxs">
+                        <input type="checkbox" id="select-all">
+                        <span class="checkmarks"></span>
+                    </label>
+                </th>
+                <th>Category name</th>
+                <th>Reference</th>
+                <th>Date</th>
+                
+                <th>Amount</th>
+                <th>Description</th>
+                <th class="no-sort">Action</th>
+            </tr>
+        </thead>
+        <tbody class="Expense-list-blk">
+            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                <tr>
+                    <td>
+                        <label class="checkboxs">
+                            <input type="checkbox">
+                            <span class="checkmarks"></span>
+                        </label>
+                    </td>
+                    <td><?= htmlspecialchars($row['category_name']); ?></td>
+                    <td><?= htmlspecialchars($row['reference']); ?></td>
+                    <td><?= htmlspecialchars(date('d M Y', strtotime($row['date']))); ?></td>
+                    
+                    <td>$<?= number_format($row['amount'], 2); ?></td>
+                    <td><?= htmlspecialchars($row['description']); ?></td>
+                    <td class="action-table-data">
+                        <div class="edit-delete-action">
+                            <a class="me-2 p-2 mb-0" href="javascript:void(0);">
+                                <i data-feather="eye" class="action-eye"></i>
+                            </a>
+                            <a class="me-2 p-2 mb-0 edit-btn" 
+                               data-bs-toggle="modal" 
+                               data-bs-target="#edit-units"
+                               data-id="<?= $row['id']; ?>" 
+                               data-category="<?= htmlspecialchars($row['category_name']); ?>"
+                               data-reference="<?= htmlspecialchars($row['reference']); ?>"
+                               data-date="<?= htmlspecialchars($row['date']); ?>"
+                               data-status="<?= htmlspecialchars($row['status']); ?>"
+                               data-amount="<?= htmlspecialchars($row['amount']); ?>"
+                               data-description="<?= htmlspecialchars($row['description']); ?>">
+                                <i data-feather="edit" class="feather-edit"></i>
+                            </a>
+                            <a class="me-3 confirm-text p-2 mb-0 delete-btn" 
+                               href="delete_expense.php?id=<?= $row['id']; ?>" 
+                               onclick="return confirm('Are you sure you want to delete this expense?');">
+                                <i data-feather="trash-2" class="feather-trash-2"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".edit-expense-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let expense = JSON.parse(this.getAttribute("data-expense")); // Assume data-expense contains JSON
+
+            document.getElementById("expense_id").value = expense.id;
+            document.querySelector("select[name='category_name']").value = expense.category_name;
+            document.querySelector("input[name='date']").value = expense.date;
+            document.querySelector("input[name='amount']").value = expense.amount;
+            document.querySelector("input[name='reference']").value = expense.reference;
+            document.querySelector("input[name='status']").value = expense.status;
+            document.querySelector("textarea[name='description']").value = expense.description;
+        });
+    });
+});
+
+</script>
+
+							
 						</div>
 					</div>
 					<!-- /product list -->
 				</div>
 			</div>
-			<!-- Add Expense -->
-			<div class="modal fade" id="add-units">
-				<div class="modal-dialog modal-dialog-centered custom-modal-two">
-					<div class="modal-content">
-						<div class="page-wrapper-new p-0">
-							<div class="content">
-								<div class="modal-header border-0 custom-modal-header">
-									<div class="page-title">
-										<h4>Add Expense</h4>
-									</div>
-									<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body custom-modal-body">
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="mb-3">
-												<label class="form-label">Expense Category</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Foods & Snacks</option>
-													<option>Employee Benefits</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="input-blocks date-group">
-												<i data-feather="calendar" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker" placeholder="Choose Date" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="mb-3">
-												<label class="form-label">Amount</label>
-												<input type="text" class="form-control" placeholder="$">
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="mb-3">
-												<label class="form-label">Reference</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3">
-												<label class="form-label">Expense For</label>
-												<input type="text" class="form-control">
-												<span class="unlimited-text">0 for Unlimited</span>
-											</div>
-											
-										</div>								
-										<!-- Editor -->
-										<div class="col-md-12">
-											<div class="edit-add card">
-												<div class="edit-add">
-													<label class="form-label">Description</label>
-												</div>
-												<div class="card-body-list input-blocks mb-0">
-													<textarea class="form-control"></textarea>
-												</div>
-												<p>Maximum 600 Characters</p>
-											</div>
-										</div>
-										<!-- /Editor -->
-									</div>							
-									<div class="modal-footer-btn">
-										<a href="javascript:void(0);" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</a>
-										<a href="expense-list.html" class="btn btn-submit">Submit</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Add Expense -->
+<!-- Add Expense Modal -->
+<div class="modal fade" id="add-expense">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>Add Expense</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+					<form action="add_expense.php" method="POST">
+    <div class="row">
+        <!-- Expense Category (Fetched from DB) -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Category Name</label>
+            <select class="form-control" name="category_name" required>
+                <option value="">Select Category</option>
+
+                <?php
+                include_once "./config/config.php";
+                $result = $conn->query("SELECT expense_name FROM expense_category");
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row['expense_name'] . "'>" . $row['expense_name'] . "</option>";
+                }
+                ?>
+            </select>
         </div>
+        <!-- Reference -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Reference</label>
+            <input type="text" class="form-control" name="reference" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Date -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" name="date" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Amount -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Amount</label>
+            <input type="number" step="0.01" class="form-control" name="amount" required>
+        </div>
+        <!-- Description -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="description" required></textarea>
+        </div>
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Add Expense</button>
+    </div>
+</form>
+
+                    </div> 
+					<!-- End Modal Body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Expense Modal -->
+ </div>
 		<!-- /Main Wrapper -->
 
 		
@@ -582,65 +325,61 @@
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="expense-list.html">
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="mb-3">
-												<label class="form-label">Expense Category</label>
-												<select class="select">
-													<option>Employee Benefits</option>
-													<option>Foods & Snacks</option>
-													<option>Entertainment</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="input-blocks date-group">
-												<i data-feather="calendar" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker ps-5" placeholder="19 Jan 2023" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="mb-3">
-												<label class="form-label">Amount</label>
-												<input type="text" class="form-control" value="$550.00">
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="mb-3">
-												<label class="form-label">Reference</label>
-												<input type="text" class="form-control" value="55544">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3 input-blocks">
-												<label class="form-label">Expense For</label>
-												<input type="text" class="form-control">
-												<span class="unlimited-text">0 for Unlimited</span>
-											</div>
-											
-										</div>								
-										<!-- Editor -->
-										<div class="col-md-12">
-											<div class="edit-add card">
-												<div class="edit-add">
-													<label class="form-label">Description</label>
-												</div>
-												<div class="card-body-list input-blocks mb-0">
-													<textarea class="form-control">Employee Vehicle</textarea>
-												</div>
-												<p>Maximum 600 Characters</p>
-											</div>
-										</div>
-										<!-- /Editor -->
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Save Changes</button>
-									</div>
-								</form>
+							<form action="add_expense.php" method="POST">
+    <input type="hidden" name="expense_id" value="<?php echo $expense_id; ?>"> <!-- Hidden field for updating -->
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Expense Category</label>
+                <select class="select" name="category_name">
+                    <option value="Employee Benefits" <?php echo ($category_name == 'Employee Benefits') ? 'selected' : ''; ?>>Employee Benefits</option>
+                    <option value="Foods & Snacks" <?php echo ($category_name == 'Foods & Snacks') ? 'selected' : ''; ?>>Foods & Snacks</option>
+                    <option value="Entertainment" <?php echo ($category_name == 'Entertainment') ? 'selected' : ''; ?>>Entertainment</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="input-blocks date-group">
+                <i data-feather="calendar" class="info-img"></i>
+                <div class="input-groupicon">
+                    <input type="text" name="date" class="datetimepicker ps-5" placeholder="19 Jan 2023" value="<?php echo $date; ?>">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Amount</label>
+                <input type="text" name="amount" class="form-control" value="<?php echo $amount; ?>">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Reference</label>
+                <input type="text" name="reference" class="form-control" value="<?php echo $reference; ?>">
+            </div>
+        </div>
+        
+        <div class="col-md-12">
+            <div class="edit-add card">
+                <div class="edit-add">
+                    <label class="form-label">Description</label>
+                </div>
+                <div class="card-body-list input-blocks mb-0">
+                    <textarea class="form-control" name="description"><?php echo $description; ?></textarea>
+                </div>
+                <p>Maximum 600 Characters</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Save Changes</button>
+    </div>
+</form>
+
+
 							</div>
 						</div>
 					</div>
