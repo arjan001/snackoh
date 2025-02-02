@@ -127,7 +127,7 @@
 												</label>
 											</th>
 											<th>Category</th>
-											<th>Category slug</th>
+											<th>Category Description Slug</th>
 											<th>Created On</th>
 											<th>Status</th>
 											<th class="no-sort">Action</th>
@@ -157,166 +157,9 @@
 												
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Electronics</td>
-											<td>electronics</td>
-											<td>24 Jun 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Shoe</td>
-											<td>shoe</td>
-											<td>23 Jul 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Speaker</td>
-											<td>speaker</td>
-											<td>22 Aug 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Furniture</td>
-											<td>furniture</td>
-											<td>21 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Bags</td>
-											<td>bags</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Phone</td>
-											<td>phone</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Chairs</td>
-											<td>chairs</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>									
+										
+										
+																			
 									</tbody>
 								</table>
 							</div>
@@ -351,7 +194,7 @@
 										<input type="text" name="category_name" class="form-control">
 									</div>
 									<div class="mb-3">
-										<label class="form-label">Category Slug</label>
+										<label class="form-label">Category Description Slug</label>
 										<input type="text" name="category_slug"class="form-control">
 									</div>
 									<div class="mb-0">
@@ -396,7 +239,7 @@
 										<input type="text" class="form-control" value="Laptop">
 									</div>
 									<div class="mb-3">
-										<label class="form-label">Category Slug</label>
+										<label class="form-label">Category Description Slug</label>
 										<input type="text" class="form-control" value="laptop">
 									</div>
 									<div class="mb-0">

@@ -68,916 +68,153 @@
 							<div class="pos-categories tabs_wrapper">
 								<h5>Categories</h5>
 								<p>Select From Below Categories</p>
-								<ul class="tabs owl-carousel pos-category">
-									<li id="all">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-01.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">All Categories</a></h6>
-										<span>15 Items</span>
-									</li>
-									<li id="headphones">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-02.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Headphones</a></h6>
-										<span>4 Items</span>
-									</li>
-									<li id="shoes">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-03.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Shoes</a></h6>
-										<span>14 Items</span>
-									</li>
-									<li id="mobiles">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-04.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Mobiles</a></h6>
-										<span>7 Items</span>
-									</li>
-									<li id="watches">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-05.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Watches</a></h6>
-										<span>16 Items</span>
-									</li>
-									<li id="laptops">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-06.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Laptops</a></h6>
-										<span>18 Items</span>
-									</li>
-									<li id="allcategory">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-01.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">All Categories</a></h6>
-										<span>80 Items</span>
-									</li>
-									<li id="headphone">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-02.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Headphones</a></h6>
-										<span>4 Items</span>
-									</li>
-									<li id="shoe">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-03.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Shoes</a></h6>
-										<span>14 Items</span>
-									</li>
-									<li id="mobile">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-04.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Mobiles</a></h6>
-										<span>7 Items</span>
-									</li>
-									<li id="watche">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-05.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Watches</a></h6>
-										<span>16 Items</span>
-									</li>
-									<li id="laptop">
-										<a href="javascript:void(0);">
-											<img src="assets/img/categories/category-06.png" alt="Categories">
-										</a>
-										<h6><a href="javascript:void(0);">Laptops</a></h6>
-										<span>18 Items</span>
-									</li>
-								</ul>
+<?php
+
+include './config/config.php';
+
+// Fetch product categories with their product counts
+$sql = "SELECT pc.id, pc.category_name, pc.category_slug, COUNT(p.id) AS item_count
+        FROM product_category pc
+        LEFT JOIN products p ON pc.id = p.product_category
+        GROUP BY pc.id";
+$result = $conn->query($sql);
+
+// Get the total number of products for the "All Categories" button
+$all_categories_sql = "SELECT COUNT(*) AS total_items FROM products";
+$all_categories_result = $conn->query($all_categories_sql);
+$all_categories_row = $all_categories_result->fetch_assoc();
+$total_items = $all_categories_row['total_items'];
+
+// Close connection after the query
+$conn->close();
+?>
+
+<ul class="tabs owl-carousel pos-category">
+    <!-- "All Categories" button with total item count -->
+    <li id="all">
+        <a href="javascript:void(0);">
+            <img src="assets/img/profiles/avator1.jpg" alt="Categories">
+        </a>
+        <h6><a href="javascript:void(0);">All Categories</a></h6>
+        <span><?php echo $total_items; ?> Total Products</span> <!-- Dynamic item count for All Categories -->
+    </li>
+    
+    <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $category_image = 'assets/img/profiles/avator1.jpg'; // Placeholder image
+            $category_name = htmlspecialchars($row['category_name']);
+            $category_slug = htmlspecialchars($row['category_slug']);
+            $item_count = $row['item_count']; // Dynamic item count for each category
+
+            echo "<li id='" . $category_slug . "'>
+                    <a href='javascript:void(0);'>
+                        <img src='$category_image' alt='Categories'>
+                    </a>
+                    <h6><a href='javascript:void(0);'>$category_name</a></h6>
+                    <span>$item_count Items</span>
+                </li>";
+        }
+    } else {
+        echo "<li>No categories found</li>";
+    }
+
+
+
+// Handle AJAX request for fetching products
+if (isset($_GET['category'])) {
+    $category = $_GET['category'];
+
+    // If category is 'all', fetch all products; otherwise, fetch products for the selected category
+    if ($category === 'all') {
+        $sql = "SELECT * FROM products"; // Fetch all products
+    } else {
+        // Fetch products based on category
+        $sql = "SELECT * FROM products WHERE product_category = '$category'";
+    }
+
+    $result = $conn->query($sql);
+    $products = [];
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Assuming your table has product_name, product_image, product_price, and product_description
+            $products[] = [
+                'product_name' => $row['product_name'],
+                // 'product_image' => $row['product_image'], // Assuming you store the image path in this field
+                'product_price' => $row['product_price'],
+                // 'product_description' => $row['product_description'] ?? 'No description available'  // Handle null description
+            ];
+        }
+    }
+
+    // Close connection
+    $conn->close();
+
+    // Return the products as JSON
+    echo json_encode($products);
+    exit;
+}
+?>
+</ul>
+
+   <!-- "All Categories" button with total item count -->
+
+
+								
 								<div class="pos-products">
 									<div class="d-flex align-items-center justify-content-between">
 										<h5 class="mb-3">Products</h5>
 									</div>
-									<div class="tabs_container">
-										<div  class="tab_content active" data-tab="all">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-01.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IPhone 14 64GB</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>30 Pcs</span>
-															<p>$15800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-02.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">MacBook Pro</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>140 Pcs</span>
-															<p>$1000</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-03.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Rolex Tribute V3</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>220 Pcs</span>
-															<p>$6800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-04.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Red Nike Angelo</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-05.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Airpod 2</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>47 Pcs</span>
-															<p>$5478</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-06.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Blue White OGR</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>54 Pcs</span>
-															<p>$987</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-07.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IdeaPad Slim 5 Gen 7</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>74 Pcs</span>
-															<p>$1454</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-08.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">SWAGME</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$6587</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-09.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Timex Black SIlver</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>24 Pcs</span>
-															<p>$1457</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-10.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Tablet 1.02 inch</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$4744</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-11.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Fossil Pair Of 3 in 1 </a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>40 Pcs</span>
-															<p>$789</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-18.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Green Nike Fe</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7847</p>
-														</div>
-													</div>
-												</div>
+									<!-- Product Display Section -->
+<div class="tab-content">
+    <div class="row">
+        <?php
+		
+		include './config/config.php';
+		
+		// Fetch all products from the database
+		$sql = "SELECT * FROM products";
+		$result = $conn->query($sql);
+		
+		// Close connection after query
+		$conn->close();
+		
+        if ($result->num_rows > 0) {
+            while ($product = $result->fetch_assoc()) {
+                $product_name = $product['product_name'];
+                $product_price = $product['product_price'];
+                // Dummy image as placeholder
+                $product_image = 'assets/img/products/dummy.png';
 
-											</div>
-										</div>
-										<div  class="tab_content" data-tab="headphones">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-05.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Airpod 2</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>47 Pcs</span>
-															<p>$5478</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-08.png" alt="Products">
-															<span><i data-feather="check" class="feather-16" ></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">SWAGME</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$6587</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
+                echo "<div class='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
+                        <div class='product-info default-cover card'>
+                            <a href='javascript:void(0);' class='img-bg'>
+                                <img src='$product_image' alt='Product Image'>
+                                <span><i data-feather='check' class='feather-16'></i></span>
+                            </a>
+                            
+                            <h6 class='product-name'><a href='javascript:void(0);'>$product_name</a></h6>
+                            <div class='d-flex align-items-center justify-content-between price'>
+                                <span>47 Pcs</span>
+                                <p>\$$product_price</p>
+                            </div>
+                        </div>
+                    </div>";
+            }
+        } else {
+            echo "<p>No products found.</p>";
+        }
+        ?>
+    </div>
+</div>
 
-										<div  class="tab_content" data-tab="shoes">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-04.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Red Nike Angelo</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-06.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Blue White OGR</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>54 Pcs</span>
-															<p>$987</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-18.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Green Nike Fe</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7847</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="mobiles">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-01.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IPhone 14 64GB</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>30 Pcs</span>
-															<p>$15800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-14.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Iphone 11</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$3654</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="watches">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-03.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Rolex Tribute V3</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>220 Pcs</span>
-															<p>$6800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-09.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Timex Black SIlver</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>24 Pcs</span>
-															<p>$1457</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-11.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Fossil Pair Of 3 in 1 </a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>40 Pcs</span>
-															<p>$789</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="laptops">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-02.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">MacBook Pro</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>140 Pcs</span>
-															<p>$1000</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-07.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IdeaPad Slim 5 Gen 7</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>74 Pcs</span>
-															<p>$1454</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-10.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Tablet 1.02 inch</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$4744</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-13.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Yoga Book 9i</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>65 Pcs</span>
-															<p>$4784</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-14.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IdeaPad Slim 3i</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>47 Pcs</span>
-															<p>$1245</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="allcategory">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-01.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IPhone 14 64GB</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>30 Pcs</span>
-															<p>$15800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-02.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">MacBook Pro</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>140 Pcs</span>
-															<p>$1000</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-03.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Rolex Tribute V3</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>220 Pcs</span>
-															<p>$6800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-04.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Red Nike Angelo</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-05.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Airpod 2</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>47 Pcs</span>
-															<p>$5478</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-06.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Blue White OGR</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>54 Pcs</span>
-															<p>$987</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-07.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IdeaPad Slim 5 Gen 7</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>74 Pcs</span>
-															<p>$1454</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-08.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">SWAGME</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$6587</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-09.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Timex Black SIlver</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>24 Pcs</span>
-															<p>$1457</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-10.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Tablet 1.02 inch</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$4744</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-11.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Fossil Pair Of 3 in 1 </a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>40 Pcs</span>
-															<p>$789</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-18.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Green Nike Fe</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7847</p>
-														</div>
-													</div>
-												</div>
-
-											</div>
-										</div>
-										<div  class="tab_content" data-tab="headphone">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-05.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Airpod 2</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>47 Pcs</span>
-															<p>$5478</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-08.png" alt="Products">
-															<span><i data-feather="check" class="feather-16" ></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Headphones</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">SWAGME</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$6587</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="shoe">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-04.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Red Nike Angelo</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-06.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Blue White OGR</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>54 Pcs</span>
-															<p>$987</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-18.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Shoes</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Green Nike Fe</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>78 Pcs</span>
-															<p>$7847</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="mobile">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-01.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IPhone 14 64GB</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>30 Pcs</span>
-															<p>$15800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-14.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Mobiles</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Iphone 11</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$3654</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="watche">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-03.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Rolex Tribute V3</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>220 Pcs</span>
-															<p>$6800</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-09.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Timex Black SIlver</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>24 Pcs</span>
-															<p>$1457</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-11.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Watches</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Fossil Pair Of 3 in 1 </a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>40 Pcs</span>
-															<p>$789</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div  class="tab_content" data-tab="laptop">
-											<div class="row">
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-02.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">MacBook Pro</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>140 Pcs</span>
-															<p>$1000</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-07.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IdeaPad Slim 5 Gen 7</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>74 Pcs</span>
-															<p>$1454</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-10.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Computer</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Tablet 1.02 inch</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>14 Pcs</span>
-															<p>$4744</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-13.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">Yoga Book 9i</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>65 Pcs</span>
-															<p>$4784</p>
-														</div>
-													</div>
-												</div>
-												<div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
-													<div class="product-info default-cover card">
-														<a href="javascript:void(0);" class="img-bg">
-															<img src="assets/img/products/pos-product-14.png" alt="Products">
-															<span><i data-feather="check" class="feather-16"></i></span>
-														</a>
-														<h6 class="cat-name"><a href="javascript:void(0);">Laptop</a></h6>
-														<h6 class="product-name"><a href="javascript:void(0);">IdeaPad Slim 3i</a></h6>
-														<div class="d-flex align-items-center justify-content-between price">
-															<span>47 Pcs</span>
-															<p>$1245</p>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
+
+						<!-- order list in cart -->
 						<div class="col-md-12 col-lg-4 ps-0">
 							<aside class="product-order-list">
 								<div class="head d-flex align-items-center justify-content-between w-100">
@@ -1132,7 +369,7 @@
 									<div class="selling-info">
 										<div class="row">
 											<div class="col-12 col-sm-4">
-												<div class="input-block">
+												<!-- <div class="input-block">
 													<label>Order Tax</label>
 													<select class="select">
 														<option>GST 5%</option>
@@ -1142,9 +379,9 @@
 														<option>GST 25%</option>
 														<option>GST 30%</option>
 													</select>
-												</div>
+												</div> -->
 											</div>
-											<div class="col-12 col-sm-4">
+											<!-- <div class="col-12 col-sm-4">
 												<div class="input-block">
 													<label>Shipping</label>
 													<select class="select">
@@ -1154,8 +391,8 @@
 														<option>30</option>
 													</select>
 												</div>
-											</div>
-											<div class="col-12 col-sm-4">
+											</div> -->
+											<!-- <div class="col-12 col-sm-4">
 												<div class="input-block">
 													<label>Discount</label>
 													<select class="select">
@@ -1167,7 +404,7 @@
 														<option>30%</option>
 													</select>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</div>
 									<div class="order-total">
@@ -1223,7 +460,7 @@
 											<div class="default-cover">
 												<a href="javascript:void(0);">
 													<img src="assets/img/icons/qr-scan.svg" alt="Payment Method">
-													<span>Scan</span>
+													<span>Mpesa</span>
 												</a>
 											</div>
 										</div>
@@ -1289,9 +526,9 @@
 							</a>
 						</div>
 						<div class="text-center info text-center">
-							<h6>Dreamguys Technologies Pvt Ltd.,</h6>
+							<h6>Snack-Oh! Bakers Limited</h6>
 							<p class="mb-0">Phone Number: +1 5656665656</p>
-							<p class="mb-0">Email: <a href="mailto:example@gmail.com">example@gmail.com</a></p>
+							<p class="mb-0">Email: <a href="mailto:info@snack-oh.co.ke">info@snack-oh.co.ke</a></p>
 						</div>
 						<div class="tax-invoice">
 							<h6 class="text-center">Tax Invoice</h6>
@@ -1302,7 +539,7 @@
 								</div>
 								<div class="col-sm-12 col-md-6">
 									<div class="invoice-user-name"><span>Customer Id: </span><span>#LL93784</span></div>
-									<div class="invoice-user-name"><span>Date: </span><span>01.07.2022</span></div>
+									<div class="invoice-user-name"><span>Date: </span><span>02.02.2025</span></div>
 								</div>
 							</div>
 						</div>
@@ -1317,33 +554,33 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>1. Red Nike Laser</td>
-									<td>$50</td>
+									<td>1. Bread white (400g)</td>
+									<td>KSH 50</td>
 									<td>3</td>
-									<td class="text-end">$150</td>
+									<td class="text-end">KSH150</td>
 								</tr>
 								<tr>
-									<td>2. Iphone 14</td>
-									<td>$50</td>
+									<td>2. Bread yellow (400g)</td>
+									<td>KSH 50</td>
 									<td>2</td>
-									<td class="text-end">$100</td>
+									<td class="text-end">KSH100</td>
 								</tr>
 								<tr>
-									<td>3. Apple Series 8</td>
-									<td>$50</td>
+									<td>3. Doughnuts</td>
+									<td>KSH 50</td>
 									<td>3</td>
-									<td class="text-end">$150</td>
+									<td class="text-end">KSH150</td>
 								</tr>
 								<tr>
 									<td colspan="4">
 										<table class="table-borderless w-100 table-fit">
 											<tr>
 												<td>Sub Total :</td>
-												<td class="text-end">$700.00</td>
+												<td class="text-end">KSH 700.00</td>
 											</tr>
 											<tr>
 												<td>Discount :</td>
-												<td class="text-end">-$50.00</td>
+												<td class="text-end">-KSH 50.00</td>
 											</tr>
 											<tr>
 												<td>Shipping :</td>
@@ -1351,19 +588,19 @@
 											</tr>
 											<tr>
 												<td>Tax (5%) :</td>
-												<td class="text-end">$5.00</td>
+												<td class="text-end">KSH 5.00</td>
 											</tr>
 											<tr>
 												<td>Total Bill :</td>
-												<td class="text-end">$655.00</td>
+												<td class="text-end">KSH 655.00</td>
 											</tr>
 											<tr>
 												<td>Due :</td>
-												<td class="text-end">$0.00</td>
+												<td class="text-end">KSH 0.00</td>
 											</tr>
 											<tr>
 												<td>Total Payable :</td>
-												<td class="text-end">$655.00</td>
+												<td class="text-end">KSH 655.00</td>
 											</tr>
 										</table>
 									</td>
@@ -2501,6 +1738,45 @@
 		
 		<!-- Custom JS --><script src="assets/js/theme-script.js"></script>	
 		<script src="assets/js/script.js"></script>
+
+		<script >
+	// Function to load products based on the selected category
+function loadProducts(categorySlug) {
+    // Show loading indicator or message
+    document.getElementById('product-list').innerHTML = 'Loading...';
+
+    let categoryId = categorySlug === 'all' ? '' : categorySlug; // Set category ID or empty for 'all'
+
+    // Fetch products using AJAX
+    fetch(`insert-product.php?category=${categoryId}`)
+        .then(response => response.json())
+        .then(data => {
+            let productHTML = '';
+            if (data.length > 0) {
+                data.forEach(product => {
+                    // Build the product HTML structure
+                    productHTML += `
+                        <div class="product">
+                            <img src="${product.product_image}" alt="${product.product_name}" class="product-image">
+                            <h4>${product.product_name}</h4>
+                            <p>${product.product_description ? product.product_description : 'No description available'}</p>
+                            <span class="product-price">$${product.product_price}</span>
+                        </div>
+                    `;
+                });
+            } else {
+                productHTML = '<p>No products found for this category.</p>';
+            }
+            // Update the product list display
+            document.getElementById('product-list').innerHTML = productHTML;
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
+            document.getElementById('product-list').innerHTML = 'Error loading products.';
+        });
+}
+
+		</script>
 
 	
 	</body>

@@ -117,170 +117,64 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Unit</th>
-											<th>Short name</th>
-											<th>No of Products</th>
-											<th>Created On</th>
-											<th>Status</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Piece </td>
-											<td>PC</td>
-											<td>25</td>
-											<td>25 May 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Kilogram </td>
-											<td>KG</td>
-											<td>15</td>
-											<td>24 Jun 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Gram </td>
-											<td>G</td>
-											<td>47</td>
-											<td>23 Jul 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Meter</td>
-											<td>M</td>
-											<td>28</td>
-											<td>22 Aug 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Liter</td>
-											<td>L</td>
-											<td>47</td>
-											<td>21 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Kilo</td>
-											<td>K</td>
-											<td>74</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-									</tbody>
-								</table>
+							<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Unit</th>
+            <th>Short name</th>
+            <th>No of Products</th>
+            <th>Created On</th>
+            <th>Status</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        
+
+        $query = "SELECT * FROM units ORDER BY id DESC";
+        $result = $conn->query($query);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                    <td>
+                        <label class='checkboxs'>
+                            <input type='checkbox'>
+                            <span class='checkmarks'></span>
+                        </label>
+                    </td>
+                    <td>{$row['unit_name']}</td>
+                    <td>{$row['short_name']}</td>
+                    <td>{$row['no_of_products']}</td>
+                    <td>" . date("d M Y", strtotime($row['created_on'])) . "</td>
+                    <td><span class='badge badge-linesuccess'>" . ucfirst($row['status']) . "</span></td>
+                    <td class='action-table-data'>
+                        <div class='edit-delete-action'>
+                            <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-unit'>
+                                <i data-feather='edit' class='feather-edit'></i>
+                            </a>
+                            <a class='confirm-text p-2' href='javascript:void(0);'>
+                                <i data-feather='trash-2' class='feather-trash-2'></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7' class='text-center'>No units found</td></tr>";
+        }
+        $conn->close();
+        ?>
+    </tbody>
+</table>
+
 							</div>
 						</div>
 					</div>
@@ -343,47 +237,54 @@
 
 
 		<!-- Edit Unit -->
-		<div class="modal fade" id="edit-units">
-			<div class="modal-dialog modal-dialog-centered custom-modal-two">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Edit Unit</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="units.html">
-									<div class="mb-3">
-										<label class="form-label">Name</label>
-										<input type="text" class="form-control" value="Piece">
-									</div>
-									<div class="mb-3">
-										<label class="form-label">Short Name</label>
-										<input type="text" class="form-control" value="PC">
-									</div>
-									<div class="mb-0">
-										<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-											<span class="status-label">Status</span>
-											<input type="checkbox" id="user3" class="check" checked="">
-											<label for="user3" class="checktoggle"></label>
-										</div>
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Save Changes</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="modal fade" id="edit-unit">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>edit unit</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form action="add_unit.php" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Unit Name</label>
+                                <input type="text" class="form-control" name="unit_name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Short Name</label>
+                                <input type="text" class="form-control" name="short_name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Number Of Products</label>
+                                <input type="number" class="form-control" name="no_of_products" value="0" min="0" required>
+                            </div>
+
+                            <div class="mb-0">
+                                <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
+                                    <span class="status-label">Status</span>
+                                    <input type="checkbox" id="unit_status" class="check" name="status" checked>
+                                    <label for="unit_status" class="checktoggle"></label>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit create">Create Unit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       </div>
 
 
 		<!-- /Edit Unit -->

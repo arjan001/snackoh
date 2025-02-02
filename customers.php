@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <?php include "includes/header.php";?>
     <body>
 		
@@ -133,92 +134,46 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>											
-											<td>Thomas</a></td>
-											<td>Wholesale</td>
-											<td>+12163547758 </td>
-											<td>Credit</td>
-											<td>ksh 1200 </td>
-											<td>02 may 2025</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>											
-											<td>Thomas</a></td>
-											<td>Wholesale</td>
-											<td>+12163547758 </td>
-											<td>Credit</td>
-											<td>ksh 1200 </td>
-											<td>02 may 2025</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>											
-											<td>Thomas</a></td>
-											<td>Wholesale</td>
-											<td>+12163547758 </td>
-											<td>Credit</td>
-											<td>ksh 1200 </td>
-											<td>02 may 2025</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-                                      
-										
+									<?php
+// Assuming you have already connected to your database
+$sql = "SELECT id, customer_name, segment, phone, payment_terms, town FROM customers";
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+    // Loop through the result and display the data
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td><label class='checkboxs'><input type='checkbox'><span class='checkmarks'></span></label></td>";
+        echo "<td>" . $row['customer_name'] . "</td>";
+        echo "<td>" . $row['segment'] . "</td>";
+        echo "<td>" . $row['phone'] . "</td>";
+        echo "<td>" . $row['payment_terms'] . "</td>";
+        echo "<td>null</td>"; // Placeholder for outstanding balance
+        echo "<td>null</td>"; // Placeholder for last pay date
+        echo "<td class='action-table-data'>
+                <div class='edit-delete-action'>
+                    <a class='me-2 p-2' href='#'>
+                        <i data-feather='eye' class='feather-eye'></i>
+                    </a>
+					
+                    <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit_customer' data-id='" . $row['id'] . "'>
+                        <i data-feather='edit' class='feather-edit'></i>
+                    </a>
+
+					
+                    <a class='confirm-text p-2' href='javascript:void(0);'>
+                        <i data-feather='trash-2' class='feather-trash-2'></i>
+                    </a>
+                </div>
+              </td>";
+        echo "</tr>";
+    }
+} else {
+    echo "<tr><td colspan='8'>No customers found</td></tr>";
+}
+?>
+	
+	
 									</tbody>
 								</table>
 							</div>
@@ -245,80 +200,96 @@
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="customers.html">
-									
-									
-									<div class="row">
-										<div class="col-lg-4 pe-0">
-											<div class="mb-3">
-												<label class="form-label">Customer Name</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-4 pe-0">
-											<div class="mb-3">
-												<label class="form-label">Email</label>
-												<input type="email" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-4 pe-0">
-											<div class="input-blocks">
-												<label class="mb-2">Phone</label>
-												<input class="form-control form-control-lg group_formcontrol" id="phone" name="phone" type="text">
-											</div>
-										</div>
-										<div class="col-lg-12 pe-0">
-											<div class="mb-3">
-												<label class="form-label">Address</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 pe-0">
-											<div class="mb-3">
-												<label class="form-label">City</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 pe-0">
-											<div class="mb-3">
-												<label class="form-label">Segment</label>
-												<select class="select">
-													<option>Retailer</option>
-													<option>Wholesaler</option>
-													<option>United State</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6 pe-0">
-											<div class="mb-3">
-												<label class="form-label">City</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6 pe-0">
-											<div class="mb-3">
-												<label class="form-label">Gender</label>
-												<select class="select">
-													<option>Male</option>
-													<option>Female</option>
-													
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3 input-blocks">
-												<label class="form-label">Descriptions</label>
-												<textarea class="form-control mb-1"></textarea>
-												<p>Maximum 60 Characters</p>
-											</div>											
-										</div>									
-									</div>								
-									
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Submit</button>
-									</div>
-								</form>
+							<form action="add_customers.php" method="POST">
+    <div class="row">
+        <div class="col-lg-4 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Customer Name</label>
+                <input type="text" class="form-control" name="customer_name" required>
+            </div>
+        </div>
+        <div class="col-lg-4 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+        </div>
+        <div class="col-lg-4 pe-0">
+            <div class="input-blocks">
+                <label class="mb-2">Phone</label>
+                <input class="form-control form-control-lg group_formcontrol" name="phone" type="text" required>
+            </div>
+        </div>
+        <div class="col-lg-12 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Physical Address</label>
+                <input type="text" class="form-control" name="physical_address">
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Town</label>
+                <input type="text" class="form-control" name="town">
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Segment</label>
+                <select class="select form-control" name="segment">
+                    <option value="Retailer">Retailer</option>
+                    <option value="Wholesaler">Wholesaler</option>
+                    <option value="Distributor">Distributor</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" name="city">
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="select form-control" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Payment Terms</label>
+                <select class="select form-control" name="payment_terms">
+                    <option value="Cash">Cash</option>
+                    <option value="Credit">Credit</option>
+                </select>
+            </div>
+        </div>
+		<div class="col-lg-12 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Map Location (Type or Click on the map)</label>
+                
+                <!-- Search Input for Places Autocomplete -->
+                <input id="autocomplete" class="form-control" type="text" placeholder="Search for a location..." />
+
+                <!-- Google Map Container -->
+                <div id="map" style="height: 400px; border: 1px solid #ccc; margin-top: 10px;"></div>
+
+                <!-- Hidden fields for latitude & longitude -->
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Submit</button>
+    </div>
+</form>
+
 							</div>
 						</div>
 					</div>
@@ -328,10 +299,138 @@
 		<!-- /Add Customer -->
 
         <!-- Edit Customer -->
+		<div class="modal fade" id="edit_customer">
+			<div class="modal-dialog modal-dialog-centered custom-modal-two">
+				<div class="modal-content">
+					<div class="page-wrapper-new p-0">
+						<div class="content">
+							<div class="modal-header border-0 custom-modal-header">
+								<div class="page-title">
+									<h4>Edit Customer</h4>
+								</div>
+								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body custom-modal-body">
+							<form action="add_customers.php" method="POST">
+							<input type="hidden" name="id" value="<?php echo $customer_id; ?>" />
+    <div class="row">
+        <div class="col-lg-4 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Customer Name</label>
+                <input type="text" class="form-control" name="customer_name" required>
+            </div>
+        </div>
+        <div class="col-lg-4 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+        </div>
+        <div class="col-lg-4 pe-0">
+            <div class="input-blocks">
+                <label class="mb-2">Phone</label>
+                <input class="form-control form-control-lg group_formcontrol" name="phone" type="text" required>
+            </div>
+        </div>
+        <div class="col-lg-12 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Physical Address</label>
+                <input type="text" class="form-control" name="physical_address">
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Town</label>
+                <input type="text" class="form-control" name="town">
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Segment</label>
+                <select class="select form-control" name="segment">
+                    <option value="Retailer">Retailer</option>
+                    <option value="Wholesaler">Wholesaler</option>
+                    <option value="Distributor">Distributor</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" name="city">
+            </div>
+        </div>
+        <div class="col-lg-6 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="select form-control" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12 pe-0">
+            <div class="mb-3">
+                <label class="form-label">Payment Terms</label>
+                <select class="select form-control" name="payment_terms">
+                    <option value="Cash">Cash</option>
+                    <option value="Credit">Credit</option>
+                </select>
+            </div>
+        </div>
 
+
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Submit</button>
+    </div>
+</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- /Edit Customer -->
   
-		 
+		<script>
+// This assumes you have an edit button with class 'edit-btn' and the customer ID as a data attribute
+$(document).ready(function() {
+    // Open edit modal and populate fields
+    $('.edit-btn').on('click', function() {
+        // Get the customer ID from the button's data-id attribute
+        var customerId = $(this).data('id');
+        
+        // Make an AJAX call to fetch the customer data based on the ID
+        $.ajax({
+            url: 'fetch_customer_data.php', // Your script to fetch customer data by ID
+            method: 'GET',
+            data: { id: customerId },
+            success: function(response) {
+                // Populate the modal with the returned data
+                var data = JSON.parse(response);
+                $('input[name="customer_name"]').val(data.customer_name);
+                $('input[name="email"]').val(data.email);
+                $('input[name="phone"]').val(data.phone);
+                $('input[name="physical_address"]').val(data.physical_address);
+                $('input[name="town"]').val(data.town);
+                $('input[name="city"]').val(data.city);
+                $('select[name="segment"]').val(data.segment);
+                $('select[name="gender"]').val(data.gender);
+                $('select[name="payment_terms"]').val(data.payment_terms);
+                // Set the customer ID in the hidden field
+                $('input[name="id"]').val(data.id);
+            }
+        });
+    });
+});
+</script>
+
 		<?php include "includes/footer.php";?>
 
 	

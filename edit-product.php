@@ -106,32 +106,13 @@ $unitResult = $conn->query($unitQuery);
                                 </div>
 
 								<div class="row">
-                                    <div class="col-lg-6 col-sm-12 col-12">
+                                    <div class="col-lg-12 col-sm-12 col-12">
                                         <div class="mb-3 add-product">
                                             <div class="add-newplus">
                                                 <label class="form-label">Unit</label>
                                             </div>
 											<select name="product_unit" class="form-control" required>
             <option value="">Select Unit</option>
-            <?php
-            if ($unitResult->num_rows > 0) {
-                while ($unitRow = $unitResult->fetch_assoc()) {
-                    echo "<option value='" . $unitRow['id'] . "'>" . $unitRow['unit_name'] . "</option>";
-                }
-            } else {
-                echo "<option value=''>No units available</option>";
-            }
-            ?>
-        </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12 col-12">
-                                        <div class="mb-3 add-product">
-                                            <div class="add-newplus">
-                                                <label class="form-label">Recipe</label>
-                                            </div>
-											<select name="product_unit" class="form-control" required>
-            <option value="">Select Recipe</option>
             <?php
             if ($unitResult->num_rows > 0) {
                 while ($unitRow = $unitResult->fetch_assoc()) {
