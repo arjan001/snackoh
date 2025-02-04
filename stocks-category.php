@@ -25,8 +25,8 @@
 					<div class="page-header">
 						<div class="add-item d-flex">
 							<div class="page-title">
-								<h4>Manage Stocks Category</h4>
-								<h6>Manage your stock Category</h6>
+								<h4>Manage Stock Inventory Category</h4>
+								<h6>Manage your Inventory Category</h6>
 							</div>							
 						</div>
 						<ul class="table-top-head">
@@ -199,45 +199,70 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Category Name</th>
-											<th>Description</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>raw material </td>
-											<td>sample description goes here</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-stock-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
+							<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        include_once "./config/config.php";
+        
+        // Fetch stock categories from the database
+        $sql = "SELECT * FROM stock_category";
+        $result = $conn->query($sql);
+        
+        // Check if data is available
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                // Assign fetched data to variables
+                $category_name = $row['stock_category_name'];
+                $category_description = $row['stock_category_description'];
+                $category_status = $row['stock_category_status'];
+                // $category_id = $row['stock_category_id']; // Assuming there's an ID column
+                
+                // Output the row with fetched data
+                echo "<tr>";
+                echo "<td>
+                        <label class='checkboxs'>
+                            <input type='checkbox'>
+                            <span class='checkmarks'></span>
+                        </label>
+                      </td>";
+                echo "<td>$category_name</td>";
+                echo "<td>$category_description</td>";
+                echo "<td class='action-table-data'>
+                        <div class='edit-delete-action'>
+                            <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-stock-category'>
+                                <i data-feather='edit' class='feather-edit'></i>
+                            </a>
+                            <a class='confirm-text p-2' href='javascript:void(0);'>
+                                <i data-feather='trash-2' class='feather-trash-2'></i>
+                            </a>
+                        </div>
+                      </td>";
+                echo "</tr>";
+            }
+        } else {
+            // If no data is found
+            echo "<tr><td colspan='4'>No categories found.</td></tr>";
+        }
+        
+        // Close connection
+        $conn->close();
+        ?>
+    </tbody>
+</table>
 
-										
-									</tbody>
-								</table>
 							</div>
 						</div>
 					</div>

@@ -5,10 +5,6 @@
 
 <body>
 
-	<div id="global-loader">
-		<div class="whirly-loader"> </div>
-	</div>
-
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 
@@ -26,8 +22,8 @@
 				<div class="page-header">
 					<div class="add-item d-flex">
 						<div class="page-title">
-							<h4>New Product</h4>
-							<h6>Create new product</h6>
+							<h4>New Recipe</h4>
+							<h6>Create new Recipe</h6>
 						</div>
 					</div>
 					<ul class="table-top-head">

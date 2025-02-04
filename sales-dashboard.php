@@ -41,7 +41,7 @@
 							<div class="card d-flex align-items-center justify-content-between default-cover mb-4">
 								<div>
 									<h6>Weekly Earning</h6>
-									<h3>$<span class="counters" data-count="95000.45">95000.45</span></h3>
+									<h3>KSH <span class="counters" data-count="95000.45">95000.45</span></h3>
 									<p class="sales-range"><span class="text-success"><i data-feather="chevron-up" class="feather-16"></i>48%&nbsp;</span>increase compare to last week</p>
 								</div>
 								<img src="assets/img/icons/weekly-earning.svg" alt="img">
@@ -87,7 +87,7 @@
 															</a>
 															<div class="info">
 																<a href="product-list.html">Lenovo 3rd Generation</a>
-																<p class="dull-text">$4420</p>
+																<p class="dull-text">KSH 4420</p>
 															</div>
 														</div>
 													</td>
@@ -104,7 +104,7 @@
 															</a>
 															<div class="info">
 																<a href="product-list.html">Bold V3.2</a>
-																<p class="dull-text">$1474</p>
+																<p class="dull-text">KSH 1474</p>
 															</div>
 														</div>
 													</td>
@@ -121,7 +121,7 @@
 															</a>
 															<div class="info">
 																<a href="product-list.html">Nike Jordan</a>
-																<p class="dull-text">$8784</p>
+																<p class="dull-text">KSH 8784</p>
 															</div>
 														</div>
 													</td>
@@ -138,7 +138,7 @@
 															</a>
 															<div class="info">
 																<a href="product-list.html">Apple Series 5 Watch</a>
-																<p class="dull-text">$3240</p>
+																<p class="dull-text">KSH 3240</p>
 															</div>
 														</div>
 													</td>
@@ -155,7 +155,7 @@
 															</a>
 															<div class="info">
 																<a href="product-list.html">Amazon Echo Dot</a>
-																<p class="dull-text">$597</p>
+																<p class="dull-text">KSH 597</p>
 															</div>
 														</div>
 													</td>
@@ -212,7 +212,7 @@
 														<span class="text-blue">#416645453773</span>
 													</td>
 													<td><span class="badge background-less border-success">Success</span></td>
-													<td>$1,099.00</td>
+													<td>KSH 1,099.00</td>
 												</tr>
 												<tr>
 													<td>2</td>
@@ -232,7 +232,7 @@
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-danger">Canceled</span></td>
-													<td>$600.55</td>
+													<td>KSH 600.55</td>
 												</tr>
 												<tr>
 													<td>3</td>
@@ -252,7 +252,7 @@
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-primary">Pending</span></td>
-													<td>$1,099.00</td>
+													<td>KSH 1,099.00</td>
 												</tr>
 												<tr>
 													<td>4</td>
@@ -272,7 +272,7 @@
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-success">Success</span></td>
-													<td>$1,569.00</td>
+													<td>KSH 1,569.00</td>
 												</tr>
 												<tr>
 													<td>5</td>
@@ -292,7 +292,7 @@
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-success">Success</span></td>
-													<td>$1,478.00</td>
+													<td>KSH 1,478.00</td>
 												</tr>
 												
 											</tbody>
@@ -308,15 +308,7 @@
 				</div>
 			</div>
 
-			<div class="customizer-links">
-				<ul class="sticky-sidebar">
-					<li class="sidebar-icons">
-						<a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Theme">
-							<i data-feather="settings" class="feather-five"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
+
 	
 		
 			</div>

@@ -117,51 +117,67 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Category</th>
-											<th>Category Description Slug</th>
-											<th>Created On</th>
-											<th>Status</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Laptop</td>
-											<td>laptop</td>
-											<td>25 May 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										
-										
-																			
-									</tbody>
-								</table>
+							<?php
+include './config/config.php';
+
+// Fetch categories from the database
+$sql = "SELECT id, category_name, category_slug, created_at, status FROM product_category ORDER BY created_at DESC";
+$result = $conn->query($sql);
+?>
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Category</th>
+            <th>Category Description Slug</th>
+            <th>Created at</th>
+            <th>Status</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <td>
+                            <label class='checkboxs'>
+                                <input type='checkbox'>
+                                <span class='checkmarks'></span>
+                            </label>
+                        </td>
+                        <td>" . htmlspecialchars($row['category_name']) . "</td>
+                        <td>" . htmlspecialchars($row['category_slug']) . "</td>
+                        <td>" . htmlspecialchars(date("d M Y", strtotime($row['created_at']))) . "</td>
+                        <td><span class='badge badge-linesuccess'>" . ucfirst($row['status']) . "</span></td>
+                        <td class='action-table-data'>
+                            <div class='edit-delete-action'>
+                                <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-category'>
+                                    <i data-feather='edit' class='feather-edit'></i>
+                                </a>
+                                <a class='confirm-text p-2' href='javascript:void(0);'>
+                                    <i data-feather='trash-2' class='feather-trash-2'></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='6'>No categories found.</td></tr>";
+        }
+
+        // Close database connection
+        $conn->close();
+        ?>
+    </tbody>
+</table>
+
 							</div>
 						</div>
 					</div>

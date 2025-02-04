@@ -167,26 +167,29 @@ if (isset($_GET['category'])) {
 										<h5 class="mb-3">Products</h5>
 									</div>
 									<!-- Product Display Section -->
+<!-- Product Display Section -->
 <div class="tab-content">
     <div class="row">
         <?php
-		
-		include './config/config.php';
-		
-		// Fetch all products from the database
-		$sql = "SELECT * FROM products";
-		$result = $conn->query($sql);
-		
-		// Close connection after query
-		$conn->close();
-		
+        include './config/config.php';
+        
+        // Fetch all products from the database
+        $sql = "SELECT * FROM products";
+        $result = $conn->query($sql);
+        
+        // Close connection after query
+        $conn->close();
+        
         if ($result->num_rows > 0) {
             while ($product = $result->fetch_assoc()) {
                 $product_name = $product['product_name'];
                 $product_price = $product['product_price'];
+                $product_quantity = $product['product_quantity']; // Get the remaining quantity
+                
                 // Dummy image as placeholder
                 $product_image = 'assets/img/products/dummy.png';
 
+                // Display the product
                 echo "<div class='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
                         <div class='product-info default-cover card'>
                             <a href='javascript:void(0);' class='img-bg'>
@@ -196,7 +199,7 @@ if (isset($_GET['category'])) {
                             
                             <h6 class='product-name'><a href='javascript:void(0);'>$product_name</a></h6>
                             <div class='d-flex align-items-center justify-content-between price'>
-                                <span>47 Pcs</span>
+                                <span>$product_quantity Pcs Left</span> <!-- Display quantity left -->
                                 <p>\$$product_price</p>
                             </div>
                         </div>
@@ -208,6 +211,7 @@ if (isset($_GET['category'])) {
         ?>
     </div>
 </div>
+
 
 									
 								</div>
@@ -526,9 +530,9 @@ if (isset($_GET['category'])) {
 							</a>
 						</div>
 						<div class="text-center info text-center">
-							<h6>Snack-Oh! Bakers Limited</h6>
+							<h6>Snackoh Bakers</h6>
 							<p class="mb-0">Phone Number: +1 5656665656</p>
-							<p class="mb-0">Email: <a href="mailto:info@snack-oh.co.ke">info@snack-oh.co.ke</a></p>
+							<p class="mb-0">Email: <a href="mailto:info@SnackohBakers.co.ke">info@SnackohBakers.co.ke</a></p>
 						</div>
 						<div class="tax-invoice">
 							<h6 class="text-center">Tax Invoice</h6>

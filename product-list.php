@@ -185,7 +185,7 @@ $result = $conn->query($sql);
             <th>Product Name</th>
             <th>Category</th>
             <th>Unit</th>
-            <th>Product Quantity</th>
+            <th>Inventory Items Quantity</th>
             <th>Manufactured Date</th>
             <th>Quantity Alert</th>
             <th class="no-sort">Action</th>

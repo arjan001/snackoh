@@ -9,7 +9,7 @@
 								<li class="submenu">
 									<a href="javascript:void(0);" class="subdrop active"><i data-feather="grid"></i><span>Dashboard</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="index.html" class="active">Admin Dashboard</a></li>
+										<li><a href="index.php" class="active">Admin Dashboard</a></li>
 										<li><a href="sales-dashboard.php">Sales Dashboard</a></li>
                                         <li><a href="pos.php"><i data-feather="hard-drive"></i><span>POS</span></a></li>
 									</ul>
@@ -24,7 +24,7 @@
 								<li><a href="product-list.php"><i data-feather="box"></i><span>Products</span></a></li>
 								<li><a href="add-product.php"><i data-feather="plus-square"></i><span>Create Product</span></a></li>
 								<li><a href="recipe.php"><i data-feather="plus-square"></i><span>Recipes</span></a></li>
-								<li><a href="expired-products.php"><i data-feather="codesandbox"></i><span>Expired Products</span></a></li>
+								<!-- <li><a href="expired-products.php"><i data-feather="codesandbox"></i><span>Expired Products</span></a></li> -->
 
 								<li><a href="damaged-goods.php"><i data-feather="codesandbox"></i><span>Damaged Goods</span></a></li>
 
@@ -169,7 +169,7 @@
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Pages</h6>
 							<ul>
-								<li><a href="profile.html"><i data-feather="user"></i><span>Profile</span></a></li>
+								<li><a href="profile.php"><i data-feather="user"></i><span>Profile</span></a></li>
 								<li class="submenu">
 									<a href="javascript:void(0);"><i data-feather="shield"></i><span>Authentication</span><span class="menu-arrow"></span></a>
 									<ul>

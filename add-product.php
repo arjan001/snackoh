@@ -112,7 +112,7 @@ $unitResult = $conn->query($unitQuery);
                                                 <label class="form-label">Unit</label>
                                             </div>
 											<select name="product_unit" class="form-control" required>
-            <option value="">Select Unit</option>
+            <option value="">Select Unit of Sale</option>
             <?php
             if ($unitResult->num_rows > 0) {
                 while ($unitRow = $unitResult->fetch_assoc()) {
@@ -125,7 +125,7 @@ $unitResult = $conn->query($unitQuery);
         </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-sm-12 col-12">
+                                    <!-- <div class="col-lg-6 col-sm-12 col-12">
                                         <div class="mb-3 add-product">
                                             <div class="add-newplus">
                                                 <label class="form-label">Recipe</label>
@@ -143,13 +143,13 @@ $unitResult = $conn->query($unitQuery);
             ?>
         </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-6 col-12">
                                         <div class="input-blocks add-product">
-                                            <label>Quantity</label>
+                                            <label>Quantity (Inventory Quantity) </label>
                                             <input type="text" class="form-control" name="product_quantity" required>
                                         </div>
                                     </div>

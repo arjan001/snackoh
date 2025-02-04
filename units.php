@@ -128,7 +128,7 @@
             </th>
             <th>Unit</th>
             <th>Short name</th>
-            <th>No of Products</th>
+            <th>Products No (Measure)</th>
             <th>Created On</th>
             <th>Status</th>
             <th class="no-sort">Action</th>
@@ -138,7 +138,7 @@
         <?php
         
 
-        $query = "SELECT * FROM units ORDER BY id DESC";
+        $query = "SELECT * FROM units ";
         $result = $conn->query($query);
 
         if ($result->num_rows > 0) {

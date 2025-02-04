@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Debugging output: check SQL query before execution
-    echo "SQL Query: $sql<br>";
+    // echo "SQL Query: $sql<br>";
 
     // Execute the SQL query
     if ($conn->query($sql) === TRUE) {
