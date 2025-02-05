@@ -396,7 +396,7 @@ if (!$result) {
 				<div class="col-lg-6 col-sm-12 col-12">
                   <div class="mb-3 add-product">
                     <label class="form-label">Reorder Level</label>
-                    <input type="number" class="form-control" name="stock_price" required id="reorder_level">
+                    <input type="number" class="form-control" name="reorder_level" required id="reorder_level">
                   </div>
                 </div>
 

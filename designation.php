@@ -168,10 +168,8 @@
 													</li>
 												</ul>								
 											</td>
+											<td>25 May 2023</td>
 											<td>07</td>
-											<td>
-												25 May 2023
-											</td>
 											<td><span class="badge badge-linesuccess">Active</span></td>
 											<td class="action-table-data">
 												<div class="edit-delete-action">
@@ -188,56 +186,7 @@
 												
 											</td>
 										</tr>									
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Curator</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href=""><img src="assets/img/users/user-05.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-02.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-04.jpg" alt=""><span>+5</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>									
-											</td>
-											<td>08</td>
-											<td>
-												27 June 2023
-											</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
+										
 										<tr>
 											<td>
 												<label class="checkboxs">
@@ -271,10 +220,8 @@
 													</li>
 												</ul>								
 											</td>
+											<td>29 June 2023</td>
 											<td>06</td>
-											<td>
-												29 June 2023
-											</td>
 											<td><span class="badges-success">Active</span></td>
 											<td class="action-table-data">
 												<div class="edit-delete-action">
@@ -291,252 +238,9 @@
 												
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Administrative Officer</td>
+									
 										
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href=""><img src="assets/img/users/user-09.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-01.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-04.jpg" alt=""><span>+1</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>								
-											</td>
-											<td>03</td>
-											<td>
-												15 July 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Technician</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href=""><img src="assets/img/users/user-05.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-02.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-01.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-04.jpg" alt=""><span>+2</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>								
-											</td>
-											<td>05</td>
-											<td>
-												19 July 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Office Support Secretary</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href=""><img src="assets/img/users/user-07.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-11.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-09.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-04.jpg" alt=""><span>+5</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>									
-											</td>
-											<td>09</td>
-											<td>
-												04 August 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Tech Lead</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href=""><img src="assets/img/users/user-12.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-13.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-01.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-04.jpg" alt=""><span>+6</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>							
-											</td>
-											<td>10</td>
-											<td>
-												13 August 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Database administrator</td>
 										
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href=""><img src="assets/img/users/user-11.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-07.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-02.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href=""><img src="assets/img/users/user-11.jpg" alt=""><span>+1</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>							
-											</td>
-											<td>04</td>
-											<td>
-												24 August 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>	
 									</tbody>
 								</table>
 							</div>
@@ -564,18 +268,18 @@
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="designation.html">
+								<form action="add_designation.php"method="POST">
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="mb-3">
 												<label class="form-label">Designation Name</label>
-												<input type="text" class="form-control">
+												<input type="text" class="form-control"name="designation_name">
 											</div>
 										</div>		
 										<div class="input-blocks m-0">
 											<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
 												<span class="status-label">Status</span>
-												<input type="checkbox" id="user5" class="check" checked>
+												<input type="checkbox" id="user5" class="check" checked name="status">
 												<label for="user5" class="checktoggle">	</label>
 											</div>
 										</div>

@@ -139,6 +139,7 @@
 										</tr>
 									</thead>
 									<tbody>
+																		
 										<tr>
 											<td>
 												<label class="checkboxs">
@@ -146,68 +147,7 @@
 													<span class="checkmarks"></span>
 												</label>
 											</td>
-											<td>UI/UX</td>
-											<td>
-												<div class="userimgname">
-													<a href="javascript:void(0);" class="product-img">
-														<img src="assets/img/users/user-01.jpg" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);">Steven</a>
-													</div>
-													
-												</div>
-											</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>								
-											</td>
-											<td>07</td>
-											<td>
-												25 Jan 2023
-											</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="javascript:void(0);">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>									
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>HR</td>
+											<td>Kitchen</td>
 											<td>
 												<div class="userimgname">
 													<a href="javascript:void(0);" class="product-img">
@@ -444,128 +384,8 @@
 												
 											</td>
 										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Engineering</td>
-											<td>
-												<div class="userimgname">
-													<a href="javascript:void(0);" class="product-img">
-														<img src="assets/img/users/user-05.jpg" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);">Edward K. Muniz</a>
-													</div>
-													
-												</div>
-											</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>									
-											</td>
-											<td>10</td>
-											<td>
-												17 Mar 2023
-											</td>
-											<td><span class="badges-inactive">Inactive</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="javascript:void(0);">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Admin</td>
-											<td>
-												<div class="userimgname">
-													<a href="javascript:void(0);" class="product-img">
-														<img src="assets/img/users/user-07.jpg" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);">Susan Moore</a>
-													</div>
-													
-												</div>
-											</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>							
-											</td>
-											<td>03</td>
-											<td>
-												20 Mar 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="javascript:void(0);">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
+										
+									
 									</tbody>
 								</table>
 							</div>
@@ -593,30 +413,28 @@
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="department-list.html">
+								<form action="add_department.php" method="POST">
 									<div class="row">
 										<div class="col-lg-12">
 											<div class="mb-3">
 												<label class="form-label">Department Name</label>
-												<input type="text" class="form-control">
+												<input type="text" class="form-control"name="department_name">
 											</div>
 										</div>
 										<div class="col-lg-12">
 											<div class="mb-3">
 												<label class="form-label">HOD</label>
-												<select class="select">
-													<option>Choose Type</option>
-													<option>Mitchum Daniel</option>
-													<option>Susan Lopez</option>
-												</select>
+												<select class="select" name="product_category" required>
+                                                <option>Choose Department Head</option>
+                                                <?php
+                                                foreach ($categoryResult as $category) {
+                                                    echo "<option value='{$category['id']}'>{$category['category_name']}</option>";
+                                                }
+                                                ?>
+                                            </select>
 											</div>
 										</div>	
-										<div class="col-lg-12">
-											<div class="mb-3 summer-description-box">
-												<label class="form-label">Description</label>
-												<div id="summernote"></div>
-											</div>
-										</div>			
+													
 										<div class="input-blocks m-0">
 											<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
 												<span class="status-label">Status</span>

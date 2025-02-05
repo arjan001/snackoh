@@ -4,9 +4,9 @@
 <?php include "includes/header.php";?>
     <body>
 		
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div>
+		</div> -->
 
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
@@ -48,7 +48,7 @@
 							</li>
 						</ul>
 						<div class="page-btn">
-							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-units"><i data-feather="plus-circle" class="me-2"></i>Add New Customer</a>
+							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-customer"><i data-feather="plus-circle" class="me-2"></i>Add New Customer</a>
 						</div>
 					</div>
 					<!-- /product list -->
@@ -186,7 +186,7 @@ if (mysqli_num_rows($result) > 0) {
 		<!-- /Main Wrapper -->
 
 		<!-- Add Customer -->
-		<div class="modal fade" id="add-units">
+		<div class="modal fade" id="add-customer">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
 				<div class="modal-content">
 					<div class="page-wrapper-new p-0">

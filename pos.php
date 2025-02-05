@@ -200,7 +200,7 @@ if (isset($_GET['category'])) {
                             <h6 class='product-name'><a href='javascript:void(0);'>$product_name</a></h6>
                             <div class='d-flex align-items-center justify-content-between price'>
                                 <span>$product_quantity Pcs Left</span> <!-- Display quantity left -->
-                                <p>\$$product_price</p>
+                                <p>KSH $product_price</p>
                             </div>
                         </div>
                     </div>";
@@ -272,7 +272,7 @@ if (isset($_GET['category'])) {
 												<div class="info">
 													<span>PT0005</span>
 													<h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
-													<p>$2000</p>
+													<p>KSH 2000</p>
 												</div>
 											</div>
 											<div class="qty-item text-center">
@@ -298,7 +298,7 @@ if (isset($_GET['category'])) {
 												<div class="info">
 													<span>PT0235</span>
 													<h6><a href="javascript:void(0);">Iphone 14</a></h6>
-													<p>$3000</p>
+													<p>KSH #6666653000</p>
 												</div>
 											</div>
 											<div class="qty-item text-center">
@@ -323,7 +323,7 @@ if (isset($_GET['category'])) {
 												<div class="info">
 													<span>PT0005</span>
 													<h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
-													<p>$2000</p>
+													<p>KSH 2000</p>
 												</div>
 											</div>
 											<div class="qty-item text-center">
@@ -349,7 +349,7 @@ if (isset($_GET['category'])) {
 												<div class="info">
 													<span>PT0005</span>
 													<h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
-													<p>$2000</p>
+													<p>KSH 2000</p>
 												</div>
 											</div>
 											<div class="qty-item text-center">
@@ -413,29 +413,26 @@ if (isset($_GET['category'])) {
 									</div>
 									<div class="order-total">
 										<table class="table table-responsive table-borderless">
-											<tr>
+											<!-- <tr>
 												<td>Sub Total</td>
 												<td class="text-end">$60,454</td>
-											</tr>
-											<tr>
-												<td>Tax (GST 5%)</td>
-												<td class="text-end">$40.21</td>
-											</tr>
-											<tr>
+											</tr> -->
+											
+											<!-- <tr>
 												<td>Shipping</td>
 												<td class="text-end">$40.21</td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td>Sub Total</td>
-												<td class="text-end">$60,454</td>
+												<td class="text-end">KSH 60,454</td>
 											</tr>
 											<tr>
 												<td class="danger">Discount (10%)</td>
-												<td class="danger text-end">$15.21</td>
+												<td class="danger text-end">KSH 15.21</td>
 											</tr>
 											<tr>
 												<td>Total</td>
-												<td class="text-end">$64,024.5</td>
+												<td class="text-end">KSH 64,024.5</td>
 											</tr>
 										</table>
 									</div>
@@ -472,7 +469,7 @@ if (isset($_GET['category'])) {
 								</div>
 								<div class="d-grid btn-block">
 									<a class="btn btn-secondary" href="javascript:void(0);">
-										Grand Total : $64,024.5
+										Grand Total : KSH 64,024.5
 									</a>
 								</div>
 								<div class="btn-row d-sm-flex align-items-center justify-content-between">

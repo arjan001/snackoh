@@ -51,10 +51,10 @@
 									data-feather="chevron-up" class="feather-chevron-up"></i></a>
 						</li>
 					</ul>
-					<div class="page-btn">
+					<!-- <div class="page-btn">
 							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-fleet"><i data-feather="plus-circle" class="me-2"></i> Add New Fleet</a>
-						</div>
-
+						</div> -->
+					
 				</div>
 
 				<!-- /product list -->
@@ -164,14 +164,14 @@
 												<span class="checkmarks"></span>
 											</label>
 										</th>
-										<th>Vehicle name</th>
-										<th>type / Category</th>
-										<th>Number Plate</th>
-
-										<th>Turnage</th>
+										<th>Brand name</th>
+										<th>Category</th>
+										<th>Tonnange</th>
 										<th>Capacity</th>
-										<the>Last Maintainance</th>
+										<th>Number Plate</th>
 										<th>Driver</th>
+										<th>Last Maintanance</th>
+										
 										<th class="no-sort">Action</th>
 									</tr>
 								</thead>
@@ -183,40 +183,19 @@
 												<span class="checkmarks"></span>
 											</label>
 										</td>
-										<td>
-											<div class="productimgname">
-												<a href="javascript:void(0);" class="product-img stock-img">
-													<img src="assets/img/products/stock-img-01.png" alt="product">
-												</a>
-												<a href="javascript:void(0);">Lenovo 3rd Generation </a>
-											</div>
-										</td>
-										<td>PT001 </td>
-										<td>Laptop</td>
-										<td>Lenovo</td>
-										<td>$12500.00</td>
-										<td>Pc</td>
-										<td>100</td>
-										<td>
-											<div class="userimgname">
-												<a href="javascript:void(0);" class="product-img">
-													<img src="assets/img/users/user-30.jpg" alt="product">
-												</a>
-												<a href="javascript:void(0);">Arroon</a>
-											</div>
-										</td>
+										<td>Toyota Probox</td>
+										<td>small Vehicle</td>
+										<td>300 KG</td>
+										<td>2 Passengers</td>
+										<td>KDG 349G</td>
+										<td>EDWIN</td>
+										<td>01/02/2025</td>
 										<td class="action-table-data">
 											<div class="edit-delete-action">
-												<a class="me-2 edit-icon  p-2" href="product-details.html">
+												<a class="me-2 edit-icon  p-2" href="fleet_detail.php">
 													<i data-feather="eye" class="feather-eye"></i>
 												</a>
-												<a class="me-2 p-2" href="edit-product.html">
-													<i data-feather="edit" class="feather-edit"></i>
-												</a>
-												<a class="confirm-text p-2" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-trash-2"></i>
-												</a>
-											</div>
+												
 										</td>
 									</tr>
 									<tr>
@@ -226,87 +205,23 @@
 												<span class="checkmarks"></span>
 											</label>
 										</td>
-										<td>
-											<div class="productimgname">
-												<a href="javascript:void(0);" class="product-img stock-img">
-													<img src="assets/img/products/stock-img-06.png" alt="product">
-												</a>
-												<a href="javascript:void(0);">Bold V3.2</a>
-											</div>
-										</td>
-										<td>PT002</td>
-										<td>Electronics</td>
-										<td>Bolt</td>
-										<td>$1600.00</td>
-										<td>Pc</td>
-										<td>140</td>
-										<td>
-											<div class="userimgname">
-												<a href="javascript:void(0);" class="product-img">
-													<img src="assets/img/users/user-13.jpg" alt="product">
-												</a>
-												<a href="javascript:void(0);">Kenneth</a>
-											</div>
-										</td>
+										<td>Boxer 150cc</td>
+										<td>motorcycle</td>
+										<td>100 KG</td>
+										<td>2 Passengers</td>
+										<td>KMDG 349G</td>
+										<td>EDWIN</td>
+										<td>01/02/2025</td>
 										<td class="action-table-data">
 											<div class="edit-delete-action">
-												<a class="me-2 edit-icon p-2" href="product-details.html">
-													<i data-feather="eye" class="action-eye"></i>
+												<a class="me-2 edit-icon  p-2" href="fleet_detail.php">
+													<i data-feather="eye" class="feather-eye"></i>
 												</a>
-												<a class="me-2 p-2" href="edit-product.html">
-													<i data-feather="edit" class="feather-edit"></i>
-												</a>
-												<a class="confirm-text p-2" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-trash-2"></i>
-												</a>
+												
 											</div>
-
 										</td>
 									</tr>
-									<tr>
-										<td>
-											<label class="checkboxs">
-												<input type="checkbox">
-												<span class="checkmarks"></span>
-											</label>
-										</td>
-										<td>
-											<div class="productimgname">
-												<a href="javascript:void(0);" class="product-img stock-img">
-													<img src="assets/img/products/stock-img-02.png" alt="product">
-												</a>
-												<a href="javascript:void(0);">Nike Jordan</a>
-											</div>
-										</td>
-										<td>PT003</td>
-										<td>Shoe</td>
-										<td>Nike</td>
-										<td>$6000.00</td>
-										<td>Pc</td>
-										<td>780</td>
-										<td>
-											<div class="userimgname">
-												<a href="javascript:void(0);" class="product-img">
-													<img src="assets/img/users/user-11.jpg" alt="product">
-												</a>
-												<a href="javascript:void(0);">Gooch</a>
-											</div>
-										</td>
-										<td class="action-table-data">
-											<div class="edit-delete-action">
-												<a class="me-2 edit-icon p-2" href="product-details.html">
-													<i data-feather="eye" class="action-eye"></i>
-												</a>
-												<a class="me-2 p-2" href="edit-product.html">
-													<i data-feather="edit" class="feather-edit"></i>
-												</a>
-												<a class="confirm-text p-2" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-trash-2"></i>
-												</a>
-											</div>
-
-										</td>
-									</tr>
+									
 							
 								</tbody>
 							</table>
