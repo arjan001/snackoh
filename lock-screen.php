@@ -35,7 +35,7 @@
 						</div>
 					</div>
                     <div class="row">
-                        <ul class="terms d-flex">
+                        <!-- <ul class="terms d-flex">
                             <li>Terms & Condition</li>
                             <li>Privacy</li>
                             <li>Help</li>
@@ -46,9 +46,9 @@
 									<li><a href="javascript:">British</a></li>
 								</ul>
 							</li>
-                        </ul>
+                        </ul> -->
                         <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                            <p>Copyright &copy; 2024 DreamsPOS. All rights reserved</p>
+                            <p>Copyright &copy; 2025 Snack0h. All rights reserved</p>
                         </div>
                     </div>
 				</div>

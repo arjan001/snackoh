@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <meta name="description" content="POS - Bootstrap Admin Template">
-		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
-        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-        <meta name="robots" content="noindex, nofollow">
-        <title>Login - Pos admin template</title>
-		
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		
-        <!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-		
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-		
-    </head>
+<?php include "includes/header.php";?>
     <body class="account-page">
 
         <div id="global-loader" >
@@ -71,10 +49,10 @@
                                    <button type="submit" class="btn btn-login">Change Password</button>
                                </div>
                                <div class="signinform text-center">
-                                   <h4>Return to <a href="signin-2.html" class="hover-a"> login </a></h4>
+                                   <h4>Return to <a href="login.php" class="hover-a"> login </a></h4>
                                </div>
                                <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                                   <p>Copyright &copy; 2023 DreamsPOS. All rights reserved</p>
+                               <p>Copyright &copy; 2025 Snack0h. All rights reserved</p>
                                </div>
                            </div>
                         </form>

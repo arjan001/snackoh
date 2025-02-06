@@ -64,6 +64,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="row">
 						<div class="col-sm-12 col-md-12 col-xl-4 d-flex">
 							<div class="card flex-fill default-cover w-100 mb-4">

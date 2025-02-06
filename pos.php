@@ -231,32 +231,7 @@ if (isset($_GET['category'])) {
 										<a href="javascript:void(0);" class="text-default"><i data-feather="more-vertical" class="feather-16"></i></a>
 									</div>
 								</div>
-								<div class="customer-info block-section">
-									<h6>Customer Information</h6>
-									<div class="input-block d-flex align-items-center">
-										<div class="flex-grow-1">
-											<select class="select">
-												<option>Walk in Customer</option>
-												<option>John</option>
-												<option>Smith</option>
-												<option>Ana</option>
-												<option>Elza</option>
-											</select>
-										</div>
-										<a href="#" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#create"><i data-feather="user-plus" class="feather-16"></i></a>
-									</div>
-									<div class="input-block">
-										<select class="select">
-											<option>Search Products</option>
-											<option>IPhone 14 64GB</option>
-											<option>MacBook Pro</option>
-											<option>Rolex Tribute V3</option>
-											<option>Red Nike Angelo</option>
-											<option>Airpod 2</option>
-											<option>Oldest</option>
-										</select>
-									</div>
-								</div>
+								
 
 								<div class="product-added block-section">
 									<div class="head-text d-flex align-items-center justify-content-between">
@@ -411,17 +386,25 @@ if (isset($_GET['category'])) {
 											</div> -->
 										</div>
 									</div>
+
+									<div class="customer-info block-section">
+									<h6>Customer Information</h6>
+									<div class="input-block d-flex align-items-center">
+										<div class="flex-grow-1">
+											<select class="select">
+												<option>Walk in Customer</option>
+												<option>John</option>
+												<option>Smith</option>
+												<option>Ana</option>
+												<option>Elza</option>
+											</select>
+										</div>
+										<a href="#" class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#create"><i data-feather="user-plus" class="feather-16"></i></a>
+									</div>
+								</div>
 									<div class="order-total">
 										<table class="table table-responsive table-borderless">
-											<!-- <tr>
-												<td>Sub Total</td>
-												<td class="text-end">$60,454</td>
-											</tr> -->
 											
-											<!-- <tr>
-												<td>Shipping</td>
-												<td class="text-end">$40.21</td>
-											</tr> -->
 											<tr>
 												<td>Sub Total</td>
 												<td class="text-end">KSH 60,454</td>

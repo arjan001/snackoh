@@ -44,7 +44,7 @@
                                </a>
                                <div class="login-userheading">
                                    <h3>Sign In</h3>
-                                   <h4>Access the Dreamspos panel using your email and passcode.</h4>
+                                   <h4>Access the SnackOH panel using your email and passcode.</h4>
                                </div>
                               <div class="form-login">
                                    <label>Email Address</label>
@@ -104,7 +104,7 @@
                                        
                                    </ul>
                                    <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                                       <p>Copyright &copy; 2023 DreamsPOS. All rights reserved</p>
+                                   <p>Copyright &copy; 2025 Snack0h. All rights reserved</p>
                                    </div>
                                </div>
                            </div>

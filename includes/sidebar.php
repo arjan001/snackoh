@@ -299,7 +299,7 @@
 								</li>
 							</ul>
 						</li>
-						<!-- <li class="submenu-open">
+						<li class="submenu-open">
 							<h6 class="submenu-hdr">UI Interface</h6>
 							<ul>
 								<li class="submenu">
@@ -425,7 +425,8 @@
 									</ul>
 								</li>
 							</ul>
-						</li> -->
+
+						</li>
 					
 					</ul>
 				</div>
