@@ -83,6 +83,19 @@
 								</li>
 							</ul>
 						</li>
+
+						<li class="submenu-open">
+							<h6 class="submenu-hdr">ALL APPROVALS</h6>
+							<ul>
+								<li class="submenu">
+									<a href="javascript:void(0);"><i data-feather="file-text"></i><span>Approvals</span><span class="menu-arrow"></span></a>
+									<ul>
+										<li><a href="expense-list.php">Approvals</a></li>
+										<li><a href="expense-category.php">Expense Category</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Peoples</h6>
 							<ul>
@@ -156,6 +169,7 @@
 								<li><a href="income-report.html"><i data-feather="bar-chart"></i><span>Income Report</span></a></li>
 								<li><a href="tax-reports.html"><i data-feather="database"></i><span>Tax Report</span></a></li>
 								<li><a href="profit-and-loss.html"><i data-feather="pie-chart"></i><span>Profit & Loss</span></a></li>
+								<li><a href="balance-sheet.php"><i data-feather="book-open"></i><span>Balance Sheet</span></a></li>
 							</ul>
 						</li>
 						<li class="submenu-open">

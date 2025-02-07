@@ -26,7 +26,7 @@
 						<div class="add-item d-flex">
 							<div class="page-title">
 								<h4>Category</h4>
-								<h6>Manage your categories</h6>
+								<h6>Manage your Assset categories</h6>
 							</div>
 						</div>
 						<ul class="table-top-head">
@@ -126,8 +126,8 @@
 													<span class="checkmarks"></span>
 												</label>
 											</th>
-											<th>Category</th>
-											<th>Category slug</th>
+											<th>Category Name</th>
+											<th>Category Description</th>
 											<th>Created On</th>
 											<th>Status</th>
 											<th class="no-sort">Action</th>
@@ -157,166 +157,9 @@
 												
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Electronics</td>
-											<td>electronics</td>
-											<td>24 Jun 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Shoe</td>
-											<td>shoe</td>
-											<td>23 Jul 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Speaker</td>
-											<td>speaker</td>
-											<td>22 Aug 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Furniture</td>
-											<td>furniture</td>
-											<td>21 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Bags</td>
-											<td>bags</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Phone</td>
-											<td>phone</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Chairs</td>
-											<td>chairs</td>
-											<td>20 Sep 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>									
+										
+									
+																		
 									</tbody>
 								</table>
 							</div>
@@ -336,20 +179,20 @@
 						<div class="content">
 							<div class="modal-header border-0 custom-modal-header">
 								<div class="page-title">
-									<h4>Create Category</h4>
+									<h4>Create  Assets Category</h4>
 								</div>
 								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="category-list.html">
+								<form action="add_asset_category.php" method="POST">
 									<div class="mb-3">
-										<label class="form-label">Category</label>
+										<label class="form-label">Category Name</label>
 										<input type="text" class="form-control">
 									</div>
 									<div class="mb-3">
-										<label class="form-label">Category Slug</label>
+										<label class="form-label">Category Description</label>
 										<input type="text" class="form-control">
 									</div>
 									<div class="mb-0">
@@ -361,7 +204,7 @@
 									</div>
 									<div class="modal-footer-btn">
 										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Create Category</button>
+										<button type="submit" class="btn btn-submit">Create Asset Category</button>
 									</div>
 								</form>
 							</div>
@@ -380,32 +223,32 @@
 						<div class="content">
 							<div class="modal-header border-0 custom-modal-header">
 								<div class="page-title">
-									<h4>Edit Category</h4>
+									<h4>Create  Assets Category</h4>
 								</div>
 								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="category-list.html">
+								<form action="add_asset_category.php" method="POST">
 									<div class="mb-3">
-										<label class="form-label">Category</label>
-										<input type="text" class="form-control" value="Laptop">
+										<label class="form-label">Category Name</label>
+										<input type="text" class="form-control">
 									</div>
 									<div class="mb-3">
-										<label class="form-label">Category Slug</label>
-										<input type="text" class="form-control" value="laptop">
+										<label class="form-label">Category Description</label>
+										<input type="text" class="form-control">
 									</div>
 									<div class="mb-0">
 										<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
 											<span class="status-label">Status</span>
-											<input type="checkbox" id="user3" class="check" checked="">
-											<label for="user3" class="checktoggle"></label>
+											<input type="checkbox" id="user2" class="check" checked="">
+											<label for="user2" class="checktoggle"></label>
 										</div>
 									</div>
 									<div class="modal-footer-btn">
 										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Save Changes</button>
+										<button type="submit" class="btn btn-submit">Create Asset Category</button>
 									</div>
 								</form>
 							</div>

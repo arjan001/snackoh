@@ -442,11 +442,13 @@ if (isset($_GET['category'])) {
 										</div>
 										<div class="col-md-6 col-lg-4 item">
 											<div class="default-cover">
-												<a href="javascript:void(0);">
+												<a href="javascript:void(0);" data-bs-toggle="modal"data-bs-target="#pay_mpesa">
 													<img src="assets/img/icons/qr-scan.svg" alt="Payment Method">
 													<span>Mpesa</span>
 												</a>
 											</div>
+
+											
 										</div>
 									</div>
 								</div>
@@ -457,7 +459,9 @@ if (isset($_GET['category'])) {
 								</div>
 								<div class="btn-row d-sm-flex align-items-center justify-content-between">
 									<a href="javascript:void(0);" class="btn btn-info btn-icon flex-fill" data-bs-toggle="modal" data-bs-target="#hold-order"><span class="me-1 d-flex align-items-center"><i data-feather="pause" class="feather-16"></i></span>Hold</a>
+									
 									<a href="javascript:void(0);" class="btn btn-danger btn-icon flex-fill"><span class="me-1 d-flex align-items-center"><i data-feather="trash-2" class="feather-16"></i></span>Void</a>
+
 									<a href="javascript:void(0);" class="btn btn-success btn-icon flex-fill" data-bs-toggle="modal" data-bs-target="#payment-completed"><span class="me-1 d-flex align-items-center"><i data-feather="credit-card" class="feather-16"></i></span>Payment</a>
 								</div>
 
@@ -469,6 +473,44 @@ if (isset($_GET['category'])) {
 
 		</div>
 		<!-- /Main Wrapper -->
+
+		<!-- MPESA PAYMENT MODAL y -->
+			<div class="modal fade" id="pay_mpesa">
+			<div class="modal-dialog modal-dialog-centered custom-modal-two">
+				<div class="modal-content">
+					<div class="page-wrapper-new p-0">
+						<div class="content">
+							<div class="modal-header border-0 custom-modal-header">
+								<div class="page-title">
+									<h4>PAY USING MPESA NUMBER</h4>
+								</div>
+								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+
+								
+							</div>
+							<div class="modal-body custom-modal-body">
+								<form action="add_product_category.php" method="POST">
+									<div class="mb-3">
+										<label class="form-label">Safaricom Number</label>
+										<input type="number" name="mpesa_number" class="form-control">
+									</div>
+									
+									
+									<div class="modal-footer-btn">
+										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+										<button type="submit" class="btn btn-submit">submit Pay</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- MPESA PAYMENT MODAL  -->
+
 
 		<!-- Payment Completed -->
 		<div class="modal fade modal-default" id="payment-completed" aria-labelledby="payment-completed">
@@ -762,7 +804,7 @@ if (isset($_GET['category'])) {
 					</div>
 					<div class="modal-body p-4">
 						<form action="pos.html">
-							<h2 class="text-center p-4">4500.00</h2>
+							<h2 class="text-center p-4">KSH 4500.00</h2>
 							<div class="input-block">
 								<label>Order Reference</label>
 								<input class="form-control" type="text" value="" placeholder="">

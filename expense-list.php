@@ -3,9 +3,9 @@
 <?php include "includes/header.php";?>
 	<body>
 		
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div>
+		</div> -->
 	
 		 
 		<!-- Main Wrapper -->
