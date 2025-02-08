@@ -317,8 +317,9 @@
 												<label>Status</label>
 												<select class="select">
 													<option>Choose</option>
-													<option>Completed</option>
-													<option>Inprogress</option>
+													<option>Operational</option>
+													<option>Maintance Required</option>
+													<option>Out of Service</option>
 												</select>
 											</div>
 										</div>

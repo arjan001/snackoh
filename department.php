@@ -426,7 +426,7 @@
 												<label class="form-label">HOD</label>
 												<select class="select" name="product_category" required>
                                                 <option>Choose Department Head</option>
-                                                <?php
+                                                <?php.. here selct users from databse
                                                 foreach ($categoryResult as $category) {
                                                     echo "<option value='{$category['id']}'>{$category['category_name']}</option>";
                                                 }

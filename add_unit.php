@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$unit_name', '$short_name', $no_of_products, '$status')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Unit added successfully'); window.location.href='./units.php';</script>";
+        echo "<script>alert('Unit added successfully'); window.location.href='./assets-category.php';</script>";
     } else {
         echo "Error: " . $conn->error;
     }

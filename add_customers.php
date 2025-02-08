@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die('Invalid email format.');
     }
 
-    if (empty($segment) || !in_array($segment, ['Retailer', 'Wholesaler', 'Distributor'])) {
+    if (empty($segment) || !in_array($segment, ['Retailer', 'Wholesaler', 'Consumer','Distributor,'])) {
         die('Invalid segment.');
     }
 

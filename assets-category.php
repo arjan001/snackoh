@@ -117,51 +117,74 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Category Name</th>
-											<th>Category Description</th>
-											<th>Created On</th>
-											<th>Status</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Laptop</td>
-											<td>laptop</td>
-											<td>25 May 2023</td>
-											<td><span class="badge badge-linesuccess">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										
-									
-																		
-									</tbody>
-								</table>
+							<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            <th>Created On</th>
+            <th>Status</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Database connection
+   
+ include_once "./config/config.php";
+
+        // Fetch categories
+        $sql = "SELECT * FROM asset_category ORDER BY created_at DESC";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $id = $row['id'];
+                $name = htmlspecialchars($row['category_name']);
+                $description = htmlspecialchars($row['category_description']);
+                $created_at = date("d M Y", strtotime($row['created_at']));
+                $status = $row['status'] ? 
+                    '<span class="badge badge-linesuccess">Active</span>' : 
+                    '<span class="badge badge-linedanger">Inactive</span>';
+
+                echo "<tr>
+                        <td>
+                            <label class='checkboxs'>
+                                <input type='checkbox' name='category_ids[]' value='$id'>
+                                <span class='checkmarks'></span>
+                            </label>
+                        </td>
+                        <td>$name</td>
+                        <td>$description</td>
+                        <td>$created_at</td>
+                        <td>$status</td>
+                        <td class='action-table-data'>
+                            <div class='edit-delete-action'>
+                                <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-category' data-id='$id' data-name='$name' data-description='$description' data-status='{$row['status']}'>
+                                    <i data-feather='edit' class='feather-edit'></i>
+                                </a>
+                                <a class='confirm-text p-2' href='delete_category.php?id=$id' onclick='return confirm(\"Are you sure you want to delete this category?\");'>
+                                    <i data-feather='trash-2' class='feather-trash-2'></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='6' class='text-center'>No categories found.</td></tr>";
+        }
+
+        $conn->close();
+        ?>
+    </tbody>
+</table>
+
 							</div>
 						</div>
 					</div>
@@ -186,27 +209,28 @@
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="add_asset_category.php" method="POST">
-									<div class="mb-3">
-										<label class="form-label">Category Name</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="mb-3">
-										<label class="form-label">Category Description</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="mb-0">
-										<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-											<span class="status-label">Status</span>
-											<input type="checkbox" id="user2" class="check" checked="">
-											<label for="user2" class="checktoggle"></label>
-										</div>
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Create Asset Category</button>
-									</div>
-								</form>
+							<form action="add_asset_category.php" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Category Name</label>
+        <input type="text" class="form-control" name="category_name" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Category Description</label>
+        <input type="text" class="form-control" name="category_description">
+    </div>
+    <div class="mb-0">
+        <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
+            <span class="status-label">Status</span>
+            <input type="checkbox" id="user2" class="check" name="status" checked>
+            <label for="user2" class="checktoggle"></label>
+        </div>
+    </div>
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Create Asset Category</button>
+    </div>
+                         </form>
+
 							</div>
 						</div>
 					</div>
