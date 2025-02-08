@@ -131,7 +131,7 @@
 											</th>
 											<th>Department</th>
 											<th>HOD</th>
-											<th>Members</th>
+											
 											<th>Total Members</th>
 											<th>Created On</th>
 											<th>Status</th>
@@ -160,27 +160,6 @@
 												</div>
 											</td>
 											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>									
-											</td>
 											<td>05</td>
 											<td>
 												29 Jan 2023
@@ -201,189 +180,7 @@
 												
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Admin</td>
-											<td>
-												<div class="userimgname">
-													<a href="javascript:void(0);" class="product-img">
-														<img src="assets/img/users/user-03.jpg" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);">Robert Grossman</a>
-													</div>
-													
-												</div>
-											</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>								
-											</td>
-											<td>06</td>
-											<td>
-												13 Feb 2023
-											</td>
-											<td><span class="badges-inactive">Inactive</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="javascript:void(0);">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Technician</td>
-											<td>
-												<div class="userimgname">
-													<a href="javascript:void(0);" class="product-img">
-														<img src="assets/img/users/user-06.jpg" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);">Janet Hembre</a>
-													</div>
-													
-												</div>
-											</td>
-										
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>								
-											</td>
-											<td>08</td>
-											<td>
-												27 Feb 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="javascript:void(0);">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Support</td>
-											<td>
-												<div class="userimgname">
-													<a href="javascript:void(0);" class="product-img">
-														<img src="assets/img/users/user-04.jpg" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);">Russell Belle</a>
-													</div>
-													
-												</div>
-											</td>
-											
-											<td>
-												<ul class="team-members">
-													<li>
-														<ul>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-03.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-04.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-06.jpg" alt=""></a>
-															</li>
-															<li>
-																<a href="javascript:void(0);"><img src="assets/img/users/user-05.jpg" alt=""><span>+3</span></a>
-															</li>
-															
-														</ul>
-													</li>
-												</ul>								
-											</td>
-											<td>04</td>
-											<td>
-												02 Mar 2023
-											</td>
-											<td><span class="badges-success">Active</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="javascript:void(0);">
-														<i data-feather="eye" class="feather-eye"></i>
-													</a>
-													<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>	
+									
 										
 									
 									</tbody>
@@ -421,19 +218,19 @@
 												<input type="text" class="form-control"name="department_name">
 											</div>
 										</div>
-										<div class="col-lg-12">
+										<!-- <div class="col-lg-12">
 											<div class="mb-3">
 												<label class="form-label">HOD</label>
 												<select class="select" name="product_category" required>
                                                 <option>Choose Department Head</option>
-                                                <?php.. here selct users from databse
+                                                <?php
                                                 foreach ($categoryResult as $category) {
                                                     echo "<option value='{$category['id']}'>{$category['category_name']}</option>";
                                                 }
                                                 ?>
                                             </select>
 											</div>
-										</div>	
+										</div>	 -->
 													
 										<div class="input-blocks m-0">
 											<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
