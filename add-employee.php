@@ -58,7 +58,7 @@
 											<div class="image-upload mb-0">
 												<input type="file">
 												<div class="image-uploads">
-													<h4>Change Image</h4>
+													<h4>Upload Image</h4>
 												</div>
 											</div>
 										</div>
@@ -120,7 +120,9 @@
 												<select class="select">
 													<option>Choose</option>
 													<option>Kenyan</option>
-													<option>India</option>
+													<option>Ugandan</option>
+													<option>Tanzania</option>
+													<option>Burundi</option>
 												</select>
 											</div>
 										</div>
@@ -133,7 +135,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-4 col-md-6">
+										<!-- <div class="col-lg-4 col-md-6">
 											<div class="mb-3">
 												<div class="add-newplus">
 													<label class="form-label">Shift</label>
@@ -144,7 +146,7 @@
 													<option>Regular</option>
 												</select>
 											</div>
-										</div>
+										</div> -->
 										<div class="col-lg-4 col-md-6">
 											<div class="mb-3">
 												<label class="form-label">Department</label>
@@ -203,7 +205,20 @@
 												</div>
 											</div>
 											<div class="col-lg-4 col-md-6">
+												<div class="mb-3">
+													<label class="form-label">KRA PIN</label>
+													<input type="text" class="form-control">
+												</div>
 											</div>
+											<div class="col-lg-4 col-md-6">
+											<div class="mb-3">
+											<label class="form-label ">National Id Upload</label>
+											
+												<input class="form-control" type="file">
+											
+										</div>
+											</div>
+											
 											<div class="col-lg-4 col-md-6">
 												<div class="mb-3">
 													<label class="form-label">Address</label>
@@ -215,14 +230,16 @@
 													<label class="form-label">Country</label>
 													<select class="select">
 														<option>Choose</option>
-														<option>United Kingdom</option>
-														<option>USA</option>			
+														<option>Kenya</option>
+														<option>Uganda</option>
+														<option>Tanzania</option>
+																	
 													</select>
 												</div>
 											</div>
 											<div class="col-lg-4 col-md-6">
 												<div class="mb-3">
-													<label class="form-label">State</label>
+													<label class="form-label">Physaica address</label>
 													<input type="text" class="form-control">
 												</div>
 											</div>
@@ -281,16 +298,7 @@
 		<!-- /Main Wrapper -->
 
 
-		<div class="customizer-links" id="setdata">
-			<ul class="sticky-sidebar">
-				<li class="sidebar-icons">
-					<a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left"
-						data-bs-original-title="Theme">
-						<i data-feather="settings" class="feather-five"></i>
-					</a>
-				</li>
-			</ul>
-		</div>
+		
 		 
 		<!-- jQuery -->
         <script src="assets/js/jquery-3.7.1.min.js"></script>
