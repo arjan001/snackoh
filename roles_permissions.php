@@ -106,92 +106,62 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Role Name</th>
-											<th>Created On</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Admin</td>
-											<td>25 May 2023</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="p-2 me-2" href="permissions.php">
-														<i data-feather="shield" class="shield"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Customer</td>
-											<td>30 May 2023</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="p-2 me-2" href="permissions.php">
-														<i data-feather="shield" class="shield"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Shop Owner</td>
-											<td>20 Apr 2023</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="p-2 me-2" href="permissions.php">
-														<i data-feather="shield" class="shield"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+							<?php
+include_once "./config/config.php"; // Ensure DB connection is established
+
+$query = "SELECT id, role_name, created_at FROM roles ORDER BY created_at DESC";
+$result = $conn->query($query);
+?>
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Role Name</th>
+            <th>Created On</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>
+                        <label class='checkboxs'>
+                            <input type='checkbox'>
+                            <span class='checkmarks'></span>
+                        </label>
+                    </td>";
+                echo "<td>" . htmlspecialchars($row['role_name']) . "</td>";
+                echo "<td>" . date("d M Y", strtotime($row['created_at'])) . "</td>";
+                echo "<td class='action-table-data'>
+                        <div class='edit-delete-action'>
+                            <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-units'>
+                                <i data-feather='edit' class='feather-edit'></i>
+                            </a>
+                            <a class='p-2 me-2' href='permissions.php?role_id=" . $row['id'] . "'>
+                                <i data-feather='shield' class='shield'></i>
+                            </a>
+                            <a class='confirm-text p-2' href='delete_role.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\");'>
+                                <i data-feather='trash-2' class='feather-trash-2'></i>
+                            </a>
+                        </div>
+                    </td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4' class='text-center'>No roles found</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
 							</div>
 						</div>
 					</div>
@@ -216,16 +186,28 @@
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="roles-permissions.php">
-									<div class="mb-0">
-										<label class="form-label">Role Name</label>
-										<input type="text" class="form-control">
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Create Role</button>
-									</div>
-								</form>
+							<form action="add_roles_permissions.php" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Role Name</label>
+        <input type="text" class="form-control" name="role_name" required>
+    </div>
+
+    <!-- Status Toggle -->
+    <div class="mt-4">
+        <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
+            <span class="status-label">Status</span>
+            <input type="checkbox" id="unit_status" class="check" name="status" value="active" checked>
+            <label for="unit_status" class="checktoggle"></label>
+        </div>
+    </div>
+
+    <!-- Submit & Cancel Buttons -->
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Create Role</button>
+    </div>
+</form>
+
 							</div>
 						</div>
 					</div>
@@ -235,7 +217,7 @@
 		<!-- /Add Role -->
 
 		<!-- Edit Role -->
-		<div class="modal fade" id="edit-units">
+	<div class="modal fade" id="edit-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
 				<div class="modal-content">
 					<div class="page-wrapper-new p-0">

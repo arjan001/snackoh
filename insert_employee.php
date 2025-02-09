@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $physical_address = trim($_POST['physical_address']);
     $city = trim($_POST['city']);
     $zipcode = trim($_POST['zipcode']);
-    $password = $_POST['password_hash'];
-    $confirm_password = $_POST['confirm_password'];
+    // $password = $_POST['password_hash'];
+    // $confirm_password = $_POST['confirm_password'];
 
     // Validate required fields
     $required_fields = [
@@ -76,8 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("INSERT INTO employees 
         (first_name, last_name, email, contact_number, emp_code, dob, gender, nationality, 
         joining_date, department_id, designation_id, blood_group, emergency_no_1, 
-        emergency_no_2, kra_pin, address, country, physical_address, city, zipcode, 
-        password_hash, profile_photo, national_id,employee_status) 
+        emergency_no_2, kra_pin, address, country, physical_address, city, zipcode,profile_photo, national_id,employee_status) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $stmt->bind_param(
@@ -102,7 +101,7 @@ $stmt->bind_param(
     $physical_address,
     $city,
     $zipcode,
-    $hashed_password,  // ✅ Use hashed password instead of plain text
+    // $hashed_password,  // ✅ Use hashed password instead of plain text
     $profile_photo,
     $national_id,
     $employee_status

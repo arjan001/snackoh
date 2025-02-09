@@ -176,7 +176,7 @@
 							<h6 class="submenu-hdr">User Management</h6>
 							<ul>
 								<li><a href="users.php"><i data-feather="user-check"></i><span>Users</span></a></li>
-								<li><a href="roles-permissions.php"><i data-feather="shield"></i><span>Roles & Permissions</span></a></li>
+								<li><a href="roles_permissions.php"><i data-feather="shield"></i><span>Roles & Permissions</span></a></li>
 								
 							</ul>
 						</li>
