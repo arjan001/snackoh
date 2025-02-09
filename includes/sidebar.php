@@ -129,23 +129,23 @@
 								<li><a href="employees.php"><i data-feather="user"></i><span>Employees</span></a></li>
 								<li><a href="department.php"><i data-feather="users"></i><span>Departments</span></a></li>
 								<li><a href="designation.php"><i data-feather="git-merge"></i><span>Designation</span></a></li>
-								<li><a href="shift.html"><i data-feather="shuffle"></i><span>Shifts</span></a></li>
-								<li class="submenu">
+								<li><a href="#"><i data-feather="shuffle"></i><span>Shifts</span></a></li>
+								<!-- <li class="submenu">
 									<a href="javascript:void(0);"><i data-feather="book-open"></i><span>Attendence</span><span class="menu-arrow"></span></a>
 									<ul>
 										<li><a href="attendance-employee.html">Employee</a></li>
 										<li><a href="attendance-admin.html">Admin</a></li>
 									</ul>
-								</li>
-								<li class="submenu">
+								</li> -->
+								<!-- <li class="submenu">
 									<a href="javascript:void(0);"><i data-feather="calendar"></i><span>Leaves</span><span class="menu-arrow"></span></a>
 									<ul>
 										<li><a href="leaves-admin.html">Admin Leaves</a></li>
 										<li><a href="leaves-employee.html">Employee Leaves</a></li>
 										<li><a href="leave-types.html">Leave Types</a></li>
 									</ul>
-								</li>
-								<li><a href="holidays.html"><i data-feather="credit-card"></i><span>Holidays</span></a>
+								</li> -->
+								<!-- <li><a href="holidays.html"><i data-feather="credit-card"></i><span>Holidays</span></a> -->
 								</li>
 								<li class="submenu">
 									<a href="payroll-list.html"><i data-feather="dollar-sign"></i><span>Payroll</span><span class="menu-arrow"></span></a>
