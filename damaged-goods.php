@@ -4,9 +4,9 @@
 
 <body>
 
-	<div id="global-loader">
+	<!-- <div id="global-loader">
 		<div class="whirly-loader"> </div>
-	</div>
+	</div> -->
 
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
@@ -26,7 +26,7 @@
 				<div class="page-header">
 					<div class="add-item d-flex">
 						<div class="page-title">
-							<h4>Damaged Products<i class="fas fa-goodreads "></i></h4>
+							<h4>Damaged Products<i class="fas "></i></h4>
 							<h6>Manage your Damaged Goods</h6>
 						</div>
 					</div>
@@ -126,61 +126,83 @@
 						</div>
 						<!-- /Filter -->
 						<div class="table-responsive">
-							<table class="table  datanew">
-								<thead>
-									<tr>
-										<th class="no-sort">
-											<label class="checkboxs">
-												<input type="checkbox" id="select-all">
-												<span class="checkmarks"></span>
-											</label>
-										</th>
-										<th>Product</th>
-										<th>category</th>
-										<th>Quantity</th>
-										<th>Unit</th>
-										<th>damaged Date</th>
-										<th>Reported By</th>
-										<th>Damage Type</th>
-										<th>Location</th>
-										<th>Resolution</th>
-										<th class="no-sort">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<label class="checkboxs">
-												<input type="checkbox">
-												<span class="checkmarks"></span>
-											</label>
-										</td>
-										<td>W-Bread 500gms</td>
-										<td>bread</td>
-										<td>10</td>
-										<td>PC</td>
-										<td>30 jan 2025</td>
-										<td>George Macharia</td>
-										<td>physical</td>
-										<td>In-Transit</td>
-										<td>dispose</td>
+<?php
+require_once 'config/config.php'; // Database connection
 
-										<td class="action-table-data">
-											<div class="edit-delete-action">
-												<a class="me-2 p-2" href="#" data-bs-toggle="modal"
-													data-bs-target="#edit-category">
-													<i data-feather="edit" class="feather-edit"></i>
-												</a>
-												<a class="confirm-text p-2" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-trash-2"></i>
-												</a>
-											</div>
+$sql = "SELECT dg.*, p.product_name, pc.category_name, 
+        CONCAT(e.first_name, ' ', e.last_name) AS employee_name
+        FROM damaged_goods dg
+        JOIN products p ON dg.product_name = p.id
+        JOIN product_category pc ON dg.category_id = pc.id
+        JOIN employees e ON dg.reported_by = e.id
+        ORDER BY dg.damaged_date DESC";
 
-										</td>
-									</tr>
+$result = $conn->query($sql);
+?>
 
-								</tbody>
-							</table>
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Damaged Date</th>
+            <th>Reported By</th>
+            <th>Damage Type</th>
+            <th>Location</th>
+            <th>Resolution</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td>
+                        <label class="checkboxs">
+                            <input type="checkbox">
+                            <span class="checkmarks"></span>
+                        </label>
+                    </td>
+                    <td><?= htmlspecialchars($row['product_name']) ?></td>
+                    <td><?= htmlspecialchars($row['category_name']) ?></td>
+                    <td><?= intval($row['quantity']) ?></td>
+                  <td>PC</td  class="hidden">   <!--  Adjust unit if necessary -->
+                    <td><?= date("d M Y", strtotime($row['damaged_date'])) ?></td>
+                    <td><?= htmlspecialchars($row['employee_name']) ?></td>
+                    <td><?= ucfirst($row['damage_type']) ?></td>
+                    <td><?= ucfirst(str_replace('-', ' ', $row['location'])) ?></td>
+                    <td><?= ucfirst($row['resolution']) ?></td>
+                    <td class="action-table-data">
+                        <div class="edit-delete-action">
+                            <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
+                                <i data-feather="edit" class="feather-edit"></i>
+                            </a>
+                            <a class="confirm-text p-2" href="delete_damaged_goods.php?id=<?= $row['id'] ?>" onclick="return confirm('Are you sure?')">
+                                <i data-feather="trash-2" class="feather-trash-2"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="11" class="text-center">No damaged goods reported.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
+
+
+
 						</div>
 					</div>
 				</div>
@@ -205,152 +227,172 @@
 							</button>
 						</div>
 						<div class="modal-body custom-modal-body">
-							<form action="insert-damaged.php" method="POST">
+						<?php
+require_once 'config/config.php'; // Ensure database connection is included
 
-								<div class="row">
+// Fetch products from the database
+$products = [];
+$result = $conn->query("SELECT id, product_name FROM products");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
 
-									<div class="col-lg-6 col-sm-6 col-12">
+// Fetch categories from the database
+$categories = [];
+$result = $conn->query("SELECT id, category_name FROM product_category");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row;
+    }
+}
 
-										<div class="mb-3 add-product">
-											<label class="form-label">Product Name</label>
-											<input type="text" class="form-control" name="product_name">
-										</div>
-									</div>
+// Fetch employee names from the database
+$employees = [];
+$result = $conn->query("SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $employees[] = $row;
+    }
+}
 
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Category</label>
+// Fetch unit names from the database
+$units = [];
+$result = $conn->query("SELECT id, unit_name FROM units");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $units[] = $row;
+    }
+}
+?>
 
-											</div>
-											<select class="select" name="product_category">
-												<option>Choose</option>
-												<option>Lenovo</option>
-												<option>Electronics</option>
-											</select>
-										</div>
+<form action="insert_damaged_goods.php" method="POST">
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Product Name</label>
+                </div>
+                <select class="select" name="product_name">
+                    <option value="">Choose</option>
+                    <?php foreach ($products as $product) : ?>
+                        <option value="<?= $product['id']; ?>"><?= htmlspecialchars($product['product_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
 
-									</div>
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Category</label>
+                </div>
+                <select class="select" name="category_id">
+                    <option value="">Choose</option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $category['id']; ?>"><?= htmlspecialchars($category['category_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <label class="form-label">Quantity</label>
+                <input type="number" class="form-control" name="quantity" required>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Units</label>
+                </div>
+                <select class="select" name="units">
+                    <option value="">Choose</option>
+                    <?php foreach ($units as $unit) : ?>
+                        <option value="<?= $unit['id']; ?>"><?= htmlspecialchars($unit['unit_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="input-blocks">
+                <label>Damaged Date</label>
+                <div class="input-groupicon calender-input">
+                    <input type="date" class="form-control" name="damaged_date" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="input-blocks add-product">
+                <label>Reported by</label>
+                <select class="select" name="reported_by">
+                    <option value="">Choose</option>
+                    <?php foreach ($employees as $employee) : ?>
+                        <option value="<?= $employee['id']; ?>"><?= htmlspecialchars($employee['full_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Damage Type</label>
+                </div>
+                <select class="select" name="damage_type">
+                    <option value="Physical">Physical</option>
+                    <option value="Quality">Quality</option>
+                    <option value="Expiry">Expiry</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Location</label>
+                </div>
+                <select class="select" name="location">
+                    <option value="Inventory">Inventory</option>
+                    <option value="Transit">Transit</option>
+                    <option value="Store">Store</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Resolution</label>
+                </div>
+                <select class="select" name="resolution">
+                    <option value="Return to Inventory">Return to Inventory</option>
+                    <option value="Dispose">Dispose</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Submit Report</button>
+    </div>
+</form>
 
 
-
-								</div>
-
-								<div class="row">
-									<div class="col-lg-6 col-sm-6 col-12">
-
-										<div class="mb-3 add-product">
-											<label class="form-label">Quantity</label>
-											<input type="text" class="form-control" name="product_name">
-										</div>
-									</div>
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Units</label>
-
-											</div>
-											<select class="select" name="product_category">
-												<option>Pieces</option>
-												<option>Crate</option>
-
-											</select>
-										</div>
-
-									</div>
-								</div>
-
-								<div class="row">
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="input-blocks">
-											<label>DamagedDate</label>
-
-											<div class="input-groupicon calender-input">
-												<i data-feather="calendar" class="info-img"></i>
-												<input type="text" class="datetimepicker" placeholder="Choose Date"
-													name="damaged_date">
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="input-blocks add-product">
-											<label>Reported by</label>
-											<input type="text" class="form-control" name="reported_by">
-										</div>
-									</div>
-
-								</div>
-
-								<div class="row">
-								<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Damage Type</label>
-
-											</div>
-											<select class="select" name="damage_type">
-												<option>Physical</option>
-												<option>Quality</option>
-												<option>expiry</option>
-												
-
-											</select>
-										</div>
-
-									</div>
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Location</label>
-
-											</div>
-											<select class="select" name="damage_type">
-												<option>Inventory</option>
-												<option>transit</option>
-												<option>store</option>
-
-											</select>
-										</div>
-
-									</div>
-								</div>
-
-								<div class="row">
-
-
-									<div class="col-lg-12 col-sm-12 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Resolution</label>
-
-											</div>
-											<select class="select" name="damage_type">
-												<option>return toInventory</option>
-												<option>dispose</option>
-												
-
-											</select>
-										</div>
-
-									</div>
-								</div>
-
-
-							
-
-
-
-
-								<div class="modal-footer-btn">
-									<button type="button" class="btn btn-cancel me-2"
-										data-bs-dismiss="modal">Cancel</button>
-									<button type="submit" class="btn btn-submit">Submit Report</button>
-								</div>
-							</form>
 						</div>
 					</div>
 				</div>

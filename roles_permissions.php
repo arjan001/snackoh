@@ -107,7 +107,7 @@
 							<!-- /Filter -->
 							<div class="table-responsive">
 							<?php
-include_once "./config/config.php"; // Ensure DB connection is established
+include_once "./config/config.php"; // Ensure DB connection
 
 $query = "SELECT id, role_name, created_at FROM roles ORDER BY created_at DESC";
 $result = $conn->query($query);
@@ -142,7 +142,10 @@ $result = $conn->query($query);
                 echo "<td>" . date("d M Y", strtotime($row['created_at'])) . "</td>";
                 echo "<td class='action-table-data'>
                         <div class='edit-delete-action'>
-                            <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-units'>
+                            <a class='me-2 p-2 edit-role-btn' href='#' data-bs-toggle='modal' 
+                               data-bs-target='#edit-units' 
+                               data-role-id='" . $row['id'] . "' 
+                               data-role-name='" . htmlspecialchars($row['role_name']) . "'>
                                 <i data-feather='edit' class='feather-edit'></i>
                             </a>
                             <a class='p-2 me-2' href='permissions.php?role_id=" . $row['id'] . "'>
@@ -162,6 +165,7 @@ $result = $conn->query($query);
     </tbody>
 </table>
 
+
 							</div>
 						</div>
 					</div>
@@ -172,7 +176,7 @@ $result = $conn->query($query);
 		<!-- /Main Wrapper -->
 
 		<!-- Add Role -->
-		<div class="modal fade" id="add-units">
+	<div class="modal fade" id="add-units">
 			<div class="modal-dialog modal-dialog-centered custom-modal-two">
 				<div class="modal-content">
 					<div class="page-wrapper-new p-0">
@@ -216,39 +220,62 @@ $result = $conn->query($query);
 		</div>
 		<!-- /Add Role -->
 
-		<!-- Edit Role -->
-	<div class="modal fade" id="edit-units">
-			<div class="modal-dialog modal-dialog-centered custom-modal-two">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Edit Role</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="roles-permissions.php">
-									<div class="mb-0">
-										<label class="form-label">Role Name</label>
-										<input type="text" class="form-control" value="sales Man">
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Save Changes</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Edit Role -->
+<!-- Edit Role Modal -->
+<div class="modal fade" id="edit-units">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>Edit Role</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form action="update_role.php" method="POST">
+                            <input type="hidden" id="edit-role-id" name="role_id"> <!-- Hidden field for Role ID -->
+                            <div class="mb-0">
+                                <label class="form-label">Role Name</label>
+                                <input type="text" class="form-control" id="edit-role-name" name="role_name">
+                            </div>
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit Role Modal -->
+
   
+		<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const editButtons = document.querySelectorAll(".edit-role-btn");
+
+    editButtons.forEach(button => {
+        button.addEventListener("click", function() {
+            let roleId = this.getAttribute("data-role-id");
+            let roleName = this.getAttribute("data-role-name");
+
+            document.getElementById("edit-role-id").value = roleId;
+            document.getElementById("edit-role-name").value = roleName;
+        });
+    });
+});
+</script>
+<script>
+function confirmDelete(roleId) {
+    return confirm("Are you sure you want to delete this role (ID: " + roleId + ")?");
+}
+</script>
+
 
 		<?php include "includes/footer.php";?>
 	
