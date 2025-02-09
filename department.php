@@ -71,7 +71,6 @@
 								$row = $result->fetch_assoc();
 								$totalEmployees = $row['total'];
 								?>
-
 								<div class="total-employees">
 									<h6><i data-feather="users" class="feather-user"></i>Total Employees
 										<span><?php echo $totalEmployees; ?></span>
@@ -142,13 +141,27 @@
 						</div>
 						<!-- /Filter -->
 						<div class="table-responsive">
-							<?php
-							include_once "./config/config.php";
+						<?php
+include_once "./config/config.php";
 
-							// Fetch all departments
-							$sql = "SELECT * FROM departments";
-							$result = $conn->query($sql);
-							?>
+$sql = "
+    SELECT 
+        d.id, 
+        d.department_name, 
+        d.created_on, 
+        d.status,
+        e.first_name, 
+        e.last_name,
+        COUNT(emp.id) AS total_members
+    FROM departments d
+    LEFT JOIN employees e ON d.hod_id = e.id
+    LEFT JOIN employees emp ON emp.department_id = d.id
+    GROUP BY d.id
+";
+
+$result = $conn->query($sql);
+?>
+
 
 							<table class="table datanew">
 								<thead>
@@ -167,66 +180,54 @@
 										<th class="no-sort">Action</th>
 									</tr>
 								</thead>
-								<?php
-								include_once "./config/config.php";
-
-								$sql = "
-    SELECT d.id, d.department_name, d.created_on, d.status, 
-           COALESCE(CONCAT(e.first_name, ' ', e.last_name), 'Not Set') AS hod_name, 
-           (SELECT COUNT(*) FROM employees WHERE department_id = d.id) AS total_employees 
-    FROM departments d
-    LEFT JOIN employees e ON d.hod_id = e.id";
-
-								$result = $conn->query($sql);
-								?>
-
 								<tbody>
-									<?php
-									if ($result->num_rows > 0) {
-										while ($row = $result->fetch_assoc()) {
-											?>
-											<tr>
-												<td>
-													<label class="checkboxs">
-														<input type="checkbox">
-														<span class="checkmarks"></span>
-													</label>
-												</td>
-												<td><?php echo htmlspecialchars($row['department_name']); ?></td>
-												<td><?php echo htmlspecialchars($row['hod_name']); ?></td>
-												<!-- HOD's name or 'Not Set' -->
-												<td><?php echo $row['total_employees']; ?></td>
-												<!-- Total Employees in the Department -->
-												<td><?php echo date("d M Y", strtotime($row['created_on'])); ?></td>
-												<td>
-													<span
-														class="badge <?php echo ($row['status'] == 'active') ? 'badge-linesuccess' : 'badge-linedanger'; ?>">
-														<?php echo ucfirst($row['status']); ?>
-													</span>
-												</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);">
-															<i data-feather="eye" class="feather-eye"></i>
-														</a>
-														<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal"
-															data-bs-target="#edit-department">
-															<i data-feather="edit" class="feather-edit"></i>
-														</a>
-														<a class="confirm-text p-2" href="javascript:void(0);">
-															<i data-feather="trash-2" class="feather-trash-2"></i>
-														</a>
-													</div>
-												</td>
-											</tr>
-											<?php
-										}
-									} else {
-										echo "<tr><td colspan='7' class='text-center'>No departments found</td></tr>";
-									}
-									$conn->close();
-									?>
-								</tbody>
+    <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            ?>
+            <tr>
+                <td>
+                    <label class="checkboxs">
+                        <input type="checkbox">
+                        <span class="checkmarks"></span>
+                    </label>
+                </td>
+                <td><?php echo htmlspecialchars($row['department_name']); ?></td>
+
+                <td><?php echo !empty($row['first_name']) ? htmlspecialchars($row['first_name'] . " " . $row['last_name']) : "Not Set"; ?></td>
+
+                <td><?php echo $row['total_members']; ?></td>
+
+                <td><?php echo date("d M Y", strtotime($row['created_on'])); ?></td>
+
+                <td>
+                    <span class="badge <?php echo ($row['status'] == 'active') ? 'badge-linesuccess' : 'badge-linedanger'; ?>">
+                        <?php echo ucfirst($row['status']); ?>
+                    </span>
+                </td>
+
+                <td class="action-table-data">
+                    <div class="edit-delete-action">
+                        <a class="me-2 p-2" href="javascript:void(0);">
+                            <i data-feather="eye" class="feather-eye"></i>
+                        </a>
+                        <a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-department">
+                            <i data-feather="edit" class="feather-edit"></i>
+                        </a>
+                        <a class="confirm-text p-2" href="javascript:void(0);">
+                            <i data-feather="trash-2" class="feather-trash-2"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <?php
+        }
+    } else {
+        echo "<tr><td colspan='7' class='text-center'>No departments found</td></tr>";
+    }
+   
+    ?>
+</tbody>
 
 							</table>
 
@@ -257,6 +258,7 @@
 						<div class="modal-body custom-modal-body">
 						<form action="add_department.php" method="POST">
     <div class="row">
+        <!-- Department Name Field -->
         <div class="col-lg-12">
             <div class="mb-3">
                 <label class="form-label">Department Name</label>
@@ -264,23 +266,27 @@
             </div>
         </div>
 
+        <!-- HOD Selection Dropdown -->
         <div class="col-lg-12">
             <div class="mb-3">
-                <label class="form-label">Head of Department (HOD)</label>
+                <label class="form-label">Select HOD</label>
                 <select class="form-control" name="hod_id" required>
                     <option value="">Select HOD</option>
                     <?php
                     include_once "./config/config.php";
-                    $query = "SELECT id, CONCAT_WS(' ', first_name, last_name) AS full_name FROM employees";
+
+                    $query = "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees";
                     $result = $conn->query($query);
 
-                    if ($result) {
+                    if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<option value='{$row['id']}'>" . htmlspecialchars($row['full_name']) . "</option>";
                         }
                     } else {
-                        echo "<option value=''>Error fetching employees</option>";
+                        echo "<option value=''>No employees found</option>";
                     }
+
+                    $conn->close(); // Close database connection
                     ?>
                 </select>
             </div>
@@ -290,18 +296,21 @@
         <div class="mb-0">
             <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
                 <span class="status-label">Status</span>
-                <input type="hidden" name="status" value="inactive">
-                <input type="checkbox" id="unit_status" class="check" name="status" value="active" checked>
+                <input type="checkbox" id="unit_status" class="check" name="status" checked>
                 <label for="unit_status" class="checktoggle"></label>
             </div>
         </div>
 
+        <!-- Submit & Cancel Buttons -->
         <div class="modal-footer-btn">
             <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-submit">Save Changes</button>
         </div>
     </div>
 </form>
+
+
+
 
 
 
