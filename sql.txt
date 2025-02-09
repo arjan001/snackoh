@@ -35,6 +35,37 @@ CREATE TABLE expense_category (
   
 );
 
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    contact_number VARCHAR(50),
+    emp_code VARCHAR(50),
+    dob DATE,
+    gender ENUM('Male', 'Female'),
+    nationality VARCHAR(50),
+    joining_date DATE,
+    department_id INT,
+    designation_id INT,
+    blood_group VARCHAR(10),
+    emergency_no_1 VARCHAR(20),
+    emergency_no_2 VARCHAR(20),
+    kra_pin VARCHAR(50),
+    national_id VARCHAR(255),  -- Stores file path
+    profile_photo VARCHAR(255), -- Stores file path
+    address VARCHAR(255),
+    country VARCHAR(50),
+    physical_address VARCHAR(255),
+    city VARCHAR(50),
+    zipcode VARCHAR(20),
+    password_hash VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL,
+    FOREIGN KEY (designation_id) REFERENCES designation(id) ON DELETE SET NULL
+);
+
+
 CREATE TABLE designation(
     id INT AUTO_INCREMENT PRIMARY KEY,
     designation_name VARCHAR(255) NOT NULL,

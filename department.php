@@ -4,9 +4,9 @@
 
 <body>
 
-	<div id="global-loader">
+	<!-- <div id="global-loader">
 		<div class="whirly-loader"> </div>
-	</div>
+	</div> -->
 
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
@@ -63,8 +63,18 @@
 						<div class="table-top table-top-new">
 
 							<div class="search-set mb-0">
+								<?php
+								require_once 'config/config.php'; // Ensure database connection
+								
+								// Query to count total employees
+								$result = $conn->query("SELECT COUNT(*) AS total FROM employees");
+								$row = $result->fetch_assoc();
+								$totalEmployees = $row['total'];
+								?>
+
 								<div class="total-employees">
-									<h6><i data-feather="users" class="feather-user"></i>Total Employees <span>21</span>
+									<h6><i data-feather="users" class="feather-user"></i>Total Employees
+										<span><?php echo $totalEmployees; ?></span>
 									</h6>
 								</div>
 								<div class="search-input">
@@ -157,8 +167,20 @@
 										<th class="no-sort">Action</th>
 									</tr>
 								</thead>
-								<tbody>
+								<?php
+								include_once "./config/config.php";
 
+								$sql = "
+    SELECT d.id, d.department_name, d.created_on, d.status, 
+           COALESCE(CONCAT(e.first_name, ' ', e.last_name), 'Not Set') AS hod_name, 
+           (SELECT COUNT(*) FROM employees WHERE department_id = d.id) AS total_employees 
+    FROM departments d
+    LEFT JOIN employees e ON d.hod_id = e.id";
+
+								$result = $conn->query($sql);
+								?>
+
+								<tbody>
 									<?php
 									if ($result->num_rows > 0) {
 										while ($row = $result->fetch_assoc()) {
@@ -171,9 +193,10 @@
 													</label>
 												</td>
 												<td><?php echo htmlspecialchars($row['department_name']); ?></td>
-												
-												<td>Dummy Hod</td> <!-- Dummy hod name fixed later) -->
-												<td>05</td> <!-- Dummy Total Members (Update later when users are added) -->
+												<td><?php echo htmlspecialchars($row['hod_name']); ?></td>
+												<!-- HOD's name or 'Not Set' -->
+												<td><?php echo $row['total_employees']; ?></td>
+												<!-- Total Employees in the Department -->
 												<td><?php echo date("d M Y", strtotime($row['created_on'])); ?></td>
 												<td>
 													<span
@@ -203,8 +226,8 @@
 									}
 									$conn->close();
 									?>
-
 								</tbody>
+
 							</table>
 
 						</div>
@@ -232,31 +255,55 @@
 							</button>
 						</div>
 						<div class="modal-body custom-modal-body">
-							<form action="add_department.php" method="POST">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="mb-3">
-											<label class="form-label">Department Name</label>
-											<input type="text" class="form-control" name="department_name" required>
-										</div>
-									</div>
+						<form action="add_department.php" method="POST">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="mb-3">
+                <label class="form-label">Department Name</label>
+                <input type="text" class="form-control" name="department_name" required>
+            </div>
+        </div>
 
-									<!-- Status Toggle -->
-									<div class="mb-0">
-										<div
-											class="status-toggle modal-status d-flex justify-content-between align-items-center">
-											<span class="status-label">Status</span>
-											<input type="checkbox" id="unit_status" class="check" name="status" checked>
-											<label for="unit_status" class="checktoggle"></label>
-										</div>
-									</div>
+        <div class="col-lg-12">
+            <div class="mb-3">
+                <label class="form-label">Head of Department (HOD)</label>
+                <select class="form-control" name="hod_id" required>
+                    <option value="">Select HOD</option>
+                    <?php
+                    include_once "./config/config.php";
+                    $query = "SELECT id, CONCAT_WS(' ', first_name, last_name) AS full_name FROM employees";
+                    $result = $conn->query($query);
 
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2"
-											data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Save Changes</button>
-									</div>
-							</form>
+                    if ($result) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='{$row['id']}'>" . htmlspecialchars($row['full_name']) . "</option>";
+                        }
+                    } else {
+                        echo "<option value=''>Error fetching employees</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+
+        <!-- Status Toggle -->
+        <div class="mb-0">
+            <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
+                <span class="status-label">Status</span>
+                <input type="hidden" name="status" value="inactive">
+                <input type="checkbox" id="unit_status" class="check" name="status" value="active" checked>
+                <label for="unit_status" class="checktoggle"></label>
+            </div>
+        </div>
+
+        <div class="modal-footer-btn">
+            <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-submit">Save Changes</button>
+        </div>
+    </div>
+</form>
+
+
 
 
 						</div>
