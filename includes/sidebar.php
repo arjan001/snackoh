@@ -151,7 +151,7 @@
 									<a href="payroll-list.html"><i data-feather="dollar-sign"></i><span>Payroll</span><span class="menu-arrow"></span></a>
 									<ul>
 										<li><a href="payroll-list.html">Employee Salary</a></li>
-										<li><a href="payslip.html">Payslip</a></li>
+										<li><a href="payslip.php">Payslip</a></li>
 									</ul>
 								</li>
 							</ul>
