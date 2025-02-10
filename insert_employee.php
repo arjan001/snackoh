@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'first_name', 'last_name', 'email', 'contact_number', 'emp_code', 'dob', 'gender',
         'nationality', 'joining_date', 'department_id', 'designation_id', 'blood_group',
         'emergency_no_1', 'emergency_no_2', 'kra_pin', 'address', 'country', 'physical_address',
-        'city', 'zipcode', 'password_hash', 'confirm_password'
+        'city', 'zipcode'
     ];
     
     foreach ($required_fields as $field) {
@@ -45,12 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Validate password confirmation
-    if ($password !== $confirm_password) {
-        die("Error: Passwords do not match.");
-    }
+    // if ($password !== $confirm_password) {
+    //     die("Error: Passwords do not match.");
+    // }
 
     // Hash password
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
     // File uploads handling
     function uploadFile($fileInputName, $uploadDir)
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         (first_name, last_name, email, contact_number, emp_code, dob, gender, nationality, 
         joining_date, department_id, designation_id, blood_group, emergency_no_1, 
         emergency_no_2, kra_pin, address, country, physical_address, city, zipcode,profile_photo, national_id,employee_status) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 $stmt->bind_param(
     "sssssssssssssssssssssss",

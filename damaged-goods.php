@@ -158,7 +158,7 @@ $result = $conn->query($sql);
             <th>Damage Type</th>
             <th>Location</th>
             <th>Resolution</th>
-            <th class="no-sort">Action</th>
+            <!-- <th class="no-sort">Action</th> -->
         </tr>
     </thead>
     <tbody>
@@ -180,7 +180,7 @@ $result = $conn->query($sql);
                     <td><?= ucfirst($row['damage_type']) ?></td>
                     <td><?= ucfirst(str_replace('-', ' ', $row['location'])) ?></td>
                     <td><?= ucfirst($row['resolution']) ?></td>
-                    <td class="action-table-data">
+                    <!-- <td class="action-table-data">
                         <div class="edit-delete-action">
                             <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-category">
                                 <i data-feather="edit" class="feather-edit"></i>
@@ -189,7 +189,7 @@ $result = $conn->query($sql);
                                 <i data-feather="trash-2" class="feather-trash-2"></i>
                             </a>
                         </div>
-                    </td>
+                    </td> -->
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
@@ -401,174 +401,197 @@ if ($result) {
 	</div>
 	<!-- /Add damaged goods -->
 
-	<!-- Edit Category -->
-	<div class="modal fade" id="edit-category">
+	<!-- ediit  damaged goods -->
+	<div class="modal fade" id="add-category">
 		<div class="modal-dialog modal-dialog-centered custom-modal-two">
 			<div class="modal-content">
 				<div class="page-wrapper-new p-0">
 					<div class="content">
 						<div class="modal-header border-0 custom-modal-header">
 							<div class="page-title">
-								<h4>Edit Damaged Item</h4>
+								<h4>Report Damaged Item</h4>
 							</div>
 							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body custom-modal-body">
-							<form action="insert-damaged.php" method="POST">
+						<?php
+require_once 'config/config.php'; // Ensure database connection is included
 
-								<div class="row">
+// Fetch products from the database
+$products = [];
+$result = $conn->query("SELECT id, product_name FROM products");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
 
-									<div class="col-lg-6 col-sm-6 col-12">
+// Fetch categories from the database
+$categories = [];
+$result = $conn->query("SELECT id, category_name FROM product_category");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $categories[] = $row;
+    }
+}
 
-										<div class="mb-3 add-product">
-											<label class="form-label">Product Name</label>
-											<input type="text" class="form-control" name="product_name">
-										</div>
-									</div>
+// Fetch employee names from the database
+$employees = [];
+$result = $conn->query("SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $employees[] = $row;
+    }
+}
 
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Category</label>
+// Fetch unit names from the database
+$units = [];
+$result = $conn->query("SELECT id, unit_name FROM units");
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $units[] = $row;
+    }
+}
+?>
 
-											</div>
-											<select class="select" name="product_category">
-												<option>Choose</option>
-												<option>Lenovo</option>
-												<option>Electronics</option>
-											</select>
-										</div>
+<form action="insert_damaged_goods.php" method="POST">
+<input type="hidden" name="damaged_good_id" id="damaged_good_id"> <!-- Hidden ID for editing -->
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Product Name</label>
+                </div>
+                <select class="select" name="product_name">
+                    <option value="">Choose</option>
+                    <?php foreach ($products as $product) : ?>
+                        <option value="<?= $product['id']; ?>"><?= htmlspecialchars($product['product_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
 
-									</div>
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Category</label>
+                </div>
+                <select class="select" name="category_id">
+                    <option value="">Choose</option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $category['id']; ?>"><?= htmlspecialchars($category['category_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <label class="form-label">Quantity</label>
+                <input type="number" class="form-control" name="quantity" required>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Units</label>
+                </div>
+                <select class="select" name="units">
+                    <option value="">Choose</option>
+                    <?php foreach ($units as $unit) : ?>
+                        <option value="<?= $unit['id']; ?>"><?= htmlspecialchars($unit['unit_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="input-blocks">
+                <label>Damaged Date</label>
+                <div class="input-groupicon calender-input">
+                    <input type="date" class="form-control" name="damaged_date" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="input-blocks add-product">
+                <label>Reported by</label>
+                <select class="select" name="reported_by">
+                    <option value="">Choose</option>
+                    <?php foreach ($employees as $employee) : ?>
+                        <option value="<?= $employee['id']; ?>"><?= htmlspecialchars($employee['full_name']); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Damage Type</label>
+                </div>
+                <select class="select" name="damage_type">
+                    <option value="Physical">Physical</option>
+                    <option value="Quality">Quality</option>
+                    <option value="Expiry">Expiry</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Location</label>
+                </div>
+                <select class="select" name="location">
+                    <option value="Inventory">Inventory</option>
+                    <option value="Transit">Transit</option>
+                    <option value="Store">Store</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-12">
+            <div class="mb-3 add-product">
+                <div class="add-newplus">
+                    <label class="form-label">Resolution</label>
+                </div>
+                <select class="select" name="resolution">
+                    <option value="Return to Inventory">Return to Inventory</option>
+                    <option value="Dispose">Dispose</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Submit Report</button>
+    </div>
+</form>
 
 
-
-								</div>
-
-								<div class="row">
-									<div class="col-lg-6 col-sm-6 col-12">
-
-										<div class="mb-3 add-product">
-											<label class="form-label">Quantity</label>
-											<input type="text" class="form-control" name="product_name">
-										</div>
-									</div>
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Units</label>
-
-											</div>
-											<select class="select" name="product_category">
-												<option>Pieces</option>
-												<option>Crate</option>
-
-											</select>
-										</div>
-
-									</div>
-								</div>
-
-								<div class="row">
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="input-blocks">
-											<label>DamagedDate</label>
-
-											<div class="input-groupicon calender-input">
-												<i data-feather="calendar" class="info-img"></i>
-												<input type="text" class="datetimepicker" placeholder="Choose Date"
-													name="damaged_date">
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="input-blocks add-product">
-											<label>Reported by</label>
-											<input type="text" class="form-control" name="reported_by">
-										</div>
-									</div>
-
-								</div>
-
-								<div class="row">
-								<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Damage Type</label>
-
-											</div>
-											<select class="select" name="damage_type">
-												<option>Physical</option>
-												<option>Quality</option>
-												<option>expiry</option>
-												
-
-											</select>
-										</div>
-
-									</div>
-
-									<div class="col-lg-6 col-sm-6 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Location</label>
-
-											</div>
-											<select class="select" name="damage_type">
-												<option>Inventory</option>
-												<option>transit</option>
-												<option>store</option>
-
-											</select>
-										</div>
-
-									</div>
-								</div>
-
-								<div class="row">
-
-
-									<div class="col-lg-12 col-sm-12 col-12">
-										<div class="mb-3 add-product">
-											<div class="add-newplus">
-												<label class="form-label">Resolution</label>
-
-											</div>
-											<select class="select" name="damage_type">
-												<option>return toInventory</option>
-												<option>dispose</option>
-												
-
-											</select>
-										</div>
-
-									</div>
-								</div>
-
-
-							
-
-
-
-
-								<div class="modal-footer-btn">
-									<button type="button" class="btn btn-cancel me-2"
-										data-bs-dismiss="modal">Cancel</button>
-									<button type="submit" class="btn btn-submit">Submit Report</button>
-								</div>
-							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /Edit Category -->
+	<!-- /ediit  damaged goods -->
+
+
 
 
 	<?php include "includes/footer.php"; ?>
