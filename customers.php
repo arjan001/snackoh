@@ -194,9 +194,7 @@
 														echo "<td>" . $row['physical_address'] . "</td>"; // Placeholder for last pay date
 														echo "<td class='action-table-data'>
                 <div class='edit-delete-action'>
-                    <a class='me-2 p-2' href='#'>
-                        <i data-feather='eye' class='feather-eye'></i>
-                    </a>
+                   
 					
                     <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit_customer' data-id='" . $row['id'] . "'>
                         <i data-feather='edit' class='feather-edit'></i>
