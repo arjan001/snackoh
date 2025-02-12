@@ -1,137 +1,95 @@
+<?php
+session_start();
+require 'config/config.php'; // Include database and session handling
+
+// Initialize error message variable
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (!empty($email) && !empty($password)) {
+        // Fetch user data from the database
+        $stmt = $conn->prepare("SELECT id, email, password_hash FROM employees WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($id, $db_email, $hashed_password);
+            $stmt->fetch();
+
+            if (password_verify($password, $hashed_password)) {
+                // Login successful
+                $_SESSION['user_id'] = $id;
+                $_SESSION['email'] = $db_email;
+                header("Location: index.php"); // Redirect to dashboard
+                exit();
+            } else {
+                $error = "Invalid password.";
+            }
+        } else {
+            $error = "No account found with that email.";
+        }
+        $stmt->close();
+    } else {
+        $error = "Please fill in both fields.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <meta name="description" content="POS - Bootstrap Admin Template">
-		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
-        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-        <meta name="robots" content="noindex, nofollow">
-        <title>Login - Pos admin template</title>
-		
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		
-        <!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-		
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-		
-    </head>
-    <body class="account-page">
-
-        <div id="global-loader" >
-			<div class="whirly-loader"> </div>
-		</div>
-	
-		<!-- Main Wrapper -->
-        <div class="main-wrapper">
-			<div class="account-content">
-				<div class="login-wrapper">
-                    <div class="login-content">
-                        <form action="index.html">
-                            <div class="login-userset">
-                                <div class="login-logo logo-normal">
-                                   <img src="assets/img/logo.png" alt="img">
-                               </div>
-                               <a href="index.html" class="login-logo logo-white">
-                                   <img src="assets/img/logo-white.png"  alt="">
-                               </a>
-                               <div class="login-userheading">
-                                   <h3>Sign In</h3>
-                                   <h4>Access the SnackOH panel using your email and passcode.</h4>
-                               </div>
-                              <div class="form-login">
-                                   <label>Email Address</label>
-                                   <div class="form-addons">
-                                       <input type="text" class="form-control">
-                                       <img src="assets/img/icons/mail.svg" alt="img">
-                                   </div>
-                               </div>
-                               <div class="form-login">
-                                   <label>Password</label>
-                                   <div class="pass-group">
-                                       <input type="password" class="pass-input">
-                                       <span class="fas toggle-password fa-eye-slash"></span>
-                                   </div>
-                               </div>
-                               <div class="form-login authentication-check">
-                                   <div class="row">
-                                       <div class="col-6">
-                                           <div class="custom-control custom-checkbox">
-                                               <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
-                                                   <input type="checkbox">
-                                                   <span class="checkmarks"></span>Remember me
-                                               </label>
-                                           </div>
-                                       </div>
-                                       <div class="col-6 text-end">
-                                           <a class="forgot-link" href="forgot-password-2.html">Forgot Password?</a>
-                                       </div>
-                                   </div>
-                               </div>
-                               <div class="form-login">
-                                   <button type="submit" class="btn btn-login">Sign In</button>
-                               </div>
-                               <div class="signinform">
-                                   <h4>New on our platform?<a href="register-2.html" class="hover-a"> Create an account</a></h4>
-                               </div>
-                               <div class="form-setlogin or-text">
-                                   <h4>OR</h4>
-                               </div>
-                               <div class="form-sociallink">
-                                   <ul class="d-flex">
-                                       <li>
-                                           <a href="javascript:void(0);" class="facebook-logo">
-                                               <img src="assets/img/icons/facebook-logo.svg" alt="Facebook">
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="javascript:void(0);">
-                                               <img src="assets/img/icons/google.png" alt="Google">
-                                           </a>
-                                       </li>
-                                       <li>
-                                           <a href="javascript:void(0);" class="apple-logo">
-                                               <img src="assets/img/icons/apple-logo.svg" alt="Apple">
-                                           </a>
-                                       </li>
-                                       
-                                   </ul>
-                                   <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
-                                   <p>Copyright &copy; 2025 Snack0h. All rights reserved</p>
-                                   </div>
-                               </div>
-                           </div>
-                        </form>
-                    </div>
-                    <div class="login-img">
-                        <img src="assets/img/authentication/login02.png" alt="img">
-                    </div>
+<?php include 'includes/header.php'; ?>
+<body class="account-page">
+    <div class="main-wrapper">
+        <div class="account-content">
+            <div class="login-wrapper">
+                <div class="login-content">
+                    <form action="login.php" method="POST">
+                        <div class="login-userset">
+                            <div class="login-logo logo-normal">
+                                <img src="assets/img/logo1.jpg" alt="img">
+                            </div>
+                            <div class="login-userheading">
+                                <h3>Sign In</h3>
+                                <h4>Access the SnackOH panel using your email and passcode.</h4>
+                            </div>
+                            <?php if (!empty($error)) { ?>
+                                <p style="color: red; text-align: center;"><?php echo $error; ?></p>
+                            <?php } ?>
+                            <div class="form-login">
+                                <label>Email Address</label>
+                                <div class="form-addons">
+                                    <input type="text" class="form-control" name="email" required>
+                                    <img src="assets/img/icons/mail.svg" alt="img">
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <label>Password</label>
+                                <div class="pass-group">
+                                    <input type="password" class="pass-input" name="password" required>
+                                    <span class="fas toggle-password fa-eye-slash"></span>
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <button type="submit" class="btn btn-login">Sign In</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-			</div>
+                <div class="login-img">
+                    <img src="assets/img/authentication/login02.png" alt="img">
+                </div>
+            </div>
         </div>
-		<!-- /Main Wrapper -->
+    </div>
 
-  
-
-		<!-- jQuery -->
-        <script src="assets/js/jquery-3.7.1.min.js"></script>
-
-         <!-- Feather Icon JS -->
-		<script src="assets/js/feather.min.js"></script>
-		
-		<!-- Bootstrap Core JS -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-		
-		<!-- Custom JS -->
-        <script src="assets/js/theme-script.js"></script>	
-		<script src="assets/js/script.js"></script>
-
-    </body>
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/theme-script.js"></script>	
+    <script src="assets/js/script.js"></script>
+</body>
 </html>

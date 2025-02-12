@@ -243,7 +243,10 @@
                 <a class="dropdown-item" href="profile.php"> <i class="me-2" data-feather="user"></i> My Profile</a>
                 <a class="dropdown-item" href="general-settings.php"><i class="me-2" data-feather="settings"></i>Settings</a>
                 <hr class="m-0">
-                <a class="dropdown-item logout pb-0" href="signin.html"><img src="assets/img/icons/log-out.svg" class="me-2" alt="img">Logout</a>
+                <a class="dropdown-item logout pb-0" href="logout.php">
+    <img src="assets/img/icons/log-out.svg" class="me-2" alt="img">Logout
+</a>
+
             </div>
         </div>
     </li>

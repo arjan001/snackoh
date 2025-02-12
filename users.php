@@ -1,3 +1,4 @@
+<?php include_once "./includes/session_check.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include "includes/header.php";?>
