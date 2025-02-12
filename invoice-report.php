@@ -1,51 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <meta name="description" content="POS - Bootstrap Admin Template">
-		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
-        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-        <meta name="robots" content="noindex, nofollow">
-        <title>Dreams Pos Admin Template</title>
+<!-- header code -->
+<?php include 'includes/header.php';?>
+<!-- header code ends here -->
 		
-		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-		
-		<!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		
-		<!-- animation CSS -->
-        <link rel="stylesheet" href="assets/css/animate.css">
-
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
-
-		<!-- Datatable CSS -->
-		<link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css">
-
-		<!-- Datetimepicker CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
-
-		<!-- Daterangepikcer CSS -->
-		<link rel="stylesheet" href="assets/plugins/daterangepicker/daterangepicker.css">
-
-		<!-- Summernote CSS -->
-	    <link rel="stylesheet" href="assets/plugins/summernote/summernote-bs4.min.css">
-		
-        <!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-		
-		<!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-		
-    </head>
-    <body>
-		
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div>
+		</div> -->
 	
 		 
 		<!-- Main Wrapper -->
@@ -161,101 +122,96 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Invoice No</th>
-											<th>Customer</th>
-											<th>Due Date</th>
-											<th>Amount</th>
-											<th>Paid</th>
-											<th>Amount Due</th>
-											<th>Status</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>INV001</td>
-											<td>Thomas</td>
-											<td>19 Jan 2023</td>
-											<td>KSH 1000</td>
-											<td>KSH 1000</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#view_invoice">
-														<i data-feather="edit" class="feather-edit"></i> View invoice
-													</a>
-													
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>INV001</td>
-											<td>Thomas</td>
-											<td>19 Jan 2023</td>
-											<td>KSH 1000</td>
-											<td>KSH 1000</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#view_invoice">
-														<i data-feather="edit" class="feather-edit"></i> View invoice
-													</a>
-													
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>INV001</td>
-											<td>Thomas</td>
-											<td>19 Jan 2023</td>
-											<td>KSH 1000</td>
-											<td>KSH 1000</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#view_invoice">
-														<i data-feather="edit" class="feather-edit"></i> View invoice
-													</a>
-													
-												</div>
-												
-											</td>
-										</tr>
-									
-									</tbody>
-								</table>
+							<?php
+
+include './config/config.php';
+
+
+
+// Fetch invoice data
+$sql = "SELECT 
+            i.invoice_id AS invoice_number, 
+            c. customer_name AS name, 
+            i.due_date, 
+            i.total_amount, 
+            i.paid_amount, 
+            i.amount_due,  
+            CASE 
+                WHEN i.amount_due = 0 THEN 'Paid'
+                WHEN i.due_date < CURDATE() THEN 'Overdue'
+                ELSE 'Unpaid'
+            END AS status
+        FROM invoice i
+        LEFT JOIN customers c ON i.customer_id = c.id
+        ORDER BY i.created_at DESC";
+
+$result = $conn->query($sql);
+?>
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Invoice No</th>
+            <th>Customer</th>
+            <th>Due Date</th>
+            <th>Amount</th>
+            <th>Paid</th>
+            <th>Amount Due</th>
+            <th>Status</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php 
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { ?>
+                <tr>
+                    <td>
+                        <label class="checkboxs">
+                            <input type="checkbox">
+                            <span class="checkmarks"></span>
+                        </label>
+                    </td>
+                    <td><?php echo "INV" . str_pad($row["invoice_number"], 3, "0", STR_PAD_LEFT); ?></td>
+                    <td><?php echo htmlspecialchars($row["customer_name"]); ?></td>
+                    <td><?php echo date("d M Y", strtotime($row["due_date"])); ?></td>
+                    <td>KSH <?php echo number_format($row["total_amount"], 2); ?></td>
+                    <td>KSH <?php echo number_format($row["paid_amount"], 2); ?></td>
+                    <td>KSH <?php echo number_format($row["amount_due"], 2); ?></td>
+                    <td>
+                        <span class="badge <?php echo ($row["status"] == 'Paid') ? 'badge-linesuccess' : (($row["status"] == 'Overdue') ? 'badge-linedanger' : 'badge-linewarning'); ?>">
+                            <?php echo $row["status"]; ?>
+                        </span>
+                    </td>
+                    <td class="action-table-data">
+                        <div class="edit-delete-action">
+                            <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#view_invoice">
+                                <i data-feather="edit" class="feather-edit"></i> View invoice
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+        <?php } 
+        } else { ?>
+            <tr>
+                <td colspan="9">No invoices found.</td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+
+<?php $conn->close(); ?>
+
+
+
+
+
 							</div>
 						</div>
 					</div>

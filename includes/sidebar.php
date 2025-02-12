@@ -90,8 +90,8 @@
 								<li class="submenu">
 									<a href="javascript:void(0);"><i data-feather="file-text"></i><span>Approvals</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="expense-list.php">Approvals</a></li>
-										<li><a href="expense-category.php">Expense Category</a></li>
+										<!-- <li><a href="expense-list.php">Approvals</a></li>
+										<li><a href="expense-category.php">Expense Category</a></li> -->
 									</ul>
 								</li>
 							</ul>
@@ -157,8 +157,8 @@
 							</ul>
 						</li>
 						<li class="submenu-open">
-							<h6 class="submenu-hdr">Reports</h6>
-							<ul>
+							<h6 class="submenu-hdr">Reports are Incomplte Working on Them</h6>
+							<!-- <ul>
 								<li><a href="sales-report.html"><i data-feather="bar-chart-2"></i><span>Sales Report</span></a></li>
 								<li><a href="purchase-report.html"><i data-feather="pie-chart"></i><span>Purchase report</span></a></li>
 								<li><a href="inventory-report.html"><i data-feather="inbox"></i><span>Inventory Report</span></a></li>
@@ -170,7 +170,7 @@
 								<li><a href="tax-reports.html"><i data-feather="database"></i><span>Tax Report</span></a></li>
 								<li><a href="profit-and-loss.html"><i data-feather="pie-chart"></i><span>Profit & Loss</span></a></li>
 								<li><a href="balance-sheet.php"><i data-feather="book-open"></i><span>Balance Sheet</span></a></li>
-							</ul>
+							</ul> -->
 						</li>
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">User Management</h6>

@@ -147,9 +147,8 @@
 																<span class="checkmarks"></span>
 															</label>
 														</th>
-														<th>Warehouse</th>
-														<th>Store</th>
-														<th>Product</th>
+														
+														<th>Product Name</th>
 														<th>Category</th>
 														<th>SKU</th>
 														<th>Qty</th>
@@ -165,17 +164,9 @@
 																<span class="checkmarks"></span>
 															</label>
 														</td>
-														<td>Lavish Warehouse </td>
-														<td>Crinol</td>
 														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-01.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Lenovo 3rd Generation </a>
-															</div>												
-														</td>
+														
+														<td>Lenovo 3rd Generation </td>
 														<td>Laptop</td>
 														<td>PT001</td>
 														<td>15</td>
@@ -192,142 +183,7 @@
 															
 														</td>
 													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Lobar Handy</td>
-														<td>Selosy</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-02.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Nike Jordan </a>
-															</div>												
-														</td>
-														<td>Shoe</td>
-														<td>PT002</td>
-														<td>17</td>
-														<td>08</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Quaint Warehouse</td>
-														<td>Logerro</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-03.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Apple Series 5 Watch </a>
-															</div>												
-														</td>
-														<td>Electronics</td>
-														<td>PT003</td>
-														<td>14</td>
-														<td>12</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Traditional Warehouse</td>
-														<td>Vesloo</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-04.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Amazon Echo Dot</a>
-															</div>												
-														</td>
-														<td>Speaker</td>
-														<td>PT004</td>
-														<td>20</td>
-														<td>15</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Cool Warehouse</td>
-														<td>Crompy</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-05.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Lobar Handy</a>
-															</div>												
-														</td>
-														<td>Furnitures</td>
-														<td>PT005</td>
-														<td>18</td>
-														<td>13</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
+												
 												</tbody>
 											</table>
 										</div>

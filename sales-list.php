@@ -3,9 +3,9 @@
 <?php include "includes/header.php";?>
     <body>
 		
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div>
+		</div> -->
 	
 		 
 		<!-- Main Wrapper -->
@@ -131,450 +131,122 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>Customer Name</th>
-											<th>Reference</th>
-											<th>Date</th>
-											<th>Status</th>
-											<th>Grand Total</th>
-											<th>Paid</th>
-											<th>Due</th>
-											<th>Payment Status</th>
-											<th>Biller</th>
-											<th class="text-center">Action</th>
-										</tr>
-									</thead>
-									<tbody class="sales-list">
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Thomas</td>
-											<td>SL0101</td>
-											<td>19 Jan 2023</td>
-											<td><span class="badge badge-bgsuccess">Completed</span></td>
-											<td>$550</td>
-											<td>$550</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Rose</td>
-											<td>SL0102</td>
-											<td>26 Jan 2023</td>
-											<td><span class="badge badge-bgsuccess">Completed</span></td>
-											<td>$250</td>
-											<td>$250</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new" ><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Benjamin</td>
-											<td>SL0103</td>
-											<td>08 Feb 2023</td>
-											<td><span class="badge badge-bgsuccess">Completed</span></td>
-											<td>$570</td>
-											<td>$570</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);"  data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Lilly</td>
-											<td>SL0104</td>
-											<td>12 Feb 2023</td>
-											<td><span class="badge badge-bgdanger">Pending</span></td>
-											<td>$300</td>
-											<td>$0.00</td>
-											<td>$300</td>
-											<td><span class="badge badge-linedanger">Due</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Freda</td>
-											<td>SL0105</td>
-											<td>17 Mar 2023</td>
-											<td><span class="badge badge-bgdanger">Pending</span></td>
-											<td>$700</td>
-											<td>$0.00</td>
-											<td>$700</td>
-											<td><span class="badge badge-linedanger">Due</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Alwin</td>
-											<td>SL0106</td>
-											<td>24 Mar 2023</td>
-											<td><span class="badge badge-bgsuccess">Completed</span></td>
-											<td>$400</td>
-											<td>$400</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Maybelle</td>
-											<td>SL0107</td>
-											<td>06 Apr 2023</td>
-											<td><span class="badge badge-bgdanger">Pending</span></td>
-											<td>$120</td>
-											<td>$0.00</td>
-											<td>$120</td>
-											<td><span class="badge badge-linedanger">Due</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Ellen</td>
-											<td>SL0108</td>
-											<td>16 Apr 2023</td>
-											<td><span class="badge badge-bgsuccess">Completed</span></td>
-											<td>$830</td>
-											<td>$830</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Kaitlin</td>
-											<td>SL0109</td>
-											<td>04 May 2023</td>
-											<td><span class="badge badge-bgdanger">Pending</span></td>
-											<td>$800</td>
-											<td>$0.00</td>
-											<td>$800</td>
-											<td><span class="badge badge-linedanger">Due</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Grace</td>
-											<td>SL0110</td>
-											<td>29 May 2023</td>
-											<td><span class="badge badge-bgsuccess">Completed</span></td>
-											<td>$460</td>
-											<td>$460</td>
-											<td>$0.00</td>
-											<td><span class="badge badge-linesuccess">Paid</span></td>
-											<td>Admin</td>
-											<td class="text-center">
-												<a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
-													<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-												</a>
-												<ul class="dropdown-menu">
-													<li>
-														<a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new"><i data-feather="eye" class="info-img"></i>Sale Detail</a>
-													</li>
-													<li>
-														<a href="edit-sales.html" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new"><i data-feather="edit" class="info-img"></i>Edit Sale</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment"><i data-feather="dollar-sign" class="info-img"></i>Show Payments</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment"><i data-feather="plus-circle" class="info-img"></i>Create Payment</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item"><i data-feather="download" class="info-img"></i>Download pdf</a>
-													</li>	
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i data-feather="trash-2" class="info-img"></i>Delete Sale</a>
-													</li>								
-												</ul>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+								<?php
+// Include database connection
+require 'config/config.php'; 
+
+$query = "
+    SELECT 
+        s.sale_id, 
+        s.transaction_id, 
+        c.customer_name, 
+        s.sale_date, 
+        s.status, 
+        s.grand_total, 
+        s.paid_amount, 
+        s.due_amount, 
+        s.payment_status, 
+        CONCAT(e.first_name, ' ', e.last_name) AS biller 
+    FROM sales_list s
+    JOIN customers c ON s.customer_id = c.id
+    LEFT JOIN employees e ON s.biller_id = e.id
+    ORDER BY s.sale_date DESC
+";
+
+$result = $conn->query($query);
+?>
+
+'[
+';
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Customer Name</th>
+            <th>Transaction ID</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Grand Total</th>
+            <th>Paid</th>
+            <th>Due</th>
+            <th>Payment Status</th>
+            <th>Biller</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody class="sales-list">
+        <?php while ($row = $result->fetch_assoc()) { ?>
+            <tr>
+                <td>
+                    <label class="checkboxs">
+                        <input type="checkbox">
+                        <span class="checkmarks"></span>
+                    </label>
+                </td>
+                <td><?= htmlspecialchars($row['customer_name']); ?></td>
+                <td><?= htmlspecialchars($row['transaction_id']); ?></td>
+                <td><?= htmlspecialchars($row['sale_date']); ?></td>
+                <td>
+                    <span class="badge <?= ($row['status'] == 'Completed') ? 'badge-bgsuccess' : 'badge-danger'; ?>">
+                        <?= htmlspecialchars($row['status']); ?>
+                    </span>
+                </td>
+                <td>$<?= number_format($row['grand_total'], 2); ?></td>
+                <td>$<?= number_format($row['paid_amount'], 2); ?></td>
+                <td>$<?= number_format($row['due_amount'], 2); ?></td>
+                <td>
+                    <span class="badge <?= ($row['payment_status'] == 'Paid') ? 'badge-linesuccess' : 'badge-warning'; ?>">
+                        <?= htmlspecialchars($row['payment_status']); ?>
+                    </span>
+                </td>
+                <td><?= htmlspecialchars($row['biller'] ?? 'N/A'); ?></td>
+                <td class="text-center">
+                    <a class="action-set" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="true">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#sales-details-new">
+                                <i data-feather="eye" class="info-img"></i> Sale Detail
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-sales-new">
+                                <i data-feather="edit" class="info-img"></i> Edit Sale
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showpayment">
+                                <i data-feather="dollar-sign" class="info-img"></i> Show Payments
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createpayment">
+                                <i data-feather="plus-circle" class="info-img"></i> Create Payment
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item">
+                                <i data-feather="download" class="info-img"></i> Download PDF
+                            </a>
+                        </li>    
+                        <li>
+                            <a href="javascript:void(0);" class="dropdown-item confirm-text mb-0">
+                                <i data-feather="trash-2" class="info-img"></i> Delete Sale
+                            </a>
+                        </li>                                
+                    </ul>
+                </td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</tabl>
+
 							</div>
 						</div>
 					</div>
