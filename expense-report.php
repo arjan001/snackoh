@@ -13,7 +13,7 @@
     />
     <meta name="author" content="Dreamguys - Bootstrap Admin Template" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Dreams Pos Admin Template</title>
+    <title>SNACK-OH BAKERY ERP</title>
 
     <!-- Favicon -->
     <link
