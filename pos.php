@@ -242,11 +242,11 @@ if (isset($_GET['category'])) {
 										<div class="product-list d-flex align-items-center justify-content-between">
 											<div class="d-flex align-items-center product-info" data-bs-toggle="modal" data-bs-target="#products">
 												<a href="javascript:void(0);" class="img-bg">
-													<img src="assets/img/products/pos-product-16.png" alt="Products">
+													<img src="assets/img/profiles/avator1.jpg" alt="Products">
 												</a>
 												<div class="info">
 													<span>PT0005</span>
-													<h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
+													<h6><a href="javascript:void(0);">Kaimati</a></h6>
 													<p>KSH 2000</p>
 												</div>
 											</div>
@@ -268,12 +268,12 @@ if (isset($_GET['category'])) {
 										<div class="product-list d-flex align-items-center justify-content-between">
 											<div class="d-flex align-items-center product-info" data-bs-toggle="modal" data-bs-target="#products">
 												<a href="javascript:void(0);" class="img-bg">
-													<img src="assets/img/products/pos-product-17.png" alt="Products">
+													<img src="assets/img/profiles/avator1.jpg" alt="Products">
 												</a>
 												<div class="info">
 													<span>PT0235</span>
-													<h6><a href="javascript:void(0);">Iphone 14</a></h6>
-													<p>KSH #6666653000</p>
+													<h6><a href="javascript:void(0);">white bread 400gms</a></h6>
+													<p>KSH 3000</p>
 												</div>
 											</div>
 											<div class="qty-item text-center">
@@ -293,22 +293,21 @@ if (isset($_GET['category'])) {
 										<div class="product-list d-flex align-items-center justify-content-between">
 											<div class="d-flex align-items-center product-info" data-bs-toggle="modal" data-bs-target="#products">
 												<a href="javascript:void(0);" class="img-bg">
-													<img src="assets/img/products/pos-product-16.png" alt="Products">
+													<img src="assets/img/profiles/avator1.jpg" alt="Products">
 												</a>
 												<div class="info">
-													<span>PT0005</span>
-													<h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
-													<p>KSH 2000</p>
+													<span>PT0235</span>
+													<h6><a href="javascript:void(0);">Scones</a></h6>
+													<p>KSH 1200</p>
 												</div>
 											</div>
 											<div class="qty-item text-center">
 										        <a href="javascript:void(0);" class="dec d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" title="minus"><i data-feather="minus-circle" class="feather-14"></i></a>
-										        <input type="text" class="form-control text-center" name="qty" value="1">
+										        <input type="text" class="form-control text-center" name="qty" value="3">
 										        <a href="javascript:void(0);" class="inc d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" title="plus"><i data-feather="plus-circle" class="feather-14"></i></a>
 		    								</div>
 											<div class="d-flex align-items-center action">
-												<a class="btn-icon edit-icon me-2" href="#" data-bs-toggle="modal"
-													data-bs-target="#edit-product">
+												<a class="btn-icon edit-icon me-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-product">
 													<i data-feather="edit" class="feather-14"></i>
 												</a>
 												<a class="btn-icon delete-icon confirm-text" href="javascript:void(0);">
@@ -316,74 +315,14 @@ if (isset($_GET['category'])) {
 												</a>
 											</div>
 										</div>
-										<div class="product-list d-flex align-items-center justify-content-between">
-											<div class="d-flex align-items-center product-info" data-bs-toggle="modal" data-bs-target="#products">
-												<a href="javascript:void(0);" class="img-bg">
-													<img src="assets/img/products/pos-product-17.png" alt="Products">
-												</a>
-												<div class="info">
-													<span>PT0005</span>
-													<h6><a href="javascript:void(0);">Red Nike Laser</a></h6>
-													<p>KSH 2000</p>
-												</div>
-											</div>
-											<div class="qty-item text-center">
-										        <a href="javascript:void(0);" class="dec d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" title="minus"><i data-feather="minus-circle" class="feather-14"></i></a>
-										        <input type="text" class="form-control text-center" name="qty" value="1">
-										        <a href="javascript:void(0);" class="inc d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" title="plus"><i data-feather="plus-circle" class="feather-14"></i></a>
-		    								</div>
-											<div class="d-flex align-items-center action">
-												<a class="btn-icon edit-icon me-2" href="#" data-bs-toggle="modal"
-													data-bs-target="#edit-product">
-													<i data-feather="edit" class="feather-14"></i>
-												</a>
-												<a class="btn-icon delete-icon confirm-text" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-14"></i>
-												</a>
-											</div>
-										</div>
+							
 									</div>
 								</div>
 								<div class="block-section">
 									<div class="selling-info">
 										<div class="row">
-											<div class="col-12 col-sm-4">
-												<!-- <div class="input-block">
-													<label>Order Tax</label>
-													<select class="select">
-														<option>GST 5%</option>
-														<option>GST 10%</option>
-														<option>GST 15%</option>
-														<option>GST 20%</option>
-														<option>GST 25%</option>
-														<option>GST 30%</option>
-													</select>
-												</div> -->
-											</div>
-											<!-- <div class="col-12 col-sm-4">
-												<div class="input-block">
-													<label>Shipping</label>
-													<select class="select">
-														<option>15</option>
-														<option>20</option>
-														<option>25</option>
-														<option>30</option>
-													</select>
-												</div>
-											</div> -->
-											<!-- <div class="col-12 col-sm-4">
-												<div class="input-block">
-													<label>Discount</label>
-													<select class="select">
-														<option>10%</option>
-														<option>10%</option>
-														<option>15%</option>
-														<option>20%</option>
-														<option>25%</option>
-														<option>30%</option>
-													</select>
-												</div>
-											</div> -->
+											
+					
 										</div>
 									</div>
 
@@ -391,6 +330,11 @@ if (isset($_GET['category'])) {
 									<h6>Customer Information</h6>
 									<div class="input-block d-flex align-items-center">
 										<div class="flex-grow-1">
+										<?php
+												// $sql = "SELECT id, customer_name, segment, phone, payment_terms, town, physical_address FROM customers";
+												// $result = mysqli_query($conn, $sql);
+												// ?>
+
 											<select class="select">
 												<option>Walk in Customer</option>
 												<option>John</option>
@@ -426,7 +370,7 @@ if (isset($_GET['category'])) {
 									<div class="row d-flex align-items-center justify-content-center methods">
 										<div class="col-md-6 col-lg-4 item">
 											<div class="default-cover">
-												<a href="javascript:void(0);">
+												<a href="javascript:void(0);"data-bs-toggle="modal"data-bs-target="#cash">
 													<img src="assets/img/icons/cash-pay.svg" alt="Payment Method">
 													<span>Cash</span>
 												</a>
@@ -510,6 +454,64 @@ if (isset($_GET['category'])) {
 			</div>
 		</div>
 		<!-- MPESA PAYMENT MODAL  -->
+
+<!--CASH PAYMENT Modal -->
+ <div class="modal fade" id="cash">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>PAY WITH CASH</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form action="save_user.php" method="POST">
+                            <div class="row">
+                       
+
+                                <!-- User Role Selection -->
+
+
+                                <!-- CASH PAID -->
+                                <div class="col-lg-6 mt-4">
+                                    <div class="input-blocks">
+                                        <label>AMOUNT GIVEN</label>
+                                        <div class="pass-group">
+                                            <input type="number" class="form-control" name="password" required>
+                                            <!-- <span class="fas toggle-password fa-eye-slash"></span> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CASH PAID  BALANCE -->
+                                <div class="col-lg-6 mt-4">
+                                    <div class="input-blocks">
+                                        <label>CHANGE GIVEN</label>
+                                        <div class="pass-group">
+                                            <input type="number" class="form-control" readonly name="" >
+                                            <!-- <span class="fas toggle-password fa-eye-slash"></span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CASH PAYMENT Modal -->
 
 
 		<!-- Payment Completed -->

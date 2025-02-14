@@ -10,20 +10,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
 
     if (!empty($email) && !empty($password)) {
-        // Fetch user data from the database
-        $stmt = $conn->prepare("SELECT id, email, password_hash FROM employees WHERE email = ?");
+        // Join employees and roles tables to get the role_name instead of role_id
+        $stmt = $conn->prepare("
+            SELECT e.id, e.first_name, e.last_name, r.role_name, e.password_hash 
+            FROM employees e 
+            LEFT JOIN roles r ON e.user_role = r.id
+            WHERE e.email = ?
+        ");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $db_email, $hashed_password);
+            $stmt->bind_result($id, $first_name, $last_name, $role_name, $hashed_password);
             $stmt->fetch();
 
             if (password_verify($password, $hashed_password)) {
-                // Login successful
+                // Store user data in session
                 $_SESSION['user_id'] = $id;
-                $_SESSION['email'] = $db_email;
+                $_SESSION['email'] = $email;
+                $_SESSION['first_name'] = $first_name;
+                $_SESSION['last_name'] = $last_name;
+                $_SESSION['full_name'] = $first_name . " " . $last_name;
+                $_SESSION['user_role'] = $role_name; // Store actual role name
+
                 header("Location: index.php"); // Redirect to dashboard
                 exit();
             } else {
@@ -38,6 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

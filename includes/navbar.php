@@ -1,4 +1,5 @@
-	<!-- Header -->
+
+    <!-- Header -->
     <div class="header">
 
 <!-- Logo -->
@@ -217,39 +218,44 @@
     <li class="nav-item nav-item-box">
         <a href="general-settings.php"><i data-feather="settings"></i></a>
     </li>
-    <li class="nav-item dropdown has-arrow main-drop">
-        <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
-            <span class="user-info">
-                <span class="user-letter">
-                    <img src="assets/img/profiles/avator1.jpg" alt="" class="img-fluid">
-                </span>
-                <span class="user-detail">
-                    <span class="user-name">George Macharia</span>
-                    <span class="user-role">Super Admin</span>
-                </span>
+
+    <?php 
+    // Retrieve user data from session
+$full_name = $_SESSION['full_name'] ?? 'Guest User';
+$role = $_SESSION['user_role'] ?? 'Guest';
+?>
+
+<li class="nav-item dropdown has-arrow main-drop">
+    <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
+        <span class="user-info">
+            <span class="user-detail">
+                <span class="user-name"><?= htmlspecialchars($full_name); ?></span>
+                <span class="user-role"><?= htmlspecialchars($role); ?></span>
             </span>
-        </a>
-        <div class="dropdown-menu menu-drop-user">
-            <div class="profilename">
-                <div class="profileset">
-                    <span class="user-img"><img src="assets/img/profiles/avator1.jpg" alt="">
-                        <span class="status online"></span></span>
-                    <div class="profilesets">
-                        <h6>George Macharia</h6>
-                        <h5>Super Admin</h5>
-                    </div>
+        </span>
+    </a>
+    <div class="dropdown-menu menu-drop-user">
+        <div class="profilename">
+            <div class="profileset">
+                <div class="profilesets">
+                    <h6><?= htmlspecialchars($full_name); ?></h6>
+                    <h5><?= htmlspecialchars($role); ?></h5>
                 </div>
-                <hr class="m-0">
-                <a class="dropdown-item" href="profile.php"> <i class="me-2" data-feather="user"></i> My Profile</a>
-                <a class="dropdown-item" href="general-settings.php"><i class="me-2" data-feather="settings"></i>Settings</a>
-                <hr class="m-0">
-                <a class="dropdown-item logout pb-0" href="logout.php">
-    <img src="assets/img/icons/log-out.svg" class="me-2" alt="img">Logout
+            </div>
+            <hr class="m-0">
+            <a class="dropdown-item" href="profile.php?id=<?php echo $_SESSION['user_id']; ?>"> 
+    <i class="me-2" data-feather="user"></i> My Profile
 </a>
 
-            </div>
+            <a class="dropdown-item" href="general-settings.php"><i class="me-2" data-feather="settings"></i> Settings</a>
+            <hr class="m-0">
+            <a class="dropdown-item logout pb-0" href="logout.php">
+                <img src="assets/img/icons/log-out.svg" class="me-2" alt="Logout Icon"> Logout
+            </a>
         </div>
-    </li>
+    </div>
+</li>
+
 </ul>
 <!-- /Header Menu -->
 
@@ -257,7 +263,10 @@
 <div class="dropdown mobile-user-menu">
     <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="profile.html">My Profile</a>
+    <a class="dropdown-item" href="profile.php?id=<?php echo $_SESSION['user_id']; ?>"> 
+    <i class="me-2" data-feather="user"></i> My Profile
+</a>
+
         <a class="dropdown-item" href="general-settings.php">Settings</a>
         <a class="dropdown-item" href="signin.html">Logout</a>
     </div>

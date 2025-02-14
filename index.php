@@ -1,81 +1,186 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <meta name="description" content="POS - Bootstrap Admin Template">
-        <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern,  html5, responsive">
-        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-        <meta name="robots" content="noindex, nofollow">
-        <title>Dreams Pos Admin Template</title>
-        
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-        
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        
-        <!-- animation CSS -->
-        <link rel="stylesheet" href="assets/css/animate.css">
+<!-- header code -->
+<?php include 'includes/header.php';?>
+<!-- header code ends here -->
+<body>
+	<div id="global-loader">
+		<div class="whirly-loader"> </div>
+	</div>
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
 
-        <!-- Datatable CSS -->
-        <link rel="stylesheet" href="assets/css/dataTables.bootstrap5.min.css">
-        
-        <!-- Fontawesome CSS -->
-        <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-        
-        <!-- Main CSS -->
-        <link rel="stylesheet" href="assets/css/style.css">
-        
-    </head>
-    <body class="error-page">
+		<!-- Header -->
+		<?php include 'includes/navbar.php';?>
+		<!-- /Header -->
 
-        <div id="global-loader" >
-            <div class="whirly-loader"> </div>
-        </div>
+		<!-- Sidebar -->
+<?php include "includes/sidebar.php";?> 
+		<!-- /Sidebar -->
 
-        <!-- Main Wrapper -->
-        <div class="main-wrapper">
-            <div class="error-box text-center mx-auto" style="max-width: 600px;">
-                <div class="error-img mt-3">
-                    <img src="assets/img/alert.png" class="img-fluid" alt="">
-                </div>
-                <h3 class="h2 mb-3">Website Taken Down Due to Data privacy Non-Compliance</h3>
-                <h5 class="text-wrap">
-                    Dear Website Owner,  
-                    <br><br>
-                    Your website has been taken down due to non-compliance with the Data Protection and Privacy Act. The compliance team shared documents regarding this issue yesterday to your registered email.  
-                    <br><br>
-                    Your developer must <strong>present themselves in person</strong> with the completed document and ensure the system is <strong>registered as a data processor</strong>. Submission must be made <strong>today</strong> to the Office of the Data Protection Commissioner.  
-                    <br><br>
-                    Failure to comply may result in further action.  
-                    <br><br>
-                    Best regards,  
-                    <strong>Servetech System Limited</strong>  
-                    (On behalf of the Office of the Data Protection Commissioner)
-                </h5>
-                
-            </div>
-            
-        </div>
-        <!-- /Main Wrapper -->
-       
-        <!-- jQuery -->
-        <script src="assets/js/jquery-3.7.1.min.js"></script>
 
-        <!-- Feather Icon JS -->
-        <script src="assets/js/feather.min.js"></script>
 
-        <!-- Slimscroll JS -->
-        <script src="assets/js/jquery.slimscroll.min.js"></script>
 
-        <!-- Bootstrap Core JS -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Custom JS --><script src="assets/js/theme-script.js"></script>	
+
+		<div class="page-wrapper">
+			<div class="content">
+
+				<!-- dashboard cards -->
+				
+				<?php include 'includes/dashboardCards.php';?>
+				<!-- dashboard cards end here -->
+				<!-- Button trigger modal -->
+
+				<div class="row">
+					<div class="col-xl-7 col-sm-12 col-12 d-flex">
+						<div class="card flex-fill">
+							<div class="card-header d-flex justify-content-between align-items-center">
+								<h5 class="card-title mb-0">Purchase & Sales</h5>
+								<div class="graph-sets">
+									<ul class="mb-0">
+										<li>
+											<span>Sales</span>
+										</li>
+										<li>
+											<span>Purchase</span>
+										</li>
+									</ul>
+									<div class="dropdown dropdown-wraper">
+										<button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+											2023
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<li>
+												<a href="javascript:void(0);" class="dropdown-item">2023</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="dropdown-item">2022</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="dropdown-item">2021</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div id="sales_charts"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-5 col-sm-12 col-12 d-flex">
+						<div class="card flex-fill default-cover mb-4">
+							<div class="card-header d-flex justify-content-between align-items-center">
+								<h4 class="card-title mb-0">Recent Products</h4>
+								<div class="view-all-link">
+									<a href="javascript:void(0);" class="view-all d-flex align-items-center">
+										View All<span class="ps-2 d-flex align-items-center"><i data-feather="arrow-right" class="feather-16"></i></span>
+									</a>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive dataview">
+									<table class="table dashboard-recent-products">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Products</th>
+												<th>Price</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td class="productimgname">
+													<a href="product-list.html" class="product-img">
+														<img src="assets/img/products/stock-img-01.png" alt="product">
+													</a>
+													<a href="product-list.html">Lenevo 3rd Generation</a>
+												</td>
+												<td>$12500</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td class="productimgname">
+													<a href="product-list.html" class="product-img">
+														<img src="assets/img/products/stock-img-06.png" alt="product">
+													</a>
+													<a href="product-list.html">Bold V3.2</a>
+												</td>
+												<td>$1600</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td class="productimgname">
+													<a href="product-list.html" class="product-img">
+														<img src="assets/img/products/stock-img-02.png" alt="product">
+													</a>
+													<a href="product-list.html">Nike Jordan</a>
+												</td>
+												<td>$2000</td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td class="productimgname">
+													<a href="product-list.html" class="product-img">
+														<img src="assets/img/products/stock-img-03.png" alt="product">
+													</a>
+													<a href="product-list.html">Apple Series 5 Watch</a>
+												</td>
+												<td>$800</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- expired products was here -->
+
+
+			</div>
+		</div>
+
+		<!-- <div class="customizer-links" id="setdata">
+			<ul class="sticky-sidebar">
+				<li class="sidebar-icons">
+					<a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Theme">
+						<i data-feather="settings" class="feather-five"></i>
+					</a>
+				</li>
+			</ul>
+		</div> -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Feather Icon JS -->
+	<script src="assets/js/feather.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="assets/js/jquery.slimscroll.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Chart JS -->
+	<script src="assets/plugins/apexchart/apexcharts.min.js"></script>
+	<script src="assets/plugins/apexchart/chart-data.js"></script>
+
+	<!-- Sweetalert 2 -->
+	<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+	<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/theme-script.js"></script>	
 		<script src="assets/js/script.js"></script>
 
 	
-    </body>
+</body>
+
 </html>

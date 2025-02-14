@@ -47,7 +47,15 @@
 					<div class="col-xl-3 col-sm-6 col-12 d-flex">
 						<div class="dash-count">
 							<div class="dash-counts">
-								<h4>100</h4>
+							<?php
+								require_once 'config/config.php'; // Ensure database connection
+								
+								// Query to count total employees
+								$result = $conn->query("SELECT COUNT(*) AS total FROM customers");
+								$row = $result->fetch_assoc();
+								$totalCustomers = $row['total'];
+								?>
+								<h4><?php echo $totalCustomers; ?></h4>
 								<h5>Customers</h5>
 							</div>
 							<div class="dash-imgs">
@@ -58,7 +66,15 @@
 					<div class="col-xl-3 col-sm-6 col-12 d-flex">
 						<div class="dash-count das1">
 							<div class="dash-counts">
-								<h4>110</h4>
+							<?php
+								require_once 'config/config.php'; // Ensure database connection
+								
+								// Query to count total employees
+								$result = $conn->query("SELECT COUNT(*) AS total FROM suppliers");
+								$row = $result->fetch_assoc();
+								$totalSuppliers = $row['total'];
+								?>
+								<h4><?php echo $totalSuppliers; ?></h4>
 								<h5>Suppliers</h5>
 							</div>
 							<div class="dash-imgs">
@@ -80,7 +96,15 @@
 					<div class="col-xl-3 col-sm-6 col-12 d-flex">
 						<div class="dash-count das3">
 							<div class="dash-counts">
-								<h4>170</h4>
+							<?php
+								require_once 'config/config.php'; // Ensure database connection
+								
+								// Query to count total employees
+								$result = $conn->query("SELECT COUNT(*) AS total FROM invoice");
+								$row = $result->fetch_assoc();
+								$totalInvoices = $row['total'];
+								?>
+								<h4><?php echo $totalInvoices; ?></h4>
 								<h5>Sales Invoice</h5>
 							</div>
 							<div class="dash-imgs">

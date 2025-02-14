@@ -152,7 +152,7 @@ $result = mysqli_query($conn, $query);
                         <span class="checkmarks"></span>
                     </label>
                 </th>
-                <th>Category name</th>
+                <th>Expence Category</th>
                 <th>Reference</th>
                 <th>Date</th>
                 
@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <div class="row">
         <!-- Date -->
-        <div class="col-md-6 mb-3">
+        <div class="col-md-12 mb-3">
             <label class="form-label">Date</label>
             <input type="date" class="form-control" name="date" required>
         </div>
