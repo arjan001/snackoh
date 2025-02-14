@@ -1,26 +1,38 @@
 <?php
- include_once "./config/config.php";
+include_once "./config/config.php";
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $product_name = $conn->real_escape_string($_POST['recipe_name']);
-    $Recipe_ingridients = $conn->real_escape_string($_POST['product_category']);
-    $recipe_instructions= $conn->real_escape_string($_POST['recipe_instructions']);
-    
-   
-    
+    $recipe_name = $_POST["recipe_name"];
+    $upper_temp = $_POST["upper_temp"];
+    $lower_temp = $_POST["lower_temp"];
+    $recipe_instructions = $_POST["recipe_instructions"];
 
-    // Insert query
-    $sql = "INSERT INTO recipe (recipe_name, product_category, product_unit, product_quantity ,product_price,product_quantity_alert,manufactured_on) 
-            VALUES ('$product_name', '$product_category', $product_unit, '$product_quantity', '$product_price' ,'$product_quantity_alert','$manufactured_on')";
+    // Insert recipe first
+    $sql = "INSERT INTO recipes (recipe_name, upper_temperature, lower_temperature, recipe_instructions) 
+            VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sdds", $recipe_name, $upper_temp, $lower_temp, $recipe_instructions);
+    $stmt->execute();
+    $recipe_id = $stmt->insert_id; // Get last inserted recipe ID
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<script>alert('Unit added successfully'); window.location.href='./product-list.php';</script>";
-    } else {
-        echo "Error: " . $conn->error;
+    // Check if ingredients are set
+    if (isset($_POST["ingredient_name"])) {
+        $ingredient_names = $_POST["ingredient_name"];
+        $ingredient_quantities = $_POST["ingredient_quantity"];
+        $ingredient_units = $_POST["ingredient_unit"];
+
+        // Insert each ingredient linked to the recipe
+        $sql = "INSERT INTO recipe_ingredients (recipe_id, ingredient_name, quantity, unit) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+
+        for ($i = 0; $i < count($ingredient_names); $i++) {
+            if (!empty($ingredient_names[$i]) && !empty($ingredient_quantities[$i])) {
+                $stmt->bind_param("isds", $recipe_id, $ingredient_names[$i], $ingredient_quantities[$i], $ingredient_units[$i]);
+                $stmt->execute();
+            }
+        }
     }
-}
 
-// Close connection
-$conn->close();
+    echo "Recipe and ingredients added successfully!";
+}
 ?>

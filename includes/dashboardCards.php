@@ -16,10 +16,27 @@
 							<div class="dash-widgetimg">
 								<span><img src="assets/img/icons/dash2.svg" alt="img"></span>
 							</div>
-							<div class="dash-widgetcontent">
-								<h5>KSH<span class="counters" data-count="4385.00">KSH4,385.00</span></h5>
-								<h6>Total Sales Due</h6>
-							</div>
+							<?php
+include_once "./config/config.php";
+
+// Fetch total sales amount
+$sql = "SELECT SUM(due_amount) AS total_due FROM sales_list";
+$result = $conn->query($sql);
+$total_dues = 0.00;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $total_dues = (float) ($row['total_due'] ?? 0.00);
+}
+?>
+
+<div class="dash-widgetcontent">
+    <h5>KSH <span class="counters" data-count="<?php echo $total_dues; ?>">
+        <?php echo "KSH " . number_format($total_dues, 2); ?>
+    </span></h5>
+    <h6>Total Due Amount</h6>
+</div>
+
 						</div>
 					</div>
 					<div class="col-xl-3 col-sm-6 col-12 d-flex">
@@ -27,10 +44,27 @@
 							<div class="dash-widgetimg">
 								<span><img src="assets/img/icons/dash3.svg" alt="img"></span>
 							</div>
-							<div class="dash-widgetcontent">
-								<h5>KSH<span class="counters" data-count="385656.50">KSH385,656.50</span></h5>
-								<h6>Total Sale Amount</h6>
-							</div>
+							<?php
+include_once "./config/config.php";
+
+// Fetch total sales amount
+$sql = "SELECT SUM(paid_amount) AS total_sales FROM sales_list";
+$result = $conn->query($sql);
+$total_sales = 0.00;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $total_sales = (float) ($row['total_sales'] ?? 0.00);
+}
+?>
+
+<div class="dash-widgetcontent">
+    <h5>KSH <span class="counters" data-count="<?php echo $total_sales; ?>">
+        <?php echo "KSH " . number_format($total_sales, 2); ?>
+    </span></h5>
+    <h6>Total Sale Amount</h6>
+</div>
+
 						</div>
 					</div>
 					<div class="col-xl-3 col-sm-6 col-12 d-flex">
@@ -38,10 +72,28 @@
 							<div class="dash-widgetimg">
 								<span><img src="assets/img/icons/dash4.svg" alt="img"></span>
 							</div>
-							<div class="dash-widgetcontent">
-								<h5>KSH<span class="counters" data-count="40000.00">KSH400.00</span></h5>
-								<h6>Total Expense Amount</h6>
-							</div>
+							<?php
+include_once "./config/config.php";
+
+// Fetch total expenses amount
+$sql = "SELECT SUM(amount) AS total_expenses FROM expenses";
+$result = $conn->query($sql);
+$total_expenses = 0.00;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $total_expenses = (float) ($row['total_expenses'] ?? 0.00);
+}
+?>
+
+<div class="dash-widgetcontent">
+    <h5>KSH <span class="counters" data-count="<?php echo $total_expenses; ?>">
+        <?php echo "KSH " . number_format($total_expenses, 2); ?>
+    </span></h5>
+    <h6>Total Expense Amount</h6>
+</div>
+
+
 						</div>
 					</div>
 					<div class="col-xl-3 col-sm-6 col-12 d-flex">
