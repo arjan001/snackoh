@@ -58,7 +58,3 @@
 </head>
 
 <?php include_once "./config/config.php" ?>
-<?php 
-// include_once "./includes/session_check.php"
-
-?>	
