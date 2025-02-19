@@ -48,58 +48,119 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/header.php'; ?>
-<body class="account-page">
-    <div class="main-wrapper">
-        <div class="account-content">
-            <div class="login-wrapper">
-                <div class="login-content">
-                    <form action="login.php" method="POST">
-                        <div class="login-userset">
-                            <div class="login-logo logo-normal">
-                                <img src="assets/img/logo1.jpg" alt="img">
+    <body class="account-page">
+
+        <div id="global-loader" >
+			<div class="whirly-loader"> </div>
+		</div>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+			<div class="account-content">
+				<div class="login-wrapper login-new">
+                    <div class="container">
+                        <div class="login-content user-login">
+                            <div class="login-logo">
+                                <img src="assets/img/logo.png" alt="img">
+                                <a href="index.html" class="login-logo logo-white">
+                                    <img src="assets/img/logo-white.png"  alt="">
+                                </a>
                             </div>
-                            <div class="login-userheading">
-                                <h3>Sign In</h3>
-                                <h4>Access the SnackOH panel using your email and passcode.</h4>
-                            </div>
-                            <?php if (!empty($error)) { ?>
+                            <form action="login.php" method="POST">
+                                <div class="login-userset">
+                                    <div class="login-userheading">
+                                        <h3>Sign In</h3>
+                                        <h4>Access the SnackOH panel using your email and passcode.</h4>
+                                    </div>
+                                    <?php if (!empty($error)) { ?>
                                 <p style="color: red; text-align: center;"><?php echo $error; ?></p>
                             <?php } ?>
-                            <div class="form-login">
-                                <label>Email Address</label>
-                                <div class="form-addons">
-                                    <input type="text" class="form-control" name="email" required>
-                                    <img src="assets/img/icons/mail.svg" alt="img">
+                                    <div class="form-login">
+                                        <label class="form-label">Email Address</label>
+                                        <div class="form-addons">
+                                            <input type="email" class="form-control" name="email" required>
+                                            <img src="assets/img/icons/mail.svg" alt="img">
+                                        </div>
+                                    </div>
+                                    <div class="form-login">
+                                        <label>Password</label>
+                                        <div class="pass-group">
+                                            <input type="password" class="pass-input"name="password" required>
+                                            <span class="fas toggle-password fa-eye-slash"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-login authentication-check">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="custom-control custom-checkbox">
+                                                    <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
+                                                        <input type="checkbox">
+                                                        <span class="checkmarks"></span>Remember me
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 text-end">
+                                                <a class="forgot-link" href="forgot-password.php">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-login">
+                                        <button class="btn btn-login" type="submit">Sign In</button>
+                                    </div>
+                                    <!-- <div class="signinform">
+                                        <h4>New on our platform?<a href="register-3.html" class="hover-a"> Create an account</a></h4>
+                                    </div> -->
+                                    <div class="form-setlogin or-text">
+                                        <h4>OR</h4>
+                                    </div>
+                                    <div class="form-sociallink">
+                                        <ul class="d-flex">
+                                            <li>
+                                                <a href="javascript:void(0);" class="facebook-logo">
+                                                    <img src="assets/img/icons/facebook-logo.svg" alt="Facebook">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);">
+                                                    <img src="assets/img/icons/google.png" alt="Google">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="apple-logo">
+                                                    <img src="assets/img/icons/apple-logo.svg" alt="Apple">
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-login">
-                                <label>Password</label>
-                                <div class="pass-group">
-                                    <input type="password" class="pass-input" name="password" required>
-                                    <span class="fas toggle-password fa-eye-slash"></span>
-                                </div>
-                            </div>
-                            <div class="form-login">
-                                <button type="submit" class="btn btn-login">Sign In</button>
-                            </div>
+                            </form>
+                           
                         </div>
-                    </form>
+                        <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
+                            <p>Copyright &copy; 2025 SNACK-OH. All rights reserved</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="login-img">
-                    <img src="assets/img/authentication/login02.png" alt="img">
-                </div>
-            </div>
+			</div>
         </div>
-    </div>
+		<!-- /Main Wrapper -->
+  
 
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/feather.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/theme-script.js"></script>	
-    <script src="assets/js/script.js"></script>
-</body>
+		<!-- jQuery -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+
+         <!-- Feather Icon JS -->
+		<script src="assets/js/feather.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Custom JS --><script src="assets/js/theme-script.js"></script>	
+		<script src="assets/js/script.js"></script>
+
+	
+    </body>
 </html>

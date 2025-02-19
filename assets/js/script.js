@@ -269,7 +269,7 @@ $(document).ready(function(){
 		function setCountdown() {
 
 		// Set countdown date
-		let countdownDate = new Date('feb 10, 2025 16:00:00').getTime();
+		let countdownDate = new Date('feb 25, 2025 16:00:00').getTime();
 
 		// Update countdown every second
 		let updateCount = setInterval(function(){
