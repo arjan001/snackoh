@@ -21,6 +21,8 @@
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Inventory</h6>
 							<ul>
+								
+							
 								<li><a href="product-list.php"><i data-feather="box"></i><span>Products</span></a></li>
 								<li><a href="add-product.php"><i data-feather="plus-square"></i><span>Create Product</span></a></li>
 								<li><a href="recipe.php"><i data-feather="plus-square"></i><span>Recipes</span></a></li>
@@ -47,7 +49,7 @@
 
 								<li><a href="stock-ordering.php"><i data-feather="clipboard"></i><span>Stock ordering</span></a></li>
 
-								<li><a href="stock-transfer.php"><i data-feather="truck"></i><span>Stock Transfer</span></a></li>
+								<li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li>
 							</ul>
 						</li>
 						<li class="submenu-open">
@@ -180,67 +182,7 @@
 								
 							</ul>
 						</li>
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">Pages</h6>
-							<ul>
-								<li><a href="profile.php"><i data-feather="user"></i><span>Profile</span></a></li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="shield"></i><span>Authentication</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">Login<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="signin.html">Cover</a></li>
-												<li><a href="signin-2.html">Illustration</a></li>
-												<li><a href="signin-3.html">Basic</a></li>
-											</ul>
-										</li>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">Register<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="register.html">Cover</a></li>
-												<li><a href="register-2.html">Illustration</a></li>
-												<li><a href="register-3.html">Basic</a></li>
-											</ul>
-										</li>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">Forgot Password<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="forgot-password.html">Cover</a></li>
-												<li><a href="forgot-password-2.html">Illustration</a></li>
-												<li><a href="forgot-password-3.html">Basic</a></li>
-											</ul>
-										</li>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">Reset Password<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="reset-password.html">Cover</a></li>
-												<li><a href="reset-password-2.html">Illustration</a></li>
-												<li><a href="reset-password-3.html">Basic</a></li>
-											</ul>
-										</li>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">Email Verification<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="email-verification.html">Cover</a></li>
-												<li><a href="email-verification-2.html">Illustration</a></li>
-												<li><a href="email-verification-3.html">Basic</a></li>
-											</ul>
-										</li>
-										<li class="submenu submenu-two"><a href="javascript:void(0);">2 Step Verification<span class="menu-arrow inside-submenu"></span></a>
-											<ul>
-												<li><a href="two-step-verification.html">Cover</a></li>
-												<li><a href="two-step-verification-2.html">Illustration</a></li>
-												<li><a href="two-step-verification-3.html">Basic</a></li>
-											</ul>
-										</li>
-										<li><a href="lock-screen.html">Lock Screen</a></li>
-									</ul>
-								</li>
 
-
-								
-							
-								<li>
-									<a href="under-maintenance.html"><i data-feather="alert-triangle"></i><span>Under Maintenance</span> </a>
-								</li>
-							</ul>
-						</li>
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Settings</h6>
 							<ul>

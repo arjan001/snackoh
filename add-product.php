@@ -125,7 +125,7 @@ $unitResult = $conn->query($unitQuery);
         </select>
                                         </div>
                                     </div>
-                                    <!-- <div class="col-lg-6 col-sm-12 col-12">
+                                    <div class="col-lg-6 col-sm-12 col-12">
                                         <div class="mb-3 add-product">
                                             <div class="add-newplus">
                                                 <label class="form-label">Recipe</label>
