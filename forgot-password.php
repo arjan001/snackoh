@@ -20,7 +20,54 @@
                                     <img src="assets/img/logo-white.png"  alt="">
                                 </a>
                             </div>
-                            <form action="signin-3.html">
+
+                            <?php
+require 'config/config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = trim($_POST['email']);
+
+    if (!empty($email)) {
+        // Check if email exists in the database
+        $stmt = $conn->prepare("SELECT id FROM employees WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            // Generate a secure random token
+            $token = bin2hex(random_bytes(32));
+            $expires = date("Y-m-d H:i:s", strtotime("+1 hour")); // Token expires in 1 hour
+
+            // Store the token in the database
+            $stmt = $conn->prepare("UPDATE employees SET reset_token = ?, reset_expires = ? WHERE email = ?");
+            $stmt->bind_param("sss", $token, $expires, $email);
+            $stmt->execute();
+
+            // Send reset email
+            $reset_link = "http://yourwebsite.com/reset_password.php?token=" . $token;
+            $subject = "Password Reset Request";
+            $message = "Click the link below to reset your password:\n\n" . $reset_link;
+            $headers = "From: no-reply@yourwebsite.com";
+
+            if (mail($email, $subject, $message, $headers)) {
+                echo "<script>alert('Password reset link sent! Check your email.');</script>";
+            } else {
+                echo "<script>alert('Failed to send email. Try again later.');</script>";
+            }
+        } else {
+            echo "<script>alert('No account found with that email.');</script>";
+        }
+        $stmt->close();
+    } else {
+        echo "<script>alert('Please enter your email.');</script>";
+    }
+}
+?>
+
+
+
+                            <form action=""method="POST">
                                 <div class="login-userset">
                                     <div class="login-userheading">
                                         <h3>Forgot password?</h3>

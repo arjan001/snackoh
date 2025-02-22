@@ -78,7 +78,7 @@ include_once "./includes/session_check.php"
 								<h4 class="card-title mb-0">Recent Products</h4>
 								<div class="view-all-link">
 									<a href="javascript:void(0);" class="view-all d-flex align-items-center">
-										View All<span class="ps-2 d-flex align-items-center"><i data-feather="arrow-right" class="feather-16"></i></span>
+										
 									</a>
 								</div>
 							</div>
@@ -96,40 +96,40 @@ include_once "./includes/session_check.php"
 											<tr>
 												<td>1</td>
 												<td class="productimgname">
-													<a href="product-list.html" class="product-img">
+													<a href="product-list.php" class="product-img">
 														<img src="assets/img/products/stock-img-01.png" alt="product">
 													</a>
-													<a href="product-list.html">Lenevo 3rd Generation</a>
+													<a href="product-list.php">Lenevo 3rd Generation</a>
 												</td>
 												<td>$12500</td>
 											</tr>
 											<tr>
 												<td>2</td>
 												<td class="productimgname">
-													<a href="product-list.html" class="product-img">
+													<a href="product-list.php" class="product-img">
 														<img src="assets/img/products/stock-img-06.png" alt="product">
 													</a>
-													<a href="product-list.html">Bold V3.2</a>
+													<a href="product-list.php">Bold V3.2</a>
 												</td>
 												<td>$1600</td>
 											</tr>
 											<tr>
 												<td>3</td>
 												<td class="productimgname">
-													<a href="product-list.html" class="product-img">
+													<a href="product-list.php" class="product-img">
 														<img src="assets/img/products/stock-img-02.png" alt="product">
 													</a>
-													<a href="product-list.html">Nike Jordan</a>
+													<a href="product-list.php">Nike Jordan</a>
 												</td>
 												<td>$2000</td>
 											</tr>
 											<tr>
 												<td>4</td>
 												<td class="productimgname">
-													<a href="product-list.html" class="product-img">
+													<a href="product-list.php" class="product-img">
 														<img src="assets/img/products/stock-img-03.png" alt="product">
 													</a>
-													<a href="product-list.html">Apple Series 5 Watch</a>
+													<a href="product-list.php">Apple Series 5 Watch</a>
 												</td>
 												<td>$800</td>
 											</tr>
