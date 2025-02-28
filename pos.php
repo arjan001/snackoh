@@ -42,6 +42,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
 		
 	</head>
+	<?php  include_once "./includes/session_check.php" ;?>
 	
 	<body>
 		<div id="global-loader" >
@@ -51,7 +52,9 @@
 		<div class="main-wrapper">
 
 			<!-- Header -->
-			<?php include "includes/navbar.php";?>
+			<?php include "includes/navbar.php";
+			
+			?>
 			<!-- Header -->
 			
 			

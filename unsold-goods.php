@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'includes/header.php';?>
+<?php include 'includes/header.php';
+
+include_once "./includes/session_check.php" ;
+?>
     <body>
 		
 		<div id="global-loader" >

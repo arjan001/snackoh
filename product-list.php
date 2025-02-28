@@ -2,6 +2,8 @@
 <html lang="en">
 
 <?php include "includes/header.php"; 
+
+include_once "./includes/session_check.php" ;
 ?>
 
 <body>
@@ -56,10 +58,7 @@
 						<a href="add-product.php" class="btn btn-added"><i data-feather="plus-circle"
 								class="me-2"></i>Add New Product</a>
 					</div>
-					<div class="page-btn import">
-						<a href="#" class="btn btn-added color" data-bs-toggle="modal" data-bs-target="#view-notes"><i
-								data-feather="download" class="me-2"></i>Import Product</a>
-					</div>
+				
 				</div>
 
 				<!-- /product list -->

@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssi", $category_name, $category_description, $status);
 
     if ($stmt->execute()) {
-        echo"<script>alert('Asset Category added successfully'); window.location.href='./assets.php';</script>";
+        echo"<script>alert('Asset Category added successfully'); window.location.href='./assets-category.php';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }

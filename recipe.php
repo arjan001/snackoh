@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "includes/header.php"; ?>
+<?php include "includes/header.php"; 
+
+include_once "./includes/session_check.php" ;?>
 
 <body>
 
@@ -333,7 +335,7 @@ $result = $conn->query($sql);
                         
                         <td class='action-table-data'>
                             <div class='edit-delete-action'>
-                                <a class='me-2 edit-icon p-2' href='product-details.html'>
+                                <a class='me-2 edit-icon p-2' href='recipe-details.php'>
                                     <i data-feather='eye' class='feather-eye'></i>
                                 </a>
                                 <a class='me-2 p-2' href='edit-product.php'>
