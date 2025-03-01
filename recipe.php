@@ -283,18 +283,20 @@ if ($result->num_rows > 0) {
 						</div>
 						<!-- /Filter -->
 						<div class="table-responsive product-list">
-						<?php
-// Include the config file to connect to the database
+                        <?php
+include_once "./config/config.php";
 
-// Fetch products from the database
-$sql = "SELECT p.id, p.product_name, c.category_name, u.unit_name, p.product_quantity, p.product_price, 
-               p.product_quantity_alert, p.manufactured_on, p.product_image
-        FROM products p
-        LEFT JOIN product_category c ON p.product_category = c.id
-        LEFT JOIN units u ON p.product_unit = u.id";
+// Fetch recipes along with ingredient counts
+$sql = "SELECT r.id, r.recipe_name, r.created_at, ri.ingredients_json 
+        FROM recipes r
+        LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id";
+
 $result = $conn->query($sql);
-
 ?>
+
+
+
+
 
 <table class="table datanew">
     <thead>
@@ -306,20 +308,28 @@ $result = $conn->query($sql);
                 </label>
             </th>
             <th>Recipe Name</th>
-            <th>Created By</th>
-            
-            <th>No of Ingridients Used</th>
-            <th>created on</th>
-            
+            <th>Number of Ingredients Used</th>
+            <th>Created On</th>
             <th class="no-sort">Action</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        // Check if there are any products to display
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                // Display product details dynamically (no image now)
+                $recipe_name = htmlspecialchars($row['recipe_name']);
+                $created_at = htmlspecialchars($row['created_at']);
+                $ingredient_count = 0;
+
+                // Decode ingredients JSON and count the items
+                $ingredients_json = $row['ingredients_json'];
+                if (!empty($ingredients_json)) {
+                    $ingredients = json_decode($ingredients_json, true);
+                    if (is_array($ingredients)) {
+                        $ingredient_count = count($ingredients);
+                    }
+                }
+
                 echo "<tr>
                         <td>
                             <label class='checkboxs'>
@@ -327,21 +337,18 @@ $result = $conn->query($sql);
                                 <span class='checkmarks'></span>
                             </label>
                         </td>
-                        <td>" . htmlspecialchars($row['product_name']) . "</td>
-                        <td>" . htmlspecialchars($row['category_name']) . "</td>
-                       
-                        <td>" . htmlspecialchars($row['product_quantity']) . "</td>
-                        <td>" . htmlspecialchars($row['manufactured_on']) . "</td>
-                        
+                        <td>$recipe_name</td>
+                        <td>$ingredient_count</td>
+                        <td>$created_at</td>
                         <td class='action-table-data'>
                             <div class='edit-delete-action'>
-                                <a class='me-2 edit-icon p-2' href='recipe-details.php'>
+                                <a class='me-2 edit-icon p-2' href='recipe-details.php?id=" . $row['id'] . "'>
                                     <i data-feather='eye' class='feather-eye'></i>
                                 </a>
-                                <a class='me-2 p-2' href='edit-product.php'>
+                                <a class='me-2 p-2' href='edit-recipe.php?id=" . $row['id'] . "'>
                                     <i data-feather='edit' class='feather-edit'></i>
                                 </a>
-                                <a class='confirm-text p-2' href='javascript:void(0);'>
+                                <a class='confirm-text p-2' href='delete-recipe.php?id=" . $row['id'] . "'>
                                     <i data-feather='trash-2' class='feather-trash-2'></i>
                                 </a>
                             </div>
@@ -349,13 +356,11 @@ $result = $conn->query($sql);
                     </tr>";
             }
         } else {
-            echo "<tr><td colspan='8'>No products found.</td></tr>";
+            echo "<tr><td colspan='5'>No recipes found.</td></tr>";
         }
         ?>
     </tbody>
 </table>
-
-
 
 
 						</div>

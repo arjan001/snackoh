@@ -99,6 +99,9 @@ CREATE TABLE products (
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
    
 );
+ALTER TABLE products (
+    add COLUMN recipe_name VARCHAR(255) NOT NULL,
+)
 
 CREATE TABLE stock_category (
     id INT AUTO_INCREMENT PRIMARY KEY,

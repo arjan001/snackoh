@@ -47,7 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Please fill in both fields.";
     }
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/header.php'; ?>

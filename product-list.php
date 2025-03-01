@@ -161,7 +161,7 @@ include_once "./includes/session_check.php" ;
 						<div class="table-responsive product-list">
 						<?php
 // Include the config file to connect to the database
-
+include_once "./config/config.php";
 // Fetch products from the database
 $sql = "SELECT p.id, p.product_name, c.category_name, u.unit_name, p.product_quantity, p.product_price, 
                p.product_quantity_alert, p.manufactured_on, p.product_image
@@ -184,8 +184,8 @@ $result = $conn->query($sql);
             <th>Product Name</th>
             <th>Category</th>
             <th>Unit</th>
-            <th>Inventory Items Quantity</th>
-            <th>Manufactured Date</th>
+            <th>Inventory Quantity</th>
+            <th>Manufactured</th>
             <th>Quantity Alert</th>
             <th class="no-sort">Action</th>
         </tr>

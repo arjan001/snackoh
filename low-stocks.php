@@ -3,9 +3,9 @@
 <?php include "includes/header.php";?>
     <body>
 		
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div>
+		</div> -->
 
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
@@ -138,54 +138,63 @@
 										</div>
 										<!-- /Filter -->
 										<div class="table-responsive">
-											<table class="table  datanew">
-												<thead>
-													<tr>
-														<th class="no-sort">
-															<label class="checkboxs">
-																<input type="checkbox" id="select-all">
-																<span class="checkmarks"></span>
-															</label>
-														</th>
-														
-														<th>Product Name</th>
-														<th>Category</th>
-														<th>SKU</th>
-														<th>Qty</th>
-														<th>Qty Alert</th>
-														<th class="no-sort">Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														
-														
-														<td>Lenovo 3rd Generation </td>
-														<td>Laptop</td>
-														<td>PT001</td>
-														<td>15</td>
-														<td>10</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-												
-												</tbody>
-											</table>
+										<?php
+// Database connection
+include_once "./config/config.php";
+
+// Fetch products that have reached or fallen below the alert level
+$sql = "SELECT * FROM products WHERE product_quantity <= product_quantity_alert";
+$result = $conn->query($sql);
+?>
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Product Name</th>
+            <th>Category</th>
+            
+            <th>Qty</th>
+            <th>Qty Alert</th>
+            <!-- <th class="no-sort">Action</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($row = $result->fetch_assoc()) { ?>
+            <tr>
+                <td>
+                    <label class="checkboxs">
+                        <input type="checkbox">
+                        <span class="checkmarks"></span>
+                    </label>
+                </td>
+                <td><?php echo htmlspecialchars($row['product_name']); ?></td>
+                <td><?php echo htmlspecialchars($row['category']); ?></td>
+                
+                <td><?php echo htmlspecialchars($row['product_quantity']); ?></td>
+                <td><?php echo htmlspecialchars($row['product_quantity_alert']); ?></td>
+                <!-- <td class="action-table-data">
+                    <div class="edit-delete-action">
+                        <a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
+                            <i data-feather="edit" class="feather-edit"></i>
+                        </a>
+                        <a class="confirm-text p-2" href="javascript:void(0);">
+                            <i data-feather="trash-2" class="feather-trash-2"></i>
+                        </a>
+                    </div>
+                </td> -->
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+
+
+
 										</div>
 									</div>
 								</div>
@@ -263,6 +272,8 @@
 										</div>
 										<!-- /Filter -->
 										<div class="table-responsive">
+
+
 											<table class="table  datanew">
 												<thead>
 													<tr>

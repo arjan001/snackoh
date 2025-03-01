@@ -32,7 +32,7 @@ if (isset($_GET['category'])) {
 // Handle form submission for inserting product
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate form inputs
-    if (empty($_POST['product_name']) || empty($_POST['product_category']) || empty($_POST['product_unit']) || empty($_POST['product_quantity']) || empty($_POST['product_price']) || empty($_POST['product_quantity_alert']) || empty($_POST['product_manufactured_date'])) {
+    if (empty($_POST['product_name']) || empty($_POST['product_category']) || empty($_POST['recipe_name']) || empty($_POST['product_unit']) || empty($_POST['product_quantity']) || empty($_POST['product_price']) || empty($_POST['product_quantity_alert']) || empty($_POST['product_manufactured_date'])) {
         echo "All fields are required!";
         exit;
     }
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize inputs to prevent SQL injection
     $product_name = $conn->real_escape_string($_POST['product_name']);
     $product_category = $conn->real_escape_string($_POST['product_category']);
+    $recipe_name = $conn->real_escape_string($_POST['recipe_name']);
     $product_unit = $conn->real_escape_string($_POST['product_unit']);
     $product_quantity = $conn->real_escape_string($_POST['product_quantity']);
     $product_price = $conn->real_escape_string($_POST['product_price']);
@@ -80,12 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare the SQL query
     if ($image_path) {
         // Insert query with image path
-        $sql = "INSERT INTO products (product_name, product_category, product_unit, product_quantity, product_price, product_quantity_alert, manufactured_on, product_image) 
-                VALUES ('$product_name', '$product_category', '$product_unit', '$product_quantity', '$product_price', '$product_quantity_alert', '$manufactured_on', '$image_path')";
+        $sql = "INSERT INTO products (product_name, product_category, recipe_name, product_unit, product_quantity, product_price, product_quantity_alert, manufactured_on, product_image) 
+                VALUES ('$product_name', '$product_category',  $recipe_name, '$product_unit', '$product_quantity', '$product_price', '$product_quantity_alert', '$manufactured_on', '$image_path')";
     } else {
         // If no image is uploaded, insert data without image
-        $sql = "INSERT INTO products (product_name, product_category, product_unit, product_quantity, product_price, product_quantity_alert, manufactured_on) 
-                VALUES ('$product_name', '$product_category', '$product_unit', '$product_quantity', '$product_price', '$product_quantity_alert', '$manufactured_on')";
+        $sql = "INSERT INTO products (product_name, product_category, recipe_name, product_unit, product_quantity, product_price, product_quantity_alert, manufactured_on) 
+                VALUES ('$product_name', '$product_category',  $recipe_name, '$product_unit', '$product_quantity', '$product_price', '$product_quantity_alert', '$manufactured_on')";
     }
 
     // Debugging output: check SQL query before execution
