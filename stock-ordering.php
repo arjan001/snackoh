@@ -68,73 +68,7 @@ include_once "./includes/session_check.php"
 											<i data-feather="filter" class="filter-icon"></i>
 											<span><img src="assets/img/icons/closes.svg" alt="img"></span>
 										</a>
-										<div class="layout-hide-box">
-											<a href="javascript:void(0);" class="me-3 layout-box"><i data-feather="layout" class="feather-search"></i></a>
-											<div class="layout-drop-item card">
-												<div class="drop-item-head">
-													<h5>Want to manage datatable?</h5>
-													<p>Please drag and drop your column to reorder your table and enable see option as you want.</p>
-												</div>
-												<ul>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Shop</span>
-															<input type="checkbox" id="option1" class="check" checked>
-															<label for="option1" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Product</span>
-															<input type="checkbox" id="option2" class="check" checked>
-															<label for="option2" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Reference No</span>
-															<input type="checkbox" id="option3" class="check" checked>
-															<label for="option3" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Date</span>
-															<input type="checkbox" id="option4" class="check" checked>
-															<label for="option4" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Responsible Person</span>
-															<input type="checkbox" id="option5" class="check" checked>
-															<label for="option5" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Notes</span>
-															<input type="checkbox" id="option6" class="check" checked>
-															<label for="option6" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Quantity</span>
-															<input type="checkbox" id="option7" class="check" checked>
-															<label for="option7" class="checktoggle">	</label>
-														</div>
-													</li>
-													<li>
-														<div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-															<span class="status-label"><i data-feather="menu" class="feather-menu"></i>Actions</span>
-															<input type="checkbox" id="option8" class="check" checked>
-															<label for="option8" class="checktoggle">	</label>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</div>
+										
 									</div>
 								</div>
 								<div class="form-sort">
@@ -146,61 +80,7 @@ include_once "./includes/session_check.php"
 									</select>
 								</div>
 							</div>
-							<!-- /Filter -->
-							<div class="card" id="filter_inputs">
-								<div class="card-body pb-0">
-									<div class="row">
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="archive" class="info-img"></i>
-												<select class="select">
-													<option>Choose Warehouse</option>
-													<option>Lobar Handy</option>
-													<option>Quaint Warehouse</option>
-													<option>Traditional Warehouse</option>
-													<option>Cool Warehouse</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="box" class="info-img"></i>
-												<select class="select">
-													<option>Choose Product</option>
-													<option>Nike Jordan</option>
-													<option>Apple Series 5 Watch</option>
-													<option>Amazon Echo Dot</option>
-													<option>Lobar Handy</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="calendar" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker" placeholder="Choose Date" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="user" class="info-img"></i>
-												<select class="select">
-													<option>Choose Person</option>
-													<option>Steven</option>
-													<option>Gravely</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-4 col-sm-6 col-12 ms-auto">
-											<div class="input-blocks">
-												<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Filter -->
+							
 							<div class="table-responsive">
 								<table class="table  datanew">
 									<thead>
@@ -291,7 +171,7 @@ include_once "./includes/session_check.php"
 						<div class="content">
 							<div class="modal-header border-0 custom-modal-header">
 								<div class="page-title">
-									<h4>Add Adjustment</h4>
+									<h4>STOCK ORDERING</h4>
 								</div>
 								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>

@@ -64,7 +64,16 @@
 
 							<div class="search-set mb-0">
 								<div class="total-employees">
-									<h6><i data-feather="users" class="feather-user"></i>Total Employees <span>21</span>
+
+								<?php
+								require_once 'config/config.php'; // Ensure database connection
+								
+								// Query to count total employees
+								$result = $conn->query("SELECT COUNT(*) AS total FROM employees");
+								$row = $result->fetch_assoc();
+								$totalEmployees = $row['total'];
+								?>
+									<h6><i data-feather="users" class="feather-user"></i>Total Employees <span><?php echo $totalEmployees; ?></span>
 									</h6>
 								</div>
 								<div class="search-input">

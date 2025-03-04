@@ -4,9 +4,9 @@
 <?php include "includes/header.php"; ?>
 
 <body>
-	<div id="global-loader">
+	<!-- <div id="global-loader">
 		<div class="whirly-loader"> </div>
-	</div>
+	</div> -->
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 
@@ -84,165 +84,73 @@
 								</select>
 							</div>
 						</div>
-						<!-- /Filter -->
-						<div class="card mb-0" id="filter_inputs">
-							<div class="card-body pb-0">
-								<div class="row">
-									<div class="col-lg-12 col-sm-12">
-										<div class="row">
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="box" class="info-img"></i>
-													<select class="select">
-														<option>Choose Product</option>
-														<option>
-															Lenovo 3rd Generation</option>
-														<option>Nike Jordan</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="stop-circle" class="info-img"></i>
-													<select class="select">
-														<option>Choose Categroy</option>
-														<option>Laptop</option>
-														<option>Shoe</option>
-													</select>
-												</div>
-											</div>
 
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="git-merge" class="info-img"></i>
-													<select class="select">
-														<option>Choose Sub Category</option>
-														<option>Computers</option>
-														<option>Fruits</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="stop-circle" class="info-img"></i>
-													<select class="select">
-														<option>All Brand</option>
-														<option>Lenovo</option>
-														<option>Nike</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i class="fas fa-money-bill info-img"></i>
-													<select class="select">
-														<option>Price</option>
-														<option>$12500.00</option>
-														<option>$12500.00</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<a class="btn btn-filters ms-auto"> <i data-feather="search"
-															class="feather-search"></i> Search </a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /Filter -->
 						<div class="table-responsive product-list">
-							<table class="table datanew">
-								<thead>
-									<tr>
-										<th class="no-sort">
-											<label class="checkboxs">
-												<input type="checkbox" id="select-all">
-												<span class="checkmarks"></span>
-											</label>
-										</th>
-										<th>Asset Name</th>
-										<th>Category</th>
-										<th>company code</th>
-										<th>serial Number</th>
-										<th>Registration-No</th>
-										<th>Initial Cost</th>
-										<th>Current Cost</th>
-										<th>Status</th>
-										<th>Next Maintainance</th>
-										<th class="no-sort">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<label class="checkboxs">
-												<input type="checkbox">
-												<span class="checkmarks"></span>
-											</label>
-										</td>
-										<td>Lenovo 3rd Generation </td>
-										<td>PT001 </td>
-										<td>Laptop</td>
-										<td>Lenovo</td>
-										<td>$12500.00</td>
-										<td>Pc</td>
-										<td>Pc</td>
-										<td>100</td>
-										<td>Arroon</td>
-										<td class="action-table-data">
-											<div class="edit-delete-action">
-												<a class="me-2 edit-icon  p-2" href="product-details.html">
-													<i data-feather="eye" class="feather-eye"></i>
-												</a>
-												<a class="me-2 p-2" href="edit-product.html">
-													<i data-feather="edit" class="feather-edit"></i>
-												</a>
-												<a class="confirm-text p-2" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-trash-2"></i>
-												</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="checkboxs">
-												<input type="checkbox">
-												<span class="checkmarks"></span>
-											</label>
-										</td>
-										<td>Bold V3.2</td>
-										<td>PT002</td>
-										<td>Electronics</td>
-										<td>Bolt</td>
-										<td>$1600.00</td>
-										<td>Pc</td>
-										<td>Pc</td>
-										<td>140</td>
-										<td>Kenneth</td>
-										<td class="action-table-data">
-											<div class="edit-delete-action">
-												<a class="me-2 edit-icon p-2" href="product-details.html">
-													<i data-feather="eye" class="action-eye"></i>
-												</a>
-												<a class="me-2 p-2" href="edit-product.html">
-													<i data-feather="edit" class="feather-edit"></i>
-												</a>
-												<a class="confirm-text p-2" href="javascript:void(0);">
-													<i data-feather="trash-2" class="feather-trash-2"></i>
-												</a>
-											</div>
+						<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Asset Name</th>
+            <th>Category</th>
+            <th>Company Code</th>
+            <th>Serial Number</th>
+            <!-- <th>Registration No</th> -->
+            <th>Initial Cost</th>
+            <th>Current Cost</th>
+            <th>Status</th>
+            <th>Next Maintenance</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+       include('config/config.php');
 
-										</td>
-									</tr>
+        $query = "SELECT a.*, c.category_name FROM assets a 
+                  JOIN asset_category c ON a.category_id = c.id";
+        $result = $conn->query($query);
 
-								</tbody>
-							</table>
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                <td>
+                    <label class='checkboxs'>
+                        <input type='checkbox'>
+                        <span class='checkmarks'></span>
+                    </label>
+                </td>
+                <td>{$row['asset_name']}</td>
+                <td>{$row['category_name']}</td>
+                <td>{$row['company_code']}</td>
+                <td>{$row['serial_number']}</td>
+                
+                <td>KSH {$row['initial_cost']}</td>
+                <td>KSH {$row['current_cost']}</td>
+                <td>{$row['status']}</td>
+                <td>{$row['next_maintenance']}</td>
+                <td class='action-table-data'>
+                    <div class='edit-delete-action'>
+                        <a class='me-2 edit-icon p-2' href='product-details.php?id={$row['id']}'>
+                            <i data-feather='eye' class='feather-eye'></i>
+                        </a>
+                        <a class='me-2 p-2' href='edit-product.php?id={$row['id']}'>
+                            <i data-feather='edit' class='feather-edit'></i>
+                        </a>
+                        <a class='confirm-text p-2' href='delete-asset.php?id={$row['id']}' onclick='return confirm(\"Are you sure?\")'>
+                            <i data-feather='trash-2' class='feather-trash-2'></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
 						</div>
 					</div>
 				</div>
@@ -252,7 +160,7 @@
 	</div>
 	<!-- /Main Wrapper -->
 
-	<!--add popup -->
+	<!--add  ASSETS popup -->
 	<div class="modal fade" id="add-assets">
 		<div class="modal-dialog add-centered">
 			<div class="modal-content">
@@ -267,107 +175,123 @@
 							</button>
 						</div>
 						<div class="card">
-							<div class="card-body">
-								<form action="add_assets.php" method="POST">
-									<div class="row">
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Asset Name</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="input-blocks mb-5">
-												<label>Choose Category</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Completed</option>
-													<option>Inprogress</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">company code</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
+						<?php
+include('config/config.php');
 
+// Fetch asset categories
+$categoryQuery = "SELECT id, category_name FROM asset_category WHERE status = 1";
+$categoryResult = $conn->query($categoryQuery);
+?>
 
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Registration Number</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Initial Cost</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Current Cost</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="input-blocks mb-5">
-												<label>Status</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Operational</option>
-													<option>Maintance Required</option>
-													<option>Out of Service</option>
-												</select>
-											</div>
-										</div>
+<div class="card-body">
+    <form action="add_assets.php" method="POST">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Asset Name</label>
+                    <input type="text" class="form-control" name="asset_name" required>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="input-blocks mb-5">
+                    <label>Choose Category</label>
+                    <select class="form-control" name="category_id" required>
+                        <option value="">Choose</option>
+                        <?php while ($row = $categoryResult->fetch_assoc()) { ?>
+                            <option value="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['category_name']); ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
 
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Next Maintainance</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Company Code</label>
+                    <input type="text" class="form-control" name="company_code" required>
+                </div>
+            </div>
 
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="input-blocks mb-5">
-												<label>Ownership</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Owned</option>
-													<option>Leased</option>
-												</select>
-											</div>
-										</div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Registration Number(Number Plate -Strictly for cars only)</label>
+                    <input type="text" class="form-control" name="registration_number">
+                </div>
+            </div>
 
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Maintainance Cost</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Depreciation Factor</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-6 col-12">
-											<div class="mb-3">
-												<label class="form-label">Lifespan</label>
-												<input type="text" class="form-control" name="unit_name" required>
-											</div>
-										</div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Initial Cost</label>
+                    <input type="number" class="form-control" name="initial_cost" step="0.01" required>
+                </div>
+            </div>
 
-									</div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Current Cost</label>
+                    <input type="number" class="form-control" name="current_cost" step="0.01" required>
+                </div>
+            </div>
 
-									<div class="modal-footer-btn">
-                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-submit create">Create Unit</button>
-                            </div>
-							</div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="input-blocks mb-5">
+                    <label>Status</label>
+                    <select class="form-control" name="status" required>
+                        <option value="">Choose</option>
+                        <option value="Operational">Operational</option>
+                        <option value="Maintenance Required">Maintenance Required</option>
+                        <option value="Out of Service">Out of Service</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Next Maintenance</label>
+                    <input type="date" class="form-control" name="next_maintenance" required>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="input-blocks mb-5">
+                    <label>Ownership</label>
+                    <select class="form-control" name="ownership" required>
+                        <option value="">Choose</option>
+                        <option value="Owned">Owned</option>
+                        <option value="Leased">Leased</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Maintenance Cost</label>
+                    <input type="number" class="form-control" name="maintenance_cost" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Depreciation Factor</label>
+                    <input type="number" class="form-control" name="depreciation_factor" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="mb-3">
+                    <label class="form-label">Lifespan (Years)</label>
+                    <input type="number" class="form-control" name="lifespan" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer-btn">
+            <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-submit create">Create Asset</button>
+        </div>
+    </form>
+</div>
+
 
 
 
@@ -380,48 +304,11 @@
 		</div>
 	</div>
 	</div>
-	<!-- /add popup -->
+	<!-- /add ASSETS popup -->
 
 
-	<!-- jQuery -->
-	<script src="assets/js/jquery-3.7.1.min.js"></script>
-
-	<!-- Feather Icon JS -->
-	<script src="assets/js/feather.min.js"></script>
-
-	<!-- Slimscroll JS -->
-	<script src="assets/js/jquery.slimscroll.min.js"></script>
-
-	<!-- Datatable JS -->
-	<script src="assets/js/jquery.dataTables.min.js"></script>
-	<script src="assets/js/dataTables.bootstrap5.min.js"></script>
-
-	<!-- Bootstrap Core JS -->
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Summernote JS -->
-	<script src="assets/plugins/summernote/summernote-bs4.min.js"></script>
-
-	<!-- Select2 JS -->
-	<script src="assets/plugins/select2/js/select2.min.js"></script>
-
-	<!-- Datetimepicker JS -->
-	<script src="assets/js/moment.min.js"></script>
-	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-
-	<!-- Bootstrap Tagsinput JS -->
-	<script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-
-	<!-- Sweetalert 2 -->
-	<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-	<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
-
-	<!-- Custom JS -->
-
-	<script src="assets/js/theme-script.js"></script>
-	<script src="assets/js/script.js"></script>
-
-	<!--<script src="assets/js/theme-settings.js"></script>-->
+	
+	<?php include "includes/footer.php"; ?>
 
 </body>
 

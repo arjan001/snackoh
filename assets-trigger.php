@@ -25,8 +25,8 @@
 				<div class="page-header">
 					<div class="add-item d-flex">
 						<div class="page-title">
-							<h4>Product List</h4>
-							<h6>Manage your products</h6>
+							<h4>ASSET TRIGGERS</h4>
+							<h6>VIEW ALL YOUR ASSETS TRIGGERS</h6>
 						</div>
 					</div>
 					<ul class="table-top-head">
@@ -86,78 +86,7 @@
 								</select>
 							</div>
 						</div>
-						<!-- /Filter -->
-						<div class="card mb-0" id="filter_inputs">
-							<div class="card-body pb-0">
-								<div class="row">
-									<div class="col-lg-12 col-sm-12">
-										<div class="row">
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="box" class="info-img"></i>
-													<select class="select">
-														<option>Choose Product</option>
-														<option>
-															Lenovo 3rd Generation</option>
-														<option>Nike Jordan</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="stop-circle" class="info-img"></i>
-													<select class="select">
-														<option>Choose Categroy</option>
-														<option>Laptop</option>
-														<option>Shoe</option>
-													</select>
-												</div>
-											</div>
 
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="git-merge" class="info-img"></i>
-													<select class="select">
-														<option>Choose Sub Category</option>
-														<option>Computers</option>
-														<option>Fruits</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="stop-circle" class="info-img"></i>
-													<select class="select">
-														<option>All Brand</option>
-														<option>Lenovo</option>
-														<option>Nike</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i class="fas fa-money-bill info-img"></i>
-													<select class="select">
-														<option>Price</option>
-														<option>$12500.00</option>
-														<option>$12500.00</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<a class="btn btn-filters ms-auto"> <i data-feather="search"
-															class="feather-search"></i> Search </a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /Filter -->
 						<div class="table-responsive product-list">
 							<table class="table datanew">
 								<thead>

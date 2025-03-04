@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php  include_once "./includes/session_check.php" ;?>
 <?php include "includes/header.php";?>
+
     <body>
 		
 		<!-- <div id="global-loader" >
@@ -28,16 +30,18 @@
 							<h6>Manage your low stocks</h6>
 						</div>
 						<ul class="table-top-head low-stock-top-head">
+				
 							<li>
-								<div class="status-toggle d-flex justify-content-between align-items-center">
-									<input type="checkbox" id="user2" class="check" checked="">
-									<label for="user2" class="checktoggle">checkbox</label>
-									Notify
-								</div>
-							</li>
+    <a href="javascript:void(0);" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#send-sms">
+        <i data-feather="mail" class="feather-mail"></i> Send sms
+    </a>
+</li>
 							<li>
-								<a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#send-email"><i data-feather="mail" class="feather-mail"></i>Send Email</a>
-							</li>
+    <a href="javascript:void(0);" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#send-email">
+        <i data-feather="mail" class="feather-mail"></i> Send Email
+    </a>
+</li>
+
 							<li>
 								<a data-bs-toggle="tooltip" data-bs-placement="top" title="Pdf"><img src="assets/img/icons/pdf.svg" alt="img"></a>
 							</li>
@@ -58,11 +62,9 @@
 					<div class="table-tab">
 						<ul class="nav nav-pills" id="pills-tab" role="tablist">
 							<li class="nav-item" role="presentation">
-							  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Low Stocks</button>
+							  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Low Stocks Products</button>
 							</li>
-							<li class="nav-item" role="presentation">
-							  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Out of Stocks</button>
-							</li>
+
 							
 						</ul>
 						<div class="tab-content" id="pills-tabContent">
@@ -91,60 +93,31 @@
 												</select>
 											</div>
 										</div>
-										<!-- /Filter -->
-										<div class="card" id="filter_inputs">
-											<div class="card-body pb-0">
-												<div class="row">
-													<div class="col-lg-3 col-sm-6 col-12">
-														<div class="input-blocks">
-															<i data-feather="box" class="info-img"></i>
-															<select class="select">
-																<option>Choose Product</option>
-																<option>Lenovo 3rd Generation </option>
-																<option>Nike Jordan  </option>
-																<option>Amazon Echo Dot </option>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-3 col-sm-6 col-12">
-														<div class="input-blocks">
-															<i data-feather="zap" class="info-img"></i>
-															<select class="select">
-																<option>Choose Category</option>
-																<option>Laptop</option>
-																<option>Shoe</option>
-																<option>Speaker</option>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-3 col-sm-6 col-12">
-														<div class="input-blocks">
-															<i data-feather="archive" class="info-img"></i>
-															<select class="select">
-																<option>Choose Warehouse</option>
-																<option>Lavish Warehouse </option>
-																<option>Lobar Handy </option>
-																<option>Traditional Warehouse </option>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-3 col-sm-6 col-12 ms-auto">
-														<div class="input-blocks">
-															<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- /Filter -->
+										
 										<div class="table-responsive">
-										<?php
-// Database connection
+
+                                        <?php
+// Include the config file to connect to the database
 include_once "./config/config.php";
 
-// Fetch products that have reached or fallen below the alert level
-$sql = "SELECT * FROM products WHERE product_quantity <= product_quantity_alert";
+// Fetch products from the database
+$sql = "SELECT 
+            p.id, 
+            p.product_name, 
+            c.category_name, 
+            p.product_quantity, 
+            p.product_quantity_alert 
+        FROM products p 
+        LEFT JOIN product_category c ON p.product_category = c.id 
+        WHERE p.product_quantity <= p.product_quantity_alert";
+
 $result = $conn->query($sql);
+
+// Check for query errors
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
+
 ?>
 
 <table class="table datanew">
@@ -158,40 +131,34 @@ $result = $conn->query($sql);
             </th>
             <th>Product Name</th>
             <th>Category</th>
-            
             <th>Qty</th>
             <th>Qty Alert</th>
-            <!-- <th class="no-sort">Action</th> -->
         </tr>
     </thead>
     <tbody>
-        <?php while ($row = $result->fetch_assoc()) { ?>
+        <?php if ($result->num_rows > 0) { ?>
+            <?php while ($row = $result->fetch_assoc()) { ?>
+                <tr>
+                    <td>
+                        <label class="checkboxs">
+                            <input type="checkbox">
+                            <span class="checkmarks"></span>
+                        </label>
+                    </td>
+                    <td><?php echo htmlspecialchars($row['product_name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['category_name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['product_quantity']); ?></td>
+                    <td><?php echo htmlspecialchars($row['product_quantity_alert']); ?></td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
             <tr>
-                <td>
-                    <label class="checkboxs">
-                        <input type="checkbox">
-                        <span class="checkmarks"></span>
-                    </label>
-                </td>
-                <td><?php echo htmlspecialchars($row['product_name']); ?></td>
-                <td><?php echo htmlspecialchars($row['category']); ?></td>
-                
-                <td><?php echo htmlspecialchars($row['product_quantity']); ?></td>
-                <td><?php echo htmlspecialchars($row['product_quantity_alert']); ?></td>
-                <!-- <td class="action-table-data">
-                    <div class="edit-delete-action">
-                        <a class="me-2 p-2" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#edit-stock">
-                            <i data-feather="edit" class="feather-edit"></i>
-                        </a>
-                        <a class="confirm-text p-2" href="javascript:void(0);">
-                            <i data-feather="trash-2" class="feather-trash-2"></i>
-                        </a>
-                    </div>
-                </td> -->
+                <td colspan="5" style="text-align: center;">No products found</td>
             </tr>
         <?php } ?>
     </tbody>
 </table>
+
 
 
 
@@ -200,275 +167,8 @@ $result = $conn->query($sql);
 								</div>
 								<!-- /product list -->
 							</div>
-							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-								<!-- /product list -->
-								<div class="card table-list-card">
-									<div class="card-body">
-										<div class="table-top">
-											<div class="search-set">
-												<div class="search-input">
-													<a href="" class="btn btn-searchset"><i data-feather="search" class="feather-search"></i></a>
-												</div>
-											</div>
-											<div class="search-path">
-												<a class="btn btn-filter" id="filter_search1">
-													<i data-feather="filter" class="filter-icon"></i>
-													<span><img src="assets/img/icons/closes.svg" alt="img"></span>
-												</a>
-											</div>
-											<div class="form-sort">
-												<i data-feather="sliders" class="info-img"></i>
-												<select class="select">
-													<option>Sort by Date</option>
-													<option>Newest</option>
-													<option>Oldest</option>
-												</select>
-											</div>
-										</div>
-										<!-- /Filter -->
-										<div class="card" id="filter_inputs1">
-											<div class="card-body pb-0">
-												<div class="row">
-													<div class="col-lg-3 col-sm-6 col-12">
-														<div class="input-blocks">
-															<i data-feather="box" class="info-img"></i>
-															<select class="select">
-																<option>Choose Product</option>
-																<option>Lenovo 3rd Generation </option>
-																<option>Nike Jordan  </option>
-																<option>Amazon Echo Dot </option>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-3 col-sm-6 col-12">
-														<div class="input-blocks">
-															<i data-feather="zap" class="info-img"></i>
-															<select class="select">
-																<option>Choose Category</option>
-																<option>Laptop</option>
-																<option>Shoe</option>
-																<option>Speaker</option>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-3 col-sm-6 col-12">
-														<div class="input-blocks">
-															<i data-feather="archive" class="info-img"></i>
-															<select class="select">
-																<option>Choose Warehouse</option>
-																<option>Lavish Warehouse </option>
-																<option>Lobar Handy </option>
-																<option>Traditional Warehouse </option>
-															</select>
-														</div>
-													</div>
-													<div class="col-lg-3 col-sm-6 col-12 ms-auto">
-														<div class="input-blocks">
-															<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- /Filter -->
-										<div class="table-responsive">
-
-
-											<table class="table  datanew">
-												<thead>
-													<tr>
-														<th class="no-sort">
-															<label class="checkboxs">
-																<input type="checkbox" id="select-all2">
-																<span class="checkmarks"></span>
-															</label>
-														</th>
-														<th>Warehouse</th>
-														<th>Store</th>
-														<th>Product</th>
-														<th>Category</th>
-														<th>SKU</th>
-														<th>Qty</th>
-														<th>Qty Alert</th>
-														<th class="no-sort">Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Lavish Warehouse </td>
-														<td>Crinol</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-01.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Lenovo 3rd Generation </a>
-															</div>												
-														</td>
-														<td>Laptop</td>
-														<td>PT001</td>
-														<td>15</td>
-														<td>10</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Lobar Handy</td>
-														<td>Selosy</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-02.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Nike Jordan </a>
-															</div>												
-														</td>
-														<td>Shoe</td>
-														<td>PT002</td>
-														<td>17</td>
-														<td>08</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Quaint Warehouse</td>
-														<td>Logerro</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-03.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Apple Series 5 Watch </a>
-															</div>												
-														</td>
-														<td>Electronics</td>
-														<td>PT003</td>
-														<td>14</td>
-														<td>12</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Traditional Warehouse</td>
-														<td>Vesloo</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-04.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Amazon Echo Dot</a>
-															</div>												
-														</td>
-														<td>Speaker</td>
-														<td>PT004</td>
-														<td>20</td>
-														<td>15</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-2 p-2" href="javascript:void(0);">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-															
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="checkboxs">
-																<input type="checkbox">
-																<span class="checkmarks"></span>
-															</label>
-														</td>
-														<td>Cool Warehouse</td>
-														<td>Crompy</td>
-														
-														<td>
-															<div class="productimgname">
-																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-05.png" alt="product">
-																</a>
-																<a href="javascript:void(0);">Lobar Handy</a>
-															</div>												
-														</td>
-														<td>Furnitures</td>
-														<td>PT005</td>
-														<td>18</td>
-														<td>13</td>
-														<td class="action-table-data">
-															<div class="edit-delete-action">
-																<a class="me-3 p-2" href="javascript:void(0);">
-																	<i data-feather="edit" class="feather-edit"></i>
-																</a>
-																<a class="confirm-text p-2" href="javascript:void(0);">
-																	<i data-feather="trash-2" class="feather-trash-2"></i>
-																</a>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-								<!-- /product list -->
+							
+								
 							</div>
 							
 						</div>
@@ -478,20 +178,136 @@ $result = $conn->query($sql);
         </div>
 		<!-- /Main Wrapper -->
 
-		<!-- Send Mail -->
-		<div class="modal fade" id="send-email">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="success-email-send modal-body .custom-modal-body text-center">
-						<span><i data-feather="check-circle" class="feather-trash-2"></i></span>
-						<h4>Success</h4>
-						<p>Email Sent Successfully</p>
-						<a href="" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Send Mail -->
+<!-- Send SMS Modal -->
+<div class="modal fade" id="send-sms" tabindex="-1" aria-labelledby="sendSmsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <h4 class="modal-title">Send SMS Notification</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+					<form id="smsNotificationForm" action="send_sms.php" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Select Employees</label>
+        <div class="employee-list">
+            <?php
+            include_once "./config/config.php";
+
+            $sql = "SELECT id, first_name, last_name, contact_number FROM employees WHERE user_role IS NOT NULL AND contact_number IS NOT NULL AND contact_number != ''";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $employeeID = $row['id'];
+                    $employeeName = htmlspecialchars($row['first_name'] . ' ' . $row['last_name']);
+                    $phoneNumber = htmlspecialchars($row['contact_number']);
+
+                    echo '<div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="employees[]" value="'.$employeeID.'">
+                            <label class="form-check-label">
+                                '.$employeeName.' ('.$phoneNumber.')
+                            </label>
+                          </div>';
+                }
+            } else {
+                echo '<p class="text-muted">No employees with valid phone numbers found.</p>';
+            }
+            ?>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea name="message" class="form-control" rows="4" placeholder="Enter message here..." required></textarea>
+    </div>
+
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Send SMS</button>
+    </div>
+</form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Send SMS Modal -->
+
+
+
+
+<!-- Send Email Modal -->
+<div class="modal fade" id="send-email" tabindex="-1" aria-labelledby="sendEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <h4 class="modal-title">Send Email Notification</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form id="emailNotificationForm" action="send_email.php" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Select Employees</label>
+                                <div class="employee-list">
+                                    <?php
+                                    include_once "./config/config.php";
+
+                                    $sql = "SELECT id, first_name, last_name, email FROM employees WHERE user_role IS NOT NULL";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $employeeID = $row['id'];
+                                            $employeeName = htmlspecialchars($row['first_name'] . ' ' . $row['last_name']);
+                                            
+                                            echo '<div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="employees[]" value="'.$employeeID.'">
+                                                    <label class="form-check-label" for="employee'.$employeeID.'">
+                                                        '.$employeeName.'
+                                                    </label>
+                                                  </div>';
+                                        }
+                                    } else {
+                                        echo '<p class="text-muted">No employees with roles found.</p>';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea name="message" class="form-control" rows="4" placeholder="Enter message here..." required></textarea>
+                            </div>
+
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit">Send Email</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Send Email Modal -->
+
+
+
+
+
+
 
 		<!-- Edit Low Stock -->
 		<div class="modal fade" id="edit-stock">
@@ -557,7 +373,7 @@ $result = $conn->query($sql);
 		</div>
 		<!-- / Edit Low Stock -->
 
-  
+
 
 		 
 		<?php include "includes/footer.php";?>

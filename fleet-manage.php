@@ -4,9 +4,9 @@
 <?php include "includes/header.php"; ?>
 
 <body>
-	<div id="global-loader">
+	<!-- <div id="global-loader">
 		<div class="whirly-loader"> </div>
-	</div>
+	</div> -->
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 
@@ -82,149 +82,107 @@
 								</select>
 							</div>
 						</div>
-						<!-- /Filter -->
-						<div class="card mb-0" id="filter_inputs">
-							<div class="card-body pb-0">
-								<div class="row">
-									<div class="col-lg-12 col-sm-12">
-										<div class="row">
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="box" class="info-img"></i>
-													<select class="select">
-														<option>Choose Product</option>
-														<option>
-															Lenovo 3rd Generation</option>
-														<option>Nike Jordan</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="stop-circle" class="info-img"></i>
-													<select class="select">
-														<option>Choose Categroy</option>
-														<option>Laptop</option>
-														<option>Shoe</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="git-merge" class="info-img"></i>
-													<select class="select">
-														<option>Choose Sub Category</option>
-														<option>Computers</option>
-														<option>Fruits</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i data-feather="stop-circle" class="info-img"></i>
-													<select class="select">
-														<option>All Brand</option>
-														<option>Lenovo</option>
-														<option>Nike</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<i class="fas fa-money-bill info-img"></i>
-													<select class="select">
-														<option>Price</option>
-														<option>$12500.00</option>
-														<option>$12500.00</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-2 col-sm-6 col-12">
-												<div class="input-blocks">
-													<a class="btn btn-filters ms-auto"> <i data-feather="search"
-															class="feather-search"></i> Search </a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /Filter -->
+		
 						<div class="table-responsive product-list">
-							<table class="table datanew">
-								<thead>
-									<tr>
-										<th class="no-sort">
-											<label class="checkboxs">
-												<input type="checkbox" id="select-all">
-												<span class="checkmarks"></span>
-											</label>
-										</th>
-										<th>Brand name</th>
-										<th>Category</th>
-										<th>Tonnange</th>
-										<th>Capacity</th>
-										<th>Number Plate</th>
-										<th>Driver</th>
-										<th>Last Maintanance</th>
-										
-										<th class="no-sort">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<label class="checkboxs">
-												<input type="checkbox">
-												<span class="checkmarks"></span>
-											</label>
-										</td>
-										<td>Toyota Probox</td>
-										<td>small Vehicle</td>
-										<td>300 KG</td>
-										<td>2 Passengers</td>
-										<td>KDG 349G</td>
-										<td>EDWIN</td>
-										<td>01/02/2025</td>
-										<td class="action-table-data">
-											<div class="edit-delete-action">
-												<a class="me-2 edit-icon  p-2" href="fleet_detail.php">
-													<i data-feather="eye" class="feather-eye"></i>
-												</a>
-												
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label class="checkboxs">
-												<input type="checkbox">
-												<span class="checkmarks"></span>
-											</label>
-										</td>
-										<td>Boxer 150cc</td>
-										<td>motorcycle</td>
-										<td>100 KG</td>
-										<td>2 Passengers</td>
-										<td>KMDG 349G</td>
-										<td>EDWIN</td>
-										<td>01/02/2025</td>
-										<td class="action-table-data">
-											<div class="edit-delete-action">
-												<a class="me-2 edit-icon  p-2" href="fleet_detail.php">
-													<i data-feather="eye" class="feather-eye"></i>
-												</a>
-												
-											</div>
-										</td>
-									</tr>
-									
-							
-								</tbody>
-							</table>
+						<?php
+include('config/config.php'); // Include database connection
+
+$query = "SELECT 
+            a.id, 
+            a.asset_name AS brand_name, 
+            COALESCE(a.registration_number, '') AS number_plate, 
+            COALESCE(a.serial_number, '') AS serial_number, 
+            COALESCE(a.company_code, '') AS company_code,
+            COALESCE(f.insurance, 'N/A') AS insurance,
+            COALESCE(f.capacity, 'N/A') AS capacity,
+            COALESCE(f.assigned_driver, 'N/A') AS assigned_driver,
+            COALESCE(f.last_service_date, 'N/A') AS last_maintenance
+          FROM assets a
+          LEFT JOIN asset_category c ON a.category_id = c.id
+          LEFT JOIN fleet f ON a.registration_number = f.registration_number
+          WHERE c.category_name LIKE '%vehicle%'";
+
+$result = $conn->query($query);
+?>
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Car Name</th>
+            <th>Insurance</th>
+            <th>Capacity</th>
+            <th>Number Plate</th>
+            <th>Driver</th>
+            <th>Last Maintenance</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $id = htmlspecialchars($row['id'] ?? '');
+                $brand_name = htmlspecialchars($row['brand_name'] ?? '');
+                $insurance = htmlspecialchars($row['insurance'] ?? '');
+                $capacity = htmlspecialchars($row['capacity'] ?? '');
+                $number_plate = htmlspecialchars($row['number_plate'] ?? '');
+                $assigned_driver = htmlspecialchars($row['assigned_driver'] ?? '');
+                $last_maintenance = htmlspecialchars($row['last_maintenance'] ?? '');
+
+                echo "<tr>
+                    <td>
+                        <label class='checkboxs'>
+                            <input type='checkbox'>
+                            <span class='checkmarks'></span>
+                        </label>
+                    </td>
+                    <td>{$brand_name}</td>
+                    <td>{$insurance}</td>
+                    <td>{$capacity}</td>
+                    <td>{$number_plate}</td>
+                    <td>{$assigned_driver}</td>
+                    <td>{$last_maintenance}</td>
+                    <td class='action-table-data'>
+                        <div class='edit-delete-action'>
+                            <a class='me-2 p-2' href='javascript:void(0);'>
+                                <i data-feather='eye' class='action-eye'></i>
+                            </a>
+
+                            <a class='me-2 p-2 edit-btn' data-bs-toggle='modal' data-bs-target='#edit-fleet'
+                               data-id='$id'
+                               data-brand='$brand_name'
+                               data-plate='$number_plate'
+                               data-insurance='$insurance'
+                               data-capacity='$capacity'
+                               data-driver='$assigned_driver'
+                               data-maintenance='$last_maintenance'>
+                                <i data-feather='edit' class='feather-edit'></i>
+                            </a>
+
+                            <a class='confirm-text p-2' href='javascript:void(0);'>
+                                <i data-feather='trash-2' class='feather-trash-2'></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='8' class='text-center'>No fleet data found</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
+
+
+
+
 						</div>
 					</div>
 				</div>
@@ -233,151 +191,166 @@
 		</div>
 	</div>
 	<!-- /Main Wrapper -->
-<!-- Add Unit -->
-<div class="modal fade" id="add-fleet">
+
+<!-- EDIT VEHICLE FLEET MANAGEMENT -->
+<div class="modal fade" id="edit-fleet">
     <div class="modal-dialog modal-dialog-centered custom-modal-two">
         <div class="modal-content">
             <div class="page-wrapper-new p-0">
                 <div class="content">
                     <div class="modal-header border-0 custom-modal-header">
                         <div class="page-title">
-                            <h4>CREATE NEW FLEET</h4>
+                            <h4>Edit Vehicle Details</h4>
                         </div>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <form action="add_unit.php" method="POST">
-                            <div class="mb-3">
-                                <label class="form-label">Fleet Name (Car Name)</label>
-                                <input type="text" class="form-control" name="unit_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Short Name</label>
-                                <input type="text" class="form-control" name="short_name" required>
+                        <form action="update_fleet.php" method="POST">
+                            <input type="hidden" id="fleet_id" name="fleet_id">
+
+                            <div class="row">
+                                <!-- Vehicle Name -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Vehicle Name/Brand</label>
+                                        <input type="text" class="form-control" id="vehicle_name" name="vehicle_name" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- Registration Number -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Registration Number</label>
+                                        <input type="text" class="form-control" id="registration_number" name="registration_number" readonly>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Number Of Products</label>
-                                <input type="number" class="form-control" name="no_of_products" value="0" min="0" required>
+                            <div class="row">
+                                <!-- Insurance -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Insurance</label>
+                                        <input type="text" class="form-control" id="insurance" name="insurance" required>
+                                    </div>
+                                </div>
+
+                                <!-- Vehicle Capacity -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Capacity(KG's)</label>
+                                        <input type="number" class="form-control" id="capacity" name="capacity" required>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="mb-0">
-                                <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-                                    <span class="status-label">Status</span>
-                                    <input type="checkbox" id="unit_status" class="check" name="status" checked>
-                                    <label for="unit_status" class="checktoggle"></label>
+                            <div class="row">
+                                <!-- Assigned Driver -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Assigned Driver</label>
+                                        <select class="select" id="assigned_driver" name="assigned_driver">
+                                            <option value="">Choose</option>
+                                            <?php
+                                            $drivers = $conn->query("SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees");
+                                            while ($driver = $drivers->fetch_assoc()) {
+                                                echo "<option value='{$driver['id']}'>" . htmlspecialchars($driver['full_name']) . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Status</label>
+                                        <select class="select" id="status" name="status">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                            <option value="Under Maintenance">Under Maintenance</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Last Service Date -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="input-blocks">
+                                        <label>Last Service Date</label>
+                                        <input type="date" class="form-control" id="last_service_date" name="last_service_date" required>
+                                    </div>
+                                </div>
+
+                                <!-- Next Service Date -->
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="input-blocks">
+                                        <label>Next Service Date</label>
+                                        <input type="date" class="form-control" id="next_service_date" name="next_service_date" required>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="modal-footer-btn">
                                 <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-submit create">Create Unit</button>
+                                <button type="submit" class="btn btn-submit">Update Vehicle</button>
                             </div>
                         </form>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- /Add Unit -->
-
-
-		<!-- Edit Unit -->
-		 <div class="modal fade" id="edit-unit">
-    <div class="modal-dialog modal-dialog-centered custom-modal-two">
-        <div class="modal-content">
-            <div class="page-wrapper-new p-0">
-                <div class="content">
-                    <div class="modal-header border-0 custom-modal-header">
-                        <div class="page-title">
-                            <h4>edit unit</h4>
-                        </div>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body custom-modal-body">
-                        <form action="add_unit.php" method="POST">
-                            <div class="mb-3">
-                                <label class="form-label">Unit Name</label>
-                                <input type="text" class="form-control" name="unit_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Short Name</label>
-                                <input type="text" class="form-control" name="short_name" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Number Of Products</label>
-                                <input type="number" class="form-control" name="no_of_products" value="0" min="0" required>
-                            </div>
-
-                            <div class="mb-0">
-                                <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-                                    <span class="status-label">Status</span>
-                                    <input type="checkbox" id="unit_status" class="check" name="status" checked>
-                                    <label for="unit_status" class="checktoggle"></label>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer-btn">
-                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-submit create">Create Unit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-       </div>
-	
+<!-- /EDIT VEHICLE FLEET MANAGEMENT -->
 
 
 
-	<!-- jQuery -->
-	<script src="assets/js/jquery-3.7.1.min.js"></script>
 
-	<!-- Feather Icon JS -->
-	<script src="assets/js/feather.min.js"></script>
+<?php include "includes/footer.php"; ?>
+<!-- JS to Populate Modal with Dynamic Data -->
+<script>
+$(document).ready(function () {
+    $('.edit-btn').on('click', function () {
+        // Fetch data attributes from the clicked edit button
+        var fleetId = $(this).data('id');
+        var brand = $(this).data('brand');
+        var plate = $(this).data('plate');
 
-	<!-- Slimscroll JS -->
-	<script src="assets/js/jquery.slimscroll.min.js"></script>
+        // Populate modal fields with fetched data
+        $('#fleet_id').val(fleetId);
+        $('#vehicle_name').val(brand);
+        $('#registration_number').val(plate);
 
-	<!-- Datatable JS -->
-	<script src="assets/js/jquery.dataTables.min.js"></script>
-	<script src="assets/js/dataTables.bootstrap5.min.js"></script>
+        // Fetch additional fleet details via AJAX
+        $.ajax({
+            url: 'get_fleet_details.php', 
+            type: 'GET',
+            data: { id: fleetId },
+            dataType: 'json',
+            success: function (data) {
+                if (data) {
+                    $('#insurance').val(data.insurance || '');
+                    $('#capacity').val(data.capacity || '');
+                    $('#assigned_driver').val(data.assigned_driver || '');
+                    $('#status').val(data.status || 'Active');
+                    $('#last_service_date').val(data.last_service_date || '');
+                    $('#next_service_date').val(data.next_service_date || '');
+                }
+            },
+            error: function () {
+                console.error('Error fetching fleet details');
+            }
+        });
+    });
+});
 
-	<!-- Bootstrap Core JS -->
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
+</script>
 
-	<!-- Summernote JS -->
-	<script src="assets/plugins/summernote/summernote-bs4.min.js"></script>
-
-	<!-- Select2 JS -->
-	<script src="assets/plugins/select2/js/select2.min.js"></script>
-
-	<!-- Datetimepicker JS -->
-	<script src="assets/js/moment.min.js"></script>
-	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-
-	<!-- Bootstrap Tagsinput JS -->
-	<script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
-
-	<!-- Sweetalert 2 -->
-	<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-	<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
-
-	<!-- Custom JS -->
-
-	<script src="assets/js/theme-script.js"></script>
-	<script src="assets/js/script.js"></script>
-
-	<!--<script src="assets/js/theme-settings.js"></script>-->
-
+	 
 </body>
 
 </html>

@@ -3,9 +3,9 @@
 <?php include "includes/header.php";?>
     <body>
 		
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div>
+		</div> -->
 
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
@@ -202,12 +202,14 @@
 													<span class="checkmarks"></span>
 												</label>
 											</th>
-											<th>From Warehouse</th>
-											<th>To Warehouse</th>
-											<th>No of Products</th>
-											<th>Quantity transfered</th>
-											<th>Ref Number</th>
-											<th>Date</th>
+											<th>customer</th>
+											<th>address</th>
+											<th>Items</th>
+											<th>status</th>
+											<th>Date & Time</th>
+											<th>Driver</th>
+											<th>vehicle</th>
+											<th>Notified</th>
 											<th class="no-sort">Action</th>
 										</tr>
 									</thead>
@@ -221,14 +223,12 @@
 											</td>
 											<td>Lobar Handy </td>
 											<td>Selosy </td>
-											<td>
-												04												
-											</td>
-											<td>
-												14
-											</td>
+											<td>04</td>
+											<td>14</td>
 											<td>#145445</td>
 											<td>25 Jul 2023</td>
+											<td >qqqq</td>
+											<td >qqqq</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action">
 													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
@@ -241,93 +241,8 @@
 												
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Quaint Warehouse </td>
-											<td>Logerro </td>
-											<td>
-												21										
-											</td>
-											<td>
-												10
-											</td>
-											<td>#135478</td>
-											<td>28 Jul 2023</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Traditional Warehouse </td>
-											<td>Vesloo </td>
-											<td>
-												15											
-											</td>
-											<td>
-												14
-											</td>
-											<td>#145124</td>
-											<td>24 Jul 2023</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Cool Warehouse </td>
-											<td>Crompy</td>
-											<td>
-												14												
-											</td>
-											<td>
-												74
-											</td>
-											<td>#474541</td>
-											<td>15 Jul 2023</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
+										
+										
 									</tbody>
 								</table>
 							</div>
@@ -347,18 +262,18 @@
 						<div class="content">
 							<div class="modal-header border-0 custom-modal-header">
 								<div class="page-title">
-									<h4>Add Transfer</h4>
+									<h4>SCHEDULE DELIVERY</h4>
 								</div>
 								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body custom-modal-body">
-								<form action="stock-transfer.html">
+								<form action="schedule.php"method="POST">
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="input-blocks">
-												<label>Warehouse From</label>
+												<label>driver</label>
 												<select class="select">
 													<option>Choose</option>
 													<option>Lobar Handy</option>
@@ -368,7 +283,7 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="input-blocks">
-												<label>Warehouse To</label>
+												<label>status</label>
 												<select class="select">
 													<option>Choose</option>
 													<option>Selosy</option>
@@ -376,29 +291,46 @@
 												</select>
 											</div>
 										</div>
-										<div class="col-lg-12">
+										<div class="col-lg-6">
 											<div class="input-blocks">
-												<label>Responsible Person</label>
-												<input type="text" class="form-control">
+												<label>Schedule Date & Time</label>
+												<input type="date" class="form-control">
 											</div>
 										</div>
-										<div class="col-lg-12">
-											<div class="input-blocks search-form mb-3">
-												<label>Product</label>
-												<input type="text" class="form-control" placeholder="Select Product">
-												<i data-feather="search" class="feather-search"></i>
+										<div class="col-lg-6">
+											<div class="input-blocks">
+												<label>Driver</label>
+												<select class="select">
+													<option>Choose</option>
+													<option>Selosy</option>
+													<option>Logerro</option>
+												</select>
 											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="input-blocks search-form mb-0">
-												<label>Notes</label>
-												<textarea class="form-control"></textarea>
 											</div>
-										</div>
+											<div class="col-lg-6">
+											<div class="input-blocks">
+												<label>Vehicle </label>
+												<select class="select">
+													<option>taxi</option>
+													<option>bike</option>
+													<option>probox kbc</option>
+												</select>
+											</div>	
 									</div>
+											<div class="col-lg-6">
+											<div class="input-blocks">
+												<label>Notified Method </label>
+												<select class="select">
+													<option>SMS</option>
+													<option>WHATSAPP</option>
+													
+												</select>
+											</div>	
+									</div>
+
 									<div class="modal-footer-btn">
 										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Create</button>
+										<button type="submit" class="btn btn-submit">Schedule Delivery</button>
 									</div>
 								</form>
 							</div>

@@ -49,7 +49,7 @@
 
 								<li><a href="stock-ordering.php"><i data-feather="clipboard"></i><span>Stock ordering</span></a></li>
 
-								<li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li>
+								<!-- <li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li> -->
 							</ul>
 						</li>
 						<li class="submenu-open">
@@ -114,7 +114,11 @@
 							<ul>
 								<li><a href="assets.php"><i data-feather="box"></i><span>Assets</span></a></li>
 								<li><a href="assets-category.php"><i data-feather="file-text"></i><span>Asset Category</span></a></li>
-								<li><a href="assets-trigger.php"><i data-feather="speaker"></i><span>Asset Triggers</span></a></li>
+								<li><a href="assets-trigger.php"><i data-feather="speaker"></i><span>Asset Triggers</span> </a></li>
+
+								
+										<!-- <span><i data-feather="bell" class="feather-user"></i><?php echo $totalEmployees; ?></span> show alll alerts here from policies-->
+									
 
 								<li><a href="Replacement-policy.php"><i data-feather="codesandbox"></i><span>Replacement Policy</span></a></li>
 

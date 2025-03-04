@@ -1,0 +1,90 @@
+Array
+(
+    [time] => 2025-03-02 11:43:35
+    [phone] => +254113626187
+    [message] => hxhhxhx
+    [request] => Array
+        (
+            [username] => eboard
+            [to] => +254113626187
+            [message] => hxhhxhx
+        )
+
+    [http_code] => 404
+    [response] => 
+)
+
+2025-03-02 11:43:35 - Success: 
+2025-03-02 11:43:35 - Errors: Failed to send SMS to +254113626187
+Array
+(
+    [time] => 2025-03-02 11:54:16
+    [phone] => +254113626187
+    [message] => hxhhxhx
+    [request] => Array
+        (
+            [username] => eboard
+            [to] => +254113626187
+            [message] => hxhhxhx
+        )
+
+    [http_code] => 0
+    [response] => 
+)
+
+2025-03-02 11:54:16 - Success: 
+2025-03-02 11:54:16 - Errors: Failed to send SMS to +254113626187
+Array
+(
+    [time] => 2025-03-02 12:06:32
+    [phone] => +254113626187
+    [message] => hxhhxhx
+    [request] => Array
+        (
+            [username] => eboard
+            [to] => +254113626187
+            [message] => hxhhxhx
+        )
+
+    [http_code] => 0
+    [response] => 
+)
+
+2025-03-02 12:06:32 - Success: 
+2025-03-02 12:06:32 - Errors: Failed to send SMS to +254113626187
+Array
+(
+    [time] => 2025-03-02 19:08:21
+    [phone] => +254113626187
+    [message] => sample message
+    [request] => Array
+        (
+            [username] => eboard
+            [to] => +254113626187
+            [message] => sample message
+        )
+
+    [http_code] => 401
+    [response] => 
+)
+
+2025-03-02 19:08:21 - Success: 
+2025-03-02 19:08:21 - Errors: Failed to send SMS to +254113626187
+Array
+(
+    [time] => 2025-03-02 19:16:35
+    [phone] => +254113626187
+    [message] => sample message
+    [request] => Array
+        (
+            [username] => eboard
+            [to] => +254113626187
+            [message] => sample message
+        )
+
+    [http_code] => 401
+    [response] => 
+)
+
+2025-03-02 19:16:35 - Success: 
+2025-03-02 19:16:35 - Errors: Failed to send SMS to +254113626187

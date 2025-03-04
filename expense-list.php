@@ -170,7 +170,7 @@ $result = mysqli_query($conn, $query);
                             <span class="checkmarks"></span>
                         </label>
                     </td>
-                    <td><?= htmlspecialchars($row['category_name']); ?></td>
+                    <td><?= htmlspecialchars($row['expense_category_id']); ?></td>
                     <td><?= htmlspecialchars($row['reference']); ?></td>
                     <td><?= htmlspecialchars(date('d M Y', strtotime($row['date']))); ?></td>
                     
@@ -185,10 +185,10 @@ $result = mysqli_query($conn, $query);
                                data-bs-toggle="modal" 
                                data-bs-target="#edit-units"
                                data-id="<?= $row['id']; ?>" 
-                               data-category="<?= htmlspecialchars($row['category_name']); ?>"
+                               data-category="<?= htmlspecialchars($row['expense_category_id']); ?>"
                                data-reference="<?= htmlspecialchars($row['reference']); ?>"
                                data-date="<?= htmlspecialchars($row['date']); ?>"
-                               data-status="<?= htmlspecialchars($row['status']); ?>"
+                              
                                data-amount="<?= htmlspecialchars($row['amount']); ?>"
                                data-description="<?= htmlspecialchars($row['description']); ?>">
                                 <i data-feather="edit" class="feather-edit"></i>
