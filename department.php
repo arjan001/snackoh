@@ -67,12 +67,12 @@
 								require_once 'config/config.php'; // Ensure database connection
 								
 								// Query to count total employees
-								$result = $conn->query("SELECT COUNT(*) AS total FROM employees");
+								$result = $conn->query("SELECT COUNT(*) AS total FROM departments");
 								$row = $result->fetch_assoc();
 								$totalEmployees = $row['total'];
 								?>
 								<div class="total-employees">
-									<h6><i data-feather="users" class="feather-user"></i>Total Employees
+									<h6><i data-feather="users" class="feather-user"></i>Total departments
 										<span><?php echo $totalEmployees; ?></span>
 									</h6>
 								</div>

@@ -7,10 +7,9 @@
 	<!-- Slimscroll JS -->
 	<script src="assets/js/jquery.slimscroll.min.js"></script>
 	
-
-	<!-- Datatable JS -->
-	<script src="assets/js/jquery.dataTables.min.js"></script>
-	<script src="assets/js/dataTables.bootstrap5.min.js"></script>
+		<!-- Datatable JS -->
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<script src="assets/js/dataTables.bootstrap5.min.js"></script>
 
 	<!-- Bootstrap Core JS -->
 	<script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -30,9 +29,10 @@
 	<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
 
 	<!-- Custom JS -->
-    
-	<script src="assets/js/theme-script.js"></script>
-	<script src="assets/js/script.js"></script>
+
+
+    		<!-- Custom JS --><script src="assets/js/theme-script.js"></script>	
+		<script src="assets/js/script.js"></script>
 
 	<!-- google maps api key and script -->
     <script>

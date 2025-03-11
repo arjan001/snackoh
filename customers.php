@@ -122,40 +122,7 @@ include_once "./includes/session_check.php" ;?>
 										</div>
 									</div>
 									<!-- /Filter -->
-									<div class="card" id="filter_inputs">
-										<div class="card-body pb-0">
-											<div class="row">
-												<div class="col-lg-3 col-sm-6 col-12">
-													<div class="input-blocks">
-														<i data-feather="user" class="info-img"></i>
-														<select class="select">
-															<option>Choose Customer Name</option>
-															<option>Benjamin</option>
-															<option>Ellen</option>
-															<option>Freda</option>
-															<option>Kaitlin</option>
-														</select>
-													</div>
-												</div>
-												<div class="col-lg-3 col-sm-6 col-12">
-													<div class="input-blocks">
-														<i data-feather="globe" class="info-img"></i>
-														<select class="select">
-															<option>Choose Country</option>
-															<option>India</option>
-															<option>USA</option>
-														</select>
-													</div>
-												</div>
-												<div class="col-lg-3 col-sm-6 col-12 ms-auto">
-													<div class="input-blocks">
-														<a class="btn btn-filters ms-auto"> <i data-feather="search"
-																class="feather-search"></i> Search </a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+									
 									<!-- /Filter -->
 									<div class="table-responsive">
 										<table class="table  datanew">

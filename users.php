@@ -124,7 +124,7 @@
 							</div>
 							<!-- /Filter -->
 							<div class="table-responsive">
-							<?php
+	<?php
 // Include database connection
 include "config/config.php";
 
@@ -185,16 +185,21 @@ $employeeResult = $conn->query($employeeQuery);
                     <?php endif; ?>
                 </td>
                 <td class="action-table-data">
-                    <div class="edit-delete-action">
-                        
-                        <a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-                            <i data-feather="edit" class="feather-edit"></i>
-                        </a>
-                        <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-                            <i data-feather="trash-2" class="feather-trash-2"></i>
-                        </a>
-                    </div>
-                </td>
+    <div class="edit-delete-action">
+    <a class="me-2 p-2 mb-0 edit-user" 
+   data-bs-toggle="modal" 
+   data-bs-target="#edit-units" 
+   data-id="<?= $employee['id']; ?>" 
+   data-name="<?= htmlspecialchars($employee['full_name']); ?>" 
+   data-role=" <?= $employee['role_name']; ?>">
+    <i data-feather="edit" class="feather-edit"></i>
+</a>
+
+    
+        </a>
+    </div>
+</td>
+
             </tr>
         <?php endwhile; ?>
     </tbody>
@@ -310,6 +315,12 @@ $roleResult = $conn->query($roleQuery);
 <!-- /Add User Modal -->
 
  <!-- edit User Modal -->
+
+ <?php 
+ // Fetch roles
+$roleQuery = "SELECT id, role_name FROM roles";
+$roleResult = $conn->query($roleQuery);
+?>
 <div class="modal fade" id="edit-units">
     <div class="modal-dialog modal-dialog-centered custom-modal-two">
         <div class="modal-content">
@@ -324,66 +335,51 @@ $roleResult = $conn->query($roleQuery);
                         </button>
                     </div>
                     <div class="modal-body custom-modal-body">
-                        <form action="save_user.php" method="POST">
-                            <div class="row">
-                                <!-- User Name Selection -->
-                                <div class="col-lg-6">
-                                    <div class="input-blocks">
-                                        <label>User Name</label>
-                                        <select class="select" name="employee_id" required>
-                                            <option value="">Select User</option>
-                                            <?php while ($employee = $employeeResult->fetch_assoc()): ?>
-                                                <option value="<?= htmlspecialchars($employee['id']); ?>">
-                                                    <?= htmlspecialchars($employee['full_name']); ?>
-                                                </option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                </div>
+                    <form id="editUserForm" action="save_user.php" method="POST">
+    <input type="hidden" name="employee_id" id="employeeId">
 
-                                <!-- User Role Selection -->
-                                <div class="col-lg-6">
-                                    <div class="input-blocks">
-                                        <label>Role</label>
-                                        <select class="select" name="user_role" required>
-                                            <option value="">Choose</option>
-                                            <?php while ($role = $roleResult->fetch_assoc()): ?>
-                                                <option value="<?= htmlspecialchars($role['id']); ?>">
-                                                    <?= htmlspecialchars($role['role_name']); ?>
-                                                </option>
-                                            <?php endwhile; ?>
-                                        </select>
-                                    </div>
-                                </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-blocks">
+                <label>Role</label>
+                <select class="select" name="user_role" id="roleDropdown" required>
+                    <option value="">Choose</option>
+                    <?php while ($role = $roleResult->fetch_assoc()): ?>
+                        <option value="<?= htmlspecialchars($role['id']); ?>">
+                            <?= htmlspecialchars($role['role_name']); ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+        </div>
 
-                                <!-- Password -->
-                                <div class="col-lg-6 mt-4">
-                                    <div class="input-blocks">
-                                        <label>Password</label>
-                                        <div class="pass-group">
-                                            <input type="password" class="pass-input" name="password" required>
-                                            <span class="fas toggle-password fa-eye-slash"></span>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="col-lg-6 mt-4">
+            <div class="input-blocks">
+                <label>Password</label>
+                <div class="pass-group">
+                    <input type="password" class="pass-input" name="password">
+                    <span class="fas toggle-password fa-eye-slash"></span>
+                </div>
+            </div>
+        </div>
 
-                                <!-- Confirm Password -->
-                                <div class="col-lg-6 mt-4">
-                                    <div class="input-blocks">
-                                        <label>Confirm Password</label>
-                                        <div class="pass-group">
-                                            <input type="password" class="pass-input" name="confirm_password" required>
-                                            <span class="fas toggle-password fa-eye-slash"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="col-lg-6 mt-4">
+            <div class="input-blocks">
+                <label>Confirm Password</label>
+                <div class="pass-group">
+                    <input type="password" class="pass-input" name="confirm_password">
+                    <span class="fas toggle-password fa-eye-slash"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            <div class="modal-footer-btn">
-                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-submit">Submit</button>
-                            </div>
-                        </form>
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Submit</button>
+    </div>
+</form>
+
                     </div>
                 </div>
             </div>
@@ -393,14 +389,47 @@ $roleResult = $conn->query($roleQuery);
 <!-- /edit User Modal -->
 
 
-		<!-- Edit User -->
-<!-- edit code will come here -->
-		<!-- /Edit User -->
 
 		 
 
 
 		<?php include "includes/footer.php";?>
+        <script>
+$(document).on("click", ".edit-user", function () {
+    var userId = $(this).data("id");
+    var userRole = $(this).data("role");
+    var userName = $(this).data("name");
+
+    $("#editModalTitle").text('Edit employee "' + userName + '" User Role');
+    $("#employeeId").val(userId);
+    $("#roleDropdown").val(userRole);
+});
+
+$("#editUserForm").on("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    $.ajax({
+        type: "POST",
+        url: "save_user.php",
+        data: $(this).serialize(),
+        dataType: "json",
+        success: function (response) {
+            if (response.status === "success") {
+                alert("User role updated successfully!");
+                $("#edit-units").modal("hide"); // Close modal
+                location.reload(); // Reload DataTable
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function () {
+            alert("Something went wrong.");
+        }
+    });
+});
+
+
+        </script>
 
 	
     </body>

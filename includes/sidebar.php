@@ -56,7 +56,7 @@
 							<h6 class="submenu-hdr">Sales</h6>
 							<ul>
 								<li><a href="sales-list.php"><i data-feather="shopping-cart"></i><span>Sales</span></a></li>
-								<li><a href="invoice-report.php"><i data-feather="file-text"></i><span>Invoices</span></a></li>
+								<!-- <li><a href="invoice-report.php"><i data-feather="file-text"></i><span>Invoices</span></a></li> -->
 								<li><a href="sales-returns.php"><i data-feather="copy"></i><span>Sales Return</span></a></li>
 								<li><a href="deliveries.php"><i data-feather="truck"></i><span>Dispatch Delivery</span></a></li>
 								
@@ -68,7 +68,7 @@
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Purchases</h6>
 							<ul>
-								<li><a href="purchase-list.php"><i data-feather="shopping-bag"></i><span>Purchases</span></a></li>
+								<!-- <li><a href="purchase-list.php"><i data-feather="shopping-bag"></i><span>Purchases</span></a></li> -->
 								<li><a href="purchase-order-report.php"><i data-feather="file-minus"></i><span>Purchase Order</span></a></li>
 								<li><a href="purchase-returns.php"><i data-feather="refresh-cw"></i><span>Purchase Return</span></a></li>
 							</ul>
@@ -178,70 +178,12 @@
 								<li class="submenu">
 									<a href="javascript:void(0);"><i data-feather="settings"></i><span>General Settings</span><span class="menu-arrow"></span></a>
 									<ul>
-										<li><a href="general-settings.html">Profile</a></li>
-										<li><a href="security-settings.html">Security</a></li>
-										<li><a href="notification.html">Notifications</a></li>
-										<li><a href="connected-apps.html">Connected Apps</a></li>
-									</ul>
-								</li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="globe"></i><span>Website Settings</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="system-settings.html">System Settings</a></li>
-										<li><a href="company-settings.html">Company Settings </a></li>
-										<li><a href="localization-settings.html">Localization</a></li>
-										<li><a href="prefixes.html">Prefixes</a></li>
-										<li><a href="preference.html">Preference</a></li>
-										<li><a href="appearance.html">Appearance</a></li>
-										<li><a href="social-authentication.html">Social Authentication</a></li>
-										<li><a href="language-settings.html">Language</a></li>
-									</ul>
-								</li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="smartphone"></i>
-										<span>App Settings</span><span class="menu-arrow"></span>
-									</a>
-									<ul>
-										<li><a href="invoice-settings.html">Invoice</a></li>
-										<li><a href="printer-settings.html">Printer</a></li>
-										<li><a href="pos-settings.html">POS</a></li>
-										<li><a href="custom-fields.html">Custom Fields</a></li>
-									</ul>
-								</li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="monitor"></i>
-										<span>System Settings</span><span class="menu-arrow"></span>
-									</a>
-									<ul>
-										<li><a href="email-settings.html">Email</a></li>
-										<li><a href="sms-gateway.html">SMS Gateways</a></li>
-										<li><a href="otp-settings.html">OTP</a></li>
-										<li><a href="gdpr-settings.html">GDPR Cookies</a></li>
-									</ul>
-								</li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="dollar-sign"></i>
-										<span>Settings</span><span class="menu-arrow"></span>
-									</a>
-									<ul>
-										<li><a href="payment-gateway-settings.html">Payment Gateway</a></li>
-										<li><a href="bank-settings-grid.html">Bank Accounts</a></li>
-										<li><a href="tax-rates.html">Tax Rates</a></li>
-										<li><a href="currency-settings.html">Currencies</a></li>
-									</ul>
-								</li>
-								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="hexagon"></i>
-										<span>Other Settings</span><span class="menu-arrow"></span>
-									</a>
-									<ul>
-										<li><a href="storage-settings.html">Storage</a></li>
+										<li><a href="general-settings.php">SETTINGS</a></li>
 										
 									</ul>
 								</li>
-								<li>
-									<a href="signin.html"><i data-feather="log-out"></i><span>Logout</span> </a>
-								</li>
+							
+								
 							</ul>
 						</li>
 						<li class="submenu-open">

@@ -345,11 +345,10 @@ $result = $conn->query($sql);
                                 <a class='me-2 edit-icon p-2' href='recipe-details.php?id=" . $row['id'] . "'>
                                     <i data-feather='eye' class='feather-eye'></i>
                                 </a>
-                                <a class='me-2 p-2' href='edit-recipe.php?id=" . $row['id'] . "'>
+                                <a class='me-2 p-2' href='recipe-details.php?id=" . $row['id'] . "'>
                                     <i data-feather='edit' class='feather-edit'></i>
                                 </a>
-                                <a class='confirm-text p-2' href='delete-recipe.php?id=" . $row['id'] . "'>
-                                    <i data-feather='trash-2' class='feather-trash-2'></i>
+                               
                                 </a>
                             </div>
                         </td>
