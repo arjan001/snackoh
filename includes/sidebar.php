@@ -32,7 +32,7 @@
 
 								<li><a href="unsold-goods.php"><i data-feather="layers"></i><span>Unsold Goods</span></a></li>
 
-								<li><a href="low-stocks.php"><i data-feather="shuffle"></i><span>Low Stocks</span></a></li>
+								<li><a href="low-stocks.php"><i data-feather="shuffle"></i><span>Low Inventory Products</span></a></li>
 								<li><a href="product-category.php"><i data-feather="codepen"></i><span>Product Category</span></a></li>
 								
 								
@@ -48,6 +48,24 @@
 								<li><a href="stocks-category.php"><i data-feather="shopping-bag"></i><span>Stock Category</span></a></li>
 
 								<li><a href="stock-ordering.php"><i data-feather="clipboard"></i><span>Stock ordering</span></a></li>
+
+								<!-- <li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li> -->
+							</ul>
+						</li>
+						<li class="submenu-open">
+							<h6 class="submenu-hdr">PRODUCTION</h6>
+							<ul>
+								<li><a href="new_production.php"><i data-feather="package"></i><span> 📌 New Production Batch</span></a></li>
+
+								<li><a href="batch_history.php"><i data-feather="shopping-bag"></i><span>📜Batch History</span></a></li>
+
+								<li><a href="schedule_production.php
+								"><i data-feather="clipboard"></i><span>Production Schedule</span></a></li>
+
+								<li><a href="ingridient_usage.php"><i data-feather="clipboard"></i><span>📦 Ingredient Usage</span></a></li>
+
+								<li><a href="waste_manage.php"><i data-feather="clipboard"></i><span>🗑️ Waste Management</span></a></li>
+								<li><a href="production_reports.php"><i data-feather="clipboard"></i><span>📊 Production Reports</span></a></li>
 
 								<!-- <li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li> -->
 							</ul>

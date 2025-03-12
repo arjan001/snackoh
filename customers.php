@@ -139,7 +139,7 @@ include_once "./includes/session_check.php" ;?>
 													<th>Phone No</th>
 													<th>Pay Terms</th>
 													<th>Out - Balance</th>
-													<th>Ohysical-Address</th>
+													<th>physical-Address</th>
 
 													<th class="no-sort">Action</th>
 												</tr>

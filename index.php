@@ -1,55 +1,125 @@
+<?php 
+include_once "./includes/session_check.php"
+
+?>	
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <meta name="description" content="POS - Bootstrap Admin Template">
-        <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern,  html5, responsive">
-        <meta name="author" content="Dreamguys - Bootstrap Admin Template">
-        <meta name="robots" content="noindex, nofollow">
-        <title>Data Privacy Compliance Document</title>
-        
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-        
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        
-        <style>
-            body, html {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-            }
-            iframe {
-                width: 100%;
-                height: 100vh;
-                border: none;
-            }
-        </style>
+<!-- header code -->
+<?php include 'includes/header.php';?>
+<!-- header code ends here -->
+<body>
+	<div id="global-loader">
+		<div class="whirly-loader"> </div>
+	</div>
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
 
-    </head>
-    <body>
+		<!-- Header -->
+		<?php include 'includes/navbar.php';?>
+		<!-- /Header -->
 
-        <iframe src="data-checklist.pdf"></iframe>
+		<!-- Sidebar -->
+<?php include "includes/sidebar.php";?> 
+		<!-- /Sidebar -->
 
-        <!-- jQuery -->
-        <script src="assets/js/jquery-3.7.1.min.js"></script>
 
-        <!-- Feather Icon JS -->
-        <script src="assets/js/feather.min.js"></script>
 
-        <!-- Slimscroll JS -->
-        <script src="assets/js/jquery.slimscroll.min.js"></script>
 
-        <!-- Bootstrap Core JS -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        
-        <!-- Custom JS -->
-        <script src="assets/js/theme-script.js"></script>	
-        <script src="assets/js/script.js"></script>
 
-    </body>
+		<div class="page-wrapper">
+			<div class="content">
+
+				<!-- dashboard cards -->
+				
+				<?php include 'includes/dashboardCards.php';?>
+				<!-- dashboard cards end here -->
+				<!-- Button trigger modal -->
+
+				<div class="row">
+					<div class="col-xl-7 col-sm-12 col-12 d-flex">
+						<div class="card flex-fill">
+							<div class="card-header d-flex justify-content-between align-items-center">
+								<h5 class="card-title mb-0">Purchase & Sales</h5>
+								<div class="graph-sets">
+									<ul class="mb-0">
+										<li>
+											<span>Sales</span>
+										</li>
+										<li>
+											<span>Purchase</span>
+										</li>
+									</ul>
+									<div class="dropdown dropdown-wraper">
+										<button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+											2023
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<li>
+												<a href="javascript:void(0);" class="dropdown-item">2023</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="dropdown-item">2022</a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="dropdown-item">2021</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div id="sales_charts"></div>
+							</div>
+						</div>
+					</div>
+					<!-- recent products code -->
+					<?php  include_once 'includes/dash-recent-products.php';?>
+					<!-- recent products code -->
+				</div>
+				<!-- expired products was here -->
+
+
+			</div>
+		</div>
+
+		<!-- <div class="customizer-links" id="setdata">
+			<ul class="sticky-sidebar">
+				<li class="sidebar-icons">
+					<a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Theme">
+						<i data-feather="settings" class="feather-five"></i>
+					</a>
+				</li>
+			</ul>
+		</div> -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Feather Icon JS -->
+	<script src="assets/js/feather.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="assets/js/jquery.slimscroll.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Chart JS -->
+	<script src="assets/plugins/apexchart/apexcharts.min.js"></script>
+	<script src="assets/plugins/apexchart/chart-data.js"></script>
+
+	<!-- Sweetalert 2 -->
+	<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+	<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/theme-script.js"></script>	
+		<script src="assets/js/script.js"></script>
+
+	
+</body>
+
 </html>

@@ -14,3 +14,5 @@ Sending email to: ["geomaxm@gmail.com","nyongesaedwin018@gmail.com","test@exampl
 Mailer Error: Message body empty
 Sending email to: ["nyongesaedwin018@gmail.com"]
 Mailer Error: Message body empty
+Sending email to: ["nyongesaedwin018@gmail.com"]
+Email sent successfully

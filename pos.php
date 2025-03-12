@@ -78,7 +78,7 @@
 						<div class="pos-categories tabs_wrapper">
 							
 
-                    <!-- POS PRODUCTS DYNAMIC -->
+
 							<div class="pos-products">
 								<div class="d-flex align-items-center justify-content-between">
 									<h5 class="mb-3">BAKERY ITEMS</h5>
@@ -118,12 +118,7 @@
                                     <input type='hidden' name='name' value='$product_name'>
                                     <input type='hidden' name='price' value='$product_price'>
                                     <input type='hidden' name='image' value='$product_image'>
-                                    <button type='button' class='btn btn-primary add-to-cart' 
-    data-id='<?php echo $product_id; ?>' 
-    data-name='<?php echo $product_name; ?>' 
-    data-price='<?php echo $product_price; ?>' 
-    data-image='<?php echo $product_image; ?>'>Add to Cart</button>
-
+                                    <button type=' name='add_to_cart' class='btn btn-primary'>Add to Cart</button>
                                 </form>
                             </div>
                         </div>";
@@ -145,7 +140,7 @@
 							<div class="head d-flex align-items-center justify-content-between w-100">
 								<div class="">
 									<h5>Order List</h5>
-									<span>TransactionS</span>
+									<span>Transaction ID : #65565</span>
 								</div>
 								<div class="">
 									<a class="confirm-text" href="javascript:void(0);"><i data-feather="trash-2"
@@ -164,111 +159,37 @@
 											class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear all</a>
 								</div>
 								<div class="product-wrap">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function () {
-    // Add to cart functionality
-    $(".add-to-cart").click(function () {
-        let product_id = $(this).data("id");
-        let product_name = $(this).data("name");
-        let product_price = $(this).data("price");
-        let product_image = $(this).data("image");
+									<div class="product-list d-flex align-items-center justify-content-between">
+										<div class="d-flex align-items-center product-info" data-bs-toggle="modal"
+											data-bs-target="#products">
+											<a href="javascript:void(0);" class="img-bg">
+												<img src="assets/img/profiles/avator1.jpg" alt="Products">
+											</a>
+											<div class="info">
+												<span>PT0005</span>
+												<h6><a href="javascript:void(0);">Kaimati</a></h6>
+												<p>KSH 2000</p>
+											</div>
+										</div>
+										<div class="qty-item text-center">
+											<a href="javascript:void(0);"
+												class="dec d-flex justify-content-center align-items-center"
+												data-bs-toggle="tooltip" data-bs-placement="top" title="minus"><i
+													data-feather="minus-circle" class="feather-14"></i></a>
+											<input type="text" class="form-control text-center" name="qty" value="4">
+											<a href="javascript:void(0);"
+												class="inc d-flex justify-content-center align-items-center"
+												data-bs-toggle="tooltip" data-bs-placement="top" title="plus"><i
+													data-feather="plus-circle" class="feather-14"></i></a>
+										</div>
+										<div class="d-flex align-items-center action">
+											
+											<a class="btn-icon delete-icon confirm-text" href="javascript:void(0);">
+												<i data-feather="trash-2" class="feather-14"></i>
+											</a>
+										</div>
+									</div>
 
-        $.ajax({
-            url: "cart_handler.php", // PHP file that handles cart updates
-            type: "POST",
-            data: {
-                action: "add",
-                id: product_id,
-                name: product_name,
-                price: product_price,
-                image: product_image
-            },
-            dataType: "json",
-            success: function (response) {
-                if (response.status == "success") {
-                    updateCart(response.cart);
-                } else {
-                    alert("Error adding to cart");
-                }
-            }
-        });
-    });
-
-    // Function to update the Order List section
-    function updateCart(cart) {
-        let cart_html = "";
-        let total = 0;
-
-        cart.forEach((item, index) => {
-            total += item.price * item.quantity;
-            cart_html += `
-                <div class="product-list d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center product-info">
-                        <a href="javascript:void(0);" class="img-bg">
-                            <img src="assets/img/products/dummy.png" alt="Product">
-                        </a>
-                        <div class="info">
-                            <h6><a href="javascript:void(0);">${item.name}</a></h6>
-                            <p><span>KSH ${item.price}</span></p>
-                        </div>
-                    </div>
-                    <div class="qty-item text-center">
-                        <a href="javascript:void(0);" class="dec" data-index="${index}"><i data-feather="minus-circle"></i></a>
-                        <input type="text" class="form-control text-center" value="${item.quantity}" readonly>
-                        <a href="javascript:void(0);" class="inc" data-index="${index}"><i data-feather="plus-circle"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center action">
-                        <a class="btn-icon delete-icon remove-item" data-index="${index}" href="javascript:void(0);">
-                            <i data-feather="trash-2"></i>
-                        </a>
-                    </div>
-                </div>`;
-        });
-
-        $(".product-wrap").html(cart_html);
-        $(".order-total .table tbody").html(`
-            <tr><td>Sub Total</td><td class="text-end">KSH ${total.toFixed(2)}</td></tr>
-            
-            <tr><td>Total</td><td class="text-end">KSH ${(total * 0.9).toFixed(2)}</td></tr>
-        `);
-    }
-
-    // Increase/Decrease Quantity
-    $(document).on("click", ".inc, .dec", function () {
-        let action = $(this).hasClass("inc") ? "increase" : "decrease";
-        let index = $(this).data("index");
-
-        $.ajax({
-            url: "cart_handler.php",
-            type: "POST",
-            data: { action: action, index: index },
-            dataType: "json",
-            success: function (response) {
-                updateCart(response.cart);
-            }
-        });
-    });
-
-    // Remove item from cart
-    $(document).on("click", ".remove-item", function () {
-        let index = $(this).data("index");
-
-        $.ajax({
-            url: "cart_handler.php",
-            type: "POST",
-            data: { action: "remove", index: index },
-            dataType: "json",
-            success: function (response) {
-                updateCart(response.cart);
-            }
-        });
-    });
-});
-
-console.log(cartItem);
-
-</script>
 
 
 								</div>
@@ -310,12 +231,15 @@ console.log(cartItem);
 
 										<tr>
 											<td>Sub Total</td>
-											<td class="text-end"></td>
+											<td class="text-end">KSH 60,454</td>
 										</tr>
-										
+										<tr>
+											<td class="danger">Discount (10%)</td>
+											<td class="danger text-end">KSH 15.21</td>
+										</tr>
 										<tr>
 											<td>Total</td>
-											<td class="text-end"></td>
+											<td class="text-end">KSH 64,024.5</td>
 										</tr>
 									</table>
 								</div>
@@ -623,7 +547,7 @@ console.log(cartItem);
 	<!-- /Print Receipt -->
 
 	<!-- Products -->
-	 <div class="modal fade modal-default pos-modal" id="products" aria-labelledby="products">
+	<div class="modal fade modal-default pos-modal" id="products" aria-labelledby="products">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header p-4 d-flex align-items-center justify-content-between">
@@ -1799,10 +1723,135 @@ console.log(cartItem);
 	<script src="assets/js/theme-script.js"></script>
 	<script src="assets/js/script.js"></script>
 
+	<script>
+		// Function to load products based on the selected category
+		function loadProducts(categorySlug) {
+			// Show loading indicator or message
+			document.getElementById('product-list').innerHTML = 'Loading...';
+
+			let categoryId = categorySlug === 'all' ? '' : categorySlug; // Set category ID or empty for 'all'
+
+			// Fetch products using AJAX
+			fetch(`insert-product.php?category=${categoryId}`)
+				.then(response => response.json())
+				.then(data => {
+					let productHTML = '';
+					if (data.length > 0) {
+						data.forEach(product => {
+							// Build the product HTML structure
+							productHTML += `
+						<div class="product">
+							<img src="${product.product_image}" alt="${product.product_name}" class="product-image">
+							<h4>${product.product_name}</h4>
+							<p>${product.product_description ? product.product_description : 'No description available'}</p>
+							<span class="product-price">$${product.product_price}</span>
+						</div>
+					`;
+						});
+					} else {
+						productHTML = '<p>No products found for this category.</p>';
+					}
+					// Update the product list display
+					document.getElementById('product-list').innerHTML = productHTML;
+				})
+				.catch(error => {
+					console.error('Error fetching products:', error);
+					document.getElementById('product-list').innerHTML = 'Error loading products.';
+				});
+		}
 
 
+		// document.addEventListener("DOMContentLoaded", function () {
+		//     let cart = [];
 
+		//     function updateCart() {
+		//         let cartContainer = document.querySelector(".product-wrap");
+		//         cartContainer.innerHTML = "";
 
+		//         cart.forEach((item, index) => {
+		//             let productHTML = `
+		//                 <div class="product-list d-flex align-items-center justify-content-between" data-index="${index}">
+		//                     <div class="d-flex align-items-center product-info">
+		//                         <a href="javascript:void(0);" class="img-bg">
+		//                             <img src="${item.image}" alt="Products">
+		//                         </a>
+		//                         <div class="info">
+		//                             <span>${item.code}</span>
+		//                             <h6><a href="javascript:void(0);">${item.name}</a></h6>
+		//                             <p>KSH <span class="price">${item.price * item.quantity}</span></p>
+		//                         </div>
+		//                     </div>
+		//                     <div class="qty-item text-center">
+		//                         <a href="javascript:void(0);" class="dec d-flex justify-content-center align-items-center" data-action="decrease">
+		//                             <i data-feather="minus-circle" class="feather-14"></i>
+		//                         </a>
+		//                         <input type="text" class="form-control text-center quantity" value="${item.quantity}" readonly>
+		//                         <a href="javascript:void(0);" class="inc d-flex justify-content-center align-items-center" data-action="increase">
+		//                             <i data-feather="plus-circle" class="feather-14"></i>
+		//                         </a>
+		//                     </div>
+		//                     <div class="d-flex align-items-center action">
+		//                         <a class="btn-icon delete-icon confirm-text" href="javascript:void(0);" data-action="remove">
+		//                             <i data-feather="trash-2" class="feather-14"></i>
+		//                         </a>
+		//                     </div>
+		//                 </div>
+		//             `;
+		//             cartContainer.insertAdjacentHTML("beforeend", productHTML);
+		//         });
+
+		//         updateTotal();
+		//         feather.replace(); // Refresh icons
+		//     }
+
+		//     function updateTotal() {
+		//         let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+		//         document.querySelector(".order-total .text-end").innerText = `KSH ${total.toLocaleString()}`;
+		//     }
+
+		//     document.querySelectorAll(".product-info").forEach((product) => {
+		//         product.addEventListener("click", function () {
+		//             let productData = {
+		//                 name: this.querySelector("h6").innerText,
+		//                 price: parseInt(this.querySelector("p").innerText.replace("KSH ", "")),
+		//                 code: this.querySelector("span").innerText,
+		//                 image: this.querySelector("img").src,
+		//                 quantity: 1
+		//             };
+
+		//             let existingItem = cart.find(item => item.code === productData.code);
+		//             if (existingItem) {
+		//                 existingItem.quantity++;
+		//             } else {
+		//                 cart.push(productData);
+		//             }
+
+		//             updateCart();
+		//         });
+		//     });
+
+		//     document.querySelector(".product-wrap").addEventListener("click", function (e) {
+		//         let target = e.target.closest("a");
+		//         if (!target) return;
+
+		//         let parent = target.closest(".product-list");
+		//         let index = parseInt(parent.getAttribute("data-index"));
+
+		//         if (target.dataset.action === "increase") {
+		//             cart[index].quantity++;
+		//         } else if (target.dataset.action === "decrease") {
+		//             if (cart[index].quantity > 1) {
+		//                 cart[index].quantity--;
+		//             } else {
+		//                 cart.splice(index, 1);
+		//             }
+		//         } else if (target.dataset.action === "remove") {
+		//             cart.splice(index, 1);
+		//         }
+
+		//         updateCart();
+		//     });
+		// });
 
 	</script>
 

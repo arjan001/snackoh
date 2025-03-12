@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include "includes/header.php";?>
+<?php 
+
+include_once "./includes/session_check.php" ;
+include "includes/header.php";?>
     <body>
 		
 		<!-- <div id="global-loader" >
@@ -57,7 +60,7 @@
 					<!-- /product list -->
 					<div class="card table-list-card">
 						<div class="card-body">
-							<div class="table-top">
+							<!-- <div class="table-top">
 								<div class="search-set">
 									<div class="search-input">
 										<a href="" class="btn btn-searchset"><i data-feather="search" class="feather-search"></i></a>
@@ -146,105 +149,92 @@
 										<option>Oldest</option>
 									</select>
 								</div>
-							</div>
+							</div> -->
 							<!-- /Filter -->
-							<div class="card" id="filter_inputs">
-								<div class="card-body pb-0">
-									<div class="row">
-										<div class="col-lg-3 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="archive" class="info-img"></i>
-												<select class="select">
-													<option>Warehouse From</option>
-													<option>Lobar Handy</option>
-													<option>Quaint Warehouse</option>
-													<option>Traditional Warehouse</option>
-													<option>Cool Warehouse</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-3 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="user" class="info-img"></i>
-												<select class="select">
-													<option>Warehouse To</option>
-													<option>Selosy</option>
-													<option>Logerro</option>
-													<option>Vesloo</option>
-													<option>Crompy</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-3 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="calendar" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker" placeholder="Choose Date" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-3 col-sm-6 col-12 ms-auto">
-											<div class="input-blocks">
-												<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+						
 							<!-- /Filter -->
 							<div class="table-responsive">
-								<table class="table  datanew">
-									<thead>
-										<tr>
-											<th class="no-sort">
-												<label class="checkboxs">
-													<input type="checkbox" id="select-all">
-													<span class="checkmarks"></span>
-												</label>
-											</th>
-											<th>customer</th>
-											<th>address</th>
-											<th>Items</th>
-											<th>status</th>
-											<th>Date & Time</th>
-											<th>Driver</th>
-											<th>vehicle</th>
-											<th>Notified</th>
-											<th class="no-sort">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>Lobar Handy </td>
-											<td>Selosy </td>
-											<td>04</td>
-											<td>14</td>
-											<td>#145445</td>
-											<td>25 Jul 2023</td>
-											<td >qqqq</td>
-											<td >qqqq</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="confirm-text p-2" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-												
-											</td>
-										</tr>
-										
-										
-									</tbody>
-								</table>
+							<?php
+// Database connection
+include('config/config.php');
+
+// Fetch deliveries data
+$sql = "SELECT 
+            d.id, 
+            c.customer_name, 
+            c.physical_address AS address, 
+            d.order_id, 
+            DATE_FORMAT(d.schedule_datetime, '%d %b %Y - %H:%i') AS schedule_datetime, 
+            CONCAT(e.first_name, ' ', e.last_name) AS driver_name, 
+            a.asset_name AS vehicle_name, 
+            d.notification_method 
+        FROM deliveries d
+        LEFT JOIN customers c ON d.customer_id = c.id
+        LEFT JOIN employees e ON d.driver_id = e.id
+        LEFT JOIN assets a ON d.vehicle_id = a.id";
+
+$result = mysqli_query($conn, $sql);
+?>
+
+<table class="table datanew">
+    <thead>
+        <tr>
+            <th class="no-sort">
+                <label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label>
+            </th>
+            <th>Customer</th>
+            <th>Address</th>
+            <th>Order ID</th>
+            <th>Date & Time</th>
+            <th>Driver</th>
+            <th>Vehicle</th>
+            <th>Notified</th>
+            <th class="no-sort">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (mysqli_num_rows($result) > 0): ?>
+            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td>
+                        <label class="checkboxs">
+                            <input type="checkbox">
+                            <span class="checkmarks"></span>
+                        </label>
+                    </td>
+                    <td><?= htmlspecialchars($row['customer_name']) ?></td>
+                    <td><?= htmlspecialchars($row['address']) ?></td>
+                    <td><?= $row['order_id'] ? '#' . htmlspecialchars($row['order_id']) : 'N/A' ?></td>
+                    <td><?= htmlspecialchars($row['schedule_datetime']) ?></td>
+                    <td><?= $row['driver_name'] ? htmlspecialchars($row['driver_name']) : '<span class="text-danger">No Driver</span>' ?></td>
+                    <td><?= $row['vehicle_name'] ? htmlspecialchars($row['vehicle_name']) : '<span class="text-danger">No Vehicle</span>' ?></td>
+                    <td><?= htmlspecialchars($row['notification_method']) ?></td>
+                    <td class="action-table-data">
+                        <div class="edit-delete-action">
+                            <a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
+                                <i data-feather="edit" class="feather-edit"></i>
+                            </a>
+                            <a class="confirm-text p-2" href="javascript:void(0);">
+                                <i data-feather="trash-2" class="feather-trash-2"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="9" class="text-center">No deliveries found</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+
+
+
+
 							</div>
 						</div>
 					</div>
@@ -254,310 +244,248 @@
         </div>
 		<!-- /Main Wrapper -->
 
-		<!-- Add Stock -->
-		<div class="modal fade" id="add-units">
-			<div class="modal-dialog modal-dialog-centered stock-adjust-modal">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>SCHEDULE DELIVERY</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="schedule.php"method="POST">
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>driver</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Lobar Handy</option>
-													<option>Quaint Warehouse</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>status</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Selosy</option>
-													<option>Logerro</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>Schedule Date & Time</label>
-												<input type="date" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>Driver</label>
-												<select class="select">
-													<option>Choose</option>
-													<option>Selosy</option>
-													<option>Logerro</option>
-												</select>
-											</div>
-											</div>
-											<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>Vehicle </label>
-												<select class="select">
-													<option>taxi</option>
-													<option>bike</option>
-													<option>probox kbc</option>
-												</select>
-											</div>	
-									</div>
-											<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>Notified Method </label>
-												<select class="select">
-													<option>SMS</option>
-													<option>WHATSAPP</option>
-													
-												</select>
-											</div>	
-									</div>
 
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Schedule Delivery</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Add Stock -->
+<!-- Schedule Delivery Modal -->
+<div class="modal fade" id="add-units">
+    <div class="modal-dialog modal-dialog-centered stock-adjust-modal">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>SCHEDULE DELIVERY</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form action="schedule.php" method="POST">
+                            <div class="row">
+                                <!-- Customer Selection -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Customer</label>
+                                        <select class="select" id="customer-select" name="customer_id" onchange="fetchCustomerDetails(this.value)">
+                                            <option value="">Choose</option>
+                                            <?php
+                                            $sql = "SELECT id, customer_name FROM customers";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='{$row['id']}'>{$row['customer_name']}</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Auto-filled Address -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" id="customer-address" name="address" readonly>
+                                    </div>
+                                </div>
 
-		<!-- Edit Stock -->
-		<div class="modal fade" id="edit-units">
-			<div class="modal-dialog modal-dialog-centered stock-adjust-modal">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Edit Transfer</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="stock-transfer.html">
-									<div class="input-blocks search-form">
-										<label>Product</label>
-										<input type="text" class="form-control" value="Nike Jordan">
-										<i data-feather="search" class="feather-search"></i>
-									</div>
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>Warehouse From</label>
-												<select class="select">
-													<option>Lobar Handy</option>
-													<option>Quaint Warehouse</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6">
-											<div class="input-blocks">
-												<label>Warehouse To</label>
-												<select class="select">
-													<option>Selosy</option>
-													<option>Logerro</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="input-blocks">
-												<label>Reference No</label>
-												<input type="text" class="form-control" value="32434545">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="input-blocks search-form mb-3">
-												<label>Product</label>
-												<input type="text" class="form-control" placeholder="Select Product" value="Nike Jordan">
-												<i data-feather="search" class="feather-search"></i>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="modal-body-table">
-												<div class="table-responsive">
-													<table class="table  datanew">
-														<thead>
-															<tr>
-																<th>Product</th>
-																<th>SKU</th>
-																<th>Category</th>
-																<th>Qty</th>
-																<th class="no-sort">Action</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>
-																	<div class="productimgname">
-																		<a href="javascript:void(0);" class="product-img stock-img">
-																			<img src="assets/img/products/stock-img-02.png" alt="product">
-																		</a>
-																		<a href="javascript:void(0);">Nike Jordan</a>
-																	</div>												
-																</td>
-																<td>PT002</td>
-																<td>Nike</td>
-																<td>
-																	<div class="product-quantity">
-																		<span class="quantity-btn"><i data-feather="minus-circle" class="feather-search"></i></span>
-																		<input type="text" class="quntity-input" value="2">
-																		<span class="quantity-btn">+<i data-feather="plus-circle" class="plus-circle"></i></span>
-																	</div>
-																</td>
-																<td class="action-table-data">
-																	<div class="edit-delete-action">
-																		<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
-																			<i data-feather="edit" class="feather-edit"></i>
-																		</a>
-																		<a class="confirm-text p-2" href="javascript:void(0);">
-																			<i data-feather="trash-2" class="feather-trash-2"></i>
-																		</a>
-																	</div>
-																	
-																</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="input-blocks search-form mb-0">
-												<label>Notes</label>
-												<textarea class="form-control">The Jordan brand is owned by Nike (owned by the Knight family), as, at the time, the company was building its strategy to work with athletes to launch shows that could inspire consumers.Although Jordan preferred Converse and Adidas, they simply could not match the offer Nike made. </textarea>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Save Changes</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Edit Stock -->
+                                <!-- Order ID (Defaults to NULL) -->
+                                <input type="hidden" name="order_id" value="NULL">
 
-		<!-- Import Transfer -->
-		<div class="modal fade" id="view-notes">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Import Transfer</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-						</div>
-						<div class="modal-body custom-modal-body">
-							<form action="stock-transfer.html">
-								<div class="row">
-									<div class="col-lg-4 col-sm-6 col-12">
-										<div class="input-blocks">
-											<label>From</label>
-											<select class="select">
-												<option>Choose</option>
-												<option>Store 1</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-12">
-										<div class="input-blocks">
-											<label>To</label>
-											<select class="select">
-												<option>Choose</option>
-												<option>Store 2</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-4 col-sm-6 col-12">
-										<div class="input-blocks">
-											<label>Satus</label>
-											<select class="select">
-												<option>Choose</option>
-												<option>Sent</option>
-												<option>Pending</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-12 col-sm-6 col-12">
-										<div class="row">
-											<div>
-												<div class="modal-footer-btn download-file">
-													<a href="javascript:void(0)" class="btn btn-submit">Download Sample File</a>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="input-blocks image-upload-down">
-											<label>	Upload CSV File</label>
-											<div class="image-upload download">
-												<input type="file">
-												<div class="image-uploads">
-													<img src="assets/img/download-img.png" alt="img">
-													<h4>Drag and drop a <span>file to upload</span></h4>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12 col-sm-6 col-12">
-										<div class="mb-3">
-											<label class="form-label">Shipping</label>
-											<input type="text" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="mb-3 summer-description-box transfer">
-										<label class="form-label">Description</label>
-										<div id="summernote3">
-										</div>
-										<p>Maximum 60 Characters</p>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Submit</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Import Transfer -->
+                                <!-- Date & Time -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Schedule Date & Time</label>
+                                        <input type="datetime-local" class="form-control" name="schedule_datetime" required>
+                                    </div>
+                                </div>
+
+                                <!-- Driver Selection -->
+                                <div class="col-lg-6">
+    <div class="input-blocks">
+        <label>Driver</label>
+        <select class="select" name="driver_id">
+            <option value="">Choose</option>
+            <?php
+            $sql = "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees WHERE designation_id = 4";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='{$row['id']}'>{$row['full_name']}</option>";
+                }
+            } else {
+                echo "<option value='' disabled>No drivers available</option>";
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
+
+                                <!-- Vehicle Selection -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Vehicle</label>
+                                        <select class="select" name="vehicle_id">
+                                            <option value="">Choose</option>
+                                            <?php
+                                            $sql = "SELECT id, asset_name FROM assets WHERE category_id = 4";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='{$row['id']}'>{$row['asset_name']}</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Notification Method -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Notification Method</label>
+                                        <select class="select" name="notification_method">
+                                            <option value="SMS">SMS</option>
+                                            <option value="WhatsApp">WhatsApp</option>
+											<option value="Email">Email</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit">Schedule Delivery</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Schedule Delivery Modal -->
+
+
+
+<!-- EDIT Schedule Delivery Modal -->
+<div class="modal fade" id="edit-units">
+    <div class="modal-dialog modal-dialog-centered stock-adjust-modal">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>SCHEDULE DELIVERY</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form action="schedule.php" method="POST">
+                            <div class="row">
+                                <!-- Customer Selection -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Customer</label>
+                                        <select class="select" id="customer-select" name="customer_id" onchange="fetchCustomerDetails(this.value)">
+                                            <option value="">Choose</option>
+                                            <?php
+                                            $sql = "SELECT id, customer_name FROM customers";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='{$row['id']}'>{$row['customer_name']}</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Auto-filled Address -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" id="customer-address" name="address" readonly>
+                                    </div>
+                                </div>
+
+                                <!-- Order ID (Defaults to NULL) -->
+                                <input type="hidden" name="order_id" value="NULL">
+
+                                <!-- Date & Time -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Schedule Date & Time</label>
+                                        <input type="datetime-local" class="form-control" name="schedule_datetime" required>
+                                    </div>
+                                </div>
+
+                                <!-- Driver Selection -->
+                                <div class="col-lg-6">
+    <div class="input-blocks">
+        <label>Driver</label>
+        <select class="select" name="driver_id">
+            <option value="">Choose</option>
+            <?php
+            $sql = "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM employees WHERE designation_id = 4";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<option value='{$row['id']}'>{$row['full_name']}</option>";
+                }
+            } else {
+                echo "<option value='' disabled>No drivers available</option>";
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
+
+                                <!-- Vehicle Selection -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Vehicle</label>
+                                        <select class="select" name="vehicle_id">
+                                            <option value="">Choose</option>
+                                            <?php
+                                            $sql = "SELECT id, asset_name FROM assets WHERE category_id = 4";
+                                            $result = mysqli_query($conn, $sql);
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='{$row['id']}'>{$row['asset_name']}</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Notification Method -->
+                                <div class="col-lg-6">
+                                    <div class="input-blocks">
+                                        <label>Notification Method</label>
+                                        <select class="select" name="notification_method">
+                                            <option value="SMS">SMS</option>
+                                            <option value="WhatsApp">WhatsApp</option>
+                                            <option value="Email">Email</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit">Schedule Delivery</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /EDIT Schedule Delivery Modal -->
+
+
+
   
 
 		 
@@ -593,6 +521,21 @@
 
 		<!-- Custom JS --><script src="assets/js/theme-script.js"></script>	
 		<script src="assets/js/script.js"></script>
+
+		<script>
+
+function fetchCustomerDetails(customerId) {
+    if (customerId) {
+        fetch(`fetch_delivery_customer.php?id=${customerId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("customer-address").value = data.physical_address;
+            })
+            .catch(error => console.error("Error fetching customer details:", error));
+    }
+}
+
+		</script>
 
 	
     </body>

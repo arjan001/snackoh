@@ -53,7 +53,7 @@
 					</ul>
 					<div class="page-btn">
 						<ts href="add-product.php" class="btn btn-added" data-bs-toggle="modal"
-							data-bs-target="#add-assets"><i data-feather="plus-circle" class="me-2"></i>Add Capacity</a>
+							data-bs-target="#add-capacity"><i data-feather="plus-circle" class="me-2"></i>Add Capacity</a>
 					</div>
 
 				</div>
@@ -85,7 +85,7 @@
 						</div>
 
 						<div class="table-responsive product-list">
-						<table class="table datanew">
+                        <table class="table datanew">
     <thead>
         <tr>
             <th class="no-sort">
@@ -94,61 +94,49 @@
                     <span class="checkmarks"></span>
                 </label>
             </th>
-            <th>Asset Name</th>
+            <th>Production Unit</th>
             <th>Category</th>
-            <th>Company Code</th>
-            <th>Serial Number</th>
-            <!-- <th>Registration No</th> -->
-            <th>Initial Cost</th>
-            <th>Current Cost</th>
+            <th>Max Capacity</th>
+            <th>Current Usage (%)</th>
+            <th>Available Capacity</th>
             <th>Status</th>
-            <th>Next Maintenance</th>
+            <th>Last Updated</th>
             <th class="no-sort">Action</th>
         </tr>
     </thead>
     <tbody>
-        <?php
-       include('config/config.php');
+        <tr>
+            <td>
+                <label class="checkboxs">
+                    <input type="checkbox">
+                    <span class="checkmarks"></span>
+                </label>
+            </td>
+            <td>Oven 1</td>
+            <td>Baking</td>
+            <td>500 kg/day</td>
+            <td>80%</td>
+            <td>100 kg</td>
+            <td><span class="badge bg-warning">Near Limit</span></td>
+            <td>12 Mar 2025</td>
+            <td class='action-table-data'>
+                <div class='edit-delete-action'>
+                   
+					
+                    <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit_customer' data-id='" . $row['id'] . "'>
+                        <i data-feather='edit' class='feather-edit'></i>
+                    </a>
 
-        $query = "SELECT a.*, c.category_name FROM assets a 
-                  JOIN asset_category c ON a.category_id = c.id";
-        $result = $conn->query($query);
-
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>
-                <td>
-                    <label class='checkboxs'>
-                        <input type='checkbox'>
-                        <span class='checkmarks'></span>
-                    </label>
-                </td>
-                <td>{$row['asset_name']}</td>
-                <td>{$row['category_name']}</td>
-                <td>{$row['company_code']}</td>
-                <td>{$row['serial_number']}</td>
-                
-                <td>KSH {$row['initial_cost']}</td>
-                <td>KSH {$row['current_cost']}</td>
-                <td>{$row['status']}</td>
-                <td>{$row['next_maintenance']}</td>
-                <td class='action-table-data'>
-                    <div class='edit-delete-action'>
-                        <a class='me-2 edit-icon p-2' href='product-details.php?id={$row['id']}'>
-                            <i data-feather='eye' class='feather-eye'></i>
-                        </a>
-                        <a class='me-2 p-2' href='edit-product.php?id={$row['id']}'>
-                            <i data-feather='edit' class='feather-edit'></i>
-                        </a>
-                        <a class='confirm-text p-2' href='delete-asset.php?id={$row['id']}' onclick='return confirm(\"Are you sure?\")'>
-                            <i data-feather='trash-2' class='feather-trash-2'></i>
-                        </a>
-                    </div>
-                </td>
-            </tr>";
-        }
-        ?>
+					
+                    <a class='confirm-text p-2' href='javascript:void(0);'>
+                        <i data-feather='trash-2' class='feather-trash-2'></i>
+                    </a>
+                </div>
+              </td>
+        </tr>
     </tbody>
 </table>
+
 
 						</div>
 					</div>
@@ -159,151 +147,98 @@
 	</div>
 	<!-- /Main Wrapper -->
 
-	<!--add  ASSETS popup -->
-	<div class="modal fade" id="add-assets">
-		<div class="modal-dialog add-centered">
-			<div class="modal-content">
-				<div class="page-wrapper p-0 m-0">
-					<div class="content p-0">
-						<div class="modal-header border-0 custom-modal-header">
-							<div class="page-title">
-								<h4> Add New Assets</h4>
-							</div>
-							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="card">
-						<?php
-include('config/config.php');
+<!-- Add Capacity Management Popup -->
+<div class="modal fade" id="add-capacity">
+    <div class="modal-dialog add-centered">
+        <div class="modal-content">
+            <div class="page-wrapper p-0 m-0">
+                <div class="content p-0">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>Add Capacity Record</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="#" method="POST">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Production Unit</label>
+                                            <input type="text" class="form-control" name="production_unit" required>
+                                        </div>
+                                    </div>
 
-// Fetch asset categories
-$categoryQuery = "SELECT id, category_name FROM asset_category WHERE status = 1";
-$categoryResult = $conn->query($categoryQuery);
-?>
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Category</label>
+                                            <select class="form-control" name="category" required>
+                                                <option value="">Choose</option>
+                                                <option value="Baking">Baking</option>
+                                                <option value="Mixing">Mixing</option>
+                                                <option value="Packaging">Packaging</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-<div class="card-body">
-    <form action="add_assets.php" method="POST">
-        <div class="row">
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Asset Name</label>
-                    <input type="text" class="form-control" name="asset_name" required>
-                </div>
-            </div>
-            
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="input-blocks mb-5">
-                    <label>Choose Category</label>
-                    <select class="form-control" name="category_id" required>
-                        <option value="">Choose</option>
-                        <?php while ($row = $categoryResult->fetch_assoc()) { ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['category_name']); ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Max Capacity (kg/day)</label>
+                                            <input type="number" class="form-control" name="max_capacity" required>
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Company Code</label>
-                    <input type="text" class="form-control" name="company_code" required>
-                </div>
-            </div>
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Current Usage (%)</label>
+                                            <input type="number" class="form-control" name="current_usage" required>
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Registration Number(Number Plate -Strictly for cars only)</label>
-                    <input type="text" class="form-control" name="registration_number">
-                </div>
-            </div>
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Available Capacity (kg)</label>
+                                            <input type="number" class="form-control" name="available_capacity" required>
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Initial Cost</label>
-                    <input type="number" class="form-control" name="initial_cost" step="0.01" required>
-                </div>
-            </div>
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Status</label>
+                                            <select class="form-control" name="status" required>
+                                                <option value="">Choose</option>
+                                                <option value="Available">Available</option>
+                                                <option value="Near Limit">Near Limit</option>
+                                                <option value="Overloaded">Overloaded</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Current Cost</label>
-                    <input type="number" class="form-control" name="current_cost" step="0.01" required>
-                </div>
-            </div>
+                                    <div class="col-lg-6 col-sm-6 col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Updated</label>
+                                            <input type="date" class="form-control" name="last_updated" required>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="input-blocks mb-5">
-                    <label>Status</label>
-                    <select class="form-control" name="status" required>
-                        <option value="">Choose</option>
-                        <option value="Operational">Operational</option>
-                        <option value="Maintenance Required">Maintenance Required</option>
-                        <option value="Out of Service">Out of Service</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Next Maintenance</label>
-                    <input type="date" class="form-control" name="next_maintenance" required>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="input-blocks mb-5">
-                    <label>Ownership</label>
-                    <select class="form-control" name="ownership" required>
-                        <option value="">Choose</option>
-                        <option value="Owned">Owned</option>
-                        <option value="Leased">Leased</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Maintenance Cost</label>
-                    <input type="number" class="form-control" name="maintenance_cost" step="0.01" required>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Depreciation Factor</label>
-                    <input type="number" class="form-control" name="depreciation_factor" step="0.01" required>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-sm-6 col-12">
-                <div class="mb-3">
-                    <label class="form-label">Lifespan (Years)</label>
-                    <input type="number" class="form-control" name="lifespan" required>
+                                <div class="modal-footer-btn">
+                                    <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-submit">Save Record</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="modal-footer-btn">
-            <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-submit create">Create Asset</button>
-        </div>
-    </form>
+    </div>
 </div>
+<!-- /Add Capacity Management Popup -->
 
-
-
-
-
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<!-- /add ASSETS popup -->
 
 
 	
