@@ -84,9 +84,10 @@
 						</div>
 		
 						<div class="table-responsive product-list">
-						<?php
+                        <?php
 include('config/config.php'); // Include database connection
 
+// Updated SQL Query to correctly join `assets` and `fleet`
 $query = "SELECT 
             a.id, 
             a.asset_name AS brand_name, 
@@ -98,8 +99,8 @@ $query = "SELECT
             COALESCE(f.assigned_driver, 'N/A') AS assigned_driver,
             COALESCE(f.last_service_date, 'N/A') AS last_maintenance
           FROM assets a
-          LEFT JOIN asset_category c ON a.category_id = c.id
           LEFT JOIN fleet f ON a.registration_number = f.registration_number
+          LEFT JOIN asset_category c ON a.category_id = c.id
           WHERE c.category_name LIKE '%vehicle%'";
 
 $result = $conn->query($query);

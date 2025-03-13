@@ -117,7 +117,7 @@ $result = $conn->query($query);
             <th class="no-sort">Action</th>
         </tr>
     </thead>
-    <tbody>
+<tbody>
         <?php while ($row = $result->fetch_assoc()): ?>
             <tr>
                 <td>

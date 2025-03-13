@@ -108,7 +108,6 @@ $sql = "SELECT
 
 $result = $conn->query($sql);
 ?>
-
 <table class="table datanew">
     <thead>
         <tr>
@@ -167,7 +166,7 @@ $result = $conn->query($sql);
     </tbody>
 </table>
 
-<?php $conn->close(); ?>
+
 
 
 
@@ -238,7 +237,7 @@ $result = $conn->query($sql);
 																<td>Crate</td>
 																<td>Ksh 1200</td>
 																
-																<!-- <td class="action-table-data">
+																<td class="action-table-data">
 																	<div class="edit-delete-action">
 																		<a class="me-2 p-2" href="#" data-bs-toggle="modal" data-bs-target="#edit-units">
 																			<i data-feather="edit" class="feather-edit"></i>
@@ -247,7 +246,7 @@ $result = $conn->query($sql);
 																			<i data-feather="trash-2" class="feather-trash-2"></i>
 																		</a>
 																	</div>
-																</td> -->
+																</td>
 															</tr>
 														</tbody>
 													</table>

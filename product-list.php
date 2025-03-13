@@ -190,45 +190,58 @@ $result = $conn->query($sql);
             <th class="no-sort">Action</th>
         </tr>
     </thead>
-    <tbody>
-        <?php
-        // Check if there are any products to display
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                // Display product details dynamically (no image now)
-                echo "<tr>
-                        <td>
-                            <label class='checkboxs'>
-                                <input type='checkbox'>
-                                <span class='checkmarks'></span>
-                            </label>
-                        </td>
-                        <td>" . htmlspecialchars($row['product_name']) . "</td>
-                        <td>" . htmlspecialchars($row['category_name']) . "</td>
-                        <td>" . htmlspecialchars($row['unit_name']) . "</td>
-                        <td>" . htmlspecialchars($row['product_quantity']) . "</td>
-                        <td>" . htmlspecialchars($row['manufactured_on']) . "</td>
-                        <td>" . htmlspecialchars($row['product_quantity_alert']) . "</td>
-                        <td class='action-table-data'>
-                            <div class='edit-delete-action'>
-                                <a class='me-2 edit-icon p-2' href='product-details.html'>
-                                    <i data-feather='eye' class='feather-eye'></i>
-                                </a>
-                                <a class='me-2 p-2' href='edit-product.php'>
-                                    <i data-feather='edit' class='feather-edit'></i>
-                                </a>
-                                <a class='confirm-text p-2' href='javascript:void(0);'>
-                                    <i data-feather='trash-2' class='feather-trash-2'></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>";
-            }
-        } else {
-            echo "<tr><td colspan='8'>No products found.</td></tr>";
-        }
-        ?>
-    </tbody>
+	<tbody>
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td>
+                    <label class="checkboxs">
+                        <input type="checkbox">
+                        <span class="checkmarks"></span>
+                    </label>
+                </td>
+                <td><?php echo htmlspecialchars($row['product_name']); ?></td>
+                <td><?php echo htmlspecialchars($row['category_name']); ?></td>
+                <td><?php echo htmlspecialchars($row['unit_name']); ?></td>
+                <td><?php echo htmlspecialchars($row['product_quantity']); ?></td>
+                <td><?php echo htmlspecialchars($row['manufactured_on']); ?></td>
+                <td><?php echo htmlspecialchars($row['product_quantity_alert']); ?></td>
+                <td class='action-table-data'>
+                    <div class='edit-delete-action'>
+                        <!-- View Action -->
+                        <a class='me-2 edit-icon p-2' href='product-details.html'>
+                            <i data-feather='eye' class='feather-eye'></i>
+                        </a>
+                        
+                        <!-- Edit Action (Now Includes Product ID) -->
+                        <a class='me-2 p-2 edit-btn' href='edit-product.php?id=<?php echo $row['id']; ?>'
+                           data-id="<?php echo $row['id']; ?>" 
+                           data-name="<?php echo htmlspecialchars($row['product_name']); ?>"
+                           data-category="<?php echo htmlspecialchars($row['category_name']); ?>"
+                           data-unit="<?php echo htmlspecialchars($row['unit_name']); ?>"
+                           data-quantity="<?php echo htmlspecialchars($row['product_quantity']); ?>"
+                           data-manufactured="<?php echo htmlspecialchars($row['manufactured_on']); ?>"
+                           data-alert="<?php echo htmlspecialchars($row['product_quantity_alert']); ?>">
+                            <i data-feather='edit' class='feather-edit'></i>
+                        </a>
+                        
+                        <!-- Delete Action (Now Includes Product ID) -->
+                        <!-- Delete Action (Includes Product ID) -->
+<a class='confirm-text p-2' href='delete_product.php?id=<?php echo $row['id']; ?>' 
+   onclick="return confirm('Are you sure you want to delete this product?');">
+    <i data-feather='trash-2' class='feather-trash-2'></i>
+</a>
+
+                    </div>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <tr><td colspan='8'>No products found.</td></tr>
+    <?php endif; ?>
+</tbody>
+
+
 </table>
 
 

@@ -157,16 +157,21 @@
 						
 								</li>
 								<li class="submenu">
-									<a href="payroll-list.html"><i data-feather="dollar-sign"></i><span>Payroll</span><span class="menu-arrow"></span></a>
-									<ul>
-										<li><a href="payroll-list.html">Employee Salary</a></li>
-										<li><a href="payslip.php">Payslip</a></li>
-									</ul>
-								</li>
+    <a href="payroll-list.html" data-bs-toggle="tooltip" data-bs-placement="right" title="Request module from developer">
+        <i data-feather="dollar-sign"></i><span>Payroll</span><span class="menu-arrow"></span>
+    </a>
+    <ul>
+        <!-- <li><a href="payroll-list.php">Employee Salary</a></li>
+        <li><a href="payslip.php">Payslip</a></li> -->
+    </ul>
+</li>
+
+
+
 							</ul>
 						</li>
 						<li class="submenu-open">
-							<h6 class="submenu-hdr">Reports are Incomplte Working on Them</h6>
+							<h6 class="submenu-hdr"  data-bs-toggle="tooltip" data-bs-placement="right" title="Reports will auto generate when system is in use">Reports </h6>
 							<!-- <ul>
 								<li><a href="sales-report.html"><i data-feather="bar-chart-2"></i><span>Sales Report</span></a></li>
 								<li><a href="purchase-report.html"><i data-feather="pie-chart"></i><span>Purchase report</span></a></li>
