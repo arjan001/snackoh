@@ -176,7 +176,7 @@ include "includes/header.php";?>
             <td>96%</td>
             <td>
                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewProductionReportModal">View</button>
-                <button class="btn btn-success btn-sm">Download</button>
+                
             </td>
         </tr>
         <tr>
