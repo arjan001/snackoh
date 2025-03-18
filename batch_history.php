@@ -85,7 +85,7 @@ include "includes/header.php";?>
 							<div class="table-responsive">
 
 
-                            <table class="table datanew">
+							<table class="table datanew">
     <thead>
         <tr>
             <th class="no-sort">
@@ -102,38 +102,13 @@ include "includes/header.php";?>
             <th>Completion Date</th>
             <th>Status</th>
             <th>Produced By</th>
-            <!-- <th class="no-sort">Action</th> -->
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>
-                <label class="checkboxs">
-                    <input type="checkbox">
-                    <span class="checkmarks"></span>
-                </label>
-            </td>
-            <td>BATCH-1001</td>
-            <td>Whole Wheat Bread</td>
-            <td>Bakery</td>
-            <td>50 Loaves</td>
-            <td>2025-03-15</td>
-            <td>2025-03-16</td>
-            <td><span class="badge badge-warning">Pending</span></td>
-            <td>John Doe</td>
-            <!-- <td class='action-table-data'>
-                <div class='edit-delete-action'>
-                    <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-stock'>
-                        <i data-feather='edit' class='feather-edit'></i>
-                    </a>
-                    <a class='confirm-text p-2' href='javascript:void(0);'>
-                        <i data-feather='trash-2' class='feather-trash-2'></i>
-                    </a>
-                </div>
-            </td> -->
-        </tr>
+    <tbody id="batchHistoryBody">
+        <!-- Data will be loaded here via AJAX -->
     </tbody>
 </table>
+
 
 
 
@@ -159,6 +134,61 @@ include "includes/header.php";?>
   
 
 		<?php include "includes/footer.php";?>
+		<script>
+$(document).ready(function () {
+    function loadBatchHistory() {
+        $.ajax({
+            url: "fetch_batch_history.php",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                let tableBody = $("#batchHistoryBody");
+                tableBody.empty(); // Clear previous data
+
+                if (data.length > 0) {
+                    data.forEach(function (batch) {
+                        let statusClass = batch.status === "Pending" ? "badge-warning" : "badge-success";
+
+                        let row = `
+                            <tr>
+                                <td>
+                                    <label class="checkboxs">
+                                        <input type="checkbox">
+                                        <span class="checkmarks"></span>
+                                    </label>
+                                </td>
+                                <td>${batch.batch_id}</td>
+                                <td>${batch.product_name}</td>
+                                <td>${batch.category_name}</td>
+                                <td>${batch.quantity_produced}</td>
+                                <td>${batch.production_datetime}</td>
+                                <td>${batch.estimated_completion}</td>
+                                <td><span class="badge ${statusClass}">${batch.status}</span></td>
+                                <td>${batch.produced_by || "N/A"}</td>
+                            </tr>
+                        `;
+                        tableBody.append(row);
+                    });
+                } else {
+                    tableBody.append("<tr><td colspan='9' class='text-center'>No batch history found.</td></tr>");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching batch history:", xhr.responseText);
+            }
+        });
+    }
+
+    // Load data on page load
+    loadBatchHistory();
+
+    // Refresh every 30 seconds (optional)
+    setInterval(loadBatchHistory, 30000);
+});
+
+
+
+		</script>
 
 	
     </body>

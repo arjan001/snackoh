@@ -27,7 +27,12 @@ include_once "./includes/session_check.php"
 				<div class="content">
 					<div class="welcome d-lg-flex align-items-center justify-content-between">
 						<div class="d-flex align-items-center welcome-text">
-							<h3 class="d-flex align-items-center"><img src="assets/img/icons/hi.svg" alt="img">&nbsp;Hi George Macharia,</h3>&nbsp;<h6>here's what's happening with your store today.</h6>
+						<?php 
+    // Retrieve user data from session
+$full_name = $_SESSION['full_name'] ?? 'Guest User';
+$role = $_SESSION['user_role'] ?? 'Guest';
+?>
+							<h3 class="d-flex align-items-center"><img src="assets/img/icons/hi.svg" alt="img">&nbsp;Hi <?= htmlspecialchars($full_name); ?>,</h3>&nbsp;<h6>here's what's happening with your store today.</h6>
 						</div>
 						<div class="d-flex align-items-center">
 							<div class="position-relative daterange-wraper me-2">
@@ -87,11 +92,9 @@ include_once "./includes/session_check.php"
 												<tr>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/stock-img-01.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Lenovo 3rd Generation</a>
+																<a href="product-list.html">Douhnut</a>
 																<p class="dull-text">KSH 4420</p>
 															</div>
 														</div>
@@ -104,11 +107,9 @@ include_once "./includes/session_check.php"
 												<tr>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/stock-img-06.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Bold V3.2</a>
+																<a href="product-list.html">Kaimati</a>
 																<p class="dull-text">KSH 1474</p>
 															</div>
 														</div>
@@ -121,11 +122,9 @@ include_once "./includes/session_check.php"
 												<tr>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/stock-img-02.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Nike Jordan</a>
+																<a href="product-list.html">Dryfcons</a>
 																<p class="dull-text">KSH 8784</p>
 															</div>
 														</div>
@@ -138,11 +137,9 @@ include_once "./includes/session_check.php"
 												<tr>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/stock-img-03.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Apple Series 5 Watch</a>
+																<a href="product-list.html">White bread 400gms</a>
 																<p class="dull-text">KSH 3240</p>
 															</div>
 														</div>
@@ -155,9 +152,7 @@ include_once "./includes/session_check.php"
 												<tr>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/stock-img-04.png" alt="product">
-															</a>
+															
 															<div class="info">
 																<a href="product-list.html">Amazon Echo Dot</a>
 																<p class="dull-text">KSH 597</p>
@@ -203,17 +198,15 @@ include_once "./includes/session_check.php"
 													<td>1</td>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/stock-img-05.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Lobar Handy</a>
+																<a href="product-list.html">kaimati</a>
 																<span class="dull-text d-flex align-items-center"><i data-feather="clock" class="feather-14"></i>15 Mins</span>
 															</div>
 														</div>
 													</td>
 													<td>
-														<span class="d-block head-text">Paypal</span>
+														<span class="d-block head-text">Mpesa</span>
 														<span class="text-blue">#416645453773</span>
 													</td>
 													<td><span class="badge background-less border-success">Success</span></td>
@@ -223,17 +216,15 @@ include_once "./includes/session_check.php"
 													<td>2</td>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/expire-product-01.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Red Premium Handy</a>
+																<a href="product-list.html">brown bread 400gms</a>
 																<span class="dull-text d-flex align-items-center"><i data-feather="clock" class="feather-14"></i>10 Mins</span>
 															</div>
 														</div>
 													</td>
 													<td>
-														<span class="d-block head-text">Apple Pay</span>
+														<span class="d-block head-text">cash</span>
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-danger">Canceled</span></td>
@@ -243,17 +234,15 @@ include_once "./includes/session_check.php"
 													<td>3</td>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/expire-product-02.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Iphone 14 Pro</a>
+																<a href="product-list.html">dryfcons</a>
 																<span class="dull-text d-flex align-items-center"><i data-feather="clock" class="feather-14"></i>10 Mins</span>
 															</div>
 														</div>
 													</td>
 													<td>
-														<span class="d-block head-text">Stripe</span>
+														<span class="d-block head-text">credit sale</span>
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-primary">Pending</span></td>
@@ -263,17 +252,15 @@ include_once "./includes/session_check.php"
 													<td>4</td>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/expire-product-03.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Black Slim 200</a>
+																<a href="product-list.html">scones</a>
 																<span class="dull-text d-flex align-items-center"><i data-feather="clock" class="feather-14"></i>10 Mins</span>
 															</div>
 														</div>
 													</td>
 													<td>
-														<span class="d-block head-text">PayU</span>
+														<span class="d-block head-text">Mpesa</span>
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-success">Success</span></td>
@@ -283,17 +270,15 @@ include_once "./includes/session_check.php"
 													<td>5</td>
 													<td>
 														<div class="product-info">
-															<a href="product-list.html" class="product-img">
-																<img src="assets/img/products/expire-product-04.png" alt="product">
-															</a>
+															
 															<div class="info">
-																<a href="product-list.html">Woodcraft Sandal</a>
+																<a href="product-list.html">white bread 400gms</a>
 																<span class="dull-text d-flex align-items-center"><i data-feather="clock" class="feather-14"></i>15 Mins</span>
 															</div>
 														</div>
 													</td>
 													<td>
-														<span class="d-block head-text">Paytm</span>
+														<span class="d-block head-text">Mpesa</span>
 														<span class="text-blue">#147784454554</span>
 													</td>
 													<td><span class="badge background-less border-success">Success</span></td>

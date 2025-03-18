@@ -37,14 +37,14 @@
                 <i class="fa fa-search"></i>
             </a>
             <form action="#" class="dropdown">
-                <div class="searchinputs dropdown-toggle" id="dropdownMenuClickable"
+                <!-- <div class="searchinputs dropdown-toggle" id="dropdownMenuClickable"
                     data-bs-toggle="dropdown" data-bs-auto-close="false">
                     <input type="text" placeholder="Search">
                     <div class="search-addon">
                         <span><i data-feather="x-circle" class="feather-14"></i></span>
                     </div>
-                </div>
-                <div class="dropdown-menu search-dropdown" aria-labelledby="dropdownMenuClickable">
+                </div> -->
+                <!-- <div class="dropdown-menu search-dropdown" aria-labelledby="dropdownMenuClickable">
                     <div class="search-info">
                         <h6><span><i data-feather="search" class="feather-16"></i></span>Recent Searches
                         </h6>
@@ -73,7 +73,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </form>
         </div>
     </li>
@@ -121,6 +121,44 @@
             <i data-feather="maximize"></i>
         </a>
     </li>
+    
+					<!-- Notifications -->
+					<li class="nav-item dropdown nav-item-box">
+						<a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+							<i data-feather="bell"></i><span class="badge rounded-pill">2</span>
+						</a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar flex-shrink-0">
+													<img alt="" src="assets/img/profiles/avatar-02.jpg">
+												</span>
+												<div class="media-body flex-grow-1">
+													<p class="noti-details"><span class="noti-title">John Doe</span> added
+														new product <span class="noti-title">into the inventory booking</span>
+													</p>
+													<p class="noti-time"><span class="notification-time">4 mins ago</span>
+													</p>
+												</div>
+											</div>
+										</a>
+									</li>
+									
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="activities.php">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
 
 
     <li class="nav-item nav-item-box">

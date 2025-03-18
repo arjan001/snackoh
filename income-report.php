@@ -1,11 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php 
 include_once "./includes/session_check.php"
 
 ?>	
-<!DOCTYPE html>
-<html lang="en">
 <?php include "includes/header.php";?>
-    <body>
+
+
+
+	<body>
 		
 		<div id="global-loader" >
 			<div class="whirly-loader"> </div>
@@ -25,12 +28,10 @@ include_once "./includes/session_check.php"
 
 			<div class="page-wrapper">
 				<div class="content">
-					<div class="page-header">
-						<div class="add-item d-flex">
-							<div class="page-title">
-								<h4>Sales Report</h4>
-								<h6>Manage Your Sales Report</h6>
-							</div>
+					<div class="page-header justify-content-between">
+						<div class="page-title">
+							<h4>Income Report</h4>
+							<h6>Manage your Income</h6>
 						</div>
 						<ul class="table-top-head">
 							<li>
@@ -67,7 +68,7 @@ include_once "./includes/session_check.php"
 											<i data-feather="filter" class="filter-icon"></i>
 											<span><img src="assets/img/icons/closes.svg" alt="img"></span>
 										</a>
-										
+										<a href="" class="me-3 layout-box"><i data-feather="layout" class="feather-search"></i></a>
 									</div>
 									
 								</div>
@@ -75,13 +76,13 @@ include_once "./includes/session_check.php"
 									<i data-feather="sliders" class="info-img"></i>
 									<select class="select">
 										<option>Sort by Date</option>
-										<option>25 9 23</option>
-										<option>12 9 23</option>
+										<option>10 09 23</option>
+										<option>17 09 23</option>
 									</select>
 								</div>
 							</div>
 							<!-- /Filter -->
-					
+							
 							<!-- /Filter -->
 							<div class="table-responsive">
 								<table class="table  datanew">
@@ -93,13 +94,11 @@ include_once "./includes/session_check.php"
 													<span class="checkmarks"></span>
 												</label>
 											</th>
-											<th>Product Name</th>
-											<th>SKU</th>
-											<th>Category</th>
-											<th>Brand</th>
-											<th>Sold Qty</th>
-											<th>Sold Amount</th>
-											<th>Instock Qty</th>
+											<th>Date</th>
+											<th>Income Category</th>
+											<th>User</th>
+											<th>Payment Method</th>
+											<th>Amount</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -110,15 +109,40 @@ include_once "./includes/session_check.php"
 													<span class="checkmarks"></span>
 												</label>
 											</td>
-											<td>white bread 400gms</td>
-											<td>PT001</td>
-											<td>Computers</td>
-											<td>N/D</td>
-											<td>20</td>
-											<td>$1000</td>
-											<td>100</td>
+											<td>01 Jan 2024</td>
+											<td>Printing</td>
+											<td class="userimgname">
+												<a href="javascript:void(0);" class="product-img">
+													<img src="assets/img/users/user-01.jpg" alt="product">
+												</a>
+												<a href="javascript:void(0);">Mitchum Daniel</a>
+											</td>
+											<td class="payment-info">
+												<a href="javascript:void(0);"> <img src="assets/img/icons/pay.svg" alt="Pay"> </a>
+											</td>
+											<td>KSH 21,144</td>
 										</tr>
-									
+										<tr>
+											<td>
+												<label class="checkboxs">
+													<input type="checkbox">
+													<span class="checkmarks"></span>
+												</label>
+											</td>
+											<td>14 Jan 2024</td>
+											<td>Utilities</td>
+											<td class="userimgname">
+												<a href="javascript:void(0);" class="product-img">
+													<img src="assets/img/users/user-02.jpg" alt="product">
+												</a>
+												<a href="javascript:void(0);">Susan Lopez</a>
+											</td>
+											<td class="payment-info">
+												<a href="javascript:void(0);"> <img src="assets/img/icons/stripe.svg" alt="Pay"> </a>
+											</td>
+											<td>KSH 17,477</td>
+										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -128,9 +152,10 @@ include_once "./includes/session_check.php"
 				</div>
 			</div>
         </div>
-		<!-- /Main Wrapper -->
   
 
+		<!-- /Main Wrapper -->
+		 
 		<!-- jQuery -->
         <script src="assets/js/jquery-3.7.1.min.js"></script>
 
@@ -143,16 +168,17 @@ include_once "./includes/session_check.php"
 		<!-- Datatable JS -->
 		<script src="assets/js/jquery.dataTables.min.js"></script>
 		<script src="assets/js/dataTables.bootstrap5.min.js"></script>
-
-		<!-- Datetimepicker JS -->
-		<script src="assets/js/moment.min.js"></script>
-		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 		
 		<!-- Bootstrap Core JS -->
         <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Summernote JS -->
-	    <script src="assets/plugins/summernote/summernote-bs4.min.js"></script>
+		<!-- Datetimepicker JS -->
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+
+		<!-- Daterangepikcer JS -->
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
 
 		<!-- Select2 JS -->
 		<script src="assets/plugins/select2/js/select2.min.js"></script>

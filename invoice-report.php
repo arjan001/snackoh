@@ -159,9 +159,9 @@ $result = $conn->query($sql);
                 </tr>
         <?php } 
         } else { ?>
-            <tr>
+            <!-- <tr> -->
                 <td colspan="9">No invoices found.</td>
-            </tr>
+            <!-- </tr> -->
         <?php } ?>
     </tbody>
 </table>

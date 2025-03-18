@@ -1,10 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php 
 include_once "./includes/session_check.php"
 
 ?>	
-<!DOCTYPE html>
-<html lang="en">
 <?php include "includes/header.php";?>
+
     <body>
 		
 		<div id="global-loader" >
@@ -28,8 +29,8 @@ include_once "./includes/session_check.php"
 					<div class="page-header">
 						<div class="add-item d-flex">
 							<div class="page-title">
-								<h4>Sales Report</h4>
-								<h6>Manage Your Sales Report</h6>
+								<h4>Inventory Report</h4>
+								<h6>Manage Your Inventory Report</h6>
 							</div>
 						</div>
 						<ul class="table-top-head">
@@ -81,7 +82,7 @@ include_once "./includes/session_check.php"
 								</div>
 							</div>
 							<!-- /Filter -->
-					
+							
 							<!-- /Filter -->
 							<div class="table-responsive">
 								<table class="table  datanew">
@@ -96,9 +97,8 @@ include_once "./includes/session_check.php"
 											<th>Product Name</th>
 											<th>SKU</th>
 											<th>Category</th>
-											<th>Brand</th>
-											<th>Sold Qty</th>
-											<th>Sold Amount</th>
+											<th>Supplier</th>
+											<th>Unit</th>
 											<th>Instock Qty</th>
 										</tr>
 									</thead>
@@ -110,12 +110,11 @@ include_once "./includes/session_check.php"
 													<span class="checkmarks"></span>
 												</label>
 											</td>
-											<td>white bread 400gms</td>
+											<td >Liquid Oil</td>
 											<td>PT001</td>
-											<td>Computers</td>
-											<td>N/D</td>
-											<td>20</td>
-											<td>$1000</td>
+											<td>Raw Materials</td>
+											<td>Kappa Oil Reffinaries</td>
+											<td>Ltr</td>
 											<td>100</td>
 										</tr>
 									

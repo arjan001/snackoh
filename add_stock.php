@@ -10,12 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stock_price = floatval($_POST['stock_price']);
     $stock_expiry_date = $conn->real_escape_string($_POST['stock_expiry_date']);
     $stock_unit = intval($_POST['stock_unit']);
-    $reorder_level = intval($_POST['reorder_level']); // NEW REORDER LEVEL
-    $status = 'active'; // Assuming active status on new items
+    $reorder_level = intval($_POST['reorder_level']);
+    $stock_supplier_id = intval($_POST['stock_supplier_id']); // Ensure supplier ID is included
+    $status = 'active';
 
-    // SQL query to insert stock data into stock table
-    $sql = "INSERT INTO stock (product_name, stock_category_id, stock_quantity, stock_price, stock_expiry_date, stock_unit, reorder_level, status) 
-            VALUES ('$stock_item_name', $stock_category_id, $stock_quantity, $stock_price, '$stock_expiry_date', $stock_unit, $reorder_level, '$status')";
+    // Insert query including stock_supplier_id
+    $sql = "INSERT INTO stock (product_name, stock_category_id, stock_quantity, stock_price, stock_expiry_date, stock_unit, reorder_level, stock_supplier_id, status) 
+            VALUES ('$stock_item_name', $stock_category_id, $stock_quantity, $stock_price, '$stock_expiry_date', $stock_unit, $reorder_level, $stock_supplier_id, '$status')";
 
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Stock item added successfully'); window.location.href='./manage-stocks.php';</script>";
@@ -26,4 +27,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Close connection
 $conn->close();
+
 ?>

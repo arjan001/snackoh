@@ -51,18 +51,13 @@ include_once "./includes/session_check.php"
 									</ul>
 									<div class="dropdown dropdown-wraper">
 										<button class="btn btn-light btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-											2023
+											2025
 										</button>
 										<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<li>
-												<a href="javascript:void(0);" class="dropdown-item">2023</a>
+												<a href="javascript:void(0);" class="dropdown-item">2025</a>
 											</li>
-											<li>
-												<a href="javascript:void(0);" class="dropdown-item">2022</a>
-											</li>
-											<li>
-												<a href="javascript:void(0);" class="dropdown-item">2021</a>
-											</li>
+											
 										</ul>
 									</div>
 								</div>
@@ -82,15 +77,7 @@ include_once "./includes/session_check.php"
 			</div>
 		</div>
 
-		<!-- <div class="customizer-links" id="setdata">
-			<ul class="sticky-sidebar">
-				<li class="sidebar-icons">
-					<a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Theme">
-						<i data-feather="settings" class="feather-five"></i>
-					</a>
-				</li>
-			</ul>
-		</div> -->
+
 
 	</div>
 	<!-- /Main Wrapper -->

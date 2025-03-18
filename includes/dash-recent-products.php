@@ -23,41 +23,41 @@
 												<td>1</td>
 												<td class="productimgname">
 													<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/stock-img-01.png" alt="product">
+														<img src="assets/img/products/dummy.png" alt="product">
 													</a>
-													<a href="product-list.php">Lenevo 3rd Generation</a>
+													<a href="product-list.php">White bread 400gms</a>
 												</td>
-												<td>$12500</td>
+												<td>KSH 12500</td>
 											</tr>
 											<tr>
 												<td>2</td>
 												<td class="productimgname">
-													<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/stock-img-06.png" alt="product">
+												<a href="product-list.php" class="product-img">
+														<img src="assets/img/products/dummy.png" alt="product">
 													</a>
-													<a href="product-list.php">Bold V3.2</a>
+													<a href="product-list.php">Brown Bread 400gms</a>
 												</td>
-												<td>$1600</td>
+												<td>KSH 1600</td>
 											</tr>
 											<tr>
 												<td>3</td>
 												<td class="productimgname">
-													<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/stock-img-02.png" alt="product">
+												<a href="product-list.php" class="product-img">
+														<img src="assets/img/products/dummy.png" alt="product">
 													</a>
-													<a href="product-list.php">Nike Jordan</a>
+													<a href="product-list.php">Dryfcons</a>
 												</td>
-												<td>$2000</td>
+												<td>KSH 2000</td>
 											</tr>
 											<tr>
 												<td>4</td>
 												<td class="productimgname">
-													<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/stock-img-03.png" alt="product">
+												<a href="product-list.php" class="product-img">
+														<img src="assets/img/products/dummy.png" alt="product">
 													</a>
-													<a href="product-list.php">Apple Series 5 Watch</a>
+													<a href="product-list.php">Kaimati</a>
 												</td>
-												<td>$800</td>
+												<td>KSH 800</td>
 											</tr>
 										</tbody>
 									</table>

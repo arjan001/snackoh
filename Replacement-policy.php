@@ -135,11 +135,11 @@ include_once "./includes/session_check.php";
 											<td>KSH <?= number_format($row['current_cost'], 2); ?></td>
 											<td>KSH <?= number_format($row['current_value'], 2); ?></td>
 											<td class="">
-												<a href="#" class="policy-link btn btn-added"
-													data-policy="<?= htmlspecialchars($row['policy_description']); ?>"
+												
+												<button type="button" class="policy-link btn btn-outline-success rounded btn-wave" data-policy="<?= htmlspecialchars($row['policy_description']); ?>"
 													data-years="<?= $row['policy_years']; ?>">
 													<?= htmlspecialchars($row['policy_years']) . " years"; ?>
-												</a>
+										</button>
 											</td>
 											<td><?= htmlspecialchars($row['replacement_date']); ?></td>
 											<td><?= htmlspecialchars($row['asset_condition']); ?></td>

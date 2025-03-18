@@ -53,7 +53,7 @@
 							</ul>
 						</li>
 						<li class="submenu-open">
-							<h6 class="submenu-hdr">PRODUCTION</h6>
+							<h6 class="submenu-hdr" data-bs-toggle="tooltip" data-bs-placement="right" title="request ingridient usage Stats if your Employees may need it ">PRODUCTION</h6>
 							<ul>
 								<li><a href="new_production.php"><i data-feather="package"></i><span> 📌 New Production Batch</span></a></li>
 
@@ -62,7 +62,7 @@
 								<li><a href="schedule_production.php
 								"><i data-feather="clipboard"></i><span>Production Schedule</span></a></li>
 
-								<li><a href="ingridient_usage.php"><i data-feather="clipboard"></i><span>📦 Ingredient Usage</span></a></li>
+								<!-- <li><a href="ingridient_usage.php"><i data-feather="clipboard"></i><span>📦 Ingredient Usage</span></a></li> -->
 
 								<li><a href="waste_manage.php"><i data-feather="clipboard"></i><span>🗑️ Waste Management</span></a></li>
 								<li><a href="production_reports.php"><i data-feather="clipboard"></i><span>📊 Production Reports</span></a></li>
@@ -86,7 +86,7 @@
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Purchases</h6>
 							<ul>
-								<!-- <li><a href="purchase-list.php"><i data-feather="shopping-bag"></i><span>Purchases</span></a></li> -->
+								<li><a href="purchase-list.php"><i data-feather="shopping-bag"></i><span>Purchases</span></a></li>
 								<li><a href="purchase-order-report.php"><i data-feather="file-minus"></i><span>Purchase Order</span></a></li>
 								<li><a href="purchase-returns.php"><i data-feather="refresh-cw"></i><span>Purchase Return</span></a></li>
 							</ul>
@@ -108,7 +108,7 @@
 							<h6 class="submenu-hdr">ALL APPROVALS</h6>
 							<ul>
 								<li class="submenu">
-									<a href="javascript:void(0);"><i data-feather="file-text"></i><span>Approvals</span><span class="menu-arrow"></span></a>
+									<a href="javascript:void(0);" ><i data-feather="file-text"></i><span>Approvals</span><span class="menu-arrow" data-bs-placement="right" title="When we have an Approval this menu will be active  and have a notification icon  "></span></a>
 									<ul>
 										<!-- <li><a href="expense-list.php">Approvals</a></li>
 										<li><a href="expense-category.php">Expense Category</a></li> -->
@@ -172,19 +172,19 @@
 						</li>
 						<li class="submenu-open">
 							<h6 class="submenu-hdr"  data-bs-toggle="tooltip" data-bs-placement="right" title="Reports will auto generate when system is in use">Reports </h6>
-							<!-- <ul>
-								<li><a href="sales-report.html"><i data-feather="bar-chart-2"></i><span>Sales Report</span></a></li>
-								<li><a href="purchase-report.html"><i data-feather="pie-chart"></i><span>Purchase report</span></a></li>
-								<li><a href="inventory-report.html"><i data-feather="inbox"></i><span>Inventory Report</span></a></li>
-								<li><a href="invoice-report.html"><i data-feather="file"></i><span>Invoice Report</span></a></li>
-								<li><a href="supplier-report.html"><i data-feather="user-check"></i><span>Supplier Report</span></a></li>
-								<li><a href="customer-report.html"><i data-feather="user"></i><span>Customer Report</span></a></li>
-								<li><a href="expense-report.html"><i data-feather="file"></i><span>Expense Report</span></a></li>
-								<li><a href="income-report.html"><i data-feather="bar-chart"></i><span>Income Report</span></a></li>
-								<li><a href="tax-reports.html"><i data-feather="database"></i><span>Tax Report</span></a></li>
-								<li><a href="profit-and-loss.html"><i data-feather="pie-chart"></i><span>Profit & Loss</span></a></li>
+							<ul>
+								<li><a href="sales-report.php"><i data-feather="bar-chart-2"></i><span>Sales Report</span></a></li>
+								<li><a href="purchase-report.php"><i data-feather="pie-chart"></i><span>Purchase report</span></a></li>
+								<li><a href="inventory-report.php"><i data-feather="inbox"></i><span>Inventory Report</span></a></li>
+								<li><a href="invoice-report.php"><i data-feather="file"></i><span>Invoice Report</span></a></li>
+								<li><a href="supplier-report.php"><i data-feather="user-check"></i><span>Supplier Report</span></a></li>
+								<li><a href="customer-report.php"><i data-feather="user"></i><span>Customer Report</span></a></li>
+								<li><a href="expense-report.php"><i data-feather="file"></i><span>Expense Report</span></a></li>
+								<li><a href="income-report.php"><i data-feather="bar-chart"></i><span>Income Report</span></a></li>
+								<li><a href="tax-reports.php"><i data-feather="database"></i><span>Tax Report</span></a></li>
+								<li><a href="profit-and-loss.php"><i data-feather="pie-chart"></i><span>Profit & Loss</span></a></li>
 								<li><a href="balance-sheet.php"><i data-feather="book-open"></i><span>Balance Sheet</span></a></li>
-							</ul> -->
+							</ul>
 						</li>
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">User Management</h6>

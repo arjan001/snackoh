@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+include_once "./includes/session_check.php"
+
+?>	
 <?php include "includes/header.php";?>
 	<body>
 		
@@ -83,62 +87,18 @@
 								</div>
 							</div>
 							<!-- /Filter -->
-							<div class="card" id="filter_inputs">
-								<div class="card-body pb-0">
-									<div class="row">
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="user" class="info-img"></i>
-												<select class="select">
-													<option>Choose Name</option>
-													<option>Macbook pro</option>
-													<option>Orange</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="stop-circle" class="info-img"></i>
-												<select class="select">
-													<option>Choose Status</option>
-													<option>Computers</option>
-													<option>Fruits</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="calendar" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker" placeholder="From Date - To Date" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="file-text" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker" placeholder="Enter Reference" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-sm-6 col-12">
-											<div class="input-blocks">
-												<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+						
 							<!-- /Filter -->
 							
 
-							<?php
+                            <?php
 // Include database connection
-include_once './config/config.php'; // Change to your actual database config file
+include_once './config/config.php';
 
-// Fetch expenses from the database
-$query = "SELECT * FROM expenses"; // Modify according to your table name
+// Fetch expenses with category names
+$query = "SELECT expenses.*, expense_category.expense_name 
+          FROM expenses 
+          JOIN expense_category ON expenses.expense_category_id = expense_category.id";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -152,10 +112,9 @@ $result = mysqli_query($conn, $query);
                         <span class="checkmarks"></span>
                     </label>
                 </th>
-                <th>Expence Category</th>
+                <th>Expense Category</th>
                 <th>Reference</th>
                 <th>Date</th>
-                
                 <th>Amount</th>
                 <th>Description</th>
                 <th class="no-sort">Action</th>
@@ -170,17 +129,14 @@ $result = mysqli_query($conn, $query);
                             <span class="checkmarks"></span>
                         </label>
                     </td>
-                    <td><?= htmlspecialchars($row['expense_category_id']); ?></td>
+                    <td><?= htmlspecialchars($row['expense_name']); ?></td>
                     <td><?= htmlspecialchars($row['reference']); ?></td>
                     <td><?= htmlspecialchars(date('d M Y', strtotime($row['date']))); ?></td>
-                    
-                    <td>$<?= number_format($row['amount'], 2); ?></td>
+                    <td>KSH <?= number_format($row['amount'], 2); ?></td>
                     <td><?= htmlspecialchars($row['description']); ?></td>
                     <td class="action-table-data">
                         <div class="edit-delete-action">
-                            <a class="me-2 p-2 mb-0" href="javascript:void(0);">
-                                <i data-feather="eye" class="action-eye"></i>
-                            </a>
+                            
                             <a class="me-2 p-2 mb-0 edit-btn" 
                                data-bs-toggle="modal" 
                                data-bs-target="#edit-units"
@@ -188,7 +144,6 @@ $result = mysqli_query($conn, $query);
                                data-category="<?= htmlspecialchars($row['expense_category_id']); ?>"
                                data-reference="<?= htmlspecialchars($row['reference']); ?>"
                                data-date="<?= htmlspecialchars($row['date']); ?>"
-                              
                                data-amount="<?= htmlspecialchars($row['amount']); ?>"
                                data-description="<?= htmlspecialchars($row['description']); ?>">
                                 <i data-feather="edit" class="feather-edit"></i>
@@ -206,24 +161,7 @@ $result = mysqli_query($conn, $query);
     </table>
 </div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".edit-expense-btn").forEach(button => {
-        button.addEventListener("click", function() {
-            let expense = JSON.parse(this.getAttribute("data-expense")); // Assume data-expense contains JSON
 
-            document.getElementById("expense_id").value = expense.id;
-            document.querySelector("select[name='category_name']").value = expense.category_name;
-            document.querySelector("input[name='date']").value = expense.date;
-            document.querySelector("input[name='amount']").value = expense.amount;
-            document.querySelector("input[name='reference']").value = expense.reference;
-            document.querySelector("input[name='status']").value = expense.status;
-            document.querySelector("textarea[name='description']").value = expense.description;
-        });
-    });
-});
-
-</script>
 
 							
 						</div>
@@ -265,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
         <!-- Reference -->
         <div class="col-md-6 mb-3">
-            <label class="form-label">Reference</label>
+            <label class="form-label">Reference-(expense was used for?)</label>
             <input type="text" class="form-control" name="reference" required>
         </div>
     </div>
@@ -391,6 +329,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		 
 		<?php include "includes/footer.php";?>
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".edit-expense-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            let expense = JSON.parse(this.getAttribute("data-expense")); // Assume data-expense contains JSON
+
+            document.getElementById("expense_id").value = expense.id;
+            document.querySelector("select[name='category_name']").value = expense.category_name;
+            document.querySelector("input[name='date']").value = expense.date;
+            document.querySelector("input[name='amount']").value = expense.amount;
+            document.querySelector("input[name='reference']").value = expense.reference;
+            document.querySelector("input[name='status']").value = expense.status;
+            document.querySelector("textarea[name='description']").value = expense.description;
+        });
+    });
+});
+
+</script>
+
 
 	
     </body>

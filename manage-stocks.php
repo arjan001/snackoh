@@ -146,77 +146,26 @@ include "includes/header.php";?>
 								</div>
 							</div>
 							<!-- /Filter -->
-							<div class="card" id="filter_inputs">
-								<div class="card-body pb-0">
-									<div class="row">
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="archive" class="info-img"></i>
-												<select class="select">
-													<option>Choose Warehouse</option>
-													<option>Lobar Handy</option>
-													<option>Quaint Warehouse</option>
-													<option>Traditional Warehouse</option>
-													<option>Cool Warehouse</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="box" class="info-img"></i>
-												<select class="select">
-													<option>Choose Product</option>
-													<option>Nike Jordan</option>
-													<option>Apple Series 5 Watch</option>
-													<option>Amazon Echo Dot</option>
-													<option>Lobar Handy</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="calendar" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="datetimepicker" placeholder="Choose Date" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="user" class="info-img"></i>
-												<select class="select">
-													<option>Choose Person</option>
-													<option>Steven</option>
-													<option>Gravely</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-4 col-sm-6 col-12 ms-auto">
-											<div class="input-blocks">
-												<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+					
 							<!-- /Filter -->
 							<div class="table-responsive">
-							<?php
+              <?php
 include_once "./config/config.php";
 
-// SQL query to fetch all relevant data from the stock and stock_category tables
+// SQL query to fetch all relevant data including the supplier name
 $sql = "SELECT 
+            stock.id,
             stock.product_name, 
             stock.stock_quantity, 
             stock.stock_price, 
             stock.stock_expiry_date, 
             stock.stock_unit, 
             stock.reorder_level, 
-            stock.supplier_name, 
-            stock.stock_price,
+            suppliers.supplier_name, 
             stock_category.stock_category_name
         FROM stock
-        JOIN stock_category ON stock.stock_category_id = stock_category.id";
+        LEFT JOIN stock_category ON stock.stock_category_id = stock_category.id
+        LEFT JOIN suppliers ON stock.stock_supplier_id = suppliers.id"; // Fixed supplier join
 
 $result = $conn->query($sql);
 
@@ -243,15 +192,23 @@ if (!$result) {
             <th>Units</th>
             <th>Supplier</th>  
             <th>Supplier Price</th>  
-            <!-- <th class="no-sort">Action</th> -->
+            <th class="no-sort">Action</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        // Check if there are rows in the result
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                // Output each row of data
+                $productId = htmlspecialchars($row['id']);
+                $productName = htmlspecialchars($row['product_name']);
+                $categoryName = htmlspecialchars($row['stock_category_name']);
+                $stockQuantity = htmlspecialchars($row['stock_quantity']);
+                $stockUnit = htmlspecialchars($row['stock_unit']);
+                $expiryDate = htmlspecialchars($row['stock_expiry_date']);
+                $reorderLevel = htmlspecialchars($row['reorder_level']);
+                $supplierName = htmlspecialchars($row['supplier_name']);
+                $stockPrice = htmlspecialchars($row['stock_price']);
+
                 echo "<tr>";
                 echo "<td>
                         <label class='checkboxs'>
@@ -259,24 +216,45 @@ if (!$result) {
                             <span class='checkmarks'></span>
                         </label>
                       </td>";
-                echo "<td>{$row['product_name']}</td>";  // Product Name (Item Name)
-                echo "<td>{$row['stock_category_name']}</td>"; // Stock Category Name
-                echo "<td>{$row['stock_quantity']}</td>"; // Quantity
-                echo "<td>{$row['stock_expiry_date']}</td>"; // Expiry Date
-                echo "<td>{$row['reorder_level']}</td>"; // Reorder Level
-                echo "<td>{$row['stock_unit']}</td>"; // Units
-                echo "<td>{$row['supplier_name']}</td>"; // Supplier
-                echo "<td>{$row['stock_price']}</td>"; // Supplier Price
-                // echo "<td class='action-table-data'>
-                //         <div class='edit-delete-action'>
-                //             <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#edit-stock'>
-                //                 <i data-feather='edit' class='feather-edit'></i>
-                //             </a>
-                //             <a class='confirm-text p-2' href='javascript:void(0);'>
-                //                 <i data-feather='trash-2' class='feather-trash-2'></i>
-                //             </a>
-                //         </div>
-                //       </td>";
+                echo "<td>{$productName}</td>";  
+                echo "<td>{$categoryName}</td>"; 
+                echo "<td>{$stockQuantity}</td>"; 
+                echo "<td>{$expiryDate}</td>"; 
+                echo "<td>{$reorderLevel}</td>"; 
+                echo "<td>{$stockUnit}</td>"; 
+                echo "<td>{$supplierName}</td>"; 
+                echo "<td>{$stockPrice}</td>"; 
+
+                // Action Buttons (View, Edit, Delete)
+                echo "<td class='action-table-data'>
+                        <div class='edit-delete-action'>
+                            <!-- View Action -->
+                            <a class='me-2 edit-icon p-2' href='product-details.html'>
+                                <i data-feather='eye' class='feather-eye'></i>
+                            </a>
+
+                            <!-- Edit Action -->
+                            <a class='me-2 p-2 edit-btn' href='' data-bs-toggle='modal' data-bs-target='#edit-stock'
+                               data-id='{$productId}' 
+                               data-name='{$productName}'
+                               data-category='{$categoryName}'
+                               data-quantity='{$stockQuantity}'
+                               data-unit='{$stockUnit}'
+                               data-expiry='{$expiryDate}'
+                               data-reorder='{$reorderLevel}'
+                               data-supplier='{$supplierName}'
+                               data-price='{$stockPrice}'>
+                                <i data-feather='edit' class='feather-edit'></i>
+                            </a>
+
+                            <!-- Delete Action -->
+                            <a class='confirm-text p-2' href='delete_stock.php?id={$productId}' 
+                               onclick=\"return confirm('Are you sure you want to delete this product?');\">
+                                <i data-feather='trash-2' class='feather-trash-2'></i>
+                            </a>
+                        </div>
+                      </td>";
+
                 echo "</tr>";
             }
         } else {
@@ -285,6 +263,8 @@ if (!$result) {
         ?>
     </tbody>
 </table>
+
+
 
 							</div>
 						</div>
@@ -418,6 +398,7 @@ if (!$result) {
 
 
 		<!-- Edit Stock -->
+
 		<div class="modal fade" id="edit-stock">
   <div class="modal-dialog modal-dialog-centered stock-adjust-modal">
     <div class="modal-content">
@@ -425,123 +406,104 @@ if (!$result) {
         <div class="content">
           <div class="modal-header border-0 custom-modal-header">
             <div class="page-title">
-              <h4>Add Stock Inventory</h4>
+              <h4>Edit Stock Inventory</h4>
             </div>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body custom-modal-body">
-            <form action="add_stock.php" method="POST">
-              <div class="row">
-                <div class="col-lg-6 col-sm-12 col-12">
-                  <div class="mb-3 add-product">
-                    <label class="form-label">Item Name</label>
-                    <input type="text" class="form-control" name="stock_item_name" required>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-sm-12 col-12">
-                  <div class="input-blocks">
-                    <label>Category</label>
-                    <select class="select" name="stock_category_id" required>
-                      <?php
-                        // Fetch stock categories from the database
-                        include_once "./config/config.php";
-                        $sql = "SELECT * FROM stock_category WHERE stock_category_status = 'active'";
-                        $result = $conn->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['id'] . "'>" . $row['stock_category_name'] . "</option>";
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6 col-sm-12 col-12">
-                  <div class="mb-3 add-product">
-                    <label class="form-label">Quantity</label>
-                    <input type="number" class="form-control" name="stock_quantity" required>
-                  </div>
-                </div>
-				<div class="col-lg-6 col-sm-12 col-12">
-                  <div class="input-blocks">
-                    <label>Unit</label>
-                    <select class="select" name="stock_unit" required>
-                      <?php
-                        // Fetch units from the database
-                        $sql = "SELECT * FROM units WHERE status = 'active'";
-                        $result = $conn->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['id'] . "'>" . $row['unit_name'] . "</option>";
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-                
-              </div>
-              <div class="row">
-                <div class="col-lg-6 col-sm-12 col-12">
-                  <div class="mb-3 add-product">
-                    <label class="form-label">Expiry Date</label>
-                    <input type="date" class="form-control" name="stock_expiry_date" required>
-                  </div>
-                </div>
+          <form action="update_stock.php" method="POST">
+    <input type="hidden" name="stock_id" id="edit_stock_id">
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <label class="form-label">Item Name</label>
+            <input type="text" class="form-control" name="stock_item_name" id="edit_stock_item_name" required>
+        </div>
+        <div class="col-lg-6">
+            <label>Category</label>
+            <select class="select" name="stock_category_id" id="edit_stock_category_id" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+    </div>
 
-				<div class="col-lg-6 col-sm-12 col-12">
-                  <div class="mb-3 add-product">
-                    <label class="form-label">Supplier Price</label>
-                    <input type="number" class="form-control" name="stock_price" required>
-                  </div>
-                </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" name="stock_quantity" id="edit_stock_quantity" required>
+        </div>
+        <div class="col-lg-6">
+            <label>Unit</label>
+            <select class="select" name="stock_unit" id="edit_stock_unit" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+    </div>
 
-				
-                
-              </div>
-              <div class="row">
-                <div class="col-lg-6 col-sm-12 col-12">
-                  <div class="input-blocks">
-                    <label>Supplier</label>
-                    <select class="select" name="stock_supplier_id" required>
-                      <?php
-                        // Fetch suppliers from the database
-                        $sql = "SELECT * FROM suppliers WHERE status = 'active'";
-                        $result = $conn->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<option value='" . $row['id'] . "'>" . $row['supplier_name'] . "</option>";
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <label class="form-label">Expiry Date</label>
+            <input type="date" class="form-control" name="stock_expiry_date" id="edit_stock_expiry_date" required>
+        </div>
+        <div class="col-lg-6">
+            <label class="form-label">Supplier Price</label>
+            <input type="number" class="form-control" name="stock_price" id="edit_stock_price" required>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-lg-6">
+            <label>Supplier</label>
+            <select class="select" name="stock_supplier_id" id="edit_stock_supplier_id" required>
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="col-lg-6">
+            <label class="form-label">Reorder Level</label>
+            <input type="number" class="form-control" name="reorder_level" id="edit_reorder_level" required>
+        </div>
+    </div>
 
-				<div class="col-lg-6 col-sm-12 col-12">
-                  <div class="mb-3 add-product">
-                    <label class="form-label">Reorder Level</label>
-                    <input type="number" class="form-control" name="stock_price" required id="reorder_level">
-                  </div>
-                </div>
+    <div class="modal-footer-btn">
+        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-submit">Update</button>
+    </div>
+</form>
 
-              </div>
-              <div class="modal-footer-btn">
-                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-submit">Create</button>
-              </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-		
 		<!-- /Edit Stock -->
 
   
 
 		<?php include "includes/footer.php";?>
+    <script>
+// script to populate the edit modal
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".edit-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            document.getElementById("edit_stock_id").value = this.dataset.id;
+            document.getElementById("edit_stock_item_name").value = this.dataset.name;
+            document.getElementById("edit_stock_quantity").value = this.dataset.quantity;
+            document.getElementById("edit_stock_expiry_date").value = this.dataset.expiry;
+            document.getElementById("edit_reorder_level").value = this.dataset.reorder;
+            document.getElementById("edit_stock_price").value = this.dataset.price;
+
+            // Populate Select Fields
+            document.getElementById("edit_stock_category_id").value = this.dataset.category;
+            document.getElementById("edit_stock_unit").value = this.dataset.unit;
+            document.getElementById("edit_stock_supplier_id").value = this.dataset.supplier;
+        });
+    });
+});
+
+    </script>
 
 	
     </body>

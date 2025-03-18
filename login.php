@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $hashed_password)) {
                 // Store user data in session
                 $_SESSION['user_id'] = $id;
+                $_SESSION['employee_id'] = $id; // Store employee ID
                 $_SESSION['email'] = $email;
                 $_SESSION['first_name'] = $first_name;
                 $_SESSION['last_name'] = $last_name;
