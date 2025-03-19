@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include "includes/header.php";?>
+	
+<?php
+include_once "./includes/session_check.php" ;
+include "includes/header.php"
+
+;?>
     <body>
 		
 		<div id="global-loader" >
@@ -82,55 +87,7 @@
 								</div>
 							</div>
 							<!-- /Filter -->
-							<div class="card" id="filter_inputs">
-								<div class="card-body pb-0">
-									<div class="row">
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="box" class="info-img"></i>
-												<select class="select">
-													<option>Choose product</option>
-													<option>Bold V3.2</option>
-													<option>Apple Series 5 Watch</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="stop-circle" class="info-img"></i>
-												<select class="select">
-													<option>Choose Status</option>
-													<option>Sent</option>
-													<option>Ordered</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="user" class="info-img"></i>
-												<select class="select">
-													<option>Choose Custmer</option>
-													<option>walk-in-customer</option>
-													<option>John Smith</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-2 col-sm-6 col-12">
-											<div class="input-blocks">
-												<i data-feather="file-text" class="info-img"></i>
-												<div class="input-groupicon">
-													<input type="text" class="form-control" placeholder="Enter Reference" >
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-sm-6 col-12">
-											<div class="input-blocks">
-												<a class="btn btn-filters ms-auto"> <i data-feather="search" class="feather-search"></i> Search </a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 							<!-- /Filter -->
 							<div class="table-responsive">
 								<table class="table  datanew">
@@ -146,7 +103,7 @@
 											<th>Reference</th>
 											<th>Custmer Name</th>
 											<th>Status</th>
-											<th>Grand Total ($)</th>
+											<th>Grand Total (KSH)</th>
 											<th class="no-sort">Action</th>
 										</tr>
 									</thead>
@@ -169,7 +126,7 @@
 											<td>PT001</td>
 											<td>walk-in-customer</td>
 											<td><span class="badges status-badge">Sent</span></td>
-											<td>$550</td>
+											<td>KSH550</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action data-row">
 													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
@@ -184,39 +141,7 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/stock-img-06.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Bold V3.2</a>
-											</td>
-											<td>PT002</td>
-											<td>walk-in-customer</td>
-											<td><span class="badges status-badge">Sent</span></td>
-											<td>$430</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
+										
 										<tr>
 											<td>
 												<label class="checkboxs">
@@ -235,7 +160,7 @@
 											<td>PT003</td>
 											<td>walk-in-customer</td>
 											<td><span class="badges order-badge">Ordered</span></td>
-											<td>$260</td>
+											<td>KSH260</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action data-row">
 													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
@@ -268,7 +193,7 @@
 											<td>PT004</td>
 											<td>John Smith</td>
 											<td><span class="badges unstatus-badge">Pending</span></td>
-											<td>$470</td>
+											<td>KSH470</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action data-row">
 													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
@@ -283,270 +208,7 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/stock-img-04.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Amazon Echo Dot</a>
-											</td>
-											<td>PT005</td>
-											<td>Harley Stanley</td>
-											<td><span class="badges unstatus-badge">Pending</span></td>
-											<td>$380</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/stock-img-05.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Lobar Handy</a>
-											</td>
-											<td>PT006</td>
-											<td>Egbert Caldwell</td>
-											<td><span class="badges status-badge">Sent</span></td>
-											<td>$190</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/expire-product-01.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Red Premium Handy</a>
-											</td>
-											<td>PT007</td>
-											<td>walk-in-customer</td>
-											<td><span class="badges unstatus-badge">Pending</span></td>
-											<td>$540</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/expire-product-02.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Iphone 14 Pro</a>
-											</td>
-											<td>PT008</td>
-											<td>Benjamin</td>
-											<td><span class="badges order-badge">Ordered</span></td>
-											<td>$610</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/expire-product-03.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Black Slim 200</a>
-											</td>
-											<td>PT009</td>
-											<td>walk-in-customer</td>
-											<td><span class="badges unstatus-badge">Pending</span></td>
-											<td>$220</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me- p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/expire-product-04.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Woodcraft Sandal</a>
-											</td>
-											<td>PT010</td>
-											<td>Nydia Fitzgerald</td>
-											<td><span class="badges status-badge">Sent</span></td>
-											<td>$460</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/expire-product-01.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Lobar Handy</a>
-											</td>
-											<td>PT011</td>
-											<td>Thomas</td>
-											<td><span class="badges unstatus-badge">Pending</span></td>
-											<td>$250</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<div class="view-product me-2">
-													<a href="javascript:void(0);">
-														<img src="assets/img/products/expire-product-02.png" alt="product">
-													</a>
-												</div>
-												<a href="javascript:void(0);">Iphone 15 Pro</a>
-											</td>
-											<td>PT012</td>
-											<td>Benjamin</td>
-											<td><span class="badges status-badge">Sent</span></td>
-											<td>$550</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -560,171 +222,6 @@
 
 		<!--Add Quotation -->
 		<div class="modal fade" id="add-units">
-			<div class="modal-dialog purchase modal-dialog-centered stock-adjust-modal">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Add Quotation</h4>
-								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="quotationList.html">
-									<div class="row">
-										<div class="col-lg-4 col-md-6 col-sm-12">
-											<div class="input-blocks add-product">
-												<label>Customer Name</label>
-												<div class="row">
-													<div class="col-lg-10 col-sm-10 col-10">
-														<select class="select">
-															<option>Choose</option>
-															<option>Benjamin</option>
-															<option>Nydia Fitzgerald</option>
-														</select>
-													</div>
-													<div class="col-lg-2 col-sm-2 col-2 p-0">
-														<div class="add-icon tab">
-															<a class="btn btn-filter" data-bs-toggle="modal"
-																data-bs-target="#add-units"><img
-																	src="assets/img/icons/plus1.svg" alt="img">
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-6 col-sm-12">
-											<div class="input-blocks">
-												<label>Date</label>
-
-												<div class="input-groupicon calender-input">
-													<i data-feather="calendar" class="info-img"></i>
-													<input type="text" class="datetimepicker" placeholder="Choose">
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-6 col-sm-12">
-											<div class="input-blocks">
-												<label>Reference Number</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="input-blocks">
-												<label>Product Name</label>
-												<div class="input-groupicon select-code">
-													<input type="text" placeholder="Please type product code and select">
-													<div class="addonset">
-														<img src="assets/img/icons/qrcode-scan.svg" alt="img">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="modal-body-table">
-												<div class="table-responsive">
-													<table class="table  datanew">
-														<thead>
-															<tr>
-																<th>Product</th>
-																<th>Qty</th>
-																<th>Purchase Price($)</th>
-																<th>Discount($)</th>
-																<th>Tax(%)</th>
-																<th>Tax Amount($)</th>
-																<th>Unit Cost($)</th>
-																<th>Total Cost(%)</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr style="background: #ffffff;">
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-																<td class="p-5">
-					
-																</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-
-										</div>
-										<div class="row">
-											<div class="col-lg-3 col-md-6 col-sm-12">
-												<div class="input-blocks mb-3">
-													<label>Order Tax</label>
-													<input type="text" value="0">
-												</div>
-											</div>
-											<div class="col-lg-3 col-md-6 col-sm-12">
-												<div class="input-blocks mb-3">
-													<label>Discount</label>
-													<input type="text" value="0">
-												</div>
-											</div>
-											<div class="col-lg-3 col-md-6 col-sm-12">
-												<div class="input-blocks mb-3">
-													<label>Shipping</label>
-													<input type="text" value="0">
-												</div>
-											</div>
-											<div class="col-lg-3 col-md-6 col-sm-12">
-												<div class="input-blocks mb-3">
-													<label>Status</label>
-													<select class="select">
-														<option>Choose</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="input-blocks summer-description-box">
-											<label>Description</label>
-											<div id="summernote"></div>
-										</div>
-									</div>
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Submit</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Add Quotation -->
-
-		<!-- edit popup -->
-		<div class="modal fade" id="edit-units">
 			<div class="modal-dialog edit-sales-modal">
 				<div class="modal-content">
 					<div class="page-wrapper p-0 m-0">
@@ -794,11 +291,11 @@
 													<tr>
 														<th>Product</th>
 														<th>Qty</th>
-														<th>Purchase Price($)</th>
-														<th>Discount($)</th>
+														<th>Purchase Price(KSH)</th>
+														<th>Discount(KSH)</th>
 														<th>Tax(%)</th>
-														<th>Tax Amount($)</th>
-														<th>Unit Cost($)</th>
+														<th>Tax Amount(KSH)</th>
+														<th>Unit Cost(KSH)</th>
 														<th>Total Cost(%)</th>
 													</tr>
 												</thead>
@@ -888,19 +385,19 @@
 													<ul>
 														<li>
 															<h4>Order Tax</h4>
-															<h5>$ 0.00</h5>
+															<h5>KSH 0.00</h5>
 														</li>
 														<li>
 															<h4>Discount</h4>
-															<h5>$ 0.00</h5>
+															<h5>KSH 0.00</h5>
 														</li>
 														<li>
 															<h4>Shipping</h4>
-															<h5>$ 0.00</h5>
+															<h5>KSH 0.00</h5>
 														</li>
 														<li>
 															<h4>Grand Total</h4>
-															<h5>$5200.00</h5>
+															<h5>KSH5200.00</h5>
 														</li>
 													</ul>
 												</div>
@@ -962,42 +459,11 @@
 				</div>
 			</div>
 		</div>
-		<!-- /edit popup -->
+		<!-- /Add Quotation -->
+
+
   
-		 
-		<!-- jQuery -->
-        <script src="assets/js/jquery-3.7.1.min.js"></script>
-
-        <!-- Feather Icon JS -->
-		<script src="assets/js/feather.min.js"></script>
-
-		<!-- Slimscroll JS -->
-		<script src="assets/js/jquery.slimscroll.min.js"></script>
-
-		<!-- Datatable JS -->
-		<script src="assets/js/jquery.dataTables.min.js"></script>
-		<script src="assets/js/dataTables.bootstrap5.min.js"></script>
-
-		<!-- Datetimepicker JS -->
-		<script src="assets/js/moment.min.js"></script>
-		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+		<?php include "includes/footer.php";?>
 		
-		<!-- Bootstrap Core JS -->
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-		<!-- Summernote JS -->
-	    <script src="assets/plugins/summernote/summernote-bs4.min.js"></script>
-
-		<!-- Select2 JS -->
-		<script src="assets/plugins/select2/js/select2.min.js"></script>
-
-		<!-- Sweetalert 2 -->
-		<script src="assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
-		<script src="assets/plugins/sweetalert/sweetalerts.min.js"></script>
-
-		<!-- Custom JS --><script src="assets/js/theme-script.js"></script>	
-		<script src="assets/js/script.js"></script>
-
-	
     </body>
 </html>

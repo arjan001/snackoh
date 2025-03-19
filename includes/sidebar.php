@@ -65,7 +65,8 @@
 								<!-- <li><a href="ingridient_usage.php"><i data-feather="clipboard"></i><span>📦 Ingredient Usage</span></a></li> -->
 
 								<li><a href="waste_manage.php"><i data-feather="clipboard"></i><span>🗑️ Waste Management</span></a></li>
-								<li><a href="production_reports.php"><i data-feather="clipboard"></i><span>📊 Production Reports</span></a></li>
+								<li><a href="#"  data-bs-toggle="tooltip" data-bs-placement="right" title="production reports will be dynamic and populate here once the system is being used.."></i><span>📊 Production Reports</span></a></li>
+								<!-- production_reports.php -->
 
 								<!-- <li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li> -->
 							</ul>

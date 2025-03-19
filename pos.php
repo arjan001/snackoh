@@ -76,7 +76,7 @@
 				<div class="row align-items-start pos-wrapper">
 					<div class="col-md-12 col-lg-8">
 						<div class="pos-categories tabs_wrapper">
-							
+
 
 
 							<div class="pos-products">
@@ -183,7 +183,7 @@
 													data-feather="plus-circle" class="feather-14"></i></a>
 										</div>
 										<div class="d-flex align-items-center action">
-											
+
 											<a class="btn-icon delete-icon confirm-text" href="javascript:void(0);">
 												<i data-feather="trash-2" class="feather-14"></i>
 											</a>
@@ -722,7 +722,7 @@
 
 
 	<!-- Recent Transactions -->
-<div class="modal fade pos-modal" id="recents" tabindex="-1" aria-hidden="true">
+	<div class="modal fade pos-modal" id="recents" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header p-4">

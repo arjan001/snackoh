@@ -165,20 +165,33 @@ include "includes/header.php";?>
             <th class="no-sort">Action</th>
         </tr>
     </thead>
-    <tbody>
+	<?php
+$query = "SELECT * FROM production_wastage ORDER BY created_at DESC";
+$result = mysqli_query($conn, $query);
+?>
+
+<tbody>
+    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
         <tr>
-            <td>BATCH-1001</td>
-            <td>Whole Wheat Bread</td>
-            <td>Spoilage</td>
-            <td>5 kg</td>
-            <td>Storage Issue</td>
+            <td><?= htmlspecialchars($row['batch_id']); ?></td>
+            <td><?= htmlspecialchars($row['product_name']); ?></td>
+            <td><?= htmlspecialchars($row['wastage_type']); ?></td>
+            <td><?= htmlspecialchars($row['quantity_wasted']) . ' kg'; ?></td>
+            <td><?= htmlspecialchars($row['reason']); ?></td>
             <td>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewWastageReportModal">
-                    View Report
-                </button>
-            </td>
+                        <button class='btn btn-primary viewReportBtn' 
+                            data-batch='{$row['batch_id']}'
+                            data-product='{$row['product_name']}'
+                            data-date='{$row['production_date']}'
+                            data-type='{$row['wastage_type']}'
+                            data-quantity='{$row['quantity_wasted']}'>
+                            View Report
+                        </button>
+                    </td>
         </tr>
-    </tbody>
+    <?php endwhile; ?>
+</tbody>
+
 </table>
 
 
@@ -194,7 +207,7 @@ include "includes/header.php";?>
 		<!-- /Main Wrapper -->
 
 <!-- Waste Reporting Modal -->
- <div class="modal fade" id="reportWasteModal" tabindex="-1" aria-labelledby="reportWasteModalLabel" aria-hidden="true">
+<div class="modal fade" id="reportWasteModal" tabindex="-1" aria-labelledby="reportWasteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -202,28 +215,36 @@ include "includes/header.php";?>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="reportWasteForm">
+                <form id="reportWasteForm" method="POST" action="process_wastage.php">
                     <div class="mb-3">
                         <label for="wasteBatchId" class="form-label">Batch ID</label>
-                        <select class="form-control" id="wasteBatchId">
-                            <option value="BATCH-1001">BATCH-1001</option>
-                            <option value="BATCH-1002">BATCH-1002</option>
+                        <select class="form-control" id="wasteBatchId" name="batch_id" required>
+                            <option value="">Select Batch</option>
+                            <?php
+                            include_once "./config/config.php";
+                            $query = "SELECT batch_id FROM new_batch_production ORDER BY batch_id DESC";
+                            $result = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='".$row['batch_id']."'>".$row['batch_id']."</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="wasteType" class="form-label">Wastage Type</label>
-                        <select class="form-control" id="wasteType">
+                        <select class="form-control" id="wasteType" name="wastage_type" required>
+                            <option value="">Select Wastage Type</option>
                             <option value="Spoilage">Spoilage</option>
                             <option value="Overproduction">Overproduction</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="wasteQuantity" class="form-label">Quantity Wasted</label>
-                        <input type="number" class="form-control" id="wasteQuantity" placeholder="Enter quantity">
+                        <input type="number" class="form-control" id="wasteQuantity" name="quantity_wasted" placeholder="Enter quantity" required>
                     </div>
                     <div class="mb-3">
                         <label for="wasteReason" class="form-label">Reason</label>
-                        <textarea class="form-control" id="wasteReason" rows="3" placeholder="Describe the reason"></textarea>
+                        <textarea class="form-control" id="wasteReason" name="reason" rows="3" placeholder="Describe the reason" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -236,8 +257,9 @@ include "includes/header.php";?>
 </div>
 <!-- Waste Reporting Modal -->
 
+
 <!-- Wastage Report Modal -->
- <div class="modal fade" id="viewWastageReportModal" tabindex="-1" aria-labelledby="viewWastageReportModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="viewWastageReportModal" tabindex="-1" aria-labelledby="viewWastageReportModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -247,20 +269,55 @@ include "includes/header.php";?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Batch ID:</strong> <span id="wastageBatchId">BATCH-1001</span></p>
-                        <p><strong>Product Name:</strong> <span id="wastageProductName">Whole Wheat Bread</span></p>
-                        <p><strong>Production Date:</strong> <span id="wastageProductionDate">2025-03-15</span></p>
+                        <p><strong>Batch ID:</strong> <span id="wastageBatchId"></span></p>
+                        
+                        <p><strong>Production Date:</strong> <span id="wastageProductionDate"></span></p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Wastage Type:</strong> <span id="wastageType">Spoilage</span></p>
-                        <p><strong>Quantity Wasted:</strong> <span id="wastageQuantity">20 kg</span></p>
-                       
+                        <p><strong>Wastage Type:</strong> <span id="wastageType"></span></p>
+                        <p><strong>Quantity Wasted:</strong> <span id="wastageQuantity"></span> kg</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
 
 
 
   
 
 		<?php include "includes/footer.php";?>
+		<script>
+    document.getElementById("reportWasteForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+
+        fetch("insert_wastage.php", {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data === "success") {
+                alert("Wastage reported successfully!");
+                location.reload(); // Reload page to show new data
+            } else {
+                alert("Error: " + data);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+
+	
+
+
+
+
+</script>
+
 
 	
     </body>

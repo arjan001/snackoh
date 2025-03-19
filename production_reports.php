@@ -27,8 +27,8 @@ include "includes/header.php";?>
 					<div class="page-header">
 						<div class="add-item d-flex">
 							<div class="page-title">
-								<h4>WASTE MANAGEMENT</h4>
-								<h6>Manage your Batch Productions Waste</h6>
+								<h4>PRODUCTION REPORTS</h4>
+								<h6>Manage your Batch Productions Reports</h6>
 							</div>							
 						</div>
 						<ul class="table-top-head">
@@ -71,7 +71,7 @@ include "includes/header.php";?>
 										</a>
 										<div class="layout-hide-box">
 											<a href="javascript:void(0);" class="me-3 layout-box"><i data-feather="layout" class="feather-search feather-20"></i></a>
-											<div class="layout-drop-item card">
+											<!-- <div class="layout-drop-item card">
 												<div class="drop-item-head">
 													<h5>Want to manage datatable?</h5>
 													<p>Please drag and drop your column to reorder your table and enable see option as you want.</p>
@@ -134,7 +134,7 @@ include "includes/header.php";?>
 														</div>
 													</li>
 												</ul>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>
