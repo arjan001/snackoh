@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php include_once "./includes/session_check.php"; ?>
 <?php include "includes/header.php";?>
     <body>
 		
@@ -122,11 +123,14 @@
 													<span class="checkmarks"></span>
 												</label>
 											</th>
-											<th>Debtor Name</th>
-											<th>code</th>
+											<th>customer Name</th>
+											<th>Transaction ID</th>
+											<th>Paid Amount</th>
+											<th>balance</th>
+											<th>sale date</th>
 											<th>email</th>
 											<th>Phone</th>
-											<th>Country</th>
+											<!-- <th>physical address</th> -->
 											<th class="no-sort">Action</th>
 										</tr>
 									</thead>
@@ -138,462 +142,26 @@
 													<span class="checkmarks"></span>
 												</label>
 											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-01.png" alt="product">
+											<td>debtor edwin</td>
+											<td>SNTID2403867D9D</td>
+											<td>KSH 0.00</td>
+											<td>KSH 2,500.00</td>
+											<td>2025-03-24 17:02:42</td>
+											<td>edwin@email.com</td>
+											<td>0798325432</td>
+											<!-- <td>selfridges, wangige</td> -->
+											<td class="action-table-data">
+												<div class="edit-delete-action">
+													
+													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-credit-sale">
+														<i data-feather="edit" class="feather-edit"></i>
 													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Apex Computers</a>
-													</div>
 													
 												</div>
 											</td>
-											<td>201</td>
-											<td>apexcomputers@example.com</td>
-											<td>+12163547758 </td>
-											<td>Germany</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
 										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-02.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Beats Headphones</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>202</td>
-											<td>beatsheadphones@example.com</td>
-											<td>+16372895190 </td>
-											<td>Mexico</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-03.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Dazzle Shoes</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>203</td>
-											<td>dazzleshoes@example.com</td>
-											<td>+17589201739</td>
-											<td>France</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-04.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Best Accessories</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>204</td>
-											<td>bestaccessories@example.com</td>
-											<td>+18934092467</td>
-											<td>Italy</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-05.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">A-Z Store</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>205</td>
-											<td>atozstore@example.com</td>
-											<td>+12568749035</td>
-											<td>Belgium</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-06.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Hatimi Hardwares</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>206</td>
-											<td>hatimihardwares@example.com</td>
-											<td>+19054674627</td>
-											<td>Austria</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-07.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Aesthetic Bags</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>207</td>
-											<td>aestheticbags@example.com</td>
-											<td>+18943670365</td>
-											<td>India</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-08.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Alpha Mobiles</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>208</td>
-											<td>alphamobiles@example.com</td>
-											<td>+16473894103</td>
-											<td>Greece</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-09.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Sigma Chairs</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>209</td>
-											<td>sigmachairs@example.com</td>
-											<td>+17590274536</td>
-											<td>Japan</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-10.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Zenith Bags</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>210</td>
-											<td>zenithbags@example.com</td>
-											<td>+12564098473</td>
-											<td>China</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-07.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Aesthetic Bags</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>211</td>
-											<td>aestheticbags@example.com</td>
-											<td>+18943670365</td>
-											<td>India</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td class="productimgname">
-												<a href="javascript:void(0);" class="product-img supplier-img">
-													<img src="assets/img/supplier/supplier-05.png" alt="product">
-												</a>
-												<a href="javascript:void(0);" class="ms-2">A-Z Store</a>
-											</td>
-											<td>212</td>
-											<td>atozstore@example.com</td>
-											<td>+12568749035 </td>
-											<td>Angola</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<label class="checkboxs">
-													<input type="checkbox">
-													<span class="checkmarks"></span>
-												</label>
-											</td>
-											<td>
-												<div class="productimgname">
-													<a href="javascript:void(0);" class="product-img supplier-img">
-														<img src="assets/img/supplier/supplier-03.png" alt="product">
-													</a>
-													<div>
-														<a href="javascript:void(0);" class="ms-2">Dazzle Shoes</a>
-													</div>
-													
-												</div>
-											</td>
-											<td>213</td>
-											<td>dazzleshoes@example.com</td>
-											<td>+17589201739</td>
-											<td>Albania</td>
-											<td class="action-table-data">
-												<div class="edit-delete-action">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
-														<i data-feather="edit" class="feather-edit"></i>
-													</a>
-													<a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="trash-2" class="feather-trash-2"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
+										
+										
 									</tbody>
 								</table>
 							</div>
@@ -605,207 +173,96 @@
         </div>
 		<!-- /Main Wrapper -->
 
-		<!-- Add Supplier -->
-			<div class="modal fade" id="add-units">
-				<div class="modal-dialog modal-dialog-centered custom-modal-two">
-					<div class="modal-content">
-						<div class="page-wrapper-new p-0">
-							<div class="content">
-								<div class="modal-header border-0 custom-modal-header">
-									<div class="page-title">
-										<h4>Add Supplier</h4>
-									</div>
-									<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body custom-modal-body">
-									<form action="suppliers.html">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="new-employee-field">
-													<span>Avatar</span>
-													<div class="profile-pic-upload mb-2">
-														<div class="profile-pic">
-															<span><i data-feather="plus-circle" class="plus-down-add"></i> Profile Photo</span>
-														</div>
-														<div class="input-blocks mb-0">
-															<div class="image-upload mb-0">
-																<input type="file">
-																<div class="image-uploads">
-																	<h4>Change Image</h4>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="input-blocks">
-													<label>Supplier Name</label>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="input-blocks">
-													<label>Email</label>
-													<input type="email" class="form-control">
-												</div>
-											</div>
-											<div class="col-lg-4">
-												<div class="input-blocks">
-													<label>Phone</label>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-											<div class="col-lg-12">
-												<div class="input-blocks">
-													<label>Address</label>
-													<input type="text" class="form-control">
-												</div>
-											</div>
-											<div class="col-lg-6 col-sm-10 col-10">
-												<div class="input-blocks">
-													<label>City</label>
-													<select class="select">
-														<option>Choose</option>
-														<option>Varrel</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-6 col-sm-10 col-10">
-												<div class="input-blocks">
-													<label>Country</label>
-													<select class="select">
-														<option>Choose</option>
-														<option>Germany</option>
-														<option>Mexico</option>
-													</select>
-												</div>
-											</div>
-											
-											<div class="col-md-12">
-												<div class="mb-0 input-blocks">
-													<label class="form-label">Descriptions</label>
-													<textarea class="form-control mb-1"></textarea>
-													<p>Maximum 600 Characters</p>
-												</div>	
-											</div>
-										</div>
-										
-										<div class="modal-footer-btn">
-											<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-											<button type="submit" class="btn btn-submit">Submit</button>
-										</div>
-									</form>
-								</div>
+				<!-- Edit Category -->
+				<div class="modal fade" id="edit-credit-sale">
+		<div class="modal-dialog modal-dialog-centered custom-modal-two">
+			<div class="modal-content">
+				<div class="page-wrapper-new p-0">
+					<div class="content">
+						<div class="modal-header border-0 custom-modal-header">
+							<div class="page-title">
+								<h4>UPDATE CREDIT SALE</h4>
 							</div>
+							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Add Supplier -->
+						<div class="modal-body custom-modal-body">
+							<form action="insert-unsold.php" method="POST">
 
-		<!-- Edit Supplier -->
-		<div class="modal fade" id="edit-units">
-			<div class="modal-dialog modal-dialog-centered custom-modal-two">
-				<div class="modal-content">
-					<div class="page-wrapper-new p-0">
-						<div class="content">
-							<div class="modal-header border-0 custom-modal-header">
-								<div class="page-title">
-									<h4>Edit Supplier</h4>
+								<div class="row">
+
+									<div class="col-lg-6 col-sm-6 col-12">
+
+										<div class="mb-3 add-product">
+											<label class="form-label">Customer Name</label>
+											<input type="text" class="form-control" name="credit_customer_name" value="debtor edwin" readonly>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-6 col-12">
+
+										<div class="mb-3 add-product">
+											<label class="form-label">Transaction ID</label>
+											<input type="text" class="form-control" name="ttransaction_id"value="SNTID2403867D9D" readonly>
+										</div>
+									</div>
+
 								</div>
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body custom-modal-body">
-								<form action="suppliers.html">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="new-employee-field">
-												<span>Avatar</span>
-												<div class="profile-pic-upload edit-pic">
-													<div class="profile-pic">
-														<span><img src="assets/img/supplier/edit-supplier.jpg" alt=""></span>
-														<div class="close-img">
-															<i data-feather="x" class="info-img"></i>
-														</div>
-													</div>
-													<div class="input-blocks mb-0">
-														<div class="image-upload mb-0">
-															<input type="file">
-															<div class="image-uploads">
-																<h4>Change Image</h4>
-															</div>
-														</div>
-													</div>
-												</div>
+
+								<div class="row">
+								<div class="col-lg-6 col-sm-6 col-12">
+										<div class="input-blocks">
+											<label>debt paid on</label>
+
+											<div class="input-groupicon calender-input">
+												
+												<input type="datetime-local" class="form-control" id="productionDateTime" name="debt_pay_date" value="datetime-local">
 											</div>
 										</div>
-										<div class="col-lg-4">
-											<div class="input-blocks">
-												<label>Supplier Name</label>
-												<input type="text" placeholder="Apex Computers">
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="input-blocks">
-												<label>Email</label>
-												<input type="email" placeholder="apexcomputers@example.com">
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div class="input-blocks">
-												<label>Phone</label>
-												<input type="text" placeholder="+12163547758 ">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="input-blocks">
-												<label>Address</label>
-												<input type="text" placeholder="Budapester Strasse 2027259 ">
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-10 col-10">
-											<div class="input-blocks">
-												<label>City</label>
-												<select class="select">
-													<option>Varrel</option>
-												</select>
-											</div>
-										</div>
-										<div class="col-lg-6 col-sm-10 col-10">
-											<div class="input-blocks">
-												<label>Country</label>
-												<select class="select">
-													<option>Germany</option>
-													<option>France</option>
-													<option>Mexico</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="mb-0 input-blocks">
-											<label class="form-label">Descriptions</label>
-											<textarea class="form-control mb-1"></textarea>
-											<p>Maximum 600 Characters</p>
-										</div>	
 									</div>
+
+									<div class="col-lg-6 col-sm-6 col-12">
+
+										<div class="mb-3 add-product">
+											<label class="form-label">Due Amount</label>
+											<input type="text" class="form-control" name="due_amount" value="KSH 2500" readonly>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="row">
+
+								<div class="col-lg-12 col-sm-6 col-12">
+
+										<div class="mb-3 add-product">
+											<label class="form-label">Paid Amount</label>
+											<input type="number" class="form-control" name="debt_paid_amount" value="">
+										</div>
+									</div>
+
 									
-									<div class="modal-footer-btn">
-										<button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-										<button type="submit" class="btn btn-submit">Submit</button>
-									</div>
-								</form>
-							</div>
+
+
+								</div>
+
+
+
+								<div class="modal-footer-btn">
+									<button type="button" class="btn btn-cancel me-2"
+										data-bs-dismiss="modal">Cancel</button>
+									<button type="submit" class="btn btn-submit">Submit </button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- /Edit Supplier -->
+	</div>
+		<!-- /Edit Category -->
+
+
   
 
 		 

@@ -60,7 +60,7 @@ $role = $_SESSION['user_role'] ?? 'Guest';
 							<div class="card color-info bg-primary mb-4">
 								<img src="assets/img/icons/total-sales.svg" alt="img">
 								<h3 class="counters" data-count="10000.00">10,000+</h3>
-								<p>No of Total Sales</p>
+								<p>No of Total  Store Sales</p>
 								<i data-feather="rotate-ccw" class="feather-16" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
 							</div>
 						</div>
@@ -68,7 +68,7 @@ $role = $_SESSION['user_role'] ?? 'Guest';
 							<div class="card color-info bg-secondary mb-4">
 								<img src="assets/img/icons/purchased-earnings.svg" alt="img">
 								<h3 class="counters" data-count="800.00">800+</h3>
-								<p>No of Total Sales</p>
+								<p>No of  Online Total Sales</p>
 								<i data-feather="rotate-ccw" class="feather-16" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
 							</div>
 						</div>
@@ -94,7 +94,7 @@ $role = $_SESSION['user_role'] ?? 'Guest';
 														<div class="product-info">
 															
 															<div class="info">
-																<a href="product-list.html">Douhnut</a>
+																<a href="product-list.html">white Bread 400gms</a>
 																<p class="dull-text">KSH 4420</p>
 															</div>
 														</div>

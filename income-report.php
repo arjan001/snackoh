@@ -110,7 +110,7 @@ include_once "./includes/session_check.php"
 												</label>
 											</td>
 											<td>01 Jan 2024</td>
-											<td>Printing</td>
+											<td>STore Sales</td>
 											<td class="userimgname">
 												<a href="javascript:void(0);" class="product-img">
 													<img src="assets/img/users/user-01.jpg" alt="product">
@@ -130,7 +130,7 @@ include_once "./includes/session_check.php"
 												</label>
 											</td>
 											<td>14 Jan 2024</td>
-											<td>Utilities</td>
+											<td>Online Sales</td>
 											<td class="userimgname">
 												<a href="javascript:void(0);" class="product-img">
 													<img src="assets/img/users/user-02.jpg" alt="product">

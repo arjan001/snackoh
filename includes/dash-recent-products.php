@@ -1,7 +1,7 @@
 <div class="col-xl-5 col-sm-12 col-12 d-flex">
 						<div class="card flex-fill default-cover mb-4">
 							<div class="card-header d-flex justify-content-between align-items-center">
-								<h4 class="card-title mb-0">Recent Products</h4>
+								<h4 class="card-title mb-0">Recent Product Sales</h4>
 								<div class="view-all-link">
 									<a href="javascript:void(0);" class="view-all d-flex align-items-center">
 										

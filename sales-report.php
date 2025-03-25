@@ -94,9 +94,9 @@ include_once "./includes/session_check.php"
 												</label>
 											</th>
 											<th>Product Name</th>
-											<th>SKU</th>
+											
 											<th>Category</th>
-											<th>Brand</th>
+											<th>Batches Made</th>
 											<th>Sold Qty</th>
 											<th>Sold Amount</th>
 											<th>Instock Qty</th>
@@ -111,11 +111,11 @@ include_once "./includes/session_check.php"
 												</label>
 											</td>
 											<td>white bread 400gms</td>
-											<td>PT001</td>
-											<td>Computers</td>
-											<td>N/D</td>
+											
+											<td>Bread</td>
+											<td>60</td>
 											<td>20</td>
-											<td>$1000</td>
+											<td>ksh 5000</td>
 											<td>100</td>
 										</tr>
 									

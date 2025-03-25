@@ -94,17 +94,12 @@
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/store/store-01.png" alt="Store Logo" class="img-fluid"> Grocery Alpha
+								<img src="assets/img/store/store-01.png" alt="Store Logo" class="img-fluid"> Phhysical Store
 							</a>
 							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/store/store-02.png" alt="Store Logo" class="img-fluid"> Grocery Apex
+								<img src="assets/img/store/store-02.png" alt="Store Logo" class="img-fluid"> Online Shop
 							</a>
-							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/store/store-03.png" alt="Store Logo" class="img-fluid"> Grocery Bevy
-							</a>
-							<a href="javascript:void(0);" class="dropdown-item">
-								<img src="assets/img/store/store-04.png" alt="Store Logo" class="img-fluid"> Grocery Eden
-							</a>
+						
 						</div>
 					</li>
 					<!-- /Select Store -->

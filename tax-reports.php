@@ -121,8 +121,8 @@ include_once "./includes/session_check.php"
 																<span class="checkmarks"></span>
 															</label>
 														</td>
-														<td>Lavi</td>
-														<td>12 Jul 2023</td>
+														<td>Kabete Diaries</td>
+														<td>12 Jan 2025</td>
 														<td class="ref-number">#4237300</td>
 														<td>KSH 30,000</td>
 														<td class="payment-info">
@@ -138,8 +138,8 @@ include_once "./includes/session_check.php"
 																<span class="checkmarks"></span>
 															</label>
 														</td>
-														<td>Anthony</td>
-														<td>18 Aug 2023</td>
+														<td>wangige packers</td>
+														<td>18 Feb 2025</td>
 														<td class="ref-number">#5628954</td>
 														<td>KSH 45,000</td>
 														<td class="payment-info">
@@ -210,9 +210,9 @@ include_once "./includes/session_check.php"
 															<a href="javascript:void(0);" class="product-img">
 																<img src="assets/img/users/user-01.jpg" alt="product">
 															</a>
-															<a href="javascript:void(0);">Mitchum Daniel</a>
+															<a href="javascript:void(0);">edwin Daniel</a>
 														</td>
-														<td>12 Jul 2023</td>
+														<td>12 Jul 2024</td>
 														<td class="ref-number">INV4237300</td>
 														<td>KSH 30,000</td>
 														<td class="payment-info">
@@ -232,9 +232,9 @@ include_once "./includes/session_check.php"
 															<a href="javascript:void(0);" class="product-img">
 																<img src="assets/img/users/user-02.jpg" alt="product">
 															</a>
-															<a href="javascript:void(0);">Susan Lopez</a>
+															<a href="javascript:void(0);">mark mutua</a>
 														</td>
-														<td>04 Aug 2023</td>
+														<td>04 Aug 2024</td>
 														<td class="ref-number">INV5385083</td>
 														<td>KSH 27,000</td>
 														<td class="payment-info">
