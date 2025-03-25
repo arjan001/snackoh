@@ -49,7 +49,7 @@
 							</li>
 						</ul>
 						<div class="page-btn">
-							<!-- <a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-units"><i data-feather="plus-circle" class="me-2"></i>Add New Supplier</a> -->
+							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#notify"><i data-feather="plus-circle" class="me-2"></i>Add trigger</a>
 						</div>
 					</div>
 
@@ -157,6 +157,10 @@
 														<i data-feather="edit" class="feather-edit"></i>
 													</a>
 													
+													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#notify">
+													<i data-feather="bell"></i>
+													</a>
+													
 												</div>
 											</td>
 										</tr>
@@ -261,6 +265,83 @@
 		</div>
 	</div>
 		<!-- /Edit Category -->
+
+				<!-- notify creditor -->
+ <div class="modal fade" id="notify">
+    <div class="modal-dialog modal-dialog-centered custom-modal-two">
+        <div class="modal-content">
+            <div class="page-wrapper-new p-0">
+                <div class="content">
+                    <div class="modal-header border-0 custom-modal-header">
+                        <div class="page-title">
+                            <h4>Notify Debtor</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body custom-modal-body">
+                        <form action="insert-unsold.php" method="POST">
+                            <div class="row">
+							<div class="col-lg-6 col-sm-6 col-12">
+
+<div class="mb-3 add-product">
+	<label class="form-label">Customer Name</label>
+	<input type="text" class="form-control" name="credit_customer_name" value="debtor edwin" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-sm-6 col-12">
+
+<div class="mb-3 add-product">
+	<label class="form-label">Transaction ID</label>
+	<input type="text" class="form-control" name="ttransaction_id"value="SNTID2403867D9D" readonly>
+</div>
+</div>
+                            </div>
+
+                            <div class="row">
+							<div class="col-lg-6 col-sm-6 col-12">
+
+<div class="mb-3 add-product">
+	<label class="form-label">Due Amount</label>
+	<input type="text" class="form-control" name="due_amount" value="KSH 2500" readonly>
+</div>
+</div>
+<div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="mb-3 add-product">
+                                        <label class="form-label">Notify Method</label>
+                                        <select class="form-control select" name="resolution" required>
+                                            <option value="return to Inventory">sms</option>
+                                            <option value="Discard">whatsapp</option>
+                                            <option value="Donate">email</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+							<div class="col-lg-12">
+                                    <div class="input-blocks summer-description-box transfer mb-3">
+                                        <label>Notification Method</label>
+                                        <textarea class="form-control h-100" name="recipe_instructions" rows="3"
+                                            required >your transaction debt of ksh 2,500 is due 2 days from now</textarea>
+                                        <p class="mt-1">Maximum 60 Characters</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer-btn">
+                                <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+          <!-- notify creditor -->
 
 
   

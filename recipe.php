@@ -342,10 +342,10 @@ $result = $conn->query($sql);
                         <td>$created_at</td>
                         <td class='action-table-data'>
                             <div class='edit-delete-action'>
-                                <a class='me-2 edit-icon p-2' href='recipe-details.php?id=" . $row['id'] . "'>
+                                <a class='me-2 edit-icon p-2' href='#'>
                                     <i data-feather='eye' class='feather-eye'></i>
                                 </a>
-                                <a class='me-2 p-2' href='recipe-details.php?id=" . $row['id'] . "'>
+                                <a class='me-2 p-2' href='#'>
                                     <i data-feather='edit' class='feather-edit'></i>
                                 </a>
                                

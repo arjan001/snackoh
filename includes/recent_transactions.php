@@ -70,10 +70,10 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0101</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -86,10 +86,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0102</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -102,10 +102,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0103</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -118,10 +118,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0104</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -133,54 +133,7 @@
 													</div>
 												</td>
 											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0105</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0106</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0107</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
+										
 										</tbody>
 									</table>
 								</div>
@@ -226,10 +179,10 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0101</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -242,10 +195,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0102</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -258,10 +211,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0103</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -273,70 +226,8 @@
 													</div>
 												</td>
 											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0104</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0105</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0106</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0107</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
+											
+											
 										</tbody>
 									</table>
 								</div>
@@ -382,10 +273,10 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0101</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -397,91 +288,12 @@
 													</div>
 												</td>
 											</tr>
+											
 											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0102</td>
+												<td>19 Jan 2025</td>
+												<td>SNTID2403867D9D</td>
 												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0103</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0104</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0105</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0106</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
-												<td class="action-table-data">
-													<div class="edit-delete-action">
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="eye" class="feather-eye"></i></a>
-														<a class="me-2 p-2" href="javascript:void(0);"><i
-																data-feather="edit" class="feather-edit"></i></a>
-														<a class="p-2 confirm-text" href="javascript:void(0);"><i
-																data-feather="trash-2" class="feather-trash-2"></i></a>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>19 Jan 2023</td>
-												<td>INV/SL0107</td>
-												<td>Walk-in Customer</td>
-												<td>$1500.00</td>
+												<td>KSH 1500.00</td>
 												<td class="action-table-data">
 													<div class="edit-delete-action">
 														<a class="me-2 p-2" href="javascript:void(0);"><i
@@ -567,12 +379,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$900</td>
+														<td class="text">KSH 900</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">29-08-2023 13:39:11</td>
+														<td class="text">29-08-2025 13:39:11</td>
 													</tr>
 												</table>
 											</div>
@@ -609,12 +421,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$15000</td>
+														<td class="text">KSH 15000</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">30-08-2023 15:59:11</td>
+														<td class="text">30-08-2025 15:59:11</td>
 													</tr>
 												</table>
 											</div>
@@ -651,12 +463,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$2000</td>
+														<td class="text">KSH 2000</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">01-09-2023 13:15:00</td>
+														<td class="text">01-09-2025 13:15:00</td>
 													</tr>
 												</table>
 											</div>
@@ -707,12 +519,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$2500</td>
+														<td class="text">KSH 2500</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">10-09-2023 17:15:11</td>
+														<td class="text">10-09-2025 17:15:11</td>
 													</tr>
 												</table>
 											</div>
@@ -749,12 +561,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$1500</td>
+														<td class="text">KSH 1500</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">11-09-2023 14:50:11</td>
+														<td class="text">11-09-2025 14:50:11</td>
 													</tr>
 												</table>
 											</div>
@@ -791,12 +603,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$30000</td>
+														<td class="text">KSH 30000</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">12-09-2023 17:22:11</td>
+														<td class="text">12-09-2025 17:22:11</td>
 													</tr>
 												</table>
 											</div>
@@ -845,12 +657,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$5000</td>
+														<td class="text">KSH 5000</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">13-09-2023 19:39:11</td>
+														<td class="text">13-09-2025 19:39:11</td>
 													</tr>
 												</table>
 											</div>
@@ -887,12 +699,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$7000</td>
+														<td class="text">KSH 7000</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">15-09-2023 18:39:11</td>
+														<td class="text">15-09-2025 18:39:11</td>
 													</tr>
 												</table>
 											</div>
@@ -929,12 +741,12 @@
 													<tr>
 														<td>Total</td>
 														<td class="colon">:</td>
-														<td class="text">$7050</td>
+														<td class="text">KSH 7050</td>
 													</tr>
 													<tr>
 														<td>Date</td>
 														<td class="colon">:</td>
-														<td class="text">17-09-2023 19:39:11</td>
+														<td class="text">17-09-2025 19:39:11</td>
 													</tr>
 												</table>
 											</div>

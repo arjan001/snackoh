@@ -251,7 +251,7 @@
 							</div>
 							<div class="d-grid btn-block">
 								<a class="btn btn-secondary" href="javascript:void(0);">
-									Grand Total : KSH 64,024.5
+									Grand Total : KSH 00.00
 								</a>
 							</div>
 							<div class="btn-row d-sm-flex align-items-center justify-content-between">
@@ -561,6 +561,7 @@
 	<!-- /Hold -->
 
 		<!-- Products -->
+
 		<!-- <div class="modal fade modal-default pos-modal" id="products" aria-labelledby="products">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -643,6 +644,7 @@
 			</div>
 		</div>
 	</div> -->
+
 	<!-- /Products -->
 
 <!-- recent_transactions section -->

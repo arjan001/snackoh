@@ -297,7 +297,7 @@
         </div>
 		<!-- /Main Wrapper -->
 
-		<!-- Add Supplier -->
+		<!-- Add trigger -->
 		<div class="modal fade" id="add-units">
 				<div class="modal-dialog modal-dialog-centered custom-modal-two">
 					<div class="modal-content">
@@ -396,7 +396,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- /Add Supplier -->
+			<!-- /Add trigger -->
+
 				<!-- Edit Category -->
 				<div class="modal fade" id="edit-units">
 		<div class="modal-dialog modal-dialog-centered custom-modal-two">
@@ -485,6 +486,7 @@
 		</div>
 	</div>
 		<!-- /Edit Category -->
+		 
   
 
 		 
