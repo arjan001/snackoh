@@ -6,7 +6,7 @@
 								<span><img src="assets/img/icons/dash1.svg" alt="img"></span>
 							</div>
 							<div class="dash-widgetcontent">
-								<h5>KSH<span class="counters" data-count="307144.00">KSH307,144.00</span></h5>
+								<h5>KSH<span class="counters" data-count="307144.00">KSH 30,714.00</span></h5>
 								<h6>Total Purchase Due</h6>
 							</div>
 						</div>
@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
 include_once "./config/config.php";
 
 // Fetch total sales amount
-$sql = "SELECT SUM(paid_amount) AS total_sales FROM sales_list";
+$sql = "SELECT SUM(total_price) AS total_sales FROM orders";
 $result = $conn->query($sql);
 $total_sales = 0.00;
 

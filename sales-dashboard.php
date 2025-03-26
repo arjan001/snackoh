@@ -7,9 +7,9 @@ include_once "./includes/session_check.php"
 	<?php include 'includes/header.php';?>
 	
 	<body>
-		<div id="global-loader" >
+		<!-- <div id="global-loader" >
 			<div class="whirly-loader"> </div>
-		</div> 
+		</div>  -->
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 
@@ -57,17 +57,49 @@ $role = $_SESSION['user_role'] ?? 'Guest';
 							</div>
 						</div>
 						<div class="col-xl-3 col-sm-6 col-12">
+							<?php
+include_once "./config/config.php";
+
+// Fetch total sales amount
+$sql = "SELECT SUM(total_price) AS total_sales FROM orders";
+$result = $conn->query($sql);
+$total_sales = 0.00;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $total_sales = (float) ($row['total_sales'] ?? 0.00);
+}
+?>
 							<div class="card color-info bg-primary mb-4">
 								<img src="assets/img/icons/total-sales.svg" alt="img">
-								<h3 class="counters" data-count="10000.00">10,000+</h3>
+								<h3>KSH <span class="counters" data-count="<?php echo $total_sales; ?>">
+        <?php echo "KSH " . number_format($total_sales, 2); ?>
+    </span></h3>
 								<p>No of Total  Store Sales</p>
 								<i data-feather="rotate-ccw" class="feather-16" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
 							</div>
 						</div>
+
+
 						<div class="col-xl-3 col-sm-6 col-12">
+						<?php
+include_once "./config/config.php";
+
+// Fetch total sales amount
+$sql = "SELECT SUM(total_price) AS online_sales FROM orders WHERE chanel='online' ";
+$result = $conn->query($sql);
+$online_sales = 0.00;
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $total_sales = (float) ($row['online_sales'] ?? 0.00);
+}
+?>
 							<div class="card color-info bg-secondary mb-4">
 								<img src="assets/img/icons/purchased-earnings.svg" alt="img">
-								<h3 class="counters" data-count="800.00">800+</h3>
+								<h3>KSH <span class="counters" data-count="<?php echo $total_sales; ?>">
+        <?php echo "KSH " . number_format($online_sales, 2); ?>
+    </span></h3>
 								<p>No of  Online Total Sales</p>
 								<i data-feather="rotate-ccw" class="feather-16" data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"></i>
 							</div>
