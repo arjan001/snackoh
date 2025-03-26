@@ -189,6 +189,14 @@ $recipeResult = $conn->query($recipeQuery);
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-12">
+												<div class="mb-0 input-blocks">
+													<label class="form-label">Descriptions</label>
+													<textarea class="form-control mb-1"></textarea>
+													<p>Maximum 600 Characters</p>
+												</div>	
+											</div>
                                         <!-- Image preview -->
                                         <div class="phone-img" id="imagePreviewContainer" style="display: none;">
                                             <img id="previewImg" src="#" alt="image" class="img-fluid" style="object-fit: contain; width: 100%; height: auto;">

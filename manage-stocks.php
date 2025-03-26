@@ -165,6 +165,7 @@ $sql = "SELECT
             stock_category.stock_category_name
         FROM stock
         LEFT JOIN stock_category ON stock.stock_category_id = stock_category.id
+        
         LEFT JOIN suppliers ON stock.stock_supplier_id = suppliers.id"; // Fixed supplier join
 
 $result = $conn->query($sql);

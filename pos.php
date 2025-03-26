@@ -101,6 +101,7 @@
 
 												// Dummy image placeholder
 												$product_image = 'assets/img/products/dummy.png';
+												
 
 												echo "<div class='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
                             <div class='product-info default-cover card'>

@@ -10,6 +10,39 @@
 							</div>
 							<div class="card-body">
 								<div class="table-responsive dataview">
+								<?php
+// Include database connection
+require 'config/config.php';
+
+$query = "
+    SELECT 
+        o.id AS order_id,
+        o.transaction_id,
+        c.customer_name, 
+        o.created_at AS sale_date, 
+        o.total_price, 
+        o.total_price, 
+        o.payment_status, 
+        o.payment_type, 
+		oi.price,
+		oi.product_name,
+
+       
+       
+        CONCAT(e.first_name, ' ', e.last_name) AS biller,
+        GROUP_CONCAT(CONCAT(oi.product_name, ' (', oi.quantity, ' x ', oi.price, ')') SEPARATOR ', ') AS order_items
+    FROM orders o
+    LEFT JOIN customers c ON o.customer_id = c.id
+    LEFT JOIN employees e ON o.employee_id = e.id
+    LEFT JOIN order_items oi ON o.id = oi.order_id
+    GROUP BY o.id
+    ORDER BY o.created_at DESC
+	LIMIT 5
+";
+ // o.due_amount, 
+ 
+$result = $conn->query($query);
+?>
 									<table class="table dashboard-recent-products">
 										<thead>
 											<tr>
@@ -19,46 +52,20 @@
 											</tr>
 										</thead>
 										<tbody>
+										<?php while ($row = $result->fetch_assoc()) { ?>
+											
 											<tr>
-												<td>1</td>
+												<td>#</td>
 												<td class="productimgname">
 													<a href="product-list.php" class="product-img">
 														<img src="assets/img/products/dummy.png" alt="product">
 													</a>
-													<a href="product-list.php">White bread 400gms</a>
+													<a href="#"><?= htmlspecialchars($row['product_name']); ?></a>
 												</td>
-												<td>KSH 12500</td>
+												<td>KSH <?= htmlspecialchars($row['price']); ?></td>
 											</tr>
-											<tr>
-												<td>2</td>
-												<td class="productimgname">
-												<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/dummy.png" alt="product">
-													</a>
-													<a href="product-list.php">Brown Bread 400gms</a>
-												</td>
-												<td>KSH 1600</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td class="productimgname">
-												<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/dummy.png" alt="product">
-													</a>
-													<a href="product-list.php">Dryfcons</a>
-												</td>
-												<td>KSH 2000</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td class="productimgname">
-												<a href="product-list.php" class="product-img">
-														<img src="assets/img/products/dummy.png" alt="product">
-													</a>
-													<a href="product-list.php">Kaimati</a>
-												</td>
-												<td>KSH 800</td>
-											</tr>
+											<?php } ?>
+
 										</tbody>
 									</table>
 								</div>
