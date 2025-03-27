@@ -300,7 +300,14 @@
 							<form action="add_product_category.php" method="POST">
 								<div class="mb-3">
 									<label class="form-label">Payable Amount</label>
-									<input type="number" name="total_amount" readonly class="form-control">
+									<input type="number"  id="total_amount" name="total_amount" readonly class="form-control">
+<input type="hidden" id="customer_id" name="customer_id">
+<input type="hidden" id="employee_id" name="employee_id">
+<input type="hidden" id="total_price" name="total_price">
+<input type="hidden" id="cart" name="cart">
+<input type="hidden" id="transaction_id" name="transaction_id">
+<input type="hidden" id="payment_status" name="payment_status" value="completed">
+<input type="hidden" id="payment_method" name="payment_method" value="">
 								</div>
 
 								<div class="mb-3">

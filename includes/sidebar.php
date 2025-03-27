@@ -124,6 +124,7 @@
 								<li><a href="suppliers.php"><i data-feather="users"></i><span>Suppliers</span></a></li>
 								<li><a href="debtors.php"><i data-feather="users"></i><span>Debtors</span></a></li>
 								<li><a href="creditors.php"><i data-feather="users"></i><span>Creditors</span></a></li>
+								<li><a href="creditor-debtor-Payment-Trigger.php"><i data-feather="users"></i><span>PayMent Triggers</span></a></li>
 								
 								</li>
 							</ul>

@@ -49,7 +49,7 @@
 							</li>
 						</ul>
 						<div class="page-btn">
-							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#notify"><i data-feather="plus-circle" class="me-2"></i>Add trigger</a>
+							<a href="#" class="btn btn-added" data-bs-toggle="modal" data-bs-target="#trigger"><i data-feather="plus-circle" class="me-2"></i>Add trigger</a>
 						</div>
 					</div>
 
@@ -178,14 +178,14 @@
 		<!-- /Main Wrapper -->
 
 				<!-- Edit Category -->
-				<div class="modal fade" id="edit-credit-sale">
+				<div class="modal fade" id="trigger">
 		<div class="modal-dialog modal-dialog-centered custom-modal-two">
 			<div class="modal-content">
 				<div class="page-wrapper-new p-0">
 					<div class="content">
 						<div class="modal-header border-0 custom-modal-header">
 							<div class="page-title">
-								<h4>UPDATE CREDIT SALE</h4>
+								<h4>ADD DEBTOR TRIGGER</h4>
 							</div>
 							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>

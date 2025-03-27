@@ -104,6 +104,12 @@
 						</a>
 						<p>Sale 31</p>
 						<p>Thank You For Shopping With Us. Please Come Again</p>
+						<?php 
+    // Retrieve user data from session
+$full_name = $_SESSION['full_name'] ?? 'Guest User';
+$role = $_SESSION['user_role'] ?? 'Guest';
+?>
+						<p>You were served by <?= htmlspecialchars($full_name); ?></p>
 						<a href="javascript:void(0);" class="btn btn-primary">Print Receipt</a>
 					</div>
 				</div>

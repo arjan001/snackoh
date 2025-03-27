@@ -100,6 +100,7 @@ include "includes/header.php";?>
             <th>Batch ID</th>
             <th>Item Name</th>
             <th>Category</th>
+            <!-- <th>Recipe Used</th> -->
             <th>Quantity</th>
             <th>Production Date</th>
             <th>Estimated Time</th>
@@ -113,9 +114,10 @@ include "includes/header.php";?>
 
         // Fetch data with JOINs to get product name and category name
         $query = "
-            SELECT nb.batch_id, p.product_name, c.category_name, nb.quantity_produced, 
+            SELECT nb.batch_id, p.product_name, c.category_name, nb.recipe_id, nb.quantity_produced, 
                    nb.production_datetime, nb.estimated_completion, nb.status, nb.id
             FROM new_batch_production nb
+            JOIN recipes r ON nb.recipe_id = r.id
             JOIN products p ON nb.product_id = p.id
             JOIN product_category c ON nb.category_id = c.id
             ORDER BY nb.id DESC
@@ -134,6 +136,7 @@ include "includes/header.php";?>
             echo "<td>{$row['batch_id']}</td>";
             echo "<td>{$row['product_name']}</td>";
             echo "<td>{$row['category_name']}</td>";
+            // echo "<td>{$row['recipe_id']}</td>";
             echo "<td>{$row['quantity_produced']} Loaves</td>";
             echo "<td>{$row['production_datetime']}</td>";
             echo "<td>{$row['estimated_completion']}</td>";
@@ -153,6 +156,10 @@ include "includes/header.php";?>
                         <a class='confirm-text p-2 delete-btn' href='javascript:void(0);' data-id='{$row['id']}'>
                             <i data-feather='trash-2' class='feather-trash-2'></i>
                         </a>
+
+                        <a class='me-2 p-2' href='#' data-bs-toggle='modal' data-bs-target='#update_production'data-id='{$row['id']}'>
+                                    <i data-feather='edit' class='feather-edit'></i>
+                                </a>
                     </div>
                   </td>";
             echo "</tr>";
@@ -274,7 +281,104 @@ include "includes/header.php";?>
     </div>
 </div>
 <!-- End of New Production Batch Modal -->
+<div class="modal fade" id="update_production" tabindex="-1" aria-labelledby="newProductionBatchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newProductionBatchModalLabel">New Production Batch</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="newBatchForm" method="POST" action="insert_batch.php">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="batchId" class="form-label">Batch ID</label>
+                                <input type="text" class="form-control" id="batchId" name="batch_id" placeholder="Auto-generated" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="itemName" class="form-label">Item Name</label>
+                                <select class="form-control" id="itemName" name="product_id" required>
+                                    <option value="">Select Item</option>
+                                    <option value="Whole Wheat Bread">Whole Wheat Bread</option>
+                                    <option value="Croissant">Croissant</option>
+                                    <option value="Baguette">Baguette</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="category" name="category" placeholder="Auto-filled" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="recipeUsed" class="form-label">Recipe Used</label>
+                                <select class="form-control" id="recipeUsed" name="recipe_id" required>
+                                    <option value="">Select Recipe</option>
+                                    <?php
+                                    include_once "./config/config.php";
+                                    $query = "SELECT id, recipe_name FROM recipes";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='".$row['id']."'>".$row['recipe_name']."</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="productionDateTime" class="form-label">Production Date & Time</label>
+                                <input type="datetime-local" class="form-control" id="productionDateTime" name="production_datetime" required>
+                            </div>
+                        </div>
 
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="completionTime" class="form-label">Estimated Completion</label>
+                                <input type="datetime-localt" class="form-control" id="completionTime" name="estimated_completion" placeholder="e.g., 3 Hours">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity_produced" placeholder="Enter quantity" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-control" id="status" name="status">
+                                    <option value="Pending">Pending</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer-btn">
+                        <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- edit Production Batch Modal -->
 
