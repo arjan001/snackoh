@@ -388,7 +388,7 @@ $result = $conn->query($sql);
 
 			ingredientDiv.innerHTML = `
     <div class="col-lg-5">
-        <input type="text" class="form-control ingredient-name" name="ingredient_name[]" value="${name}" placeholder="Ingredient Name" required>
+        <input type="text" class="form-control ingredient-name" name="ingredient_name[]" value="${name}" placeholder="Select Ingredient Name" required>
     </div>
     <div class="col-lg-3">
         <input type="number" class="form-control ingredient-quantity" name="ingredient_quantity[]" value="${quantity}" placeholder="Quantity" required>

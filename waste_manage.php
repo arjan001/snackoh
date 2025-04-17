@@ -158,7 +158,7 @@ include "includes/header.php";?>
     <thead>
         <tr>
             <th>Batch ID</th>
-            <th>Product Name</th>
+            <!-- <th>Product Name</th> -->
             <th>Wastage Type</th>
             <th>Quantity Wasted</th>
             <th>Reason</th>
@@ -166,28 +166,45 @@ include "includes/header.php";?>
         </tr>
     </thead>
 	<?php
-$query = "SELECT * FROM production_wastage ORDER BY created_at DESC";
+$query = "
+SELECT pw.batch_id, p.product_name, c.category_name, r.recipe_name, 
+	   nb.production_datetime AS production_date, 
+	   pw.created_at AS wastage_date, 
+	   pw.wastage_type, pw.quantity_wasted, pw.reason
+FROM production_wastage pw
+JOIN new_batch_production nb ON pw.batch_id = nb.batch_id
+JOIN recipes r ON nb.recipe_id = r.id
+JOIN products p ON nb.product_id = p.id
+JOIN product_category c ON nb.category_id = c.id
+ORDER BY pw.created_at DESC
+";
 $result = mysqli_query($conn, $query);
+
 ?>
 
 <tbody>
     <?php while ($row = mysqli_fetch_assoc($result)) : ?>
         <tr>
             <td><?= htmlspecialchars($row['batch_id']); ?></td>
-            <td><?= htmlspecialchars($row['product_name']); ?></td>
+		<!-- <td><?= htmlspecialchars($row['product_name']); ?></td> -->
             <td><?= htmlspecialchars($row['wastage_type']); ?></td>
             <td><?= htmlspecialchars($row['quantity_wasted']) . ' kg'; ?></td>
             <td><?= htmlspecialchars($row['reason']); ?></td>
-            <td>
-                        <button class='btn btn-primary viewReportBtn' 
-                            data-batch='{$row['batch_id']}'
-                            data-product='{$row['product_name']}'
-                            data-date='{$row['production_date']}'
-                            data-type='{$row['wastage_type']}'
-                            data-quantity='{$row['quantity_wasted']}'>
-                            View Report
-                        </button>
-                    </td>
+			<td>
+                    <button class='btn btn-primary viewReportBtn' 
+                        data-batch="<?= htmlspecialchars($row['batch_id']); ?>"
+                        data-product="<?= htmlspecialchars($row['product_name']); ?>"
+                        data-category="<?= htmlspecialchars($row['category_name']); ?>"
+                        data-recipe="<?= htmlspecialchars($row['recipe_name']); ?>"
+                        data-production-date="<?= htmlspecialchars($row['production_date']); ?>"
+                        data-wastage-date="<?= htmlspecialchars($row['wastage_date']); ?>"
+                        data-type="<?= htmlspecialchars($row['wastage_type']); ?>"
+                        data-quantity="<?= htmlspecialchars($row['quantity_wasted']); ?>"
+                        data-reason="<?= htmlspecialchars($row['reason']); ?>">
+                        View Report
+                    </button>
+                </td>
+
         </tr>
     <?php endwhile; ?>
 </tbody>
@@ -259,29 +276,48 @@ $result = mysqli_query($conn, $query);
 
 
 <!-- Wastage Report Modal -->
-<!-- <div class="modal fade" id="viewWastageReportModal" tabindex="-1" aria-labelledby="viewWastageReportModalLabel" aria-hidden="true">
+<div class="modal fade" id="wastageReportModal" tabindex="-1" aria-labelledby="wastageReportLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewWastageReportModalLabel">Wastage Report Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content shadow-lg rounded">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="wastageReportLabel">Wastage Report</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Batch ID:</strong> <span id="wastageBatchId"></span></p>
-                        
-                        <p><strong>Production Date:</strong> <span id="wastageProductionDate"></span></p>
+            <div class="modal-body p-4">
+                <div id="printArea">
+                    <div class="mb-3">
+                        <h4 class="text-dark">Batch Details</h4>
+                        <hr>
+                        <p><strong>Batch ID:</strong> <span id="reportBatchID" class="text-muted"></span></p>
+                        <p><strong>Product Name:</strong> <span id="reportProduct" class="text-muted"></span></p>
+                        <p><strong>Category:</strong> <span id="reportCategory" class="text-muted"></span></p>
+                        <p><strong>Recipe Used:</strong> <span id="reportRecipe" class="text-muted"></span></p>
+                        <p><strong>Production Date:</strong> <span id="reportProductionDate" class="text-muted"></span></p>
                     </div>
-                    <div class="col-md-6">
-                        <p><strong>Wastage Type:</strong> <span id="wastageType"></span></p>
-                        <p><strong>Quantity Wasted:</strong> <span id="wastageQuantity"></span> kg</p>
+
+                    <div class="mb-3">
+                        <h4 class="text-danger">Wastage Details</h4>
+                        <hr>
+                        <p><strong>Date Wastage Was Made:</strong> <span id="reportWastageDate" class="text-muted"></span></p>
+                        <p><strong>Wastage Type:</strong> <span id="reportType" class="text-muted"></span></p>
+                        <p><strong>Quantity Wasted:</strong> <span id="reportQuantity" class="text-muted"></span></p>
+                        <p><strong>Reason:</strong> <span id="reportReason" class="text-muted"></span></p>
                     </div>
                 </div>
             </div>
+
+            <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="printReportBtn">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+            </div>
         </div>
     </div>
-</div> -->
+</div>
+
 
 
 
@@ -310,6 +346,37 @@ $result = mysqli_query($conn, $query);
         })
         .catch(error => console.error("Error:", error));
     });
+
+	// view report modal form logic
+	$(document).ready(function () {
+    // Populate the modal with data when the View Report button is clicked
+    $(".viewReportBtn").click(function () {
+        $("#reportBatchID").text($(this).data("batch"));
+        $("#reportProduct").text($(this).data("product"));
+        $("#reportCategory").text($(this).data("category"));
+        $("#reportRecipe").text($(this).data("recipe"));
+        $("#reportProductionDate").text($(this).data("production-date"));
+        $("#reportWastageDate").text($(this).data("wastage-date"));
+        $("#reportType").text($(this).data("type"));
+        $("#reportQuantity").text($(this).data("quantity") + " kg");
+        $("#reportReason").text($(this).data("reason"));
+
+        $("#wastageReportModal").modal("show");
+    });
+
+    // Print functionality
+    $("#printReportBtn").click(function () {
+        var printContent = document.getElementById("printArea").innerHTML;
+        var originalContent = document.body.innerHTML;
+
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+        location.reload(); // Reload to restore functionality
+    });
+});
+
+
 
 	
 

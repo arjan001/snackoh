@@ -182,6 +182,20 @@ include "includes/header.php";?>
 		<!-- /Main Wrapper -->
 
 <!-- New Production Batch Modal -->
+
+<?php
+include_once "./config/config.php";
+
+// Update batch status to 'Completed' if current time is past estimated completion .. also write logic for when status is pending system will auto update to inprogress after 30 minutes
+$updateQuery = "
+    UPDATE new_batch_production
+    SET status = 'Completed'
+    WHERE status = 'In Progress' AND estimated_completion <= NOW()
+";
+
+mysqli_query($conn, $updateQuery);
+?>
+
 <div class="modal fade" id="newProductionBatchModal" tabindex="-1" aria-labelledby="newProductionBatchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -245,11 +259,12 @@ include "includes/header.php";?>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="completionTime" class="form-label">Estimated Completion</label>
-                                <input type="datetime-localt" class="form-control" id="completionTime" name="estimated_completion" placeholder="e.g., 3 Hours">
-                            </div>
-                        </div>
+    <div class="mb-3">
+        <label for="completionTime" class="form-label">Estimated Completion</label>
+        <input type="datetime-local" class="form-control" id="completionTime" name="estimated_completion" required>
+    </div>
+</div>
+
                     </div>
 
                     <div class="row">
@@ -280,6 +295,7 @@ include "includes/header.php";?>
         </div>
     </div>
 </div>
+
 <!-- End of New Production Batch Modal -->
 <div class="modal fade" id="update_production" tabindex="-1" aria-labelledby="newProductionBatchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -503,6 +519,25 @@ $(document).ready(function () {
         }
     });
 });
+
+
+// update status on batch ajax
+function updateBatchStatus() {
+    document.querySelectorAll(".batch-status").forEach(statusElement => {
+        let expectedCompletion = new Date(statusElement.getAttribute("data-completion"));
+        let currentTime = new Date();
+
+        if (currentTime >= expectedCompletion) {
+            statusElement.innerText = "Completed";
+            statusElement.classList.remove("text-warning"); // Remove "In Progress" color
+            statusElement.classList.add("text-success"); // Apply "Completed" color
+        }
+    });
+}
+
+// Run every 10 seconds to check for status updates
+setInterval(updateBatchStatus, 10000);
+
 
 
     </script>

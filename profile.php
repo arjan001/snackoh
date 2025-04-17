@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
     $password = trim($_POST['password']);
 
     // Fetch current password from database
-    $query = "SELECT password FROM employees WHERE id = ?";
+    $query = "SELECT password_hash FROM employees WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
     }
 
     // Update user data
-    $query = "UPDATE employees SET first_name=?, last_name=?, email=?, contact_number'=?, password_hash=? WHERE id=?";
+    $query = "UPDATE employees SET first_name=?, last_name=?, email=?, contact_number=?, password_hash=? WHERE id=?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("sssssi", $first_name, $last_name, $email, $phone, $hashed_password, $user_id);
     
@@ -95,7 +95,7 @@ $user = $result->fetch_assoc();
 
 								</div>
 
- 					 		<form method="POST" action="profile.php">
+ 					 	<form method="POST" action="profile.php">
                                 <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 								<div class="profile-top">
 									<div class="profile-content">

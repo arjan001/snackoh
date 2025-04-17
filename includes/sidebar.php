@@ -19,7 +19,7 @@
 							</ul>
 						</li>
 						<li class="submenu-open">
-							<h6 class="submenu-hdr">Inventory</h6>
+							<h6 class="submenu-hdr">Bakery Products Inventory</h6>
 							<ul>
 								
 							
@@ -32,7 +32,7 @@
 
 								<li><a href="unsold-goods.php"><i data-feather="layers"></i><span>Unsold Goods</span></a></li>
 
-								<li><a href="low-stocks.php"><i data-feather="shuffle"></i><span>Low Inventory Products</span></a></li>
+								<!-- <li><a href="low-stocks.php"><i data-feather="shuffle"></i><span>Low Inventory Products</span></a></li> -->
 								<li><a href="product-category.php"><i data-feather="codepen"></i><span>Product Category</span></a></li>
 								
 								
@@ -41,7 +41,7 @@
 							</ul>
 						</li>
 						<li class="submenu-open">
-							<h6 class="submenu-hdr">Stock</h6>
+							<h6 class="submenu-hdr">Stock /Inventory Management</h6>
 							<ul>
 								<li><a href="manage-stocks.php"><i data-feather="package"></i><span>Manage Stock</span></a></li>
 
@@ -50,6 +50,7 @@
 								<li><a href="stock-ordering.php"><i data-feather="clipboard"></i><span>Stock ordering</span></a></li>
 
 								<!-- <li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li> -->
+								<li><a href="low-stocks.php"><i data-feather="shuffle"></i><span>Low Inventory Products</span></a></li>
 							</ul>
 						</li>
 						<li class="submenu-open">

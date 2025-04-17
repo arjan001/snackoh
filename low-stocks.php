@@ -97,67 +97,94 @@
 										<div class="table-responsive">
 
                                         <?php
-// Include the config file to connect to the database
-include_once "./config/config.php";
+              include_once "./config/config.php";
 
-// Fetch products from the database
-$sql = "SELECT 
-            p.id, 
-            p.product_name, 
-            c.category_name, 
-            p.product_quantity, 
-            p.product_quantity_alert 
-        FROM products p 
-        LEFT JOIN product_category c ON p.product_category = c.id 
-        WHERE p.product_quantity <= p.product_quantity_alert";
+              // SQL query to fetch all relevant data including the supplier name
+              $sql = "SELECT 
+            stock.id,
+            stock.product_name, 
+            stock.stock_quantity, 
+            stock.stock_price, 
+            stock.stock_expiry_date, 
+            COALESCE(units.unit_name, 'N/A') AS unit_name,  -- ✅ Ensures unit_name is always set
+            stock.reorder_level, 
+            COALESCE(suppliers.supplier_name, 'Unknown') AS supplier_name, 
+            COALESCE(stock_category.stock_category_name, 'Uncategorized') AS stock_category_name
+        FROM stock
+        LEFT JOIN stock_category ON stock.stock_category_id = stock_category.id
+        LEFT JOIN suppliers ON stock.stock_supplier_id = suppliers.id
+        LEFT JOIN units ON stock.stock_unit = units.id
+        WHERE  stock.stock_quantity <= stock.reorder_level";
 
-$result = $conn->query($sql);
+              $result = $conn->query($sql);
 
-// Check for query errors
-if (!$result) {
-    die("Query failed: " . $conn->error);
-}
+              // Check for SQL query error
+              if (!$result) {
+                die("Query failed: " . $conn->error);
+              }
+              ?>
 
-?>
+             <table class="table datanew">
+                <thead>
+                  <tr>
+                    <th class="no-sort">
+                      <label class="checkboxs">
+                        <input type="checkbox" id="select-all">
+                        <span class="checkmarks"></span>
+                      </label>
+                    </th>
+                    <th>Item Name</th>
+                    <th>Category</th>
+                    <th>current-Quantity</th>
+                    <th>Expiry Date</th>
+                    <th>Reorder Level</th>
+                    <th>Units name</th>
+                    <th>Supplier</th>
+                    <th>Supplier Price</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php if ($result->num_rows > 0): ?>
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                      <?php
+                      $productId = htmlspecialchars($row['id']);
+                      $productName = htmlspecialchars($row['product_name']);
+                      $categoryName = htmlspecialchars($row['stock_category_name']);
+                      $stockQuantity = htmlspecialchars($row['stock_quantity']);
+                      $stockUnit = htmlspecialchars($row['unit_name']);
+                      $expiryDate = htmlspecialchars($row['stock_expiry_date']);
+                      $reorderLevel = htmlspecialchars($row['reorder_level']);
+                      $supplierName = htmlspecialchars($row['supplier_name']);
+                      $stockPrice = htmlspecialchars($row['stock_price']);
+                      ?>
 
-<table class="table datanew">
-    <thead>
-        <tr>
-            <th class="no-sort">
-                <label class="checkboxs">
-                    <input type="checkbox" id="select-all">
-                    <span class="checkmarks"></span>
-                </label>
-            </th>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Qty</th>
-            <th>Qty Alert</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php if ($result->num_rows > 0) { ?>
-            <?php while ($row = $result->fetch_assoc()) { ?>
-                <tr>
-                    <td>
-                        <label class="checkboxs">
-                            <input type="checkbox">
-                            <span class="checkmarks"></span>
-                        </label>
-                    </td>
-                    <td><?php echo htmlspecialchars($row['product_name']); ?></td>
-                    <td><?php echo htmlspecialchars($row['category_name']); ?></td>
-                    <td><?php echo htmlspecialchars($row['product_quantity']); ?></td>
-                    <td><?php echo htmlspecialchars($row['product_quantity_alert']); ?></td>
-                </tr>
-            <?php } ?>
-        <?php } else { ?>
-            <tr>
-                <td colspan="5" style="text-align: center;">No products found</td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
+                      <tr>
+                        <td>
+                          <label class='checkboxs'>
+                            <input type='checkbox'>
+                            <span class='checkmarks'></span>
+                          </label>
+                        </td>
+                        <td><?= $productName; ?></td>
+                        <td><?= $categoryName; ?></td>
+                        <td><?= $stockQuantity; ?></td>
+                        <td><?= $expiryDate; ?></td>
+                        <td><?= $reorderLevel; ?></td>
+                        <td><?= htmlspecialchars($row['unit_name'] ?? 'N/A'); ?></td>
+
+                        <td><?= $supplierName; ?></td>
+                        <td><?= $stockPrice; ?></td>
+                        
+                      </tr>
+                    <?php endwhile; ?>
+                  <?php else: ?>
+                    <tr>
+                      <td colspan='10'>No stock items found.</td>
+                    </tr>
+                  <?php endif; ?>
+                </tbody>
+              </table>
 
 
 

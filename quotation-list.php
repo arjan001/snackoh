@@ -118,20 +118,18 @@ include "includes/header.php"
 											<td class="productimgname">
 												<div class="view-product me-2">
 													<a href="javascript:void(0);">
-														<img src="assets/img/products/stock-img-01.png" alt="product">
+														<img src="assets/img/product/Macbook.png" alt="product">
 													</a>
 												</div>
-												<a href="javascript:void(0);">Lenovo 3rd Generation</a>
+												<a href="javascript:void(0);">Bread , Kaimati</a>
 											</td>
 											<td>PT001</td>
 											<td>walk-in-customer</td>
 											<td><span class="badges status-badge">Sent</span></td>
-											<td>KSH550</td>
+											<td>KSH 2,550</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
+													  
 													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
 														<i data-feather="edit" class="feather-edit"></i>
 													</a>
@@ -152,20 +150,18 @@ include "includes/header.php"
 											<td class="productimgname">
 												<div class="view-product me-2">
 													<a href="javascript:void(0);">
-														<img src="assets/img/products/stock-img-02.png" alt="product">
+														<img src="assets/img/product/Macbook.png" alt="product">
 													</a>
 												</div>
-												<a href="javascript:void(0);">Nike Jordan</a>
+												<a href="javascript:void(0);">Dryfcons ,heart cakes</a>
 											</td>
 											<td>PT003</td>
 											<td>walk-in-customer</td>
 											<td><span class="badges order-badge">Ordered</span></td>
-											<td>KSH260</td>
+											<td>KSH 2,560</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
+													  
 													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
 														<i data-feather="edit" class="feather-edit"></i>
 													</a>
@@ -185,20 +181,18 @@ include "includes/header.php"
 											<td class="productimgname">
 												<div class="view-product me-2">
 													<a href="javascript:void(0);">
-														<img src="assets/img/products/stock-img-03.png" alt="product">
+														<img src="assets/img/product/Macbook.png" alt="product">
 													</a>
 												</div>
-												<a href="javascript:void(0);">Apple Series 5 Watch</a>
+												<a href="javascript:void(0);">Brown Bread ,Kaimati</a>
 											</td>
 											<td>PT004</td>
 											<td>John Smith</td>
 											<td><span class="badges unstatus-badge">Pending</span></td>
-											<td>KSH470</td>
+											<td>KSH4,470</td>
 											<td class="action-table-data">
 												<div class="edit-delete-action data-row">
-													<a class="me-2 p-2 mb-0" href="javascript:void(0);">
-														<i data-feather="eye" class="action-eye"></i>
-													</a>
+													  
 													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-units">
 														<i data-feather="edit" class="feather-edit"></i>
 													</a>
@@ -304,9 +298,9 @@ include "includes/header.php"
 														<td>
 															<div class="productimgname">
 																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-02.png" alt="product">
+																	<img src="assets/img/product/Macbook.png" alt="product">
 																</a>
-																<a href="javascript:void(0);">Nike Jordan</a>
+																<a href="javascript:void(0);">White bread 400gms</a>
 															</div>												
 														</td>
 														<td>
@@ -329,9 +323,9 @@ include "includes/header.php"
 														<td>
 															<div class="productimgname">
 																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-03.png" alt="product">
+																	<img src="assets/img/product/Macbook.png" alt="product">
 																</a>
-																<a href="javascript:void(0);">Apple Series 5 Watch</a>
+																<a href="javascript:void(0);">Brown bread 400gms</a>
 															</div>												
 														</td>
 														<td>
@@ -354,9 +348,9 @@ include "includes/header.php"
 														<td>
 															<div class="productimgname">
 																<a href="javascript:void(0);" class="product-img stock-img">
-																	<img src="assets/img/products/stock-img-05.png" alt="product">
+																	<img src="assets/img/product/Macbook.png" alt="product">
 																</a>
-																<a href="javascript:void(0);">Lobar Handy</a>
+																<a href="javascript:void(0);">Kaimati</a>
 															</div>												
 														</td>
 														<td>

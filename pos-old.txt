@@ -251,7 +251,7 @@
 							</div>
 							<div class="d-grid btn-block">
 								<a class="btn btn-secondary" href="javascript:void(0);">
-									Grand Total : KSH 64,024.5
+									Grand Total : KSH 00.00
 								</a>
 							</div>
 							<div class="btn-row d-sm-flex align-items-center justify-content-between">
@@ -296,10 +296,17 @@
 
 						</div>
 						<div class="modal-body custom-modal-body">
-							<form action="add_product_category.php" method="POST">
+							<form action="save_order.php" method="POST">
+							<input type="hidden" id="customer_id" name="customer_id">
+<input type="hidden" id="employee_id" name="employee_id">
+<input type="hidden" id="total_price" name="total_price">
+<input type="hidden" id="cart" name="cart">
+<input type="hidden" id="transaction_id" name="transaction_id">
+<input type="hidden" id="payment_status" name="payment_status" value="completed">
+<input type="hidden" id="payment_method" name="payment_method" value="">
 								<div class="mb-3">
 									<label class="form-label">Payable Amount</label>
-									<input type="number" name="total_amount" readonly class="form-control">
+									<input type="number"   name="total_amount" readonly class="form-control">
 								</div>
 
 								<div class="mb-3">
@@ -781,7 +788,6 @@ function calculateChange() {
 // process payment section
 
 
-
 $(document).ready(function () {
     let selectedPaymentType = "cash"; // Default payment type
 
@@ -829,11 +835,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log("Response: ", response);
                 alert("Order saved successfully!");
-                localStorage.removeItem("cart");
-                localStorage.removeItem("total_price");
-                localStorage.removeItem("transactionID");
-                localStorage.removeItem("selectedCustomer");
-                localStorage.removeItem("employeeID");
+                localStorage.clear();
                 updateCartUI();
             },
             error: function () {
@@ -864,79 +866,6 @@ $(document).ready(function () {
     // Bind modal events for correct data population
     $("#cash, #credit-sale, #pay_mpesa").on("show.bs.modal", populatePaymentModal);
 });
-
-// credit sale logic
-
-// $(document).ready(function () {
-//     let selectedPaymentType = "credit"; // Default to credit for credit sales
-
-//     $(".complete-credit-sale").click(function () {
-//         let transactionID = localStorage.getItem("transactionID") || "";
-//         let customerID = localStorage.getItem("selectedCustomer") || "0";
-//         let employeeID = localStorage.getItem("employee_id") || "";
-//         let totalPrice = localStorage.getItem("total_price") || "0";
-//         let cart = JSON.parse(localStorage.getItem("cart")) || {};
-
-//         let orderItems = Object.keys(cart).map(id => ({
-//             name: cart[id].name,
-//             price: cart[id].price,
-//             quantity: cart[id].quantity,
-//             image: cart[id].image
-//         }));
-
-//         let creditOrderData = {
-//             transaction_id: transactionID,
-//             customer_id: customerID,
-//             employee_id: employeeID,
-//             total_price: totalPrice,
-//             products: orderItems,
-//             payment_status: "pending", // Since it's a credit sale, payment is pending
-//             payment_type: selectedPaymentType
-//         };
-
-//         console.log("Credit Sale Data:", creditOrderData);
-
-//         $.ajax({
-//             url: "save_order.php",
-//             type: "POST",
-//             contentType: "application/json",
-//             data: JSON.stringify(creditOrderData),
-//             success: function (response) {
-//                 console.log("Response: ", response);
-//                 alert("Credit sale recorded successfully!");
-//                 localStorage.removeItem("cart");
-//                 localStorage.removeItem("total_price");
-//                 localStorage.removeItem("transactionID");
-//                 localStorage.removeItem("selectedCustomer");
-//                 localStorage.removeItem("employeeID");
-//                 updateCartUI();
-//             },
-//             error: function () {
-//                 alert("Failed to save credit sale.");
-//             }
-//         });
-//     });
-
-//     function populateCreditModal() {
-//         $("#customer_id").val(localStorage.getItem("customer_id") || "");
-//         $("#employee_id").val(localStorage.getItem("employee_id") || "");
-//         $("#total_price").val(localStorage.getItem("total_price") || "");
-//         $("#cart").val(localStorage.getItem("cart") || "");
-//         $("#transaction_id").val(localStorage.getItem("transactionID") || "");
-//         $("#payment_type").val(selectedPaymentType); // Set as credit
-
-//         console.log("Credit Modal Data Loaded:", {
-//             customer_id: $("#customer_id").val(),
-//             employee_id: $("#employee_id").val(),
-//             total_price: $("#total_price").val(),
-//             products: $("#cart").val(),
-//             transaction_id: $("#transaction_id").val(),
-//             payment_type: $("#payment_type").val()
-//         });
-//     }
-
-//     $("#credit-sale").on("show.bs.modal", populateCreditModal);
-// });
 
 
 </script>
