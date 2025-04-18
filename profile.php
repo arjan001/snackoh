@@ -12,6 +12,7 @@ $user_id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['user_id'];
 
 // Handle Profile Update
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
+    $profile_photo = trim($_POST['profile_photo']);
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
     $email = trim($_POST['email']);
@@ -100,7 +101,9 @@ $user = $result->fetch_assoc();
 								<div class="profile-top">
 									<div class="profile-content">
 										<div class="profile-contentimg">
-											<img src="assets/img/customer/customer5.jpg" alt="img" id="blah">
+										<img src="<?= !empty($profile_photo['profile_photo']) ? htmlspecialchars($profile_photo['profile_photo']) : 'assets/img/users/default.jpg'; ?>" 
+         alt="Profile Photo" 
+         style="object-fit: cover;" id="blah">
 											<div class="profileupload">
 												<input type="file" id="imgInp">
 												<a href="javascript:void(0);" ><img src="assets/img/icons/edit-set.svg"  alt="img"></a>

@@ -209,9 +209,7 @@ $result = $conn->query($sql);
                 <td class='action-table-data'>
                     <div class='edit-delete-action'>
                         <!-- View Action -->
-                        <a class='me-2 edit-icon p-2' href='product-details.html'>
-                            <i data-feather='eye' class='feather-eye'></i>
-                        </a>
+                        
                         
                         <!-- Edit Action (Now Includes Product ID) -->
                         <a class='me-2 p-2 edit-btn' href='edit-product.php?id=<?php echo $row['id']; ?>'
