@@ -102,6 +102,9 @@ CREATE TABLE products (
 ALTER TABLE products (
     add COLUMN recipe_name VARCHAR(255) NOT NULL,
 )
+ALTER TABLE customers  (
+    add COLUMN password_hash VARCHAR(255) NOT NULL,
+)
 
 CREATE TABLE stock_category (
     id INT AUTO_INCREMENT PRIMARY KEY,

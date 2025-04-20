@@ -85,6 +85,7 @@
 								</div>
 								<div class="tab-content">
 									<div class="row">
+										
 										<?php
 										include './config/config.php';
 
@@ -143,8 +144,8 @@
         <span class="transaction-id"></span> <!-- Dynamic Transaction ID will be placed here -->
     </div>
     <div class="">
-        <a class="confirm-text" href="javascript:void(0);"><i data-feather="trash-2"
-                class="feather-16 text-danger"></i></a>
+        <!-- <a class="confirm-text" href="javascript:void(0);"><i data-feather="trash-2"
+                class="feather-16 text-danger"></i></a> -->
         <a href="javascript:void(0);" class="text-default"><i data-feather="more-vertical"
                 class="feather-16"></i></a>
     </div>

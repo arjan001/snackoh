@@ -18,6 +18,20 @@
 
 							</ul>
 						</li>
+
+						<li class="submenu-open">
+							<h6 class="submenu-hdr">Sales</h6>
+							<ul>
+								<li><a href="sales-list.php"><i data-feather="shopping-cart"></i><span>Sales</span></a></li>
+								<!-- <li><a href="invoice-report.php"><i data-feather="file-text"></i><span>Invoices</span></a></li> -->
+								<li><a href="sales-returns.php"><i data-feather="copy"></i><span>Sales Return</span></a></li>
+								<li><a href="deliveries.php"><i data-feather="truck"></i><span>Dispatch Delivery</span></a></li>
+								
+								<li><a href="quotation-list.php"><i data-feather="save"></i><span>Quotation</span></a></li>
+								<li><a href="pos.php"><i data-feather="hard-drive"></i><span>POS</span></a></li>
+							</ul>
+						</li>
+						
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Bakery Products Inventory</h6>
 							<ul>
@@ -72,18 +86,7 @@
 								<!-- <li><a href="#"><i data-feather="truck"></i><span>Stock Transfer</span></a></li> -->
 							</ul>
 						</li>
-						<li class="submenu-open">
-							<h6 class="submenu-hdr">Sales</h6>
-							<ul>
-								<li><a href="sales-list.php"><i data-feather="shopping-cart"></i><span>Sales</span></a></li>
-								<!-- <li><a href="invoice-report.php"><i data-feather="file-text"></i><span>Invoices</span></a></li> -->
-								<li><a href="sales-returns.php"><i data-feather="copy"></i><span>Sales Return</span></a></li>
-								<li><a href="deliveries.php"><i data-feather="truck"></i><span>Dispatch Delivery</span></a></li>
-								
-								<li><a href="quotation-list.php"><i data-feather="save"></i><span>Quotation</span></a></li>
-								<li><a href="pos.php"><i data-feather="hard-drive"></i><span>POS</span></a></li>
-							</ul>
-						</li>
+					
 
 						<li class="submenu-open">
 							<h6 class="submenu-hdr">Purchases</h6>

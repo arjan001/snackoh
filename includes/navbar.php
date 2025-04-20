@@ -209,7 +209,7 @@ $role = $_SESSION['user_role'] ?? 'Guest';
 </a>
 
         <a class="dropdown-item" href="general-settings.php">Settings</a>
-        <a class="dropdown-item" href="signin.html">Logout</a>
+        <a class="dropdown-item" href="logout.php">Logout</a>
     </div>
 </div>
 <!-- /Mobile Menu -->
