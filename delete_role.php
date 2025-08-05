@@ -1,41 +1,84 @@
 <?php
-include_once "./config/config.php"; // Database connection
+// Prevent any output before JSON response
+ob_start();
+header('Content-Type: application/json');
 
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])) {
-    $role_id = intval($_GET['id']); // Sanitize role ID
+session_start();
+include './config/config.php';
+include_once './includes/permission_middleware.php';
 
+// Check if user has permission to delete roles
+requirePermission('roles.delete');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $role_id = intval($_POST['role_id'] ?? 0);
+    
+    // Validation
     if ($role_id <= 0) {
-        echo "<script>alert('Invalid role ID!'); window.location.href='roles-permissions.php';</script>";
+        echo json_encode(['success' => false, 'message' => 'Invalid role ID']);
         exit;
     }
-
-    // Check if the role exists
-    $checkQuery = "SELECT * FROM roles WHERE id = ?";
-    $checkStmt = $conn->prepare($checkQuery);
-    $checkStmt->bind_param("i", $role_id);
-    $checkStmt->execute();
-    $result = $checkStmt->get_result();
-
+    
+    // Check if role exists
+    $check_query = "SELECT role_name FROM roles WHERE id = ?";
+    $stmt = $conn->prepare($check_query);
+    $stmt->bind_param("i", $role_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
     if ($result->num_rows === 0) {
-        echo "<script>alert('Role not found!'); window.location.href='roles_permissions.php';</script>";
+        echo json_encode(['success' => false, 'message' => 'Role not found']);
         exit;
     }
-
-    // Delete the role
-    $deleteQuery = "DELETE FROM roles WHERE id = ?";
-    $deleteStmt = $conn->prepare($deleteQuery);
-    $deleteStmt->bind_param("i", $role_id);
-
-    if ($deleteStmt->execute()) {
-        echo "<script>alert('Role deleted successfully!'); window.location.href='roles_permissions.php';</script>";
-    } else {
-        echo "<script>alert('Error deleting role!'); window.location.href='roles_permissions.php';</script>";
+    
+    $role = $result->fetch_assoc();
+    
+    // Check if role is assigned to any users
+    $users_query = "SELECT COUNT(*) as user_count FROM employees WHERE user_role = ?";
+    $stmt = $conn->prepare($users_query);
+    $stmt->bind_param("i", $role_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user_count = $result->fetch_assoc()['user_count'];
+    
+    if ($user_count > 0) {
+        echo json_encode(['success' => false, 'message' => "Cannot delete role '{$role['role_name']}' - it is assigned to {$user_count} user(s)"]);
+        exit;
     }
-
-    $deleteStmt->close();
-    $checkStmt->close();
-    $conn->close();
+    
+    // Check if it's a system role (admin, etc.)
+    if (in_array(strtolower($role['role_name']), ['admin', 'administrator', 'super admin'])) {
+        echo json_encode(['success' => false, 'message' => 'Cannot delete system roles']);
+        exit;
+    }
+    
+    // Delete role permissions first
+    $delete_permissions_query = "DELETE FROM role_permissions WHERE role_id = ?";
+    $stmt = $conn->prepare($delete_permissions_query);
+    $stmt->bind_param("i", $role_id);
+    $stmt->execute();
+    
+    // Delete the role
+    $delete_role_query = "DELETE FROM roles WHERE id = ?";
+    $stmt = $conn->prepare($delete_role_query);
+    $stmt->bind_param("i", $role_id);
+    
+    if ($stmt->execute()) {
+        $response = ['success' => true, 'message' => 'Role deleted successfully'];
+    } else {
+        $response = ['success' => false, 'message' => 'Error deleting role: ' . $conn->error];
+    }
+    
+    $stmt->close();
 } else {
-    echo "<script>alert('Invalid request!'); window.location.href='roles_permissions.php';</script>";
+    $response = ['success' => false, 'message' => 'Invalid request method'];
 }
+
+$conn->close();
+
+// Clean any output buffer and ensure only JSON is sent
+ob_end_clean();
+
+// Send the JSON response
+echo json_encode($response);
 ?>

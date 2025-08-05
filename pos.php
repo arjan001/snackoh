@@ -59,13 +59,96 @@
 		?>
 		<!-- Header -->
 
-
 		<div class="page-wrapper pos-pg-wrapper ms-0">
 			<div class="content pos-design p-0">
+				
+				<!-- Status Messages -->
+				<?php if (isset($_GET['status'])): ?>
+					<?php if ($_GET['status'] === 'inventory_error' && isset($_GET['message'])): ?>
+						<script>
+							// Store error in localStorage for notifications
+							localStorage.setItem('pos_error', '<?= addslashes(urldecode($_GET['message'])) ?>');
+							localStorage.setItem('pos_error_type', 'inventory_error');
+							
+							// Show popup modal
+							$(document).ready(function() {
+								$('#inventory-error-modal').modal('show');
+							});
+						</script>
+					<?php elseif ($_GET['status'] === 'success'): ?>
+						<script>
+							// Store success in localStorage for notifications
+							localStorage.setItem('pos_success', '<?= isset($_GET['message']) ? addslashes(urldecode($_GET['message'])) : 'Order completed successfully!' ?>');
+							
+							// Show success popup
+							$(document).ready(function() {
+								$('#success-modal').modal('show');
+							});
+						</script>
+					<?php elseif ($_GET['status'] === 'error'): ?>
+						<script>
+							// Store error in localStorage for notifications
+							localStorage.setItem('pos_error', '<?= isset($_GET['message']) ? addslashes(urldecode($_GET['message'])) : 'Order processing error' ?>');
+							localStorage.setItem('pos_error_type', 'general_error');
+							
+							// Show error popup
+							$(document).ready(function() {
+								$('#error-modal').modal('show');
+							});
+						</script>
+					<?php endif; ?>
+				<?php endif; ?>
+				
+				<!-- Session Status Banner -->
+				<?php
+				$employee_id = $_SESSION['employee_id'] ?? 0;
+				$active_session_query = "SELECT * FROM pos_sessions WHERE employee_id = ? AND status = 'open' ORDER BY opening_time DESC LIMIT 1";
+				$stmt = $conn->prepare($active_session_query);
+				$stmt->bind_param("i", $employee_id);
+				$stmt->execute();
+				$active_session = $stmt->get_result()->fetch_assoc();
+				$stmt->close();
+				?>
+				
+				<?php if ($active_session): ?>
+					<div class="alert alert-success mb-3">
+						<div class="d-flex align-items-center justify-content-between">
+							<div>
+								<strong><i data-feather="check-circle" class="feather-16 me-2"></i>Active POS Session</strong>
+								<span class="ms-3">Session ID: <?= $active_session['session_id'] ?></span>
+								<span class="ms-3">Opening: KSH <?= number_format($active_session['opening_amount'], 2) ?></span>
+								<span class="ms-3">Sales: KSH <?= number_format($active_session['total_sales'], 2) ?></span>
+							</div>
+							<div>
+								<a href="pos_sessions.php" class="btn btn-sm btn-warning">
+									<i data-feather="settings" class="feather-12 me-1"></i>Manage Session
+								</a>
+							</div>
+						</div>
+					</div>
+				<?php else: ?>
+					<div class="alert alert-warning mb-3">
+						<div class="d-flex align-items-center justify-content-between">
+							<div>
+								<strong><i data-feather="alert-triangle" class="feather-16 me-2"></i>No Active POS Session</strong>
+								<span class="ms-3">You need to open a session before making sales</span>
+							</div>
+							<div>
+								<a href="pos_sessions.php" class="btn btn-sm btn-primary">
+									<i data-feather="unlock" class="feather-12 me-1"></i>Open Session
+								</a>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
+
 				<div class="btn-row d-sm-flex align-items-center">
 					<a href="javascript:void(0);" class="btn btn-secondary mb-xs-3" data-bs-toggle="modal"
 						data-bs-target="#orders"><span class="me-1 d-flex align-items-center"><i
 								data-feather="shopping-cart" class="feather-16"></i></span>View Orders</a>
+					<a href="check_missing_ingredients.php" class="btn btn-warning btn-sm me-2" title="Check missing ingredients">
+						<i data-feather="search" class="feather-16 me-1"></i>Check Ingredients
+					</a>
 					<a href="javascript:void(0);" class="btn btn-info"><span class="me-1 d-flex align-items-center"><i
 								data-feather="rotate-cw" class="feather-16"></i></span>Reset</a>
 					<a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal"
@@ -101,7 +184,27 @@
 												$product_quantity = $product['product_quantity'];
 
 												// Dummy image placeholder
-												$product_image = 'assets/img/products/dummy.png';
+												$product_image = 'assets/img/products/5.jpg';
+												// $product_image = 'img/5.jpg';
+
+												// Determine inventory status and styling
+												$inventory_class = '';
+												$inventory_icon = '';
+												$inventory_text = '';
+												
+												if ($product_quantity <= 0) {
+													$inventory_class = 'text-danger';
+													$inventory_icon = '<i data-feather="alert-triangle" class="feather-12 me-1"></i>';
+													$inventory_text = 'OUT OF STOCK';
+												} elseif ($product_quantity <= 5) {
+													$inventory_class = 'text-warning';
+													$inventory_icon = '<i data-feather="alert-circle" class="feather-12 me-1"></i>';
+													$inventory_text = 'LOW STOCK';
+												} else {
+													$inventory_class = 'text-success';
+													$inventory_icon = '<i data-feather="check-circle" class="feather-12 me-1"></i>';
+													$inventory_text = 'IN STOCK';
+												}
 
 												echo "<div class='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
                             <div class='product-info default-cover card'>
@@ -111,7 +214,10 @@
                                 </a>
                                 <h6 class='product-name'><a href='javascript:void(0);'>$product_name</a></h6>
                                 <div class='d-flex align-items-center justify-content-between price'>
-                                    <span>$product_quantity Pcs Left</span>
+                                    <div class='d-flex align-items-center'>
+                                        <span class='$inventory_class'>$inventory_icon $product_quantity Pcs Left</span>
+                                        " . ($product_quantity <= 5 ? "<small class='text-warning ms-1'>($inventory_text)</small>" : "") . "
+                                    </div>
                                     <p>KSH $product_price</p>
                                 </div>
                                 <form method='post' action='' class='add-to-cart-form'>
@@ -119,7 +225,7 @@
                                     <input type='hidden' name='name' value='$product_name'>
                                     <input type='hidden' name='price' value='$product_price'>
                                     <input type='hidden' name='image' value='$product_image'>
-                                    <button type=' name='add_to_cart' class='btn btn-primary'>Add to Cart</button>
+                                    <button type=' name='add_to_cart' class='btn " . ($product_quantity <= 0 ? 'btn-secondary disabled' : 'btn-primary') . "' " . ($product_quantity <= 0 ? 'disabled' : '') . ">" . ($product_quantity <= 0 ? 'Out of Stock' : 'Add to Cart') . "</button>
                                 </form>
                             </div>
                         </div>";
@@ -160,11 +266,13 @@
 									<div class="input-block d-flex align-items-center">
 										<div class="flex-grow-1">
 											<select class="select" id="customerDropdown">
-												<option value="0">Walk-in Customer</option>
+												<option value="0">Select Customer</option>
 												<?php
 												// Fetch customers from the database
 												$sql = "SELECT id, customer_name FROM customers";
-												$result = mysqli_query($conn, $sql);
+												$stmt = $conn->prepare($sql);
+												$stmt->execute();
+												$result = $stmt->get_result();
 												while ($row = mysqli_fetch_assoc($result)) {
 													echo '<option value="' . htmlspecialchars($row['id']) . '">' . htmlspecialchars($row['customer_name']) . '</option>';
 												}
@@ -297,22 +405,36 @@
 
 						</div>
 						<div class="modal-body custom-modal-body">
-							<form action="add_product_category.php" method="POST">
+							<form action="save_order.php" method="POST">
+								<!-- Hidden fields for order data -->
+								<input type="hidden" id="mpesa_customer_id" name="customer_id">
+								<input type="hidden" id="mpesa_employee_id" name="employee_id">
+								<input type="hidden" id="mpesa_total_price" name="total_price">
+								<input type="hidden" id="mpesa_cart" name="cart">
+								<input type="hidden" id="mpesa_transaction_id" name="transaction_id">
+								<input type="hidden" id="mpesa_payment_status" name="payment_status" value="pending">
+								<input type="hidden" id="mpesa_payment_type" name="payment_type" value="mpesa">
+								
+								<!-- Customer Info Display -->
+								<div class="alert alert-info mb-3" id="mpesa_customer_info_alert" style="display: none;">
+									<i class="fas fa-info-circle"></i> 
+									<span id="mpesa_customer_info_text">Walk-in customer transaction</span>
+								</div>
+								
 								<div class="mb-3">
 									<label class="form-label">Payable Amount</label>
-									<input type="number" name="total_amount" readonly class="form-control">
+									<input type="number" id="mpesa_total_amount" name="total_amount" readonly class="form-control">
 								</div>
 
 								<div class="mb-3">
 									<label class="form-label">Safaricom Number</label>
-									<input type="number" name="mpesa_number" class="form-control">
+									<input type="number" name="mpesa_number" class="form-control" required>
 								</div>
-
 
 								<div class="modal-footer-btn">
 									<button type="button" class="btn btn-cancel me-2"
 										data-bs-dismiss="modal">Cancel</button>
-									<button type="submit" class="btn btn-submit">submit Pay</button>
+									<button type="submit" class="btn btn-submit">Submit Payment</button>
 								</div>
 							</form>
 						</div>
@@ -346,6 +468,12 @@
 <input type="hidden" id="transaction_id" name="transaction_id">
 <input type="hidden" id="payment_status" name="payment_status" value="completed">
 <input type="hidden" id="payment_method" name="payment_method" value="">
+
+                            <!-- Customer Info Display -->
+                            <div class="alert alert-info mb-3" id="customer_info_alert" style="display: none;">
+                                <i class="fas fa-info-circle"></i> 
+                                <span id="customer_info_text">Walk-in customer transaction</span>
+                            </div>
 
 
                             <div class="row">
@@ -399,14 +527,14 @@
         <div class="modal-content">
             <div class="modal-body text-center">
                 <form action="save_order.php" method="POST">
-                    <!-- Hidden Input Fields -->
-                    <input type="hidden" id="customer_id" name="customer_id">
-                    <input type="hidden" id="employee_id" name="employee_id">
-                    <input type="hidden" id="total_price" name="total_price">
-                    <input type="hidden" id="cart" name="cart">
-                    <input type="hidden" id="transaction_id" name="transaction_id">
-                    <input type="hidden" id="payment_status" name="payment_status" value="pending">
-                    <input type="hidden" id="payment_method" name="payment_method" value="credit">
+                                         <!-- Hidden Input Fields -->
+                     <input type="hidden" id="credit_customer_id" name="customer_id">
+                     <input type="hidden" id="credit_employee_id" name="employee_id">
+                     <input type="hidden" id="credit_total_price" name="total_price">
+                     <input type="hidden" id="credit_cart" name="cart">
+                     <input type="hidden" id="credit_transaction_id" name="transaction_id">
+                     <input type="hidden" id="credit_payment_status" name="payment_status" value="pending">
+                     <input type="hidden" id="credit_payment_type" name="payment_type" value="credit">
 
                     <div class="icon-head">
                         <a href="javascript:void(0);">
@@ -415,7 +543,14 @@
                     </div>
                     <h4>Confirm Credit Sale</h4>
                     <h5 class="mb-0">Are you sure you want to process this order as a credit sale?</h5>
-                    <p class="mb-0">Transactions will successfully be saved in the Creditors Table.<br>When requesting payment, kindly review.</p>
+                    <p class="mb-0">Transactions will successfully be saved in the <strong>Debtors Table</strong>.<br>Customer details will be shown in the Debtors tab for payment tracking.</p>
+                    
+                    <!-- Customer Information Display -->
+                    <div id="credit_customer_info" class="alert alert-info mt-3" style="display: none;">
+                        <strong>Customer Information:</strong><br>
+                        <span id="credit_customer_name"></span><br>
+                        <span id="credit_customer_contact"></span>
+                    </div>
                 
                     <div class="modal-footer d-sm-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -429,38 +564,6 @@
 <!-- Credit Sale Confirmation Modal -->
 
 
-
-
-		<!-- Credit sale payment modal-->
-		<!-- <div class="modal fade modal-default" id="credit-sale" aria-labelledby="credit-sale">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-body text-center">
-					<form action="pos.html">
-					<input type="hidden" id="paymentMethod" name="payment_method" value="credit">
-
-						<div class="icon-head">
-							<a href="javascript:void(0);">
-								<i data-feather="check-circle" class="feather-40"></i>
-							</a>
-						</div>
-						<h4>Credit Sale Payment </h4>
-						<h5 class="mb-0">Transaction succesfully saved in Creditors Table When requesting payment Kindly Review</h5>
-						<h5 class="mb-0">Do you want to Print Receipt for the Completed Order</>
-						</div>
-						<div class="modal-footer d-sm-flex justify-content-between">
-							<button type="button" class="btn btn-primary flex-fill" data-bs-toggle="modal"
-								data-bs-target="#print-receipt">Print Receipt<i
-									class="feather-arrow-right-circle icon-me-5"></i></button>
-							<button type="submit" class="btn btn-secondary flex-fill">Next Order<i
-									class="feather-arrow-right-circle icon-me-5"></i></button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- Credit sale payment modal -->
 
 <!-- /Payment Completed modal-->
 <div class="modal fade modal-default" id="payment-completed" aria-labelledby="payment-completed">
@@ -690,20 +793,66 @@ $(document).ready(function () {
         let name = productCard.find("input[name='name']").val();
         let price = parseFloat(productCard.find("input[name='price']").val());
         let image = productCard.find("input[name='image']").val();
+        let quantity = cart[id] ? cart[id].quantity + 1 : 1;
 
-        if (cart[id]) {
-            cart[id].quantity += 1;
-        } else {
-            cart[id] = { name, price, image, quantity: 1 };
-        }
-
-        updateCartUI();
+        // Check inventory before adding to cart
+        $.ajax({
+            url: 'check_inventory_before_cart.php',
+            type: 'POST',
+            data: {
+                product_name: name,
+                quantity: quantity
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Inventory check passed - add to cart
+                    if (cart[id]) {
+                        cart[id].quantity += 1;
+                    } else {
+                        cart[id] = { name, price, image, quantity: 1 };
+                    }
+                    updateCartUI();
+                } else {
+                    // Show error modal
+                    $('#inventory-error-details').text(response.message);
+                    $('#inventory-error-modal').modal('show');
+                }
+            },
+            error: function() {
+                $('#inventory-error-details').text('Error checking inventory. Please try again.');
+                $('#inventory-error-modal').modal('show');
+            }
+        });
     });
 
     $(document).on("click", ".inc", function () {
         let id = $(this).closest(".product-list").data("id");
-        cart[id].quantity += 1;
-        updateCartUI();
+        let newQuantity = cart[id].quantity + 1;
+        
+        // Check inventory before incrementing
+        $.ajax({
+            url: 'check_inventory_before_cart.php',
+            type: 'POST',
+            data: {
+                product_name: cart[id].name,
+                quantity: newQuantity
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Inventory check passed - increment quantity
+                    cart[id].quantity += 1;
+                    updateCartUI();
+                } else {
+                    // Show error modal
+                    $('#inventory-error-details').text(response.message);
+                    $('#inventory-error-modal').modal('show');
+                }
+            },
+            error: function() {
+                $('#inventory-error-details').text('Error checking inventory. Please try again.');
+                $('#inventory-error-modal').modal('show');
+            }
+        });
     });
 
     $(document).on("click", ".dec", function () {
@@ -739,6 +888,11 @@ $(document).ready(function () {
     $("#customerDropdown").change(function () {
         let selectedValue = $(this).val();
         localStorage.setItem("customer_id", selectedValue);
+        
+        // Show helpful message for walk-in customers
+        if (selectedValue === "0") {
+            console.log("Walk-in customer selected - no customer ID will be recorded");
+        }
     });
 
 	let employeeID = "<?php echo $_SESSION['employee_id'] ?? ''; ?>";
@@ -843,27 +997,83 @@ $(document).ready(function () {
         });
     });
 
-    // Ensure correct values are assigned in the cash form before submission
+    // Ensure correct values are assigned in the payment forms before submission
     function populatePaymentModal() {
-        $("#customer_id").val(localStorage.getItem("customer_id") || "");
-        $("#employee_id").val(localStorage.getItem("employee_id") || "");
-        $("#total_price").val(localStorage.getItem("total_price") || "");
-        $("#cart").val(localStorage.getItem("cart") || "");
-        $("#transaction_id").val(localStorage.getItem("transactionID") || "");
-        $("#payment_type").val(selectedPaymentType); // Set correct payment type
+        let customerID = localStorage.getItem("customer_id") || "0";
+        let employeeID = localStorage.getItem("employee_id") || "";
+        let totalPrice = localStorage.getItem("total_price") || "0";
+        let cart = localStorage.getItem("cart") || "{}";
+        let transactionID = localStorage.getItem("transactionID") || "";
+        
+        // Handle walk-in customers - send empty string instead of "0"
+        let customerIDForForm = (customerID === "0") ? "" : customerID;
+        
+        // Populate cash payment modal
+        $("#customer_id").val(customerIDForForm);
+        $("#employee_id").val(employeeID);
+        $("#total_price").val(totalPrice);
+        $("#cart").val(cart);
+        $("#transaction_id").val(transactionID);
+        $("#payment_type").val(selectedPaymentType);
+        
+        // Populate M-Pesa payment modal
+        $("#mpesa_customer_id").val(customerIDForForm);
+        $("#mpesa_employee_id").val(employeeID);
+        $("#mpesa_total_price").val(totalPrice);
+        $("#mpesa_cart").val(cart);
+        $("#mpesa_transaction_id").val(transactionID);
+        $("#mpesa_total_amount").val(parseFloat(totalPrice).toFixed(2));
+        
+        // Populate Credit sale modal
+        $("#credit_customer_id").val(customerIDForForm);
+        $("#credit_employee_id").val(employeeID);
+        $("#credit_total_price").val(totalPrice);
+        $("#credit_cart").val(cart);
+        $("#credit_transaction_id").val(transactionID);
+
+        // Show customer info in payment modals
+        if (customerID === "0") {
+            $("#customer_info_alert").show();
+            $("#customer_info_text").text("Walk-in customer transaction - no customer ID will be recorded");
+            $("#mpesa_customer_info_alert").show();
+            $("#mpesa_customer_info_text").text("Walk-in customer transaction - no customer ID will be recorded");
+        } else {
+            $("#customer_info_alert").hide();
+            $("#mpesa_customer_info_alert").hide();
+        }
 
         console.log("Payment Modal Data Loaded:", {
-            customer_id: $("#customer_id").val(),
-            employee_id: $("#employee_id").val(),
-            total_price: $("#total_price").val(),
-            products: $("#cart").val(),
-            transaction_id: $("#transaction_id").val(),
-            payment_type: $("#payment_type").val()
+            customer_id: customerID,
+            employee_id: employeeID,
+            total_price: totalPrice,
+            products: cart,
+            transaction_id: transactionID,
+            payment_type: selectedPaymentType
         });
     }
 
     // Bind modal events for correct data population
-    $("#cash, #credit-sale, #pay_mpesa").on("show.bs.modal", populatePaymentModal);
+    $("#cash, #pay_mpesa").on("show.bs.modal", populatePaymentModal);
+    
+    // Special handling for credit sale modal
+    $("#credit-sale").on("show.bs.modal", function() {
+        populatePaymentModal();
+        
+        // Show customer information for credit sales
+        var customerID = localStorage.getItem("selectedCustomer") || "0";
+        if (customerID !== "0") {
+            // Get customer details from localStorage or make AJAX call
+            var customerName = localStorage.getItem("selectedCustomerName") || "Customer";
+            var customerPhone = localStorage.getItem("selectedCustomerPhone") || "N/A";
+            var customerEmail = localStorage.getItem("selectedCustomerEmail") || "N/A";
+            
+            $("#credit_customer_name").text("Name: " + customerName);
+            $("#credit_customer_contact").text("Phone: " + customerPhone + " | Email: " + customerEmail);
+            $("#credit_customer_info").show();
+        } else {
+            $("#credit_customer_info").hide();
+        }
+    });
 });
 
 // credit sale logic
@@ -942,10 +1152,136 @@ $(document).ready(function () {
 
 </script>
 
+	<!-- Inventory Error Modal -->
+	<div class="modal fade" id="inventory-error-modal" tabindex="-1" aria-labelledby="inventory-error-modal-label" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-danger text-white">
+					<h5 class="modal-title" id="inventory-error-modal-label">
+						<i data-feather="alert-triangle" class="feather-20 me-2"></i>
+						⚠️ Inventory Error - Order Cannot Be Processed
+					</h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p class="mb-3">The order cannot be completed due to insufficient inventory. Please check and update your stock:</p>
+					<div class="alert alert-light border">
+						<pre id="inventory-error-details" style="margin: 0; white-space: pre-wrap; font-family: inherit;"></pre>
+					</div>
+					<div class="mt-3">
+						<a href="manage-stocks.php" class="btn btn-primary me-2">
+							<i data-feather="package" class="feather-16 me-1"></i>Manage Stock
+						</a>
+						<a href="recipe.php" class="btn btn-secondary me-2">
+							<i data-feather="edit" class="feather-16 me-1"></i>Edit Recipes
+						</a>
+						<a href="check_missing_ingredients.php" class="btn btn-info">
+							<i data-feather="search" class="feather-16 me-1"></i>Check Ingredients
+						</a>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<!-- Success Modal -->
+	<div class="modal fade" id="success-modal" tabindex="-1" aria-labelledby="success-modal-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-success text-white">
+					<h5 class="modal-title" id="success-modal-label">
+						<i data-feather="check-circle" class="feather-20 me-2"></i>
+						✅ Order Completed Successfully!
+					</h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p id="success-message">Your order has been processed and inventory has been updated.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-bs-dismiss="modal">Continue</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Error Modal -->
+	<div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="error-modal-label" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-warning text-dark">
+					<h5 class="modal-title" id="error-modal-label">
+						<i data-feather="alert-circle" class="feather-20 me-2"></i>
+						⚠️ Order Error
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p id="error-message">There was an error processing your order. Please try again.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// Handle modal content population
+		$(document).ready(function() {
+			// Inventory Error Modal
+			$('#inventory-error-modal').on('show.bs.modal', function() {
+				var errorMessage = localStorage.getItem('pos_error');
+				if (errorMessage) {
+					$('#inventory-error-details').text(errorMessage);
+				}
+			});
+
+			// Success Modal
+			$('#success-modal').on('show.bs.modal', function() {
+				var successMessage = localStorage.getItem('pos_success');
+				if (successMessage) {
+					$('#success-message').text(successMessage);
+				}
+			});
+
+			// Error Modal
+			$('#error-modal').on('show.bs.modal', function() {
+				var errorMessage = localStorage.getItem('pos_error');
+				if (errorMessage) {
+					$('#error-message').text(errorMessage);
+				}
+			});
+
+			// Clear localStorage after showing modals
+			$('#inventory-error-modal, #success-modal, #error-modal').on('hidden.bs.modal', function() {
+				localStorage.removeItem('pos_error');
+				localStorage.removeItem('pos_error_type');
+				localStorage.removeItem('pos_success');
+			});
+		});
+
+		// Function to mark notification as read
+		function markNotificationAsRead(notificationId) {
+			$.ajax({
+				url: 'mark_notification_read.php',
+				type: 'POST',
+				data: { notification_id: notificationId },
+				success: function(response) {
+					// Reload the page to update notification count
+					location.reload();
+				},
+				error: function() {
+					console.log('Error marking notification as read');
+				}
+			});
+		}
+	</script>
 
 </body>
 
 </html>
-4t1ov4q8dvcsifzo1wm9jqi5p6v5x5t27eepjy09kbo8ldby
 <script src="https://cdn.tiny.cloud/1/4t1ov4q8dvcsifzo1wm9jqi5p6v5x5t27eepjy09kbo8ldby/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>

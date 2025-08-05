@@ -1,51 +1,66 @@
 <?php
 session_start();
 require 'config/config.php'; // Include database and session handling
+require_once 'includes/error_logger.php'; // Include error logger
 
 // Initialize error message variable
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
 
     if (!empty($email) && !empty($password)) {
-        // Join employees and roles tables to get the role_name instead of role_id
-        $stmt = $conn->prepare("
-            SELECT e.id, e.first_name, e.last_name, r.role_name, e.password_hash 
-            FROM employees e 
-            LEFT JOIN roles r ON e.user_role = r.id
-            WHERE e.email = ?
-        ");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
-
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $first_name, $last_name, $role_name, $hashed_password);
-            $stmt->fetch();
-
-            if (password_verify($password, $hashed_password)) {
-                // Store user data in session
-                $_SESSION['user_id'] = $id;
-                $_SESSION['employee_id'] = $id; // Store employee ID
-                $_SESSION['email'] = $email;
-                $_SESSION['first_name'] = $first_name;
-                $_SESSION['last_name'] = $last_name;
-                $_SESSION['full_name'] = $first_name . " " . $last_name;
-                $_SESSION['user_role'] = $role_name; // Store actual role name
-
-                header("Location: index.php"); // Redirect to dashboard
-                exit();
-            } else {
-                $error = "Invalid password.";
-            }
+        // Validate email format
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = "Invalid email format.";
+            ErrorLogger::logAuthEvent("Invalid email format", $email, false);
         } else {
-            $error = "No account found with that email.";
+            // Join employees and roles tables to get the role_name instead of role_id
+            $stmt = $conn->prepare("
+                SELECT e.id, e.first_name, e.last_name, r.role_name, e.password_hash 
+                FROM employees e 
+                LEFT JOIN roles r ON e.user_role = r.id
+                WHERE e.email = ?
+            ");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($id, $first_name, $last_name, $role_name, $hashed_password);
+                $stmt->fetch();
+
+                if (password_verify($password, $hashed_password)) {
+                    // Regenerate session ID for security
+                    session_regenerate_id(true);
+                    
+                    // Store user data in session
+                    $_SESSION['user_id'] = $id;
+                    $_SESSION['employee_id'] = $id; // Store employee ID
+                    $_SESSION['email'] = $email;
+                    $_SESSION['first_name'] = $first_name;
+                    $_SESSION['last_name'] = $last_name;
+                    $_SESSION['full_name'] = $first_name . " " . $last_name;
+                    $_SESSION['user_role'] = $role_name; // Store actual role name
+                    $_SESSION['last_activity'] = time(); // Set last activity time
+
+                    ErrorLogger::logAuthEvent("Successful login", $email, true);
+                    header("Location: index.php"); // Redirect to dashboard
+                    exit();
+                } else {
+                    $error = "Invalid password.";
+                    ErrorLogger::logAuthEvent("Invalid password", $email, false);
+                }
+            } else {
+                $error = "No account found with that email.";
+                ErrorLogger::logAuthEvent("Account not found", $email, false);
+            }
+            $stmt->close();
         }
-        $stmt->close();
     } else {
         $error = "Please fill in both fields.";
+        ErrorLogger::logAuthEvent("Empty login fields", 'unknown', false);
     }
 }
 

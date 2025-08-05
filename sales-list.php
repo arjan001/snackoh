@@ -209,12 +209,12 @@ $result = $conn->query($query);
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="javascript:void(0);" class="dropdown-item download-pdf" data-sale-id="<?= $row['id']; ?>" data-transaction-id="<?= htmlspecialchars($row['transaction_id']); ?>">
                                 <i data-feather="download" class="info-img"></i> Download PDF
                             </a>
                         </li>    
                         <li>
-                            <a href="javascript:void(0);" class="dropdown-item confirm-text mb-0">
+                            <a href="javascript:void(0);" class="dropdown-item delete-sale" data-sale-id="<?= $row['id']; ?>" data-transaction-id="<?= htmlspecialchars($row['transaction_id']); ?>">
                                 <i data-feather="trash-2" class="info-img"></i> Delete Sale
                             </a>
                         </li>                                
@@ -352,12 +352,12 @@ $result = $conn->query($query);
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="javascript:void(0);" class="dropdown-item download-pdf" data-sale-id="<?= $row['id']; ?>" data-transaction-id="<?= htmlspecialchars($row['transaction_id']); ?>">
                                 <i data-feather="download" class="info-img"></i> Download PDF
                             </a>
                         </li>    
                         <li>
-                            <a href="javascript:void(0);" class="dropdown-item confirm-text mb-0">
+                            <a href="javascript:void(0);" class="dropdown-item delete-sale" data-sale-id="<?= $row['id']; ?>" data-transaction-id="<?= htmlspecialchars($row['transaction_id']); ?>">
                                 <i data-feather="trash-2" class="info-img"></i> Delete Sale
                             </a>
                         </li>                                
@@ -390,6 +390,7 @@ $result = $conn->query($query);
   
 
 		<?php include "includes/footer.php";?>
+
 
 	
     </body>

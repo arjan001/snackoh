@@ -21,12 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ii", $user_role, $employee_id);
     }
 
-    if ($stmt->execute()) {
-        echo json_encode(["status" => "success", "message" => "User updated successfully"]);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('User Role updated successfully'); window.location.href='./users.php';</script>";
+            exit;
+        }
     } else {
         echo json_encode(["status" => "error", "message" => $stmt->error]);
     }
 
     $stmt->close();
-}
+
 ?>

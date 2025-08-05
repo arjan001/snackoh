@@ -52,17 +52,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Hash password
     // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // File uploads handling
+    // Secure file uploads handling
     function uploadFile($fileInputName, $uploadDir)
     {
         if (!isset($_FILES[$fileInputName]) || $_FILES[$fileInputName]['error'] != 0) {
             die("Error: File upload failed for " . $fileInputName);
         }
 
-        $fileName = basename($_FILES[$fileInputName]['name']);
-        $targetPath = $uploadDir . $fileName;
-
-        if (move_uploaded_file($_FILES[$fileInputName]['tmp_name'], $targetPath)) {
+        $file = $_FILES[$fileInputName];
+        $fileName = basename($file['name']);
+        $fileSize = $file['size'];
+        $fileTmpName = $file['tmp_name'];
+        $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        
+        // Validate file size (5MB max)
+        if ($fileSize > 5 * 1024 * 1024) {
+            die("Error: File size too large. Maximum 5MB allowed.");
+        }
+        
+        // Validate file type
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'pdf'];
+        if (!in_array($fileType, $allowedTypes)) {
+            die("Error: Invalid file type. Only JPG, PNG, and PDF files are allowed.");
+        }
+        
+        // Generate unique filename to prevent overwrites
+        $uniqueFileName = uniqid() . '_' . $fileName;
+        $targetPath = $uploadDir . $uniqueFileName;
+        
+        // Ensure upload directory exists and is writable
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        
+        if (move_uploaded_file($fileTmpName, $targetPath)) {
             return $targetPath;
         } else {
             die("Error: Failed to upload file " . $fileInputName);

@@ -490,68 +490,178 @@ chart.render();
 }	
 	
 if($('#sales_charts').length > 0) {
-	var options = {
-		series: [{
-		name: 'Sales',
-		data: [130, 210, 300, 290, 150, 50, 210, 280, 105],
-	  }, {
-		name: 'Purchase',
-		data: [-150, -90, -50, -180, -50, -70, -100, -90, -105]
-	  }],
-	  colors: ['#28C76F', '#EA5455'],
-		chart: {
-		type: 'bar',
-		height: 320,
-		stacked: true,
-		
-		zoom: {
-		  enabled: true
-		}
-	  },
-	  responsive: [{
-		breakpoint: 280,
-		options: {
-		  legend: {
-			position: 'bottom',
-			offsetY: 0
-		  }
-		}
-	  }],
-	  plotOptions: {
-		bar: {
-		  horizontal: false,
-          borderRadius: 4,
-        borderRadiusApplication: "end", // "around" / "end" 
-        borderRadiusWhenStacked: "all", // "all"/"last"
-		  columnWidth: '20%',
-		},
-	  },
-      dataLabels: {
-      enabled: false
-    },
-      // stroke: {
-      //     width: 5,
-      //     colors: ['#fff']
-      //   },
-      yaxis: {
-          min: -200,
-          max: 300,
-          tickAmount: 5,
-        },
-	  xaxis: {
-		categories: [' Jan ', 'Feb', 'Mar', 'Apr',
-		  'May', 'Jun' , 'Jul' , 'Aug', 'Sep'
-		],
-	  },
-	  legend: {show: false},
-	  fill: {
-		opacity: 1
-	  }
-	  };
+	// Fetch dynamic chart data
+	$.ajax({
+		url: 'get_dashboard_chart_data.php',
+		type: 'GET',
+		dataType: 'json',
+		success: function(response) {
+			if (response.success) {
+				var options = {
+					series: response.data.series,
+					colors: ['#28C76F', '#EA5455'],
+					chart: {
+						type: 'bar',
+						height: 320,
+						stacked: true,
+						zoom: {
+							enabled: true
+						}
+					},
+					responsive: [{
+						breakpoint: 280,
+						options: {
+							legend: {
+								position: 'bottom',
+								offsetY: 0
+							}
+						}
+					}],
+					plotOptions: {
+						bar: {
+							horizontal: false,
+							borderRadius: 4,
+							borderRadiusApplication: "end",
+							borderRadiusWhenStacked: "all",
+							columnWidth: '20%',
+						},
+					},
+					dataLabels: {
+						enabled: false
+					},
+					yaxis: {
+						min: -200,
+						max: 300,
+						tickAmount: 5,
+					},
+					xaxis: {
+						categories: response.data.categories,
+					},
+					legend: {show: false},
+					fill: {
+						opacity: 1
+					}
+				};
 
-	  var chart = new ApexCharts(document.querySelector("#sales_charts"), options);
-	  chart.render();
-	}
+				var chart = new ApexCharts(document.querySelector("#sales_charts"), options);
+				chart.render();
+			} else {
+				// Fallback to static data if API fails
+				var options = {
+					series: [{
+						name: 'Sales',
+						data: [130, 210, 300, 290, 150, 50, 210, 280, 105, 200, 180, 220]
+					}, {
+						name: 'Purchase',
+						data: [-150, -90, -50, -180, -50, -70, -100, -90, -105, -120, -80, -110]
+					}],
+					colors: ['#28C76F', '#EA5455'],
+					chart: {
+						type: 'bar',
+						height: 320,
+						stacked: true,
+						zoom: {
+							enabled: true
+						}
+					},
+					responsive: [{
+						breakpoint: 280,
+						options: {
+							legend: {
+								position: 'bottom',
+								offsetY: 0
+							}
+						}
+					}],
+					plotOptions: {
+						bar: {
+							horizontal: false,
+							borderRadius: 4,
+							borderRadiusApplication: "end",
+							borderRadiusWhenStacked: "all",
+							columnWidth: '20%',
+						},
+					},
+					dataLabels: {
+						enabled: false
+					},
+					yaxis: {
+						min: -200,
+						max: 300,
+						tickAmount: 5,
+					},
+					xaxis: {
+						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					},
+					legend: {show: false},
+					fill: {
+						opacity: 1
+					}
+				};
+
+				var chart = new ApexCharts(document.querySelector("#sales_charts"), options);
+				chart.render();
+			}
+		},
+		error: function() {
+			// Fallback to static data if AJAX fails
+			var options = {
+				series: [{
+					name: 'Sales',
+					data: [130, 210, 300, 290, 150, 50, 210, 280, 105, 200, 180, 220]
+				}, {
+					name: 'Purchase',
+					data: [-150, -90, -50, -180, -50, -70, -100, -90, -105, -120, -80, -110]
+				}],
+				colors: ['#28C76F', '#EA5455'],
+				chart: {
+					type: 'bar',
+					height: 320,
+					stacked: true,
+					zoom: {
+						enabled: true
+					}
+				},
+				responsive: [{
+					breakpoint: 280,
+					options: {
+						legend: {
+							position: 'bottom',
+							offsetY: 0
+						}
+					}
+				}],
+				plotOptions: {
+					bar: {
+						horizontal: false,
+						borderRadius: 4,
+						borderRadiusApplication: "end",
+						borderRadiusWhenStacked: "all",
+						columnWidth: '20%',
+					},
+				},
+				dataLabels: {
+					enabled: false
+				},
+				yaxis: {
+					min: -200,
+					max: 300,
+					tickAmount: 5,
+				},
+				xaxis: {
+					categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				},
+				legend: {show: false},
+				fill: {
+					opacity: 1
+				}
+			};
+
+			var chart = new ApexCharts(document.querySelector("#sales_charts"), options);
+			chart.render();
+		}
+	});
+}
 
     if($('#sales-analysis').length > 0 ){
     var options = {

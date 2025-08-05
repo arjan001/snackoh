@@ -1,30 +1,49 @@
 <?php
-include_once "./config/config.php"; // Ensure DB connection is established
+session_start();
+include './config/config.php';
+include_once './includes/permission_middleware.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $role_name = trim($_POST['role_name']);
-    $status = isset($_POST['status']) ? 'active' : 'inactive'; // If checkbox is checked, set as active
+// Check if user has permission to create roles
+requirePermission('roles.create');
 
-    // Basic validation
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $role_name = trim($_POST['role_name'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+    $status = isset($_POST['status']) ? 'active' : 'inactive';
+    
+    // Validation
     if (empty($role_name)) {
-        echo "<script>alert('Role name cannot be empty!'); window.history.back();</script>";
+        echo json_encode(['success' => false, 'message' => 'Role name is required']);
         exit;
     }
-
-    // Insert role into database
-    $query = "INSERT INTO roles (role_name, status, created_at) VALUES (?, ?, NOW())";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $role_name, $status);
-
+    
+    // Check if role name already exists
+    $check_query = "SELECT id FROM roles WHERE role_name = ?";
+    $stmt = $conn->prepare($check_query);
+    $stmt->bind_param("s", $role_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        echo json_encode(['success' => false, 'message' => 'Role name already exists']);
+        exit;
+    }
+    
+    // Insert new role
+    $insert_query = "INSERT INTO roles (role_name, description, status, created_at) VALUES (?, ?, ?, NOW())";
+    $stmt = $conn->prepare($insert_query);
+    $stmt->bind_param("sss", $role_name, $description, $status);
+    
     if ($stmt->execute()) {
-        // Redirect after success
-        echo "<script>alert('Role added successfully'); window.location.href='./roles_permissions.php';</script>";
-        exit;
+        echo json_encode(['success' => true, 'message' => 'Role created successfully']);
     } else {
-        echo "<script>alert('Error: " . addslashes($conn->error) . "'); window.history.back();</script>";
+        echo json_encode(['success' => false, 'message' => 'Error creating role: ' . $conn->error]);
     }
-
+    
     $stmt->close();
-    $conn->close();
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
+
+$conn->close();
 ?>

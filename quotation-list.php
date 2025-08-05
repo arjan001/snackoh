@@ -223,7 +223,7 @@ include "includes/header.php"
 							<div class="page-header p-4 mb-0">
 								<div class="add-item new-sale-items d-flex">
 									<div class="page-title">
-										<h4>Edit Quotation</h4>
+										<h4>Add New Quotation</h4>
 									</div>
 									<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>

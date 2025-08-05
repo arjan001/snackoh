@@ -10,7 +10,7 @@
 				</div>
 				<div class="modal-body p-4">
 					<form action="pos.html">
-						<h2 class="text-center p-4">KSH 4500.00</h2>
+						<h2 class="text-center p-4 btn-secondary">KSH ..</h2>
 						<div class="input-block">
 							<label>Order Reference</label>
 							<input class="form-control" type="text" value="" placeholder="">
@@ -18,7 +18,7 @@
 						<p>The current order will be set on hold. You can retreive this order from the pending order
 							button. Providing a reference to it might help you to identify the order more quickly.</p>
 						<div class="modal-footer d-sm-flex justify-content-end">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"></button>
 							<button type="submit" class="btn btn-primary">Confirm</button>
 						</div>
 					</form>

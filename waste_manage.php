@@ -178,7 +178,9 @@ JOIN products p ON nb.product_id = p.id
 JOIN product_category c ON nb.category_id = c.id
 ORDER BY pw.created_at DESC
 ";
-$result = mysqli_query($conn, $query);
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$result = $stmt->get_result();
 
 ?>
 
@@ -240,9 +242,11 @@ $result = mysqli_query($conn, $query);
                             <?php
                             include_once "./config/config.php";
                             $query = "SELECT batch_id FROM new_batch_production ORDER BY batch_id DESC";
-                            $result = mysqli_query($conn, $query);
+                            $stmt = $conn->prepare($query);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<option value='".$row['batch_id']."'>".$row['batch_id']."</option>";
+                                echo "<option value='".htmlspecialchars($row['batch_id'])."'>".htmlspecialchars($row['batch_id'])."</option>";
                             }
                             ?>
                         </select>

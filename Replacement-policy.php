@@ -97,7 +97,9 @@ include_once "./includes/session_check.php";
 							// Fetch data from asset_replacement_policy table
 							$query = "SELECT arp.*, a.asset_name, a.serial_number, a.current_cost FROM asset_replacement_policy arp 
           JOIN assets a ON arp.asset_id = a.id";
-							$result = mysqli_query($conn, $query);
+							$stmt = $conn->prepare($query);
+							$stmt->execute();
+							$result = $stmt->get_result();
 							?>
 
 							<table class="table datanew">

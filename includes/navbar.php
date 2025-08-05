@@ -1,17 +1,20 @@
 
+<?php
+include_once "./includes/notifications.php";
+?>
     <!-- Header -->
     <div class="header">
 
 <!-- Logo -->
 <div class="header-left active">
     <a href="index.php" class="logo logo-normal">
-        <img src="assets/img/l" alt="">
+        <!-- <img src="assets/logo1.jpg" alt=""> -->
     </a>
     <a href="index.php" class="logo logo-white">
-        <img src="assets/img/" alt="">
+        <!-- <img src="assets/logo1.jpg" alt=""> -->
     </a>
     <a href="index.php" class="logo-small">
-        <img src="assets/img/" alt="">
+        <!-- <img src="assets/logo1.jpg" alt=""> -->
     </a>
     <a id="toggle_btn" href="javascript:void(0);">
         <i data-feather="chevrons-left" class="feather-16"></i>
@@ -120,7 +123,13 @@
 					<!-- Notifications -->
 					<li class="nav-item dropdown nav-item-box">
 						<a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-							<i data-feather="bell"></i><span class="badge rounded-pill">2</span>
+							<i data-feather="bell"></i>
+							<?php 
+							$notification_count = getNotificationCount();
+							if ($notification_count > 0): 
+							?>
+								<span class="badge rounded-pill"><?= $notification_count ?></span>
+							<?php endif; ?>
 						</a>
 						<div class="dropdown-menu notifications">
 							<div class="topnav-dropdown-header">
@@ -129,23 +138,58 @@
 							</div>
 							<div class="noti-content">
 								<ul class="notification-list">
+									<?php 
+									$notifications = getUnreadNotifications();
+									if ($notifications && $notifications->num_rows > 0):
+										while ($notification = $notifications->fetch_assoc()):
+									?>
 									<li class="notification-message">
-										<a href="activities.html">
+										<a href="javascript:void(0);" onclick="markNotificationAsRead(<?= $notification['id'] ?>)">
 											<div class="media d-flex">
 												<span class="avatar flex-shrink-0">
-													<img alt="" src="assets/img/profiles/avatar-02.jpg">
+													<?php if ($notification['type'] === 'success'): ?>
+														<div class="avatar-initial rounded-circle bg-success text-white">
+															<i data-feather="check-circle" class="feather-16"></i>
+														</div>
+													<?php elseif ($notification['type'] === 'error'): ?>
+														<div class="avatar-initial rounded-circle bg-danger text-white">
+															<i data-feather="alert-triangle" class="feather-16"></i>
+														</div>
+													<?php elseif ($notification['type'] === 'warning'): ?>
+														<div class="avatar-initial rounded-circle bg-warning text-white">
+															<i data-feather="alert-circle" class="feather-16"></i>
+														</div>
+													<?php else: ?>
+														<div class="avatar-initial rounded-circle bg-info text-white">
+															<i data-feather="info" class="feather-16"></i>
+														</div>
+													<?php endif; ?>
 												</span>
 												<div class="media-body flex-grow-1">
-													<p class="noti-details"><span class="noti-title">John Doe</span> added
-														new product <span class="noti-title">into the inventory booking</span>
+													<p class="noti-details">
+														<span class="noti-title"><?= htmlspecialchars($notification['title']) ?></span>
+														<br>
+														<span class="noti-message"><?= htmlspecialchars($notification['message']) ?></span>
 													</p>
-													<p class="noti-time"><span class="notification-time">4 mins ago</span>
+													<p class="noti-time">
+														<span class="notification-time"><?= formatNotificationTime($notification['created_at']) ?></span>
 													</p>
 												</div>
 											</div>
 										</a>
 									</li>
-									
+									<?php 
+										endwhile;
+									else:
+									?>
+									<li class="notification-message">
+										<div class="media d-flex">
+											<div class="media-body flex-grow-1 text-center py-3">
+												<p class="text-muted mb-0">No new notifications</p>
+											</div>
+										</div>
+									</li>
+									<?php endif; ?>
 								</ul>
 							</div>
 							<div class="topnav-dropdown-footer">

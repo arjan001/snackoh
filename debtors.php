@@ -135,6 +135,32 @@
 										</tr>
 									</thead>
 									<tbody>
+										<?php
+										// Include database connection
+										require 'config/config.php'; 
+										
+										$query = "
+											SELECT 
+												d.id,
+												d.customer_id,
+												d.customer_name,
+												d.email,
+												d.phone,
+												d.total_debt,
+												d.created_date,
+												dt.transaction_id,
+												dt.amount as transaction_amount,
+												dt.transaction_date
+											FROM debtors d
+											LEFT JOIN debt_transactions dt ON d.customer_id = dt.customer_id
+											WHERE d.status = 'active'
+											ORDER BY d.created_date DESC
+										";
+										
+										$result = $conn->query($query);
+										
+										while ($row = $result->fetch_assoc()) {
+										?>
 										<tr>
 											<td>
 												<label class="checkboxs">
@@ -142,30 +168,28 @@
 													<span class="checkmarks"></span>
 												</label>
 											</td>
-											<td>debtor edwin</td>
-											<td>SNTID2403867D9D</td>
+											<td><?= htmlspecialchars($row['customer_name']); ?></td>
+											<td><?= htmlspecialchars($row['transaction_id'] ?? 'N/A'); ?></td>
 											<td>KSH 0.00</td>
-											<td>KSH 2,500.00</td>
-											<td>2025-03-24 17:02:42</td>
-											<td>edwin@email.com</td>
-											<td>0798325432</td>
-											<!-- <td>selfridges, wangige</td> -->
+											<td>KSH <?= number_format($row['total_debt'], 2); ?></td>
+											<td><?= date('Y-m-d H:i:s', strtotime($row['created_date'])); ?></td>
+											<td><?= htmlspecialchars($row['email'] ?? 'N/A'); ?></td>
+											<td><?= htmlspecialchars($row['phone'] ?? 'N/A'); ?></td>
 											<td class="action-table-data">
 												<div class="edit-delete-action">
-													
-													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-credit-sale">
+													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#edit-credit-sale" 
+													   data-customer-id="<?= $row['customer_id']; ?>"
+													   data-customer-name="<?= htmlspecialchars($row['customer_name']); ?>"
+													   data-total-debt="<?= $row['total_debt']; ?>">
 														<i data-feather="edit" class="feather-edit"></i>
 													</a>
-													
 													<a class="me-2 p-2 mb-0" data-bs-toggle="modal" data-bs-target="#notify">
-													<i data-feather="bell"></i>
+														<i data-feather="bell"></i>
 													</a>
-													
 												</div>
 											</td>
 										</tr>
-										
-										
+										<?php } ?>
 									</tbody>
 								</table>
 							</div>

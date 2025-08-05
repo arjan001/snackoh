@@ -281,9 +281,11 @@ $result = $conn->query($sql);
                                     <option value="">Select Recipe</option>
                                     <?php
                                     $query = "SELECT id, recipe_name FROM recipes";
-                                    $result = mysqli_query($conn, $query);
+                                    $stmt = $conn->prepare($query);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='".$row['id']."'>".$row['recipe_name']."</option>";
+                                        echo "<option value='".htmlspecialchars($row['id'])."'>".htmlspecialchars($row['recipe_name'])."</option>";
                                     }
                                     ?>
                                 </select>
@@ -324,9 +326,11 @@ $result = $conn->query($sql);
                             <option value="">Select Employee</option>
                             <?php
                             $sql = "SELECT id, first_name, last_name FROM employees";
-                            $result = $conn->query($sql);
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<option value='".$row['id']."'>".$row['first_name']." ".$row['last_name']."</option>";
+                                echo "<option value='".htmlspecialchars($row['id'])."'>".htmlspecialchars($row['first_name'])." ".htmlspecialchars($row['last_name'])."</option>";
                             }
                             ?>
                         </select>

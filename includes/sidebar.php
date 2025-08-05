@@ -29,6 +29,7 @@
 								
 								<li><a href="quotation-list.php"><i data-feather="save"></i><span>Quotation</span></a></li>
 								<li><a href="pos.php"><i data-feather="hard-drive"></i><span>POS</span></a></li>
+								<li><a href="pos_sessions.php"><i data-feather="clock"></i><span>POS Sessions</span></a></li>
 							</ul>
 						</li>
 						
@@ -40,6 +41,7 @@
 								<li><a href="product-list.php"><i data-feather="box"></i><span>Products</span></a></li>
 								<li><a href="add-product.php"><i data-feather="plus-square"></i><span>Create Product</span></a></li>
 								<li><a href="recipe.php"><i data-feather="plus-square"></i><span>Recipes</span></a></li>
+								<li><a href="ingredient_usage_tracking.php"><i data-feather="activity"></i><span>BOM Tracking</span></a></li>
 								<!-- <li><a href="expired-products.php"><i data-feather="codesandbox"></i><span>Expired Products</span></a></li> -->
 
 								<li><a href="damaged-goods.php"><i data-feather="codesandbox"></i><span>Damaged Goods</span></a></li>
