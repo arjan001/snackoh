@@ -80,6 +80,12 @@
 							// Store success in localStorage for notifications
 							localStorage.setItem('pos_success', '<?= isset($_GET['message']) ? addslashes(urldecode($_GET['message'])) : 'Order completed successfully!' ?>');
 							
+							// Store receipt data if available
+							<?php if (isset($_GET['transaction_id']) && isset($_GET['order_id'])): ?>
+							localStorage.setItem('receipt_transaction_id', '<?= $_GET['transaction_id'] ?>');
+							localStorage.setItem('receipt_order_id', '<?= $_GET['order_id'] ?>');
+							<?php endif; ?>
+							
 							// Show success popup
 							$(document).ready(function() {
 								$('#success-modal').modal('show');
@@ -579,8 +585,7 @@
 						<h4>Payment Completed</h4>
 						<p class="mb-0">Do you want to Print Receipt for the Completed Order</p>
 						<div class="modal-footer d-sm-flex justify-content-between">
-							<button type="button" class="btn btn-primary flex-fill" data-bs-toggle="modal"
-								data-bs-target="#print-receipt">Print Receipt<i
+							<button type="button" class="btn btn-primary flex-fill" onclick="showReceipt()">Print Receipt<i
 									class="feather-arrow-right-circle icon-me-5"></i></button>
 							<button type="submit" class="btn btn-secondary flex-fill">Next Order<i
 									class="feather-arrow-right-circle icon-me-5"></i></button>
@@ -1278,6 +1283,27 @@ $(document).ready(function () {
 					console.log('Error marking notification as read');
 				}
 			});
+		}
+
+		// Function to show receipt
+		function showReceipt() {
+			var transactionId = localStorage.getItem('receipt_transaction_id');
+			var orderId = localStorage.getItem('receipt_order_id');
+			
+			if (transactionId && orderId) {
+				// Close success modal
+				$('#success-modal').modal('hide');
+				
+				// Load receipt data and show receipt modal
+				loadReceiptData(transactionId, orderId);
+				$('#print-receipt').modal('show');
+				
+				// Clear receipt data from localStorage
+				localStorage.removeItem('receipt_transaction_id');
+				localStorage.removeItem('receipt_order_id');
+			} else {
+				alert('Receipt data not available. Please try again.');
+			}
 		}
 	</script>
 

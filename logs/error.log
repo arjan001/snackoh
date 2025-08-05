@@ -26,3 +26,5 @@
 {"timestamp":"2025-08-05 17:47:12","level":"INFO","message":"Authentication: Successful login","ip":"::1","user":11,"url":"\/projects\/snackoh\/login.php","context":{"user":"geomaxm@gmail.com","success":true,"type":"authentication"}}
 {"timestamp":"2025-08-05 19:51:26","level":"WARNING","message":"Authentication: Session timeout","ip":"::1","user":11,"url":"\/projects\/snackoh\/suppliers.php","context":{"user":11,"success":false,"type":"authentication"}}
 {"timestamp":"2025-08-05 19:51:28","level":"INFO","message":"Authentication: Successful login","ip":"::1","user":11,"url":"\/projects\/snackoh\/login.php","context":{"user":"geomaxm@gmail.com","success":true,"type":"authentication"}}
+{"timestamp":"2025-08-05 22:01:13","level":"WARNING","message":"Authentication: Session timeout","ip":"::1","user":11,"url":"\/projects\/snackoh\/pos.php","context":{"user":11,"success":false,"type":"authentication"}}
+{"timestamp":"2025-08-05 22:01:16","level":"INFO","message":"Authentication: Successful login","ip":"::1","user":11,"url":"\/projects\/snackoh\/login.php","context":{"user":"geomaxm@gmail.com","success":true,"type":"authentication"}}

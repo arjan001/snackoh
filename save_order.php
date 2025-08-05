@@ -288,6 +288,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'success'
         );
         
+        // Store order details for receipt
+        $receipt_data = [
+            'transaction_id' => $transaction_id,
+            'order_id' => $order_id,
+            'total_price' => $total_price,
+            'payment_type' => $payment_type
+        ];
+        
         // Handle M-Pesa payment if applicable
         if ($payment_type === 'mpesa') {
             $mpesa_number = $_POST['mpesa_number'] ?? '';
@@ -295,19 +303,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Here you would typically integrate with M-Pesa API
                 // For now, we'll just redirect to a success page
                 echo "<script>localStorage.clear();</script>";
-                header("Location: ./pos.php?status=success&payment=mpesa&message=" . urlencode("M-Pesa payment initiated for number: " . $mpesa_number));
+                header("Location: ./pos.php?status=success&payment=mpesa&message=" . urlencode("M-Pesa payment initiated for number: " . $mpesa_number) . "&transaction_id=" . $transaction_id . "&order_id=" . $order_id);
             } else {
                 echo "<script>localStorage.clear();</script>";
-                header("Location: ./pos.php?status=success&payment=mpesa&message=" . urlencode("M-Pesa payment initiated"));
+                header("Location: ./pos.php?status=success&payment=mpesa&message=" . urlencode("M-Pesa payment initiated") . "&transaction_id=" . $transaction_id . "&order_id=" . $order_id);
             }
         } elseif ($payment_type === 'credit') {
             // Credit sale success message
             echo "<script>localStorage.clear();</script>";
-            header("Location: ./pos.php?status=success&payment=credit&message=" . urlencode("Credit sale completed! Customer added to debtors list."));
+            header("Location: ./pos.php?status=success&payment=credit&message=" . urlencode("Credit sale completed! Customer added to debtors list.") . "&transaction_id=" . $transaction_id . "&order_id=" . $order_id);
         } else {
             // ✅ Clear localStorage after success for other payment types
             echo "<script>localStorage.clear();</script>";
-            header("Location: ./pos.php?status=success&message=" . urlencode("Order completed successfully! Inventory updated."));
+            header("Location: ./pos.php?status=success&message=" . urlencode("Order completed successfully! Inventory updated.") . "&transaction_id=" . $transaction_id . "&order_id=" . $order_id);
         }
         exit;
 
