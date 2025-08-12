@@ -5,16 +5,14 @@ Thumbs.db
 .vscode/
 
 # Logs
-logs/
-*.log
+
 
 # Environment files
 .env
 .env.*
 
 # Configs (keep out of git)
-config.php
-config/config.php
+
 
 # Caches / temp
 cache/
