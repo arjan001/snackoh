@@ -54,3 +54,4 @@
 {"timestamp":"2025-08-12 21:20:15","level":"WARNING","message":"Security event: Unauthorized access attempt","ip":"::1","user":"guest","url":"\/projects\/snackoh\/","context":{"ip":"::1","url":"\/projects\/snackoh\/","type":"security"}}
 {"timestamp":"2025-08-12 21:20:32","level":"WARNING","message":"Security event: Unauthorized access attempt","ip":"::1","user":"guest","url":"\/projects\/snackoh\/","context":{"ip":"::1","url":"\/projects\/snackoh\/","type":"security"}}
 {"timestamp":"2025-08-12 21:23:20","level":"WARNING","message":"Security event: Unauthorized access attempt","ip":"::1","user":"guest","url":"\/projects\/snackoh\/","context":{"ip":"::1","url":"\/projects\/snackoh\/","type":"security"}}
+{"timestamp":"2025-08-12 21:32:14","level":"INFO","message":"Authentication: Successful login","ip":"::1","user":11,"url":"\/projects\/snackoh\/login.php","context":{"user":"geomaxm@gmail.com","success":true,"type":"authentication"}}
