@@ -1,0 +1,31 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Configs (keep out of git)
+config.php
+config/config.php
+
+# Caches / temp
+cache/
+tmp/
+*.cache
+
+# PHP Composer
+vendor/
+composer.lock
+
+# Node
+node_modules/
+package-lock.json
+

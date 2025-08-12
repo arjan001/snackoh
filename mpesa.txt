@@ -1,0 +1,170 @@
+// mpesa logic overal insert
+// $(document).ready(function () {
+//     let selectedPaymentType = "cash"; // Default payment type
+
+//     // Capture payment type when a method is clicked
+//     $(".methods a").click(function () {
+//         selectedPaymentType = $(this).data("payment-type") || "cash";
+//         console.log("Selected Payment Type:", selectedPaymentType);
+//     });
+
+//     // Set payment type to "mpesa" when Mpesa modal opens
+//     $("#pay_mpesa").on("show.bs.modal", function () {
+//         selectedPaymentType = "mpesa";
+//         console.log("Payment Type Set to:", selectedPaymentType);
+//     });
+
+//     $(".complete-order, .complete-mpesa-order").click(function () {
+//         let transactionID = localStorage.getItem("transactionID") || "";
+//         let customerID = localStorage.getItem("selectedCustomer") || "0";
+//         let employeeID = localStorage.getItem("employee_id") || "";
+//         let totalPrice = localStorage.getItem("total_price") || "0";
+//         let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+//         // Ensure correct payment type before sending data
+//         if ($(this).hasClass("complete-mpesa-order")) {
+//             selectedPaymentType = "mpesa"; // Ensure it's set correctly
+//         }
+
+//         let orderItems = Object.keys(cart).map(id => ({
+//             name: cart[id].name,
+//             price: cart[id].price,
+//             quantity: cart[id].quantity,
+//             image: cart[id].image
+//         }));
+
+//         let orderData = {
+//             transaction_id: transactionID,
+//             customer_id: customerID,
+//             employee_id: employeeID,
+//             total_price: totalPrice,
+//             products: orderItems,
+//             payment_status: "completed",
+//             payment_type: selectedPaymentType // Ensure correct payment type
+//         };
+
+//         console.log("Order Data:", orderData);
+
+//         $.ajax({
+//             url: "save_order.php",
+//             type: "POST",
+//             contentType: "application/json",
+//             data: JSON.stringify(orderData),
+//             success: function (response) {
+//                 console.log("Response: ", response);
+//                 alert("Order saved successfully!");
+//                 localStorage.removeItem("cart");
+//                 localStorage.removeItem("total_price");
+//                 localStorage.removeItem("transactionID");
+//                 localStorage.removeItem("selectedCustomer");
+//                 localStorage.removeItem("employee_id");
+//                 updateCartUI();
+//             },
+//             error: function () {
+//                 alert("Failed to save order.");
+//             }
+//         });
+//     });
+
+//     // Ensure correct values are assigned in the payment modal before submission
+//     function populatePaymentModal() {
+//         let totalPrice = localStorage.getItem("total_price") || "0";
+
+//         $("#customer_id").val(localStorage.getItem("customer_id") || "");
+//         $("#employee_id").val(localStorage.getItem("employee_id") || "");
+//         $("#total_price").val(totalPrice);
+//         $("#cart").val(localStorage.getItem("cart") || "");
+//         $("#transaction_id").val(localStorage.getItem("transactionID") || "");
+
+//         $("#payment_type").val(selectedPaymentType); // Ensure correct payment type
+
+//         // Set the total payable amount in the Mpesa modal
+//         $("input[name='total_amount']").val(totalPrice);
+//     }
+
+//     // Bind modal events for correct data population
+//     $("#cash, #credit-sale, #pay_mpesa").on("show.bs.modal", populatePaymentModal);
+// });
+
+.............................................................................................another........ code...............................................
+
+// $(document).ready(function () {
+//     let selectedPaymentType = "cash"; // Default payment type
+
+//     // Capture payment type when a method is clicked
+//     $(".methods a").click(function () {
+//         selectedPaymentType = $(this).data("payment-type") || "cash";
+//         console.log("Selected Payment Type:", selectedPaymentType);
+//     });
+
+//     $(".complete-order, .complete-mpesa-order").click(function () {
+//         let transactionID = localStorage.getItem("transactionID") || "";
+//         let customerID = localStorage.getItem("selectedCustomer") || "0";
+//         let employeeID = localStorage.getItem("employee_id") || "";
+//         let totalPrice = localStorage.getItem("total_price") || "0";
+//         let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+//         // Ensure correct payment type
+//         let paymentType = $(this).hasClass("complete-mpesa-order") ? "mpesa" : selectedPaymentType;
+
+//         let orderItems = Object.keys(cart).map(id => ({
+//             name: cart[id].name,
+//             price: cart[id].price,
+//             quantity: cart[id].quantity,
+//             image: cart[id].image
+//         }));
+
+//         let orderData = {
+//             transaction_id: transactionID,
+//             customer_id: customerID,
+//             employee_id: employeeID,
+//             total_price: totalPrice,
+//             products: orderItems,
+//             payment_status: "completed",
+//             payment_type: paymentType // Send selected payment type
+//         };
+
+//         console.log("Order Data:", orderData);
+
+//         $.ajax({
+//             url: "save_order.php",
+//             type: "POST",
+//             contentType: "application/json",
+//             data: JSON.stringify(orderData),
+//             success: function (response) {
+//                 console.log("Response: ", response);
+//                 alert("Order saved successfully!");
+//                 localStorage.removeItem("cart");
+//                 localStorage.removeItem("total_price");
+//                 localStorage.removeItem("transactionID");
+//                 localStorage.removeItem("selectedCustomer");
+//                 localStorage.removeItem("employeeID");
+//                 updateCartUI();
+//             },
+//             error: function () {
+//                 alert("Failed to save order.");
+//             }
+//         });
+//     });
+
+// // Ensure correct values are assigned in the payment modal before submission
+// function populatePaymentModal() {
+//     let totalPrice = localStorage.getItem("total_price") || "0";
+
+//     $("#customer_id").val(localStorage.getItem("customer_id") || "");
+//     $("#employee_id").val(localStorage.getItem("employee_id") || "");
+//     $("#total_price").val(totalPrice);
+//     $("#cart").val(localStorage.getItem("cart") || "");
+//     $("#transaction_id").val(localStorage.getItem("transactionID") || "");
+//     $("#payment_type").val(selectedPaymentType); // Set correct payment type
+
+//     // Set the total payable amount in the Mpesa modal
+//     $("input[name='total_amount']").val(totalPrice);
+// }
+
+
+//     // Bind modal events for correct data population
+//     $("#cash, #credit-sale, #pay_mpesa").on("show.bs.modal", populatePaymentModal);
+// });
+
+

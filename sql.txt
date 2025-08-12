@@ -1,0 +1,166 @@
+
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    segment VARCHAR(50) NOT NULL,
+    phone ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+    payment_terms INT DEFAULT 12,
+    outstanding_balance INT DEFAULT 1130,
+    last_pay_date INT DEFAULT 10,
+    email TIMESTAMP ,
+    gender TIMESTAMP ,
+    email TIMESTAMP ,
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   
+);
+
+CREATE TABLE units (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    unit_name VARCHAR(255) NOT NULL,
+    short_name VARCHAR(50) NOT NULL,
+    no_of_products INT DEFAULT 0,
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+);
+CREATE TABLE expense_category (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    expense_name VARCHAR(255) NOT NULL,
+   expense_description VARCHAR(250) NOT NULL,
+  
+);
+
+  
+);
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    contact_number VARCHAR(50),
+    emp_code VARCHAR(50),
+    dob DATE,
+    gender ENUM('Male', 'Female'),
+    nationality VARCHAR(50),
+    joining_date DATE,
+    department_id INT,
+    designation_id INT,
+    blood_group VARCHAR(10),
+    emergency_no_1 VARCHAR(20),
+    emergency_no_2 VARCHAR(20),
+    kra_pin VARCHAR(50),
+    national_id VARCHAR(255),  -- Stores file path
+    profile_photo VARCHAR(255), -- Stores file path
+    address VARCHAR(255),
+    country VARCHAR(50),
+    physical_address VARCHAR(255),
+    city VARCHAR(50),
+    zipcode VARCHAR(20),
+    password_hash VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL,
+    FOREIGN KEY (designation_id) REFERENCES designation(id) ON DELETE SET NULL
+);
+
+
+
+
+CREATE TABLE designation(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    designation_name VARCHAR(255) NOT NULL,
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+);
+CREATE TABLE departments(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    department_name VARCHAR(255) NOT NULL,
+    hod VARCHAR(255) NOT NULL,
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+);
+
+CREATE TABLE product_category (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL,
+    category_slug VARCHAR(50) NOT NULL,
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+);
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    product_category VARCHAR(50) NOT NULL,
+    product_unit ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+    product_quantity INT DEFAULT 12,
+    product_price INT DEFAULT 1130,
+    product_quantity_alert INT DEFAULT 10,
+    manufactured_on TIMESTAMP ,
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   
+);
+ALTER TABLE products (
+    add COLUMN recipe_name VARCHAR(255) NOT NULL,
+)
+ALTER TABLE customers  (
+    add COLUMN password_hash VARCHAR(255) NOT NULL,
+)
+
+CREATE TABLE stock_category (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    stock_category_name VARCHAR(255) NOT NULL,
+    stock_category_description VARCHAR(255) NOT NULL,
+    stock_category_status ENUM('active', 'inactive') NOT NULL DEFAULT 'active'
+);
+
+
+CREATE TABLE assets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    asset_name VARCHAR(255) NOT NULL,
+    category_id INT NOT NULL,
+    company_code VARCHAR(50) NOT NULL,
+    registration_number VARCHAR(50) NOT NULL,
+    initial_cost DECIMAL(10,2) NOT NULL,
+    current_cost DECIMAL(10,2) NOT NULL,
+    status ENUM('Operational', 'Maintenance Required', 'Out of Service') NOT NULL,
+    next_maintenance DATE NOT NULL,
+    ownership ENUM('Owned', 'Leased') NOT NULL,
+    maintenance_cost DECIMAL(10,2) NOT NULL,
+    depreciation_factor DECIMAL(5,2) NOT NULL,
+    lifespan INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (category_id) REFERENCES asset_category(id) ON DELETE CASCADE
+);
+
+
+pos page cart product_category
+<div class="product-list d-flex align-items-center justify-content-between">
+										<div class="d-flex align-items-center product-info" data-bs-toggle="modal"
+											data-bs-target="#products">
+											<a href="javascript:void(0);" class="img-bg">
+												<img src="assets/img/profiles/avator1.jpg" alt="Products">
+											</a>
+											<div class="info">
+												
+												<h6><a href="javascript:void(0);">Kaimati</a></h6>
+												<p><span>KSH 2000</span></p>
+											</div>
+										</div>
+										<div class="qty-item text-center">
+											<a href="javascript:void(0);"
+												class="dec d-flex justify-content-center align-items-center"
+												data-bs-toggle="tooltip" data-bs-placement="top" title="minus"><i
+													data-feather="minus-circle" class="feather-14"></i></a>
+											<input type="text" class="form-control text-center" name="qty" value="4">
+											<a href="javascript:void(0);"
+												class="inc d-flex justify-content-center align-items-center"
+												data-bs-toggle="tooltip" data-bs-placement="top" title="plus"><i
+													data-feather="plus-circle" class="feather-14"></i></a>
+										</div>
+										<div class="d-flex align-items-center action">
+											
+											<a class="btn-icon delete-icon " href="javascript:void(0);">
+												<i data-feather="trash-2" class="feather-14"></i>
+											</a>
+										</div>
+									</div>

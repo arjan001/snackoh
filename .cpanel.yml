@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jzbwjgrf/snack-oh.oneplusafrica.com
+    - /bin/cp -R * $DEPLOYPATH
