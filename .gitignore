@@ -19,11 +19,7 @@ cache/
 tmp/
 *.cache
 
-# PHP Composer
-vendor/
-composer.lock
 
 # Node
-node_modules/
-package-lock.json
+
 
