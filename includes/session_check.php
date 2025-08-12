@@ -22,10 +22,13 @@ if (!isset($_SESSION['user_id'])) {
         'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
         'url' => $_SERVER['REQUEST_URI'] ?? 'unknown'
     ]);
-    // Build absolute login URL
+    // Build login URL relative to current app base path (supports subfolders like /projects/snackoh)
     $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'] ?? '';
-    $loginPath = '/login.php';
+    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '/';
+    $scriptDir = rtrim(str_replace('\\', '/', dirname($scriptName)), '/');
+    $basePath = ($scriptDir === '' || $scriptDir === '/') ? '/' : ($scriptDir . '/');
+    $loginPath = $basePath . 'login.php';
     $loginUrl = $host ? ($scheme . '://' . $host . $loginPath) : $loginPath;
 
     // Try header redirect first
@@ -34,9 +37,9 @@ if (!isset($_SESSION['user_id'])) {
         exit();
     }
     // Fallbacks if headers already sent
-    echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=' . htmlspecialchars($loginUrl, ENT_QUOTES) . '"></head>';
-    echo '<body><script>window.location.href = ' . json_encode($loginUrl) . ';</script>';
-    echo '<a href="' . htmlspecialchars($loginUrl, ENT_QUOTES) . '">Continue to Login</a></body></html>';
+    echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=' . htmlspecialchars($loginPath, ENT_QUOTES) . '"></head>';
+    echo '<body><script>window.location.href = ' . json_encode($loginPath) . ';</script>';
+    echo '<a href="' . htmlspecialchars($loginPath, ENT_QUOTES) . '">Continue to Login</a></body></html>';
     exit();
 }
 
